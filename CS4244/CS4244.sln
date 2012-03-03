@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{0DCDCCF1-C80D-4C7C-B50B-B7FB61D308D4}"
+	ProjectSection(SolutionItems) = preProject
+		lib\Mommosoft.ExpertSystem.dll = lib\Mommosoft.ExpertSystem.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePhone", "MobilePhone\MobilePhone.csproj", "{DA0CC7A3-9F78-4B98-BDBE-82A89EF46E7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA0CC7A3-9F78-4B98-BDBE-82A89EF46E7F}.Debug|x86.ActiveCfg = Debug|x86
+		{DA0CC7A3-9F78-4B98-BDBE-82A89EF46E7F}.Debug|x86.Build.0 = Debug|x86
+		{DA0CC7A3-9F78-4B98-BDBE-82A89EF46E7F}.Release|x86.ActiveCfg = Release|x86
+		{DA0CC7A3-9F78-4B98-BDBE-82A89EF46E7F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
