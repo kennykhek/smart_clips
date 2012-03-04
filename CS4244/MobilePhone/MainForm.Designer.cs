@@ -374,32 +374,32 @@
 
         private Sample.DataGridViewProgressColumn dataGridViewProgressColumn1;
         private System.Windows.Forms.Button buttonNext;
-        private System.Windows.Forms.Label labelPhase3;
-        private System.Windows.Forms.Panel panelPhase3;
-        private System.Windows.Forms.Panel panelPhase1;
-        private System.Windows.Forms.Label labelPhase1;
-        private System.Windows.Forms.Panel panelPhase2;
-        private System.Windows.Forms.Label labelPhase2;
+        private System.Windows.Forms.Button buttonNextPhone;
+        private System.Windows.Forms.Button buttonPrev;
+        private System.Windows.Forms.Button buttonPrevPhone;
+        private System.Windows.Forms.Button buttonRestart;
         private System.Windows.Forms.GroupBox boxMem;
         private System.Windows.Forms.Label labelMem;
-        private System.Windows.Forms.Panel panelMem;
-        private System.Windows.Forms.RadioButton rbMem4;
-        private System.Windows.Forms.RadioButton rbMem5;
-        private System.Windows.Forms.RadioButton rbMem3;
-        private System.Windows.Forms.RadioButton rbMem1;
-        private System.Windows.Forms.RadioButton rbMem2;
-        private System.Windows.Forms.Label labelPhase4;
-        private System.Windows.Forms.Panel panelPhase4;
-        private System.Windows.Forms.Panel panelPhase0;
         private System.Windows.Forms.Label labelPhase0;
-        private System.Windows.Forms.Button buttonPrev;
-        private System.Windows.Forms.Button buttonRestart;
+        private System.Windows.Forms.Label labelPhase1;
+        private System.Windows.Forms.Label labelPhase2;
+        private System.Windows.Forms.Label labelPhase3;
+        private System.Windows.Forms.Label labelPhase4;
         private System.Windows.Forms.Label labelResultColor;
-        private System.Windows.Forms.PictureBox pictureBoxPhone;
         private System.Windows.Forms.Label labelResultPixel;
         private System.Windows.Forms.Label labelResultZoom;
-        private System.Windows.Forms.Button buttonNextPhone;
-        private System.Windows.Forms.Button buttonPrevPhone;
+        private System.Windows.Forms.Panel panelMem;
+        private System.Windows.Forms.Panel panelPhase0;
+        private System.Windows.Forms.Panel panelPhase1;
+        private System.Windows.Forms.Panel panelPhase2;
+        private System.Windows.Forms.Panel panelPhase3;
+        private System.Windows.Forms.Panel panelPhase4;
+        private System.Windows.Forms.PictureBox pictureBoxPhone;
+        private System.Windows.Forms.RadioButton rbMem1;
+        private System.Windows.Forms.RadioButton rbMem2;
+        private System.Windows.Forms.RadioButton rbMem3;
+        private System.Windows.Forms.RadioButton rbMem4;
+        private System.Windows.Forms.RadioButton rbMem5;        
     }
 }
 

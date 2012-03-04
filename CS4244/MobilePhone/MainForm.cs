@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mommosoft.ExpertSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Mommosoft.ExpertSystem;
+
 
 namespace MobilePhone {
     public partial class MainForm : Form {
@@ -212,14 +213,12 @@ namespace MobilePhone {
         private void UpdateResult(int iResultIterate)
         {
             //Display the results of the phone chosen.
-            labelResultColor.Text = "Number " + (iResultIterate+1) + " Phone Color : " + results.ElementAt(iResultIterate).sColor;
+            labelResultZoom.Text = "Camera Zoom : X" + results.ElementAt(iResultIterate).iCameraZoom; 
             labelResultPixel.Text = "Camera Pixel : " + results.ElementAt(iResultIterate).iCameraPixel + " pixels";
-            labelResultZoom.Text = "Camera Zoom : X" + results.ElementAt(iResultIterate).iCameraZoom;
+            labelResultColor.Text = "Number " + (iResultIterate + 1) + " Phone Color : " + results.ElementAt(iResultIterate).sColor;
             //testing iamge
             pictureBoxPhone.ImageLocation = "http://image.made-in-china.com/2f0j00ZMTtpbjWCwqR/Mobile-Phone-Laptop.jpg";
             pictureBoxPhone.SizeMode = PictureBoxSizeMode.StretchImage;
-           
-
         }
 
         private void ResetPhase(int iPhase)
