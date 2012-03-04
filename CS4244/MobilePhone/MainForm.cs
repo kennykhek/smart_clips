@@ -45,15 +45,15 @@ namespace MobilePhone {
             public String sFact { get; set; }
         }
 
-        private Mommosoft.ExpertSystem.Environment enviroment;
+        private Mommosoft.ExpertSystem.Environment environment;
 
         public MainForm() {
 
             //Initializing of all variables needed
             InitializeComponent();
-            enviroment = new Mommosoft.ExpertSystem.Environment();
+            environment = new Mommosoft.ExpertSystem.Environment();
 
-            enviroment.Load("mobilephone.clp");
+            environment.Load("mobilephone.clp");
 
             UIState = 0;
             SetUIState(Defintions.PhaseStart);
@@ -74,13 +74,13 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-            enviroment.Watch(WatchItem.Facts);
-            enviroment.Reset();
+            environment.Watch(WatchItem.Facts);
+            environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
             testInput();
             
-            enviroment.Run();
+            environment.Run();
 
             //Test by getting all the facts see whether reflect correctly @kwanghock
             test();
@@ -88,11 +88,11 @@ namespace MobilePhone {
 
         private void testInput()
         {
-            enviroment.AssertString("(requirement (requirement-name test)(requirement-value 100)(requirement-weightage 1))");
-            enviroment.AssertString("(phone (camera-zoom 4)(camera-pixel 1)(color red)(weight 10)))");
-            enviroment.AssertString("(phone (camera-zoom 3)(camera-pixel 2)(color blue)(weight 150)(weightage 20)))");
-            enviroment.AssertString("(phone (camera-zoom 2)(camera-pixel 3)(color green)(weight 110)(weightage 10)))");
-            enviroment.AssertString("(phone (camera-zoom 1)(camera-pixel 4)(color black)(weight 130)(weightage 5)))");
+            environment.AssertString("(requirement (requirement-name test)(requirement-value 100)(requirement-weightage 1))");
+            environment.AssertString("(phone (camera-zoom 4)(camera-pixel 1)(color red)(weight 10)))");
+            environment.AssertString("(phone (camera-zoom 3)(camera-pixel 2)(color blue)(weight 150)(weightage 20)))");
+            environment.AssertString("(phone (camera-zoom 2)(camera-pixel 3)(color green)(weight 110)(weightage 10)))");
+            environment.AssertString("(phone (camera-zoom 1)(camera-pixel 4)(color black)(weight 130)(weightage 5)))");
         }
 
         private void test()
@@ -103,7 +103,7 @@ namespace MobilePhone {
              * @kwanghock
              */
             string evalStr = "(get-mobilephone-list)";
-            MultifieldValue mv = (MultifieldValue)enviroment.Eval(evalStr);
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
             //For now put in a list and see how we can display it to show
             List<MobilePhoneRecommendation> rList = new List<MobilePhoneRecommendation>();
@@ -234,6 +234,7 @@ namespace MobilePhone {
                 case Defintions.PhasePersonality:
                     {
                         //Nothing to reset to. It will go back to phaseStart @kwanghock
+                        environment.Reset();
                     }
                     break;
                 case Defintions.PhasePreferences:
@@ -242,7 +243,7 @@ namespace MobilePhone {
                          * If we are implementing phasePersonality, we will retract all the personality facts
                          * we asserted here.
                          */
-                        enviroment.Reset();
+                        environment.Reset();
                     }
                     break;
                 case Defintions.PhaseDetails:
@@ -252,9 +253,9 @@ namespace MobilePhone {
                          * Since there is no way we can use this to retract,
                          * do a reset and assert back the facts that were determined at the personality phase
                          */
-                        enviroment.Reset();
+                        environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
-                            enviroment.AssertString(personalityDetails.ElementAt(i));
+                            environment.AssertString(personalityDetails.ElementAt(i));
 
                         //Clear the preferences details and clear the phoneList updated at the preferences phase
                         preferencesDetails.Clear();
@@ -268,11 +269,11 @@ namespace MobilePhone {
                          * Since there is no way we can use this to retract details about the phone
                          * do a reset and assert back the facts that were determined at the preferences phase and the personality phase
                          */
-                        enviroment.Reset();
+                        environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
-                            enviroment.AssertString(personalityDetails.ElementAt(i));
+                            environment.AssertString(personalityDetails.ElementAt(i));
                         for (int i = 0; i < preferencesDetails.Count; i++)
-                            enviroment.AssertString(preferencesDetails.ElementAt(i));
+                            environment.AssertString(preferencesDetails.ElementAt(i));
 
                         //Clear the specifications details and hte phonelist updated at the specifications phase
                         phoneSpecsPhoneList.Clear();
@@ -317,7 +318,7 @@ namespace MobilePhone {
                             String sRequirementValue = "(requirement-value " + control.Text + ")";
                             String sRequirementWeightage = "(requirement-weightage " + control.Text + ")";
                             //assert weightage of memory
-                            enviroment.AssertString("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
+                            environment.AssertString("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
                             preferencesDetails.Add("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
                         }
                     }
@@ -359,7 +360,7 @@ namespace MobilePhone {
         private void UpdatePhoneList(List<MobilePhoneRecommendation> PhoneList)
         {
             string evalStr = "(get-mobilephone-list)";
-            MultifieldValue mv = (MultifieldValue)enviroment.Eval(evalStr);
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
             for (int i = 0; i < mv.Count; i++)
             {
