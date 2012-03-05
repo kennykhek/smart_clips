@@ -182,6 +182,7 @@ namespace MobilePhone {
             {
                 SetUIState(Defintions.PhaseStart);
                 UIState = Defintions.PhaseStart;
+                ResetPhase(Defintions.PhaseStart); //@kwanghock 05/03/2012 restart button dont reset properly
             }
             else if (button.Name.CompareTo("buttonNextPhone") == 0)
             {
@@ -227,7 +228,8 @@ namespace MobilePhone {
             {
                 case Defintions.PhaseStart:
                     {
-                        //Nothing to reset to @kwanghock
+                        //Nothing to reset to @kwanghock 05/03/2012
+                        environment.Reset();
                     }
                     break;
                 case Defintions.PhasePersonality:
