@@ -89,11 +89,12 @@ namespace MobilePhone {
 
         private void testInput()
         {
-            environment.AssertString("(requirement (requirement-name test)(requirement-value 100)(requirement-weightage 1))");
-            environment.AssertString("(phone (camera-zoom 4)(camera-pixel 1)(color red)(weight 10)))");
-            environment.AssertString("(phone (camera-zoom 3)(camera-pixel 2)(color blue)(weight 150)(weightage 20)))");
-            environment.AssertString("(phone (camera-zoom 2)(camera-pixel 3)(color green)(weight 110)(weightage 10)))");
-            environment.AssertString("(phone (camera-zoom 1)(camera-pixel 4)(color black)(weight 130)(weightage 5)))");
+            /* 
+             * Insert Initial Facts here
+             */
+            
+            // environment.AssertString("(FACTS HERE)");
+            // environment.AssertString("(FACTS HERE)");
         }
 
         private void test()
