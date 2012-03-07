@@ -36,6 +36,15 @@
 ;;*********
 ;;* RULES *
 ;;*********
+(defrule combine-weightage
+  ?rem1 <- (requirement (name ?attribute)(value ?val)(weightage ?weightage1))
+  ?rem2 <- (requirement (name ?attribute)(value ?val)(weightage ?weightage2))
+  (test (neq ?rem1 ?rem2))
+  =>
+  (retract ?rem1)
+  (modify ?rem2 (weightage (round (/ (+ ?weightage1 ?weightage2) 2))))
+)
+
 (defrule calculate-weightage
   ?phone <- (phone (model ?name)(zoom ?zoom)(pixel ?pixel)(color ?color)(weight ?weight)(weightage ?weightage))
   (requirement (name zoom)  (value ?best-cz)(weightage ?weightage-cz))
