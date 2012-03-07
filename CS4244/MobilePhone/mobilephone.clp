@@ -66,3 +66,4 @@
 (deffunction get-requirement-list ()
   (bind ?facts (find-all-facts((?p requirement)) TRUE))
 )
+
