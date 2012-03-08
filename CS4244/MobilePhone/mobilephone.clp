@@ -46,7 +46,7 @@
 )
 
 (defrule calculate-weightage
-  ?phone <- (phone (model ?name)(zoom ?zoom)(pixel ?pixel)(color ?color)(weight ?weight)(weightage ?weightage))
+  ?phone <- (phone (model ?name)(zoom ?best-cz)(pixel ?best-cp)(color ?best-cc)(weight ?best-cw)(weightage ?weightage))
   (requirement (name zoom)  (value ?best-cz)(weightage ?weightage-cz))
   (requirement (name pixel) (value ?best-cp)(weightage ?weightage-cp))
   (requirement (name color) (value ?best-cc)(weightage ?weightage-cc))
