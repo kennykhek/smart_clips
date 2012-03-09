@@ -68,7 +68,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.q6_yes = new System.Windows.Forms.RadioButton();
             this.q6_no = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.grp_box_q5 = new System.Windows.Forms.GroupBox();
             this.q5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.q5_yes = new System.Windows.Forms.RadioButton();
@@ -78,7 +78,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.q4_yes = new System.Windows.Forms.RadioButton();
             this.q4_no = new System.Windows.Forms.RadioButton();
-            this.grp_box_3 = new System.Windows.Forms.GroupBox();
+            this.grp_box_q3 = new System.Windows.Forms.GroupBox();
             this.q3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.q3_yes = new System.Windows.Forms.RadioButton();
@@ -101,11 +101,11 @@
             this.panelPhase1.SuspendLayout();
             this.grp_box_q6.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.grp_box_q5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.grp_box_q4.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.grp_box_3.SuspendLayout();
+            this.grp_box_q3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grp_box_q2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -242,7 +242,7 @@
             // panelPhase0
             // 
             this.panelPhase0.Controls.Add(this.labelPhase0);
-            this.panelPhase0.Location = new System.Drawing.Point(12, 12);
+            this.panelPhase0.Location = new System.Drawing.Point(528, 12);
             this.panelPhase0.Name = "panelPhase0";
             this.panelPhase0.Size = new System.Drawing.Size(510, 400);
             this.panelPhase0.TabIndex = 5;
@@ -250,9 +250,9 @@
             // panelPhase1
             // 
             this.panelPhase1.Controls.Add(this.grp_box_q6);
-            this.panelPhase1.Controls.Add(this.groupBox4);
+            this.panelPhase1.Controls.Add(this.grp_box_q5);
             this.panelPhase1.Controls.Add(this.grp_box_q4);
-            this.panelPhase1.Controls.Add(this.grp_box_3);
+            this.panelPhase1.Controls.Add(this.grp_box_q3);
             this.panelPhase1.Controls.Add(this.grp_box_q2);
             this.panelPhase1.Controls.Add(this.labelPhase1);
             this.panelPhase1.Location = new System.Drawing.Point(0, 0);
@@ -276,15 +276,15 @@
             this.q6.AutoSize = true;
             this.q6.Location = new System.Drawing.Point(6, 18);
             this.q6.Name = "q6";
-            this.q6.Size = new System.Drawing.Size(292, 13);
+            this.q6.Size = new System.Drawing.Size(305, 13);
             this.q6.TabIndex = 0;
-            this.q6.Text = "Do you watch movies you downloaded on your phone?";
+            this.q6.Text = "Do you often take night picture/ video using your phone?";
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.q6_yes);
             this.panel5.Controls.Add(this.q6_no);
-            this.panel5.Location = new System.Drawing.Point(329, 11);
+            this.panel5.Location = new System.Drawing.Point(362, 12);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(105, 32);
             this.panel5.TabIndex = 1;
@@ -311,31 +311,31 @@
             this.q6_no.Text = "No";
             this.q6_no.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // grp_box_q5
             // 
-            this.groupBox4.Controls.Add(this.q5);
-            this.groupBox4.Controls.Add(this.panel4);
-            this.groupBox4.Location = new System.Drawing.Point(24, 259);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(476, 50);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Question 5";
+            this.grp_box_q5.Controls.Add(this.q5);
+            this.grp_box_q5.Controls.Add(this.panel4);
+            this.grp_box_q5.Location = new System.Drawing.Point(24, 259);
+            this.grp_box_q5.Name = "grp_box_q5";
+            this.grp_box_q5.Size = new System.Drawing.Size(476, 50);
+            this.grp_box_q5.TabIndex = 2;
+            this.grp_box_q5.TabStop = false;
+            this.grp_box_q5.Text = "Question 5";
             // 
             // q5
             // 
             this.q5.AutoSize = true;
             this.q5.Location = new System.Drawing.Point(6, 18);
             this.q5.Name = "q5";
-            this.q5.Size = new System.Drawing.Size(292, 13);
+            this.q5.Size = new System.Drawing.Size(285, 13);
             this.q5.TabIndex = 0;
-            this.q5.Text = "Do you watch movies you downloaded on your phone?";
+            this.q5.Text = "Do you use phone as your personal and only camera? ";
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.q5_yes);
             this.panel4.Controls.Add(this.q5_no);
-            this.panel4.Location = new System.Drawing.Point(329, 11);
+            this.panel4.Location = new System.Drawing.Point(362, 12);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(105, 32);
             this.panel4.TabIndex = 1;
@@ -378,15 +378,15 @@
             this.q4.AutoSize = true;
             this.q4.Location = new System.Drawing.Point(6, 18);
             this.q4.Name = "q4";
-            this.q4.Size = new System.Drawing.Size(292, 13);
+            this.q4.Size = new System.Drawing.Size(330, 13);
             this.q4.TabIndex = 0;
-            this.q4.Text = "Do you watch movies you downloaded on your phone?";
+            this.q4.Text = "Do you play game online or Internet browsing on your phone?";
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.q4_yes);
             this.panel3.Controls.Add(this.q4_no);
-            this.panel3.Location = new System.Drawing.Point(329, 11);
+            this.panel3.Location = new System.Drawing.Point(362, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(105, 32);
             this.panel3.TabIndex = 1;
@@ -413,16 +413,16 @@
             this.q4_no.Text = "No";
             this.q4_no.UseVisualStyleBackColor = true;
             // 
-            // grp_box_3
+            // grp_box_q3
             // 
-            this.grp_box_3.Controls.Add(this.q3);
-            this.grp_box_3.Controls.Add(this.panel2);
-            this.grp_box_3.Location = new System.Drawing.Point(24, 147);
-            this.grp_box_3.Name = "grp_box_3";
-            this.grp_box_3.Size = new System.Drawing.Size(476, 50);
-            this.grp_box_3.TabIndex = 2;
-            this.grp_box_3.TabStop = false;
-            this.grp_box_3.Text = "Question 3";
+            this.grp_box_q3.Controls.Add(this.q3);
+            this.grp_box_q3.Controls.Add(this.panel2);
+            this.grp_box_q3.Location = new System.Drawing.Point(24, 147);
+            this.grp_box_q3.Name = "grp_box_q3";
+            this.grp_box_q3.Size = new System.Drawing.Size(476, 50);
+            this.grp_box_q3.TabIndex = 2;
+            this.grp_box_q3.TabStop = false;
+            this.grp_box_q3.Text = "Question 3";
             // 
             // q3
             // 
@@ -437,7 +437,7 @@
             // 
             this.panel2.Controls.Add(this.q3_yes);
             this.panel2.Controls.Add(this.q3_no);
-            this.panel2.Location = new System.Drawing.Point(329, 11);
+            this.panel2.Location = new System.Drawing.Point(362, 12);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(105, 32);
             this.panel2.TabIndex = 1;
@@ -488,7 +488,7 @@
             // 
             this.panel1.Controls.Add(this.q2_yes);
             this.panel1.Controls.Add(this.q2_no);
-            this.panel1.Location = new System.Drawing.Point(329, 11);
+            this.panel1.Location = new System.Drawing.Point(362, 9);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(105, 32);
             this.panel1.TabIndex = 1;
@@ -549,7 +549,7 @@
             // 
             this.panelMem.Controls.Add(this.q1_yes);
             this.panelMem.Controls.Add(this.q1_no);
-            this.panelMem.Location = new System.Drawing.Point(329, 11);
+            this.panelMem.Location = new System.Drawing.Point(362, 11);
             this.panelMem.Name = "panelMem";
             this.panelMem.Size = new System.Drawing.Size(105, 32);
             this.panelMem.TabIndex = 1;
@@ -630,16 +630,16 @@
             this.grp_box_q6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.grp_box_q5.ResumeLayout(false);
+            this.grp_box_q5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.grp_box_q4.ResumeLayout(false);
             this.grp_box_q4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.grp_box_3.ResumeLayout(false);
-            this.grp_box_3.PerformLayout();
+            this.grp_box_q3.ResumeLayout(false);
+            this.grp_box_q3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.grp_box_q2.ResumeLayout(false);
@@ -673,7 +673,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.RadioButton q6_yes;
         private System.Windows.Forms.RadioButton q6_no;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox grp_box_q5;
         private System.Windows.Forms.Label q5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.RadioButton q5_yes;
@@ -683,7 +683,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton q4_yes;
         private System.Windows.Forms.RadioButton q4_no;
-        private System.Windows.Forms.GroupBox grp_box_3;
+        private System.Windows.Forms.GroupBox grp_box_q3;
         private System.Windows.Forms.Label q3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton q3_yes;

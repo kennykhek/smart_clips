@@ -312,19 +312,114 @@ namespace MobilePhone {
                       * @kwanghock
                       */
                     //Assert the weightage of the attributes related to the question here
-                    foreach (RadioButton control in panelMem.Controls)
+                    //Question 1
+                    foreach (RadioButton control in grp_box_q1.Controls)
                     {
                         if (control.Checked)
                         {
+                            //Question: Do you watch movies you downloaded on your phone?
+                            if (control.Name.Equals("q1_yes"))
+                            {
+
+                            }
+                            else if(control.Name.Equals("q1_no"))
+                            {
+
+                            }
+                            /*
                             String sRequirementName = "(requirement-name memory)";
                             String sRequirementValue = "(requirement-value " + control.Text + ")";
                             String sRequirementWeightage = "(requirement-weightage " + control.Text + ")";
-                            //assert weightage of memory
+                           
                             environment.AssertString("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
                             preferencesDetails.Add("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
+                            */
+                             }
+                    }
+                    //Question 2
+                    foreach (RadioButton control in grp_box_q2.Controls)
+                    {
+                        if (control.Checked)
+                        {
+                            //Question: Do you listen to music on your phone?
+                            if (control.Name.Equals("q2_yes"))
+                            {
+
+                            }
+                            else if (control.Name.Equals("q2_no"))
+                            {
+
+                            }
                         }
                     }
 
+                    //Question 3
+                    foreach (RadioButton control in grp_box_q3.Controls)
+                    {
+                        if (control.Checked)
+                        {
+                            //Question: Do you watch movies you downloaded on your phone?
+                            if (control.Name.Equals("q3_yes"))
+                            {
+
+                            }
+                            else if (control.Name.Equals("q3_no"))
+                            {
+
+                            }
+                        }
+                    }
+
+                    //Question 4
+                    foreach (RadioButton control in grp_box_q4.Controls)
+                    {
+                        if (control.Checked)
+                        {
+                            //Question: Do you watch movies you downloaded on your phone?
+                            if (control.Name.Equals("q4_yes"))
+                            {
+
+                            }
+                            else if (control.Name.Equals("q4_no"))
+                            {
+
+                            }
+                        }
+                    }
+
+                    //Question 5
+                    foreach (RadioButton control in grp_box_q5.Controls)
+                    {
+                        if (control.Checked)
+                        {
+                            //Question: Do you use phone as your personal and only camera? 
+                            if (control.Name.Equals("q5_yes"))
+                            {
+
+                            }
+                            else if (control.Name.Equals("q5_no"))
+                            {
+
+                            }
+                        }
+                    }
+
+                    //Question 6
+                    foreach (RadioButton control in grp_box_q6.Controls)
+                    {
+                        if (control.Checked)
+                        {
+                            //Question: Do you use phone as your personal and only camera? 
+                            if (control.Name.Equals("q6_yes"))
+                            {
+
+                            }
+                            else if (control.Name.Equals("q6_no"))
+                            {
+
+                            }
+                        }
+                    }
                     //Update phonelist for this PhasePreferences
                     UpdatePhoneList(preferencesPhoneList);
                 }
