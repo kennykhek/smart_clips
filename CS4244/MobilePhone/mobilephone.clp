@@ -11,14 +11,14 @@
 	(slot memory (type INTEGER))
 	;features
 	(slot os        (type SYMBOL))
-	(slot bluetooth (type SYMBOL)(allow-values yes no))
-	(slot wifi      (type SYMBOL)(allow-values yes no))
-	(slot fm        (type SYMBOL)(allow-values yes no))
+	(slot bluetooth (type SYMBOL)(allowed-values yes no))
+	(slot wifi      (type SYMBOL)(allowed-values yes no))
+	(slot fm        (type SYMBOL)(allowed-values yes no))
     ;camera
 	(slot zoom      (type INTEGER))
 	(slot pixel     (type INTEGER))
 	(slot flash     (type SYMBOL)  (allowed-values yes no))
-	(slot videoHD   (type INTERGER))
+	(slot videoHD   (type INTEGER))
 	;weightage
 	(slot weightage (type FLOAT)(default 100.0))
 )
@@ -53,17 +53,17 @@
 
 (deffacts user-phone-preference
   ;zoom (testing, user prefer 3)
-  (requirement (name zoom)  (value 3)    (weightage 100))
-  (requirement (name zoom)  (value 2)    (weightage 50))  
-  (requirement (name zoom)  (value 1)    (weightage 0))
+  (requirement (name zoom)  (value 3)    (weightage 100.0))
+  (requirement (name zoom)  (value 2)    (weightage 50.0))  
+  (requirement (name zoom)  (value 1)    (weightage 0.0))
   ;pixel (testing, user prefer 2)
-  (requirement (name pixel) (value 2)    (weightage 100))
-  (requirement (name pixel) (value 1)    (weightage 0))
+  (requirement (name pixel) (value 2)    (weightage 100.0))
+  (requirement (name pixel) (value 1)    (weightage 0.0))
   ;color (testing, user prefer white)
-  (requirement (name color) (value white)(weightage 100))
-  (requirement (name color) (value black)(weightage 66))
-  (requirement (name color) (value grey) (weightage 33))
-  (requirement (name color) (value red)  (weightage 0))
+  (requirement (name color) (value white)(weightage 100.0))
+  (requirement (name color) (value black)(weightage 66.0))
+  (requirement (name color) (value grey) (weightage 33.0))
+  (requirement (name color) (value red)  (weightage 0.0))
 )
 
 ;;*********
@@ -76,7 +76,7 @@
   (test (neq ?rem1 ?rem2))
   =>
   (retract ?rem1)
-  (modify ?rem2 (weightage (round (/ (+ ?weightage1 ?weightage2) 2))))
+  (modify ?rem2 (weightage (/ (+ ?weightage1 ?weightage2) 2)))
 )
 
 (defrule calculate-weightage
@@ -84,13 +84,13 @@
   ?phone <- (phone (model ?moVal)(price ?prVal)
             (brand ?brVal)(color ?coVal)(weight ?weVal)(memory ?meVal)
             (os ?osVal)(bluetooth ?blVal)(wifi ?wiVal)(fm ?fmVal)
-	        (zoom ?zoVal)(pixel ?piVal)(flash ?flVal)(videoHD ?viVal))
+	        (zoom ?zoVal)(pixel ?piVal)(flash ?flVal)(videoHD ?viVal)
 		    (weightage ?weightage))
   (requirement (name zoom) (value ?zoVal)(weightage ?weightage-zo))
   (requirement (name pixel)(value ?piVal)(weightage ?weightage-pi))
   (requirement (name color)(value ?coVal)(weightage ?weightage-co))
   =>
-  (bind ?new-weightage (/ 3 (+ ?weightage-zo (+ ?weightage-pi ?weightage-co)))
+  (bind ?new-weightage (/ 3 (+ ?weightage-zo (+ ?weightage-pi ?weightage-co))))
   (modify ?phone (weightage ?new-weightage))
 )
 
