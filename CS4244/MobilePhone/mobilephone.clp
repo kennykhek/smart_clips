@@ -1,37 +1,69 @@
-;
 ;;*************
 ;;* TEMPLATES *
 ;;*************
 (deftemplate phone
-	(slot model     (type SYMBOL) (default NIL))
-	(slot zoom      (type INTEGER)(default 0))
-	(slot pixel     (type INTEGER)(default 0))
-	(slot color     (type SYMBOL) (default NIL))
-	(slot weight    (type INTEGER)(default 0))
-	(slot weightage (type INTEGER)(default 0))
+	(slot model     (type SYMBOL))
+	(slot price     (type INTEGER))
+	;spec
+	(slot brand  (type SYMBOL))
+	(slot color  (type SYMBOL))
+	(slot weight (type INTEGER))
+	(slot memory (type INTEGER))
+	;features
+	(slot os        (type SYMBOL))
+	(slot bluetooth (type SYMBOL)(allow-values yes no))
+	(slot wifi      (type SYMBOL)(allow-values yes no))
+	(slot fm        (type SYMBOL)(allow-values yes no))
+        ;camera
+	(slot zoom      (type INTEGER))
+	(slot pixel     (type INTEGER))
+	(slot flash     (type SYMBOL)  (allowed-values yes no))
+	(slot videoHD   (type INTERGER))
+	;weightage
+	(slot weightage (type FLOAT)(default 100.0))
 )
 
 (deftemplate requirement
 	(slot name (type SYMBOL))
 	(slot value)
-	(slot weightage (type INTEGER)(default 0))
+	(slot weightage (type FLOAT))
 )
 
 ;;*********
 ;;* FACTS *
 ;;*********
 (deffacts init-phone-facts
-  (phone (model iphone)(zoom 4)(pixel 1)(color red)  (weight 100))
-  (phone (model N3310) (zoom 3)(pixel 2)(color blue) (weight 150))
-  (phone (model E330i) (zoom 2)(pixel 3)(color green)(weight 110))
-  (phone (model S3310) (zoom 1)(pixel 4)(color black)(weight 130))
+  (phone (model N4350)(price 400)
+         (brand nokia)(color grey)(weight 100)(memory 32)
+         (os symbian)(bluetooth yes)(wifi yes)(fm yes)
+	 (zoom 3)(pixel 1)(flash yes)(videoHD 4))
+  (phone (model K421)(price 400)
+         (brand sonyericsson)(color black)(weight 100)(memory 32)
+         (os javaME)(bluetooth yes)(wifi no)(fm yes)
+	 (zoom 1)(pixel 2)(flash yes)(videoHD 4))
+  (phone (model N1032)(price 400)
+         (brand nokia)(color red)(weight 100)(memory 32)
+         (os symbian)(bluetooth yes)(wifi yes)(fm yes)
+	 (zoom 2)(pixel 2)(flash no)(videoHD 4))
+  (phone (model iphone)(price 400)
+         (brand apple)(color white)(weight 600)(memory 32)
+         (os ios)(bluetooth yes)(wifi yes)(fm yes)
+	 (zoom 3)(pixel 1)(flash yes)(videoHD 4))
 )
 
 (deffacts user-phone-preference
-  (requirement (name up-zoom)  (value 4)    (weightage 100))
-  (requirement (name up-pixel) (value 4)    (weightage 100))
-  (requirement (name up-color) (value green)(weightage 100))
-  (requirement (name up-weight)(value 110)  (weightage 100))
+  ;zoom (testing, user prefer 3)
+  (requirement (name zoom)  (value 3)    (weightage 100))
+  (requirement (name zoom)  (value 2)    (weightage 50))  
+  (requirement (name zoom)  (value 1)    (weightage 0))
+  ;pixel (testing, user prefer 2)
+  (requirement (name pixel) (value 2)    (weightage 100))
+  (requirement (name pixel) (value 1)    (weightage 0))
+  ;color (testing, user prefer white)
+  (requirement (name color) (value white)(weightage 100))
+  (requirement (name color) (value black)(weightage 66))
+  (requirement (name color) (value grey) (weightage 33))
+  (requirement (name color) (value red)  (weightage 0))
 )
 
 ;;*********
