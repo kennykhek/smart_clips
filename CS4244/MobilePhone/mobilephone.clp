@@ -7,6 +7,7 @@
 	;spec
 	(slot brand  (type SYMBOL))
 	(slot color  (type SYMBOL))
+	(slot screen (type FLOAT))
 	(slot weight (type INTEGER))
 	(slot memory (type INTEGER))
 	;features
@@ -18,7 +19,7 @@
 	(slot zoom      (type INTEGER))
 	(slot pixel     (type INTEGER))
 	(slot flash     (type SYMBOL)  (allowed-values yes no))
-	(slot videoHD   (type INTEGER))
+	(slot videoHD   (type SYMBOL)  (allowed-values yes no))
 	;weightage
 	(slot weightage (type FLOAT)(default 100.0))
 )
@@ -33,22 +34,22 @@
 ;;* FACTS *
 ;;*********
 (deffacts init-phone-facts
-  (phone (model N4350)(price 400)
-         (brand nokia)(color grey)(weight 100)(memory 32)
-         (os symbian)(bluetooth yes)(wifi yes)(fm yes)
-	     (zoom 3)(pixel 1)(flash yes)(videoHD 4))
-  (phone (model K421)(price 400)
-         (brand sonyericsson)(color black)(weight 100)(memory 32)
-         (os javaME)(bluetooth yes)(wifi no)(fm yes)
-	     (zoom 1)(pixel 2)(flash yes)(videoHD 4))
-  (phone (model N1032)(price 400)
-         (brand nokia)(color red)(weight 100)(memory 32)
-         (os symbian)(bluetooth yes)(wifi yes)(fm yes)
-	     (zoom 2)(pixel 2)(flash no)(videoHD 4))
-  (phone (model iphone)(price 400)
-         (brand apple)(color white)(weight 600)(memory 32)
-         (os ios)(bluetooth yes)(wifi yes)(fm yes)
-	     (zoom 3)(pixel 1)(flash yes)(videoHD 4))
+  (phone (model N300)(price 200)
+         (brand nokia)(color silver)(screen 2.4)(weight 100)(memory 32)
+         (fm yes)
+	     (pixel 5))
+  (phone (model Chacha)(price 400)
+         (brand htc)(color black)(weight 120)(memory 32)
+         (os android)(bluetooth yes)(fm yes)
+	     (pixel 5)(flash yes)(videoHD yes))
+  (phone (model galaxy_ace)(price 460)
+         (brand samsung)(color silver)(screen 3.5)(weight 113)(memory 32)
+         (os android)(fm yes)
+	     (pixel 5)(flash yes)(videoHD yes))
+  ;(phone (model iphone)(price 400)
+  ;       (brand apple)(color white)(screen 2.4)(weight 600)(memory 32)
+  ;       (os ios)(bluetooth yes)(wifi yes)(fm yes)
+  ;	      (zoom 3)(pixel 1)(flash yes)(videoHD 4))
 )
 
 (deffacts user-phone-preference
