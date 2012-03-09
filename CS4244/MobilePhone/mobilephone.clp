@@ -29,6 +29,13 @@
 	(slot weightage (type FLOAT))
 )
 
+(deftemplate question
+	(slot phase (type INTEGER))
+	(slot order (type SYMBOL))
+	(slot text (type STRING))
+	(slot selection (type SYMBOL)(allowed-values yes no))
+)
+	
 ;;*********
 ;;* FACTS *
 ;;*********
@@ -64,6 +71,15 @@
   (requirement (name color) (value black)(weightage 66.0))
   (requirement (name color) (value grey) (weightage 33.0))
   (requirement (name color) (value red)  (weightage 0.0))
+)
+
+(deffacts user-preference
+	(question (order watch_movie) (selection yes))
+	(question (order listen_music) (selection yes))
+	(question (order view_picture) (selection no))
+	(question (order game_internet) (selection yes))
+	(question (order use_camera) (selection no))
+	(question (order use_camera_night) (selection no))
 )
 
 ;;*********
