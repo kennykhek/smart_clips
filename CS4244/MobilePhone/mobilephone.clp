@@ -14,7 +14,7 @@
 	(slot bluetooth (type SYMBOL)(allow-values yes no))
 	(slot wifi      (type SYMBOL)(allow-values yes no))
 	(slot fm        (type SYMBOL)(allow-values yes no))
-        ;camera
+    ;camera
 	(slot zoom      (type INTEGER))
 	(slot pixel     (type INTEGER))
 	(slot flash     (type SYMBOL)  (allowed-values yes no))
@@ -36,19 +36,19 @@
   (phone (model N4350)(price 400)
          (brand nokia)(color grey)(weight 100)(memory 32)
          (os symbian)(bluetooth yes)(wifi yes)(fm yes)
-	 (zoom 3)(pixel 1)(flash yes)(videoHD 4))
+	     (zoom 3)(pixel 1)(flash yes)(videoHD 4))
   (phone (model K421)(price 400)
          (brand sonyericsson)(color black)(weight 100)(memory 32)
          (os javaME)(bluetooth yes)(wifi no)(fm yes)
-	 (zoom 1)(pixel 2)(flash yes)(videoHD 4))
+	     (zoom 1)(pixel 2)(flash yes)(videoHD 4))
   (phone (model N1032)(price 400)
          (brand nokia)(color red)(weight 100)(memory 32)
          (os symbian)(bluetooth yes)(wifi yes)(fm yes)
-	 (zoom 2)(pixel 2)(flash no)(videoHD 4))
+	     (zoom 2)(pixel 2)(flash no)(videoHD 4))
   (phone (model iphone)(price 400)
          (brand apple)(color white)(weight 600)(memory 32)
          (os ios)(bluetooth yes)(wifi yes)(fm yes)
-	 (zoom 3)(pixel 1)(flash yes)(videoHD 4))
+	     (zoom 3)(pixel 1)(flash yes)(videoHD 4))
 )
 
 (deffacts user-phone-preference
