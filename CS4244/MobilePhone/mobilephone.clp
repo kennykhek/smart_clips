@@ -70,6 +70,7 @@
 ;;* RULES *
 ;;*********
 (defrule combine-weightage
+  ; take average of two weightage if there is two rule with similar attribute and value
   ?rem1 <- (requirement (name ?attribute)(value ?val)(weightage ?weightage1))
   ?rem2 <- (requirement (name ?attribute)(value ?val)(weightage ?weightage2))
   (test (neq ?rem1 ?rem2))
@@ -79,13 +80,17 @@
 )
 
 (defrule calculate-weightage
-  ?phone <- (phone (model ?name)(zoom ?best-cz)(pixel ?best-cp)(color ?best-cc)(weight ?best-cw)(weightage ?weightage))
-  (requirement (name zoom)  (value ?best-cz)(weightage ?weightage-cz))
-  (requirement (name pixel) (value ?best-cp)(weightage ?weightage-cp))
-  (requirement (name color) (value ?best-cc)(weightage ?weightage-cc))
-  (requirement (name weight)(value ?best-cw)(weightage ?weightage-cw))
+  ; calculate weight of phone by taking average
+  ?phone <- (phone (model ?moVal)(price ?prVal)
+            (brand ?brVal)(color ?coVal)(weight ?weVal)(memory ?meVal)
+            (os ?osVal)(bluetooth ?blVal)(wifi ?wiVal)(fm ?fmVal)
+	        (zoom ?zoVal)(pixel ?piVal)(flash ?flVal)(videoHD ?viVal))
+		    (weightage ?weightage))
+  (requirement (name zoom) (value ?zoVal)(weightage ?weightage-zo))
+  (requirement (name pixel)(value ?piVal)(weightage ?weightage-pi))
+  (requirement (name color)(value ?coVal)(weightage ?weightage-co))
   =>
-  (bind ?new-weightage (min ?weightage-cz ?weightage-cp ?weightage-cc ?weightage-cw))
+  (bind ?new-weightage (/ 3 (+ ?weightage-zo (+ ?weightage-pi ?weightage-co)))
   (modify ?phone (weightage ?new-weightage))
 )
 
