@@ -88,12 +88,57 @@
 	(question (order view_picture) (selection no))
 	(question (order game_internet) (selection yes))
 	(question (order use_camera) (selection no))
-	(question (order use_camera_night) (selection no))
+	(question (order use_camera_night) (selection no)) ; can remove this question? quite redundent
 )
 
 ;;*********
 ;;* RULES *
 ;;*********
+(defrule use_camera
+  (question (order use_camera)(selection ?sel))
+  =>
+  if (eq ?sel yes) then
+	(assert (requirement (name pixel)(value 5)(weightage 100.0)))
+	(assert (requirement (name flash)(value yes)(weightage 100.0)))
+	(assert (requirement (name flash)(value no)(weightage 0.0)))
+	(assert (requirement (name videoHD)(value yes)(weightage 100.0)))
+	(assert (requirement (name videoHD)(value no)(weightage 0.0)))
+)
+
+(defrule game_internet
+  (question (order game_internet)(selection ?sel))
+  =>
+  if (eq ?sel yes) then
+    (assert (requirement (name screen)(value 4.3)(weightage 100.0)))
+	(assert (requirement (name screen)(value 3.7)(weightage 75.0)))
+	(assert (requirement (name screen)(value 3.5)(weightage 50.0)))
+	(assert (requirement (name screen)(value 2.6)(weightage 25.0)))
+	(assert (requirement (name screen)(value 2.4)(weightage 0.0)))
+	(assert (requirement (name wifi)(value yes)(weightage 100.0)))
+	(assert (requirement (name wifi)(value no)(weightage 0.0)))
+)
+
+(defrule view_picture
+  (question (order view_picture)(selection ?sel))
+  =>
+  if (eq ?sel yes) then
+    (assert (requirement (name screen)(value 4.3)(weightage 100.0)))
+	(assert (requirement (name screen)(value 3.7)(weightage 75.0)))
+	(assert (requirement (name screen)(value 3.5)(weightage 50.0)))
+	(assert (requirement (name screen)(value 2.6)(weightage 25.0)))
+	(assert (requirement (name screen)(value 2.4)(weightage 0.0)))
+	(assert (requirement (name memory)(value 32)(weightage 100.0)))
+)
+
+(defrule listen_music
+  (question (order listen_music)(selection ?sel))
+  =>
+  if (eq ?sel yes) then
+	(assert (requirement (name memory)(value 32)(weightage 100.0)))
+	(assert (requirement (name fm)(value yes)(weightage 100.0)))
+	(assert (requirement (name fm)(value no)(weightage 0.0)))
+)
+
 (defrule watch_movie
   (question (order watch_movie)(selection ?sel))
   =>
