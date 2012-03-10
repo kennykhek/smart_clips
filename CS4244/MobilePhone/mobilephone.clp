@@ -31,9 +31,9 @@
 )
 
 (deftemplate question
-	(slot phase (type INTEGER))
+	;(slot phase (type INTEGER))
 	(slot order (type SYMBOL))
-	(slot text (type STRING))
+	;(slot text (type STRING))
 	(slot selection (type SYMBOL)(allowed-values yes no))
 )
 	
@@ -46,7 +46,7 @@
          (fm yes)
 	     (pixel 5))
   (phone (model Chacha)(price 400)
-         (brand htc)(color black)(weight 120)(memory 32)
+         (brand htc)(color black)(screen 2.6)(weight 120)(memory 32)
          (os android)(bluetooth yes)(fm yes)
 	     (pixel 5)(flash yes)(videoHD yes))
   (phone (model galaxy_ace)(price 460)
@@ -67,20 +67,20 @@
   ;	      (zoom 3)(pixel 1)(flash yes)(videoHD 4))
 )
 
-(deffacts user-phone-preference
+;(deffacts user-phone-preference
   ;zoom (testing, user prefer 3)
-  (requirement (name zoom)  (value 3)    (weightage 100.0))
-  (requirement (name zoom)  (value 2)    (weightage 50.0))  
-  (requirement (name zoom)  (value 1)    (weightage 0.0))
+;  (requirement (name zoom)  (value 3)    (weightage 100.0))
+;  (requirement (name zoom)  (value 2)    (weightage 50.0))  
+;  (requirement (name zoom)  (value 1)    (weightage 0.0))
   ;pixel (testing, user prefer 2)
-  (requirement (name pixel) (value 2)    (weightage 100.0))
-  (requirement (name pixel) (value 1)    (weightage 0.0))
+;  (requirement (name pixel) (value 2)    (weightage 100.0))
+;  (requirement (name pixel) (value 1)    (weightage 0.0))
   ;color (testing, user prefer white)
-  (requirement (name color) (value white)(weightage 100.0))
-  (requirement (name color) (value black)(weightage 66.0))
-  (requirement (name color) (value grey) (weightage 33.0))
-  (requirement (name color) (value red)  (weightage 0.0))
-)
+;  (requirement (name color) (value white)(weightage 100.0))
+;  (requirement (name color) (value black)(weightage 66.0))
+;  (requirement (name color) (value grey) (weightage 33.0))
+;  (requirement (name color) (value red)  (weightage 0.0))
+;)
 
 (deffacts user-preference
 	(question (order watch_movie) (selection yes))
@@ -94,6 +94,18 @@
 ;;*********
 ;;* RULES *
 ;;*********
+(defrule watch_movie
+  (question (order watch_movie)(selection ?sel))
+  =>
+  if (eq ?sel yes) then
+    (assert (requirement (name screen)(value 4.3)(weightage 100.0)))
+	(assert (requirement (name screen)(value 3.7)(weightage 75.0)))
+	(assert (requirement (name screen)(value 3.5)(weightage 50.0)))
+	(assert (requirement (name screen)(value 2.6)(weightage 25.0)))
+	(assert (requirement (name screen)(value 2.4)(weightage 0.0)))
+	(assert (requirement (name memory)(value 32)(weightage 100.0)))
+)
+
 (defrule combine-weightage
   ; take average of two weightage if there is two rule with similar attribute and value
   ?rem1 <- (requirement (name ?attribute)(value ?val)(weightage ?weightage1))
