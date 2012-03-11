@@ -38,11 +38,31 @@ namespace MobilePhone {
 
         private class MobilePhoneRecommendation
         {
-            public int iCameraZoom { get; set; }
-            public int iCameraPixel { get; set; }
-            public string sColor { get; set; }
+            public String sModel { get; set; }
+            public int iPrice { get; set; }
+
+            //Specs
+            public String sBrand { get; set; }
+            public String sColor { get; set; }
+            public float fScreen { get; set; }
             public int iWeight { get; set; }
-            public int iWeightage { get; set; }
+            public int iMemory { get; set; }
+
+            //Features
+            public String sOS { get; set; }
+            public String sBluetooth { get; set; }
+            public String sWifi { get; set; }
+            public String sFM { get; set; }
+
+            //Camera
+            public int iZoom { get; set; }
+            public int iPixel { get; set; }
+            public String sFlash { get; set; }
+            public String sVideoHD { get; set; }
+            public float fWeightage { get; set; }
+
+            //Fact itself
+
             public String sFact { get; set; }
         }
 
@@ -79,12 +99,12 @@ namespace MobilePhone {
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
-            testInput();
+            //testInput();
             
             environment.Run();
 
             //Test by getting all the facts see whether reflect correctly @kwanghock
-            test();
+            //test();
         }
 
         private void testInput()
@@ -117,11 +137,11 @@ namespace MobilePhone {
              */
             FactAddressValue fv = (FactAddressValue)mv[0];
 
-            int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("camera-zoom");
+           /* int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("camera-zoom");
             int iCameraPixel = (int)(IntegerValue)fv.GetFactSlot("camera-pixel");
             String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
             int iWeight = (int)(IntegerValue)fv.GetFactSlot("weight");
-            int iWeightage = (int)(IntegerValue)fv.GetFactSlot("weightage");
+            int iWeightage = (int)(IntegerValue)fv.GetFactSlot("weightage");*/
             
            // rList.Add(new MobilePhoneRecommendation() { iCameraZoom, iCameraPixel, sColor, iWeight, iWeightage });
         }
@@ -147,10 +167,10 @@ namespace MobilePhone {
                 {
                     ProcessPhase(Defintions.PhaseDetails);
                 }
-                if (panelPhase4.Visible)
+                /*if (panelPhase4.Visible) @kwanghock 10march2012 removed
                 {
                     ProcessPhase(Defintions.PhaseResults);
-                }
+                }*/
                 SetUIState(++UIState);
             }
             else if (button.Name.CompareTo("buttonPrev") == 0)
@@ -171,10 +191,10 @@ namespace MobilePhone {
                 {
                     ResetPhase(Defintions.PhaseDetails);
                 }
-                else if (panelPhase4.Visible)
+               /* else if (panelPhase4.Visible) @kwanghock 10march2012 removed
                 {
                     ResetPhase(Defintions.PhaseResults);
-                }
+                }*/
                 //Have to reset to the previous state
                 SetUIState(--UIState);
                
@@ -184,7 +204,7 @@ namespace MobilePhone {
                 SetUIState(Defintions.PhaseStart);
                 UIState = Defintions.PhaseStart;
                 ResetPhase(Defintions.PhaseStart); //@kwanghock 05/03/2012 restart button dont reset properly
-            }
+            }/* @kwanghock 10march2012 removed
             else if (button.Name.CompareTo("buttonNextPhone") == 0)
             {
                 buttonNextPhone.Visible = true;
@@ -209,18 +229,18 @@ namespace MobilePhone {
                     if(iResultIterate==0)
                         buttonPrevPhone.Visible = false;
                 }
-            }
+            }*/
         }
 
         private void UpdateResult(int iResultIterate)
         {
-            //Display the results of the phone chosen.
+           /* //Display the results of the phone chosen.
             labelResultZoom.Text = "Camera Zoom : X" + results.ElementAt(iResultIterate).iCameraZoom; 
             labelResultPixel.Text = "Camera Pixel : " + results.ElementAt(iResultIterate).iCameraPixel + " pixels";
             labelResultColor.Text = "Number " + (iResultIterate + 1) + " Phone Color : " + results.ElementAt(iResultIterate).sColor;
             //testing iamge
             pictureBoxPhone.ImageLocation = "http://image.made-in-china.com/2f0j00ZMTtpbjWCwqR/Mobile-Phone-Laptop.jpg";
-            pictureBoxPhone.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxPhone.SizeMode = PictureBoxSizeMode.StretchImage;*/
         }
 
         private void ResetPhase(int iPhase)
@@ -313,14 +333,15 @@ namespace MobilePhone {
                       */
                     //Assert the weightage of the attributes related to the question here
                     //Question 1
-                    foreach (RadioButton control in grp_box_q1.Controls)
+                   // foreach (RadioButton control in grp_box_q1.Controls) //Throw error here as grp_box_q1 has label as well @kwanghock 11march2012
+                    foreach (RadioButton control in rbBoxQns1.Controls)
                     {
                         if (control.Checked)
                         {
                             //Question: Do you watch movies you downloaded on your phone?
                             if (control.Name.Equals("q1_yes"))
                             {
-
+                                environment.AssertString("(question (order watch_movie) (selection yes))");
                             }
                             else if(control.Name.Equals("q1_no"))
                             {
@@ -337,7 +358,8 @@ namespace MobilePhone {
                              }
                     }
                     //Question 2
-                    foreach (RadioButton control in grp_box_q2.Controls)
+                    //foreach (RadioButton control in grp_box_q2.Controls)
+                    foreach (RadioButton control in rbBoxQns2.Controls)
                     {
                         if (control.Checked)
                         {
@@ -354,7 +376,8 @@ namespace MobilePhone {
                     }
 
                     //Question 3
-                    foreach (RadioButton control in grp_box_q3.Controls)
+                   // foreach (RadioButton control in grp_box_q3.Controls)
+                    foreach (RadioButton control in rbBoxQns3.Controls)
                     {
                         if (control.Checked)
                         {
@@ -371,7 +394,8 @@ namespace MobilePhone {
                     }
 
                     //Question 4
-                    foreach (RadioButton control in grp_box_q4.Controls)
+                   // foreach (RadioButton control in grp_box_q4.Controls)
+                    foreach (RadioButton control in rbBoxQns4.Controls)
                     {
                         if (control.Checked)
                         {
@@ -388,7 +412,8 @@ namespace MobilePhone {
                     }
 
                     //Question 5
-                    foreach (RadioButton control in grp_box_q5.Controls)
+                    // foreach (RadioButton control in grp_box_q5.Controls)
+                    foreach (RadioButton control in rbBoxQns5.Controls)
                     {
                         if (control.Checked)
                         {
@@ -405,7 +430,8 @@ namespace MobilePhone {
                     }
 
                     //Question 6
-                    foreach (RadioButton control in grp_box_q6.Controls)
+                   // foreach (RadioButton control in grp_box_q6.Controls)
+                    foreach (RadioButton control in rbBoxQns6.Controls)
                     {
                         if (control.Checked)
                         {
@@ -440,7 +466,7 @@ namespace MobilePhone {
                     UpdatePhoneList(results);
 
                     //Sort according to overall weightage
-                    results = results.OrderBy(m=>m.iWeightage).ToList<MobilePhoneRecommendation>();
+                    results = results.OrderBy(m=>m.fWeightage).ToList<MobilePhoneRecommendation>();
 
                     //Display the results of the phone chosen.
                     UpdateResult(0);
@@ -463,20 +489,67 @@ namespace MobilePhone {
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
 
-                int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("camera-zoom");
-                int iCameraPixel = (int)(IntegerValue)fv.GetFactSlot("camera-pixel");
+                String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                int iPrice = (int)(IntegerValue)fv.GetFactSlot("price");
+                
+                //Specs
+                String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
                 String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
+                float fScreen=(float)(FloatValue)fv.GetFactSlot("screen");
                 int iWeight = (int)(IntegerValue)fv.GetFactSlot("weight");
-                int iWeightage = (int)(IntegerValue)fv.GetFactSlot("weightage");
+                int iMemory = (int)(IntegerValue)fv.GetFactSlot("memory");
+
+                //Features
+                String sOS = (String)(SymbolValue)fv.GetFactSlot("os");
+                String sBluetooth = (String)(SymbolValue)fv.GetFactSlot("bluetooth");
+                String sWifi = (String)(SymbolValue)fv.GetFactSlot("wifi");
+                String sFM = (String)(SymbolValue)fv.GetFactSlot("fm");
+
+                //camera
+                int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("zoom");
+                int iCameraPixel = (int)(IntegerValue)fv.GetFactSlot("pixel");
+                String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
+                String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
+                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
 
                 MobilePhoneRecommendation a = new MobilePhoneRecommendation();
-                a.iCameraPixel = iCameraPixel;
-                a.iCameraZoom = iCameraZoom;
+                a.sModel = sModel;
+                a.iPrice = iPrice;
+                a.sBrand = sBrand;
                 a.sColor = sColor;
+                a.fScreen = fScreen;
                 a.iWeight = iWeight;
-                a.iWeightage = iWeightage;
-                a.sFact = "(phone (camera-zoom "+ iCameraZoom + ")" + "(camera-pixel "+iCameraPixel + ")" + "(color " + sColor + ")" +"(weight "+iWeight + ")" + "(weightage "+ iWeightage +"))";
-                PhoneList.Add(a);
+                a.iMemory = iMemory;
+                a.sOS = sOS;
+                a.sBluetooth = sBluetooth;
+                a.sWifi = sWifi;
+                a.sFM = sFM;
+                a.iZoom = iCameraZoom;
+                a.iPixel = iCameraPixel;
+                a.sFlash = sFlash;
+                a.sVideoHD = sVideoHD;
+                a.fWeightage = fWeightage;
+
+                String sAttributeModel = "(model " + a.sModel +")";
+                String sAttributePrice = "(price " + a.iPrice.ToString() + ")";
+                String sAttributeBrand = "(brand " + a.sBrand + ")";
+                String sAttributeColor = "(color " + a.sColor + ")";
+                String sAttributeScreen = "(screen " + a.fScreen.ToString() + ")";
+                String sAttributeWeight = "(weight " + a.fWeightage.ToString() + ")";
+                String sAttributeMemory = "(memory " + a.iMemory.ToString() + ")";
+                String sAttributeOS = "(os " + a.sOS +")";
+                String sAttributeBluetooth = "(bluetooth " + a.sBluetooth + ")";
+                String sAttributeWifi = "(wifi " + a.sWifi + ")";
+                String sAttributeFM = "(fm " + a.sFM + ")";
+                String sAttributeZoom = "(zoom " + a.iZoom.ToString() + ")";
+                String sAttributePixel = "(pixel " + a.iPixel.ToString() + ")";
+                String sAttributeFlash = "(flash " + a.sFlash + ")";
+                String sAttributeVideoHD = "(videoHD " + a.sVideoHD + ")";
+                String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
+
+                String sFact = "(phone " + sAttributeModel + sAttributePrice + sAttributeBrand + sAttributeColor + sAttributeScreen + sAttributeWeight + sAttributeMemory + sAttributeOS + sAttributeBluetooth + sAttributeWifi + sAttributeFM + sAttributeZoom + sAttributePixel + sAttributeFlash + sAttributeVideoHD + sAttributeWeightage + ")";
+
+                a.sFact = sFact;
             }
         }
 
@@ -485,55 +558,64 @@ namespace MobilePhone {
             if (iPhase == Defintions.PhaseStart)
             {
                 panelPhase0.Visible = true;
+                panelPhase0.BringToFront();
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-                panelPhase4.Visible = false;
+              //  panelPhase4.Visible = false;
                 this.buttonPrev.Visible = false;
                 this.buttonRestart.Visible = false;
                 this.buttonNext.Visible = true;
             }
             else if (iPhase == Defintions.PhasePersonality)
             {
+                
                 panelPhase0.Visible = false;
                 panelPhase1.Visible = true;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-                panelPhase4.Visible = false;
+               // panelPhase4.Visible = false;
                 this.buttonPrev.Visible = true;
                 this.buttonRestart.Visible = false;
+                this.buttonNext.Visible = true;
+                panelPhase1.BringToFront();
             }
             else if (iPhase == Defintions.PhasePreferences)
             {
+                
                 panelPhase0.Visible = false;
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = true;
                 panelPhase3.Visible = false;
-                panelPhase4.Visible = false;
+                //panelPhase4.Visible = false;
+                this.buttonNext.Visible = true;
                 this.buttonRestart.Visible = false;
+                panelPhase2.BringToFront();
             }
             else if (iPhase == Defintions.PhaseDetails)
             {
+                
                 panelPhase0.Visible = false;
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = true;
-                panelPhase4.Visible = false;
-                this.buttonNext.Visible = true;
-                this.buttonRestart.Visible = false;
+               // panelPhase4.Visible = false;
+                this.buttonNext.Visible = false;
+                this.buttonRestart.Visible = true;
+                panelPhase3.BringToFront();
             }
-            else if (iPhase == Defintions.PhaseResults)
+            /*else if (iPhase == Defintions.PhaseResults)
             {
                 panelPhase0.Visible = false;
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-                panelPhase4.Visible = true;
+                //panelPhase4.Visible = true;
                 this.buttonNext.Visible = false;
                 this.buttonRestart.Visible = true;
-                this.buttonPrevPhone.Visible = false;
+               // this.buttonPrevPhone.Visible = false;
                 ProcessPhase(Defintions.PhaseResults);
-            }
+            }*/
         }   
     }
 }
