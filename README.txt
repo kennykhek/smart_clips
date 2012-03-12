@@ -1,6 +1,6 @@
 CS4244 Project Smart Phone Clips
 
-Things to be done (updated on 12/3/2012)
+THINGS TO BE DONE (updated on 12/3/2012)
 Phase 0 (Leslie)
 - Implement Phase 0 "Introduction" and short-how-to-use on the program, with our name and matric number.
 Phase 1 (Leslie)
