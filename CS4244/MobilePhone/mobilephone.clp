@@ -6,17 +6,17 @@
 	(slot price     (type FLOAT))
 	;spec
 	(slot brand  (type SYMBOL))
-	(slot color  (type SYMBOL))
+	(slot color  (type SYMBOL)(default black))
 	(slot screen (type FLOAT))
 	(slot weight (type FLOAT))
 	(slot memory (type INTEGER))
 	;features
 	(slot os        (type SYMBOL))
-	(slot bluetooth (type SYMBOL)(allowed-values yes no)(default no))
-	(slot wifi      (type SYMBOL)(allowed-values yes no)(default no))
+	(slot bluetooth (type SYMBOL)(allowed-values yes no)(default yes))
+	(slot wifi      (type SYMBOL)(allowed-values yes no)(default yes))
 	(slot fm        (type SYMBOL)(allowed-values yes no)(default no))
     ;camera
-	(slot zoom      (type INTEGER))
+	(slot zoom      (type INTEGER)(default 0))
 	(slot pixel     (type INTEGER))
 	(slot flash     (type SYMBOL)  (allowed-values yes no)(default no))
 	(slot videoHD   (type SYMBOL)  (allowed-values yes no)(default no))
