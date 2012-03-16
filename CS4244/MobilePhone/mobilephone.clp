@@ -43,11 +43,11 @@
 (deffacts init-phone-facts
   ; non plan phone prices are from www.subarumobile.com
   ; nokia
-  (phone (model 300)(price 155.00)
+  (phone (model testtest1)(price 155.00)
          (brand nokia)(color silver)(screen 2.4)(weight 100.0)(memory 32)
          (bluetooth no)(wifi no)(fm yes)
 	     (zoom 0)(pixel 5.0)(flash no)(videoHD no))
-  (phone (model 603)(price 300.00)
+  (phone (model testtest2)(price 300.00)
          (brand nokia)(color black)(screen 3.5)(weight 109.6)(memory 32)
          (os symbian)(fm yes)
 	     (zoom 4)(pixel 5.0)(flash no)(videoHD yes))
