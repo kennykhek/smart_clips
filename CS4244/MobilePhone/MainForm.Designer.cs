@@ -80,6 +80,24 @@
             this.q1_yes = new System.Windows.Forms.RadioButton();
             this.q1_no = new System.Windows.Forms.RadioButton();
             this.panelPhase3 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbWifi = new System.Windows.Forms.ComboBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbFM = new System.Windows.Forms.ComboBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbColor = new System.Windows.Forms.ComboBox();
+            this.panelScreen = new System.Windows.Forms.Panel();
+            this.labelScreen = new System.Windows.Forms.Label();
+            this.cbScreen = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbCamFlash = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbVideoHD = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.cbZoom = new System.Windows.Forms.ComboBox();
@@ -95,24 +113,6 @@
             this.panelMem = new System.Windows.Forms.Panel();
             this.labelMem = new System.Windows.Forms.Label();
             this.cbMem = new System.Windows.Forms.ComboBox();
-            this.panelScreen = new System.Windows.Forms.Panel();
-            this.labelScreen = new System.Windows.Forms.Label();
-            this.cbScreen = new System.Windows.Forms.ComboBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbVideoHD = new System.Windows.Forms.ComboBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbCamFlash = new System.Windows.Forms.ComboBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbColor = new System.Windows.Forms.ComboBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbFM = new System.Windows.Forms.ComboBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cbWifi = new System.Windows.Forms.ComboBox();
             this.panelPhase0.SuspendLayout();
             this.panelPhase1.SuspendLayout();
             this.grp_box_q6.SuspendLayout();
@@ -129,17 +129,17 @@
             this.grp_box_q1.SuspendLayout();
             this.rbBoxQns1.SuspendLayout();
             this.panelPhase3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panelScreen.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelOS.SuspendLayout();
             this.panelWeight.SuspendLayout();
             this.panelMem.SuspendLayout();
-            this.panelScreen.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonNext
@@ -569,6 +569,174 @@
             this.panelPhase3.Size = new System.Drawing.Size(510, 397);
             this.panelPhase3.TabIndex = 3;
             // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label8);
+            this.panel7.Controls.Add(this.cbWifi);
+            this.panel7.Location = new System.Drawing.Point(178, 174);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(159, 40);
+            this.panel7.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Wifi";
+            // 
+            // cbWifi
+            // 
+            this.cbWifi.BackColor = System.Drawing.SystemColors.Window;
+            this.cbWifi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWifi.FormattingEnabled = true;
+            this.cbWifi.Location = new System.Drawing.Point(71, 10);
+            this.cbWifi.Name = "cbWifi";
+            this.cbWifi.Size = new System.Drawing.Size(77, 21);
+            this.cbWifi.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label7);
+            this.panel6.Controls.Add(this.cbFM);
+            this.panel6.Location = new System.Drawing.Point(13, 80);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(159, 40);
+            this.panel6.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "FM";
+            // 
+            // cbFM
+            // 
+            this.cbFM.BackColor = System.Drawing.SystemColors.Window;
+            this.cbFM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFM.FormattingEnabled = true;
+            this.cbFM.Location = new System.Drawing.Point(71, 10);
+            this.cbFM.Name = "cbFM";
+            this.cbFM.Size = new System.Drawing.Size(77, 21);
+            this.cbFM.TabIndex = 2;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.cbColor);
+            this.panel5.Location = new System.Drawing.Point(13, 174);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(159, 40);
+            this.panel5.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Color";
+            // 
+            // cbColor
+            // 
+            this.cbColor.BackColor = System.Drawing.SystemColors.Window;
+            this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbColor.FormattingEnabled = true;
+            this.cbColor.Location = new System.Drawing.Point(71, 10);
+            this.cbColor.Name = "cbColor";
+            this.cbColor.Size = new System.Drawing.Size(77, 21);
+            this.cbColor.TabIndex = 2;
+            // 
+            // panelScreen
+            // 
+            this.panelScreen.Controls.Add(this.labelScreen);
+            this.panelScreen.Controls.Add(this.cbScreen);
+            this.panelScreen.Location = new System.Drawing.Point(265, 34);
+            this.panelScreen.Name = "panelScreen";
+            this.panelScreen.Size = new System.Drawing.Size(235, 40);
+            this.panelScreen.TabIndex = 4;
+            // 
+            // labelScreen
+            // 
+            this.labelScreen.AutoSize = true;
+            this.labelScreen.Location = new System.Drawing.Point(1, 13);
+            this.labelScreen.Name = "labelScreen";
+            this.labelScreen.Size = new System.Drawing.Size(64, 13);
+            this.labelScreen.TabIndex = 3;
+            this.labelScreen.Text = "Screen Size";
+            // 
+            // cbScreen
+            // 
+            this.cbScreen.BackColor = System.Drawing.SystemColors.Window;
+            this.cbScreen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbScreen.FormattingEnabled = true;
+            this.cbScreen.Location = new System.Drawing.Point(71, 10);
+            this.cbScreen.Name = "cbScreen";
+            this.cbScreen.Size = new System.Drawing.Size(146, 21);
+            this.cbScreen.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.cbCamFlash);
+            this.panel4.Location = new System.Drawing.Point(343, 80);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(157, 40);
+            this.panel4.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Cam flash";
+            // 
+            // cbCamFlash
+            // 
+            this.cbCamFlash.BackColor = System.Drawing.SystemColors.Window;
+            this.cbCamFlash.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCamFlash.FormattingEnabled = true;
+            this.cbCamFlash.Location = new System.Drawing.Point(71, 10);
+            this.cbCamFlash.Name = "cbCamFlash";
+            this.cbCamFlash.Size = new System.Drawing.Size(77, 21);
+            this.cbCamFlash.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.cbVideoHD);
+            this.panel3.Location = new System.Drawing.Point(178, 80);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(159, 40);
+            this.panel3.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "VideoHD";
+            // 
+            // cbVideoHD
+            // 
+            this.cbVideoHD.BackColor = System.Drawing.SystemColors.Window;
+            this.cbVideoHD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVideoHD.FormattingEnabled = true;
+            this.cbVideoHD.Location = new System.Drawing.Point(71, 10);
+            this.cbVideoHD.Name = "cbVideoHD";
+            this.cbVideoHD.Size = new System.Drawing.Size(77, 21);
+            this.cbVideoHD.TabIndex = 2;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label3);
@@ -709,174 +877,6 @@
             this.cbMem.Size = new System.Drawing.Size(77, 21);
             this.cbMem.TabIndex = 2;
             // 
-            // panelScreen
-            // 
-            this.panelScreen.Controls.Add(this.labelScreen);
-            this.panelScreen.Controls.Add(this.cbScreen);
-            this.panelScreen.Location = new System.Drawing.Point(265, 34);
-            this.panelScreen.Name = "panelScreen";
-            this.panelScreen.Size = new System.Drawing.Size(235, 40);
-            this.panelScreen.TabIndex = 4;
-            // 
-            // labelScreen
-            // 
-            this.labelScreen.AutoSize = true;
-            this.labelScreen.Location = new System.Drawing.Point(1, 13);
-            this.labelScreen.Name = "labelScreen";
-            this.labelScreen.Size = new System.Drawing.Size(64, 13);
-            this.labelScreen.TabIndex = 3;
-            this.labelScreen.Text = "Screen Size";
-            // 
-            // cbScreen
-            // 
-            this.cbScreen.BackColor = System.Drawing.SystemColors.Window;
-            this.cbScreen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbScreen.FormattingEnabled = true;
-            this.cbScreen.Location = new System.Drawing.Point(71, 10);
-            this.cbScreen.Name = "cbScreen";
-            this.cbScreen.Size = new System.Drawing.Size(146, 21);
-            this.cbScreen.TabIndex = 2;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.cbVideoHD);
-            this.panel3.Location = new System.Drawing.Point(178, 80);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(159, 40);
-            this.panel3.TabIndex = 8;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "VideoHD";
-            // 
-            // cbVideoHD
-            // 
-            this.cbVideoHD.BackColor = System.Drawing.SystemColors.Window;
-            this.cbVideoHD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVideoHD.FormattingEnabled = true;
-            this.cbVideoHD.Location = new System.Drawing.Point(71, 10);
-            this.cbVideoHD.Name = "cbVideoHD";
-            this.cbVideoHD.Size = new System.Drawing.Size(77, 21);
-            this.cbVideoHD.TabIndex = 2;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.cbCamFlash);
-            this.panel4.Location = new System.Drawing.Point(343, 80);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(157, 40);
-            this.panel4.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 13);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Cam flash";
-            // 
-            // cbCamFlash
-            // 
-            this.cbCamFlash.BackColor = System.Drawing.SystemColors.Window;
-            this.cbCamFlash.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCamFlash.FormattingEnabled = true;
-            this.cbCamFlash.Location = new System.Drawing.Point(71, 10);
-            this.cbCamFlash.Name = "cbCamFlash";
-            this.cbCamFlash.Size = new System.Drawing.Size(77, 21);
-            this.cbCamFlash.TabIndex = 2;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Controls.Add(this.cbColor);
-            this.panel5.Location = new System.Drawing.Point(13, 174);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(159, 40);
-            this.panel5.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 13);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Color";
-            // 
-            // cbColor
-            // 
-            this.cbColor.BackColor = System.Drawing.SystemColors.Window;
-            this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbColor.FormattingEnabled = true;
-            this.cbColor.Location = new System.Drawing.Point(71, 10);
-            this.cbColor.Name = "cbColor";
-            this.cbColor.Size = new System.Drawing.Size(77, 21);
-            this.cbColor.TabIndex = 2;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Controls.Add(this.cbFM);
-            this.panel6.Location = new System.Drawing.Point(13, 80);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(159, 40);
-            this.panel6.TabIndex = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(23, 13);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "FM";
-            // 
-            // cbFM
-            // 
-            this.cbFM.BackColor = System.Drawing.SystemColors.Window;
-            this.cbFM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFM.FormattingEnabled = true;
-            this.cbFM.Location = new System.Drawing.Point(71, 10);
-            this.cbFM.Name = "cbFM";
-            this.cbFM.Size = new System.Drawing.Size(77, 21);
-            this.cbFM.TabIndex = 2;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label8);
-            this.panel7.Controls.Add(this.cbWifi);
-            this.panel7.Location = new System.Drawing.Point(178, 174);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(159, 40);
-            this.panel7.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 13);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(28, 13);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Wifi";
-            // 
-            // cbWifi
-            // 
-            this.cbWifi.BackColor = System.Drawing.SystemColors.Window;
-            this.cbWifi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbWifi.FormattingEnabled = true;
-            this.cbWifi.Location = new System.Drawing.Point(71, 10);
-            this.cbWifi.Name = "cbWifi";
-            this.cbWifi.Size = new System.Drawing.Size(77, 21);
-            this.cbWifi.TabIndex = 2;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -925,6 +925,18 @@
             this.rbBoxQns1.PerformLayout();
             this.panelPhase3.ResumeLayout(false);
             this.panelPhase3.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panelScreen.ResumeLayout(false);
+            this.panelScreen.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -935,18 +947,6 @@
             this.panelWeight.PerformLayout();
             this.panelMem.ResumeLayout(false);
             this.panelMem.PerformLayout();
-            this.panelScreen.ResumeLayout(false);
-            this.panelScreen.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }

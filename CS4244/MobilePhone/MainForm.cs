@@ -77,8 +77,7 @@ namespace MobilePhone {
             //Load the clips file
             environment.Load("mobilephone.clp");
 
-            //Load the dropdown values for PhaseDetails
-            LoadPhaseDetailsDropdown();
+
 
             //Set initial stage
             UIState = 0;
@@ -109,6 +108,9 @@ namespace MobilePhone {
             //testInput();
             
             environment.Run();
+
+            //Load the dropdown values for PhaseDetails
+            LoadPhaseDetailsDropdown();
 
             //Test by getting all the facts see whether reflect correctly @kwanghock
             //test();
