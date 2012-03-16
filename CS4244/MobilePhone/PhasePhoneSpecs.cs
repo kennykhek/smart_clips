@@ -119,6 +119,7 @@ namespace MobilePhone
             listZoom = listZoom.Distinct().ToList();
             listFlash = listFlash.Distinct().ToList();
             listVideoHD = listVideoHD.Distinct().ToList();
+            listPixel = listPixel.Distinct().ToList();
 
             //for (int i = 0; i < listModel.Count; i++)
               
