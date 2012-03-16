@@ -102,6 +102,7 @@ namespace MobilePhone {
              */
             environment.Watch(WatchItem.All);
             environment.Watch(WatchItem.Rules);
+            environment.Watch(WatchItem.Activations);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
