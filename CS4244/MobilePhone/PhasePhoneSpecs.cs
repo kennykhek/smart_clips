@@ -15,11 +15,11 @@ namespace MobilePhone
     public partial class MainForm : Form
     {
         List<String> listModel;
-        List<int> listPrice;
+        List<float> listPrice;
         List<String> listBrand;
         List<String> listColor;
         List<float> listScreen;
-        List<int> listWeight;
+        List<float> listWeight;
         List<int> listMem;
         List<String> listOS;
         List<String> listBluetooth;
@@ -28,7 +28,7 @@ namespace MobilePhone
         List<int> listZoom;
         List<String> listFlash;
         List<String> listVideoHD;
-        List<int> listPixel;
+        List<float> listPixel;
 
         public void ProcessPhoneSpecs()
         {
@@ -37,11 +37,11 @@ namespace MobilePhone
         public void LoadPhaseDetailsDropdown()
         {
             listModel = new List<String>();
-            listPrice = new List<int>();
+            listPrice = new List<float>();
             listBrand = new List<String>();
             listColor = new List<String>();
             listScreen = new List<float>();
-            listWeight = new List<int>();
+            listWeight = new List<float>();
             listMem = new List<int>();
             listOS = new List<String>();
             listBluetooth = new List<String>();
@@ -50,7 +50,7 @@ namespace MobilePhone
             listZoom = new List<int>();
             listFlash = new List<String>();
             listVideoHD = new List<String>();
-            listPixel = new List<int>();
+            listPixel = new List<float>();
 
             string evalStr = "(get-mobilephone-list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
@@ -61,8 +61,8 @@ namespace MobilePhone
                 String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
                 listModel.Add(sModel);
 
-                int iPrice = (int)(IntegerValue)fv.GetFactSlot("price");
-                listPrice.Add(iPrice);
+                float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
+                listPrice.Add(fPrice);
 
                 String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
                 listBrand.Add(sBrand);
@@ -73,8 +73,8 @@ namespace MobilePhone
                 float fScreen = (float)(FloatValue)fv.GetFactSlot("screen");
                 listScreen.Add(fScreen);
 
-                int iWeight = (int)(IntegerValue)fv.GetFactSlot("weight");
-                listWeight.Add(iWeight);
+                float fWeight = (float)(FloatValue)fv.GetFactSlot("weight");
+                listWeight.Add(fWeight);
 
                 int iMem = (int)(IntegerValue)fv.GetFactSlot("memory");
                 listMem.Add(iMem);
@@ -94,8 +94,8 @@ namespace MobilePhone
                 int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("zoom");
                 listZoom.Add(iCameraZoom);
 
-                int iCameraPixel = (int)(IntegerValue)fv.GetFactSlot("pixel");
-                listZoom.Add(iCameraPixel);
+                float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
+                listPixel.Add(fCameraPixel);
 
                 String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
                 listFlash.Add(sFlash);
