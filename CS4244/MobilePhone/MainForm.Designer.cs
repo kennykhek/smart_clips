@@ -18,7 +18,6 @@
 
         #region Declaration
 
-        private Sample.DataGridViewProgressColumn dataGridViewProgressColumn1;
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Button buttonPrev;
         private System.Windows.Forms.Button buttonRestart;
@@ -81,6 +80,39 @@
             this.q1_yes = new System.Windows.Forms.RadioButton();
             this.q1_no = new System.Windows.Forms.RadioButton();
             this.panelPhase3 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbWifi = new System.Windows.Forms.ComboBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbFM = new System.Windows.Forms.ComboBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbColor = new System.Windows.Forms.ComboBox();
+            this.panelScreen = new System.Windows.Forms.Panel();
+            this.labelScreen = new System.Windows.Forms.Label();
+            this.cbScreen = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbCamFlash = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbVideoHD = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbZoom = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbCamPixel = new System.Windows.Forms.ComboBox();
+            this.panelOS = new System.Windows.Forms.Panel();
+            this.labelOs = new System.Windows.Forms.Label();
+            this.cbOS = new System.Windows.Forms.ComboBox();
+            this.panelWeight = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbWeight = new System.Windows.Forms.ComboBox();
+            this.panelMem = new System.Windows.Forms.Panel();
+            this.labelMem = new System.Windows.Forms.Label();
+            this.cbMem = new System.Windows.Forms.ComboBox();
             this.panelPhase0.SuspendLayout();
             this.panelPhase1.SuspendLayout();
             this.grp_box_q6.SuspendLayout();
@@ -97,6 +129,17 @@
             this.grp_box_q1.SuspendLayout();
             this.rbBoxQns1.SuspendLayout();
             this.panelPhase3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panelScreen.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panelOS.SuspendLayout();
+            this.panelWeight.SuspendLayout();
+            this.panelMem.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonNext
@@ -213,6 +256,7 @@
             // q6_yes
             // 
             this.q6_yes.AutoSize = true;
+            this.q6_yes.Checked = true;
             this.q6_yes.Location = new System.Drawing.Point(3, 8);
             this.q6_yes.Name = "q6_yes";
             this.q6_yes.Size = new System.Drawing.Size(41, 17);
@@ -264,6 +308,7 @@
             // q5_yes
             // 
             this.q5_yes.AutoSize = true;
+            this.q5_yes.Checked = true;
             this.q5_yes.Location = new System.Drawing.Point(3, 8);
             this.q5_yes.Name = "q5_yes";
             this.q5_yes.Size = new System.Drawing.Size(41, 17);
@@ -315,6 +360,7 @@
             // q4_yes
             // 
             this.q4_yes.AutoSize = true;
+            this.q4_yes.Checked = true;
             this.q4_yes.Location = new System.Drawing.Point(3, 8);
             this.q4_yes.Name = "q4_yes";
             this.q4_yes.Size = new System.Drawing.Size(41, 17);
@@ -350,9 +396,9 @@
             this.q3.AutoSize = true;
             this.q3.Location = new System.Drawing.Point(6, 18);
             this.q3.Name = "q3";
-            this.q3.Size = new System.Drawing.Size(292, 13);
+            this.q3.Size = new System.Drawing.Size(199, 13);
             this.q3.TabIndex = 0;
-            this.q3.Text = "Do you watch movies you downloaded on your phone?";
+            this.q3.Text = "Do you view pictures on your phone?";
             // 
             // rbBoxQns3
             // 
@@ -366,6 +412,7 @@
             // q3_yes
             // 
             this.q3_yes.AutoSize = true;
+            this.q3_yes.Checked = true;
             this.q3_yes.Location = new System.Drawing.Point(3, 8);
             this.q3_yes.Name = "q3_yes";
             this.q3_yes.Size = new System.Drawing.Size(41, 17);
@@ -417,6 +464,7 @@
             // q2_yes
             // 
             this.q2_yes.AutoSize = true;
+            this.q2_yes.Checked = true;
             this.q2_yes.Location = new System.Drawing.Point(3, 8);
             this.q2_yes.Name = "q2_yes";
             this.q2_yes.Size = new System.Drawing.Size(41, 17);
@@ -482,6 +530,7 @@
             // q1_yes
             // 
             this.q1_yes.AutoSize = true;
+            this.q1_yes.Checked = true;
             this.q1_yes.Location = new System.Drawing.Point(3, 8);
             this.q1_yes.Name = "q1_yes";
             this.q1_yes.Size = new System.Drawing.Size(41, 17);
@@ -503,24 +552,343 @@
             // 
             // panelPhase3
             // 
+            this.panelPhase3.Controls.Add(this.panel7);
+            this.panelPhase3.Controls.Add(this.panel6);
+            this.panelPhase3.Controls.Add(this.panel5);
+            this.panelPhase3.Controls.Add(this.panelScreen);
+            this.panelPhase3.Controls.Add(this.panel4);
+            this.panelPhase3.Controls.Add(this.panel3);
+            this.panelPhase3.Controls.Add(this.panel2);
+            this.panelPhase3.Controls.Add(this.panel1);
+            this.panelPhase3.Controls.Add(this.panelOS);
+            this.panelPhase3.Controls.Add(this.panelWeight);
+            this.panelPhase3.Controls.Add(this.panelMem);
             this.panelPhase3.Controls.Add(this.labelPhase3);
             this.panelPhase3.Location = new System.Drawing.Point(12, 12);
             this.panelPhase3.Name = "panelPhase3";
             this.panelPhase3.Size = new System.Drawing.Size(510, 397);
             this.panelPhase3.TabIndex = 3;
             // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label8);
+            this.panel7.Controls.Add(this.cbWifi);
+            this.panel7.Location = new System.Drawing.Point(178, 174);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(159, 40);
+            this.panel7.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(5, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Wifi";
+            // 
+            // cbWifi
+            // 
+            this.cbWifi.BackColor = System.Drawing.SystemColors.Window;
+            this.cbWifi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWifi.FormattingEnabled = true;
+            this.cbWifi.Location = new System.Drawing.Point(71, 10);
+            this.cbWifi.Name = "cbWifi";
+            this.cbWifi.Size = new System.Drawing.Size(77, 21);
+            this.cbWifi.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label7);
+            this.panel6.Controls.Add(this.cbFM);
+            this.panel6.Location = new System.Drawing.Point(13, 80);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(159, 40);
+            this.panel6.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "FM";
+            // 
+            // cbFM
+            // 
+            this.cbFM.BackColor = System.Drawing.SystemColors.Window;
+            this.cbFM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFM.FormattingEnabled = true;
+            this.cbFM.Location = new System.Drawing.Point(71, 10);
+            this.cbFM.Name = "cbFM";
+            this.cbFM.Size = new System.Drawing.Size(77, 21);
+            this.cbFM.TabIndex = 2;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Controls.Add(this.cbColor);
+            this.panel5.Location = new System.Drawing.Point(13, 174);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(159, 40);
+            this.panel5.TabIndex = 9;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Color";
+            // 
+            // cbColor
+            // 
+            this.cbColor.BackColor = System.Drawing.SystemColors.Window;
+            this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbColor.FormattingEnabled = true;
+            this.cbColor.Location = new System.Drawing.Point(71, 10);
+            this.cbColor.Name = "cbColor";
+            this.cbColor.Size = new System.Drawing.Size(77, 21);
+            this.cbColor.TabIndex = 2;
+            // 
+            // panelScreen
+            // 
+            this.panelScreen.Controls.Add(this.labelScreen);
+            this.panelScreen.Controls.Add(this.cbScreen);
+            this.panelScreen.Location = new System.Drawing.Point(265, 34);
+            this.panelScreen.Name = "panelScreen";
+            this.panelScreen.Size = new System.Drawing.Size(235, 40);
+            this.panelScreen.TabIndex = 4;
+            // 
+            // labelScreen
+            // 
+            this.labelScreen.AutoSize = true;
+            this.labelScreen.Location = new System.Drawing.Point(1, 13);
+            this.labelScreen.Name = "labelScreen";
+            this.labelScreen.Size = new System.Drawing.Size(64, 13);
+            this.labelScreen.TabIndex = 3;
+            this.labelScreen.Text = "Screen Size";
+            // 
+            // cbScreen
+            // 
+            this.cbScreen.BackColor = System.Drawing.SystemColors.Window;
+            this.cbScreen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbScreen.FormattingEnabled = true;
+            this.cbScreen.Location = new System.Drawing.Point(71, 10);
+            this.cbScreen.Name = "cbScreen";
+            this.cbScreen.Size = new System.Drawing.Size(146, 21);
+            this.cbScreen.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.cbCamFlash);
+            this.panel4.Location = new System.Drawing.Point(343, 80);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(157, 40);
+            this.panel4.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Cam flash";
+            // 
+            // cbCamFlash
+            // 
+            this.cbCamFlash.BackColor = System.Drawing.SystemColors.Window;
+            this.cbCamFlash.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCamFlash.FormattingEnabled = true;
+            this.cbCamFlash.Location = new System.Drawing.Point(71, 10);
+            this.cbCamFlash.Name = "cbCamFlash";
+            this.cbCamFlash.Size = new System.Drawing.Size(77, 21);
+            this.cbCamFlash.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.cbVideoHD);
+            this.panel3.Location = new System.Drawing.Point(178, 80);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(159, 40);
+            this.panel3.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "VideoHD";
+            // 
+            // cbVideoHD
+            // 
+            this.cbVideoHD.BackColor = System.Drawing.SystemColors.Window;
+            this.cbVideoHD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVideoHD.FormattingEnabled = true;
+            this.cbVideoHD.Location = new System.Drawing.Point(71, 10);
+            this.cbVideoHD.Name = "cbVideoHD";
+            this.cbVideoHD.Size = new System.Drawing.Size(77, 21);
+            this.cbVideoHD.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.cbZoom);
+            this.panel2.Location = new System.Drawing.Point(343, 174);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(157, 40);
+            this.panel2.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Cam zoom";
+            // 
+            // cbZoom
+            // 
+            this.cbZoom.BackColor = System.Drawing.SystemColors.Window;
+            this.cbZoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbZoom.FormattingEnabled = true;
+            this.cbZoom.Location = new System.Drawing.Point(71, 11);
+            this.cbZoom.Name = "cbZoom";
+            this.cbZoom.Size = new System.Drawing.Size(77, 21);
+            this.cbZoom.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.cbCamPixel);
+            this.panel1.Location = new System.Drawing.Point(343, 126);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(157, 40);
+            this.panel1.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Cam pixel";
+            // 
+            // cbCamPixel
+            // 
+            this.cbCamPixel.BackColor = System.Drawing.SystemColors.Window;
+            this.cbCamPixel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCamPixel.FormattingEnabled = true;
+            this.cbCamPixel.Location = new System.Drawing.Point(71, 10);
+            this.cbCamPixel.Name = "cbCamPixel";
+            this.cbCamPixel.Size = new System.Drawing.Size(77, 21);
+            this.cbCamPixel.TabIndex = 2;
+            // 
+            // panelOS
+            // 
+            this.panelOS.Controls.Add(this.labelOs);
+            this.panelOS.Controls.Add(this.cbOS);
+            this.panelOS.Location = new System.Drawing.Point(13, 34);
+            this.panelOS.Name = "panelOS";
+            this.panelOS.Size = new System.Drawing.Size(246, 40);
+            this.panelOS.TabIndex = 7;
+            // 
+            // labelOs
+            // 
+            this.labelOs.AutoSize = true;
+            this.labelOs.Location = new System.Drawing.Point(8, 15);
+            this.labelOs.Name = "labelOs";
+            this.labelOs.Size = new System.Drawing.Size(22, 13);
+            this.labelOs.TabIndex = 3;
+            this.labelOs.Text = "OS";
+            // 
+            // cbOS
+            // 
+            this.cbOS.BackColor = System.Drawing.SystemColors.Window;
+            this.cbOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOS.FormattingEnabled = true;
+            this.cbOS.Location = new System.Drawing.Point(71, 10);
+            this.cbOS.Name = "cbOS";
+            this.cbOS.Size = new System.Drawing.Size(167, 21);
+            this.cbOS.TabIndex = 2;
+            // 
+            // panelWeight
+            // 
+            this.panelWeight.Controls.Add(this.label1);
+            this.panelWeight.Controls.Add(this.cbWeight);
+            this.panelWeight.Location = new System.Drawing.Point(178, 126);
+            this.panelWeight.Name = "panelWeight";
+            this.panelWeight.Size = new System.Drawing.Size(159, 40);
+            this.panelWeight.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Weight";
+            // 
+            // cbWeight
+            // 
+            this.cbWeight.BackColor = System.Drawing.SystemColors.Window;
+            this.cbWeight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWeight.FormattingEnabled = true;
+            this.cbWeight.Location = new System.Drawing.Point(71, 10);
+            this.cbWeight.Name = "cbWeight";
+            this.cbWeight.Size = new System.Drawing.Size(77, 21);
+            this.cbWeight.TabIndex = 2;
+            // 
+            // panelMem
+            // 
+            this.panelMem.Controls.Add(this.labelMem);
+            this.panelMem.Controls.Add(this.cbMem);
+            this.panelMem.Location = new System.Drawing.Point(13, 126);
+            this.panelMem.Name = "panelMem";
+            this.panelMem.Size = new System.Drawing.Size(159, 40);
+            this.panelMem.TabIndex = 6;
+            // 
+            // labelMem
+            // 
+            this.labelMem.AutoSize = true;
+            this.labelMem.Location = new System.Drawing.Point(8, 13);
+            this.labelMem.Name = "labelMem";
+            this.labelMem.Size = new System.Drawing.Size(48, 13);
+            this.labelMem.TabIndex = 3;
+            this.labelMem.Text = "Memory";
+            // 
+            // cbMem
+            // 
+            this.cbMem.BackColor = System.Drawing.SystemColors.Window;
+            this.cbMem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMem.FormattingEnabled = true;
+            this.cbMem.Location = new System.Drawing.Point(71, 10);
+            this.cbMem.Name = "cbMem";
+            this.cbMem.Size = new System.Drawing.Size(77, 21);
+            this.cbMem.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 452);
-            this.Controls.Add(this.panelPhase1);
-            this.Controls.Add(this.panelPhase2);
-            this.Controls.Add(this.panelPhase3);
+            this.ClientSize = new System.Drawing.Size(546, 449);
             this.Controls.Add(this.buttonNext);
-            this.Controls.Add(this.panelPhase0);
+            this.Controls.Add(this.panelPhase3);
             this.Controls.Add(this.buttonPrev);
             this.Controls.Add(this.buttonRestart);
+            this.Controls.Add(this.panelPhase0);
+            this.Controls.Add(this.panelPhase1);
+            this.Controls.Add(this.panelPhase2);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
@@ -557,6 +925,28 @@
             this.rbBoxQns1.PerformLayout();
             this.panelPhase3.ResumeLayout(false);
             this.panelPhase3.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panelScreen.ResumeLayout(false);
+            this.panelScreen.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panelOS.ResumeLayout(false);
+            this.panelOS.PerformLayout();
+            this.panelWeight.ResumeLayout(false);
+            this.panelWeight.PerformLayout();
+            this.panelMem.ResumeLayout(false);
+            this.panelMem.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -593,6 +983,39 @@
         private System.Windows.Forms.Panel rbBoxQns2;
         private System.Windows.Forms.RadioButton q2_yes;
         private System.Windows.Forms.RadioButton q2_no;
+        private System.Windows.Forms.ComboBox cbScreen;
+        private System.Windows.Forms.Label labelScreen;
+        private System.Windows.Forms.Panel panelScreen;
+        private System.Windows.Forms.Panel panelWeight;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbWeight;
+        private System.Windows.Forms.Panel panelOS;
+        private System.Windows.Forms.Label labelOs;
+        private System.Windows.Forms.ComboBox cbOS;
+        private System.Windows.Forms.Panel panelMem;
+        private System.Windows.Forms.Label labelMem;
+        private System.Windows.Forms.ComboBox cbMem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbCamPixel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbZoom;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbVideoHD;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbCamFlash;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbFM;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbColor;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbWifi;
 
     }
 }
