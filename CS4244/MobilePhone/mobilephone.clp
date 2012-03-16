@@ -196,14 +196,14 @@
 ;  (requirement (name color) (value red)  (weightage 0.0))
 ;)
 
-(deffacts user-preference
-	(question (order watch_movie) (selection yes))
-	(question (order listen_music) (selection yes))
-	(question (order view_picture) (selection no))
-	(question (order game_internet) (selection yes))
-	(question (order use_camera) (selection no))
-	(question (order use_camera_night) (selection no)) ; can remove this question? quite redundent
-)
+;(deffacts user-preference
+	;(question (order watch_movie) (selection yes))
+	;(question (order listen_music) (selection yes))
+	;(question (order view_picture) (selection no))
+	;(question (order game_internet) (selection yes))
+	;(question (order use_camera) (selection no))
+	;(question (order use_camera_night) (selection no)) ; can remove this question? quite redundent
+;)
 
 ;;*********
 ;;* RULES *
