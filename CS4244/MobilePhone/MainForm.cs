@@ -74,12 +74,18 @@ namespace MobilePhone {
             InitializeComponent();
             environment = new Mommosoft.ExpertSystem.Environment();
 
+            //Load the clips file
             environment.Load("mobilephone.clp");
 
+            //Load the dropdown values for PhaseDetails
+            LoadPhaseDetailsDropdown();
+
+            //Set initial stage
             UIState = 0;
             SetUIState(Defintions.PhaseStart);
             this.buttonRestart.Visible = false;
 
+            //Initializing lists of information to be stored at each phase
             preferencesDetails      = new List<String>();
             preferencesPhoneList    = new List<MobilePhoneRecommendation>();
             phoneSpecsDetails       = new List<String>();
@@ -95,7 +101,8 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-            environment.Watch(WatchItem.Facts);
+            environment.Watch(WatchItem.All);
+            environment.Watch(WatchItem.Rules);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -284,14 +291,14 @@ namespace MobilePhone {
                         preferencesPhoneList.Clear();
                     }
                     break;
-                case Defintions.PhaseResults:
+               /* case Defintions.PhaseResults:
                     {
                         /*
                          * Retract all the details facts that we asserted here
                          * Since there is no way we can use this to retract details about the phone
                          * do a reset and assert back the facts that were determined at the preferences phase and the personality phase
                          */
-                        environment.Reset();
+                       /* environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
                         for (int i = 0; i < preferencesDetails.Count; i++)
@@ -301,7 +308,7 @@ namespace MobilePhone {
                         phoneSpecsPhoneList.Clear();
                         phoneSpecsDetails.Clear();
                     }
-                    break;
+                    break;*/
             }
         }
 
@@ -318,7 +325,7 @@ namespace MobilePhone {
                 {
                     //personality questions
                     //update personality attributes
-
+                    ProcessPersonality();
 
                     //update phoneList for this phasePersonality
                     UpdatePhoneList(personalityPhoneList);
@@ -326,126 +333,9 @@ namespace MobilePhone {
                 break;
                 case Defintions.PhasePreferences:
                 {
-                    /*
-                      * For each of the question asked in phase 2, the for loop is the same, just note the box name is
-                      * different
-                      * @kwanghock
-                      */
-                    //Assert the weightage of the attributes related to the question here
-                    //Question 1
-                   // foreach (RadioButton control in grp_box_q1.Controls) //Throw error here as grp_box_q1 has label as well @kwanghock 11march2012
-                    foreach (RadioButton control in rbBoxQns1.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you watch movies you downloaded on your phone?
-                            if (control.Name.Equals("q1_yes"))
-                            {
-                                environment.AssertString("(question (order watch_movie) (selection yes))");
-                            }
-                            else if(control.Name.Equals("q1_no"))
-                            {
+                    //Method in PhasePreferences.cs to process
+                    ProcessPhasePreferences();
 
-                            }
-                            /*
-                            String sRequirementName = "(requirement-name memory)";
-                            String sRequirementValue = "(requirement-value " + control.Text + ")";
-                            String sRequirementWeightage = "(requirement-weightage " + control.Text + ")";
-                           
-                            environment.AssertString("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
-                            preferencesDetails.Add("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
-                            */
-                             }
-                    }
-                    //Question 2
-                    //foreach (RadioButton control in grp_box_q2.Controls)
-                    foreach (RadioButton control in rbBoxQns2.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you listen to music on your phone?
-                            if (control.Name.Equals("q2_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q2_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 3
-                   // foreach (RadioButton control in grp_box_q3.Controls)
-                    foreach (RadioButton control in rbBoxQns3.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you watch movies you downloaded on your phone?
-                            if (control.Name.Equals("q3_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q3_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 4
-                   // foreach (RadioButton control in grp_box_q4.Controls)
-                    foreach (RadioButton control in rbBoxQns4.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you watch movies you downloaded on your phone?
-                            if (control.Name.Equals("q4_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q4_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 5
-                    // foreach (RadioButton control in grp_box_q5.Controls)
-                    foreach (RadioButton control in rbBoxQns5.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you use phone as your personal and only camera? 
-                            if (control.Name.Equals("q5_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q5_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 6
-                   // foreach (RadioButton control in grp_box_q6.Controls)
-                    foreach (RadioButton control in rbBoxQns6.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you use phone as your personal and only camera? 
-                            if (control.Name.Equals("q6_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q6_no"))
-                            {
-
-                            }
-                        }
-                    }
                     //Update phonelist for this PhasePreferences
                     UpdatePhoneList(preferencesPhoneList);
                 }
@@ -454,14 +344,14 @@ namespace MobilePhone {
                 {
                     //Ask for specifications of the phones
                     //Update the specfications
-
+                    ProcessPhoneSpecs();
 
                     //Update phoneList for this PhaseDetails
                    
                     UpdatePhoneList(phoneSpecsPhoneList);
                 }
                 break;
-                case Defintions.PhaseResults:
+                /*case Defintions.PhaseResults:
                 {
                     UpdatePhoneList(results);
 
@@ -471,7 +361,7 @@ namespace MobilePhone {
                     //Display the results of the phone chosen.
                     UpdateResult(0);
                 }
-                break;
+                break;*/
             }
         }
 
@@ -616,6 +506,8 @@ namespace MobilePhone {
                // this.buttonPrevPhone.Visible = false;
                 ProcessPhase(Defintions.PhaseResults);
             }*/
-        }   
+        }
+
+
     }
 }
