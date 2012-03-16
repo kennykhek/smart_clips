@@ -154,6 +154,9 @@ namespace MobilePhone
 
             for (int i = 0; i < listZoom.Count; i++)
                 cbZoom.Items.Add(listZoom.ElementAt(i));
+
+            for (int i = 0; i < listOS.Count; i++)
+                cbOS.Items.Add(listOS.ElementAt(i));
         }
     }
 }
