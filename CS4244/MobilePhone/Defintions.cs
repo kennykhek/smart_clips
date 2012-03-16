@@ -12,6 +12,6 @@ namespace MobilePhone
         public const int PhasePersonality = 1;
         public const int PhasePreferences = 2;
         public const int PhaseDetails = 3;
-        public const int PhaseResults = 4;
+        //public const int PhaseResults = 4;
     }
 }
