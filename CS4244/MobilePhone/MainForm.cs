@@ -39,13 +39,13 @@ namespace MobilePhone {
         private class MobilePhoneRecommendation
         {
             public String sModel { get; set; }
-            public int iPrice { get; set; }
+            public float fPrice { get; set; }
 
             //Specs
             public String sBrand { get; set; }
             public String sColor { get; set; }
             public float fScreen { get; set; }
-            public int iWeight { get; set; }
+            public float fWeight { get; set; }
             public int iMemory { get; set; }
 
             //Features
@@ -56,7 +56,7 @@ namespace MobilePhone {
 
             //Camera
             public int iZoom { get; set; }
-            public int iPixel { get; set; }
+            public float fPixel { get; set; }
             public String sFlash { get; set; }
             public String sVideoHD { get; set; }
             public float fWeightage { get; set; }
@@ -102,6 +102,7 @@ namespace MobilePhone {
              */
             environment.Watch(WatchItem.All);
             environment.Watch(WatchItem.Rules);
+            environment.Watch(WatchItem.Activations);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -382,13 +383,13 @@ namespace MobilePhone {
                 FactAddressValue fv = (FactAddressValue)mv[i];
 
                 String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
-                int iPrice = (int)(IntegerValue)fv.GetFactSlot("price");
+                float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
                 
                 //Specs
                 String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
                 String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
                 float fScreen=(float)(FloatValue)fv.GetFactSlot("screen");
-                int iWeight = (int)(IntegerValue)fv.GetFactSlot("weight");
+                float fWeight = (float)(FloatValue)fv.GetFactSlot("weight");
                 int iMemory = (int)(IntegerValue)fv.GetFactSlot("memory");
 
                 //Features
@@ -399,31 +400,31 @@ namespace MobilePhone {
 
                 //camera
                 int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("zoom");
-                int iCameraPixel = (int)(IntegerValue)fv.GetFactSlot("pixel");
+                float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
                 String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
                 String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
                 float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
 
                 MobilePhoneRecommendation a = new MobilePhoneRecommendation();
                 a.sModel = sModel;
-                a.iPrice = iPrice;
+                a.fPrice = fPrice;
                 a.sBrand = sBrand;
                 a.sColor = sColor;
                 a.fScreen = fScreen;
-                a.iWeight = iWeight;
+                a.fWeight = fWeight;
                 a.iMemory = iMemory;
                 a.sOS = sOS;
                 a.sBluetooth = sBluetooth;
                 a.sWifi = sWifi;
                 a.sFM = sFM;
                 a.iZoom = iCameraZoom;
-                a.iPixel = iCameraPixel;
+                a.fPixel = fCameraPixel;
                 a.sFlash = sFlash;
                 a.sVideoHD = sVideoHD;
                 a.fWeightage = fWeightage;
 
                 String sAttributeModel = "(model " + a.sModel +")";
-                String sAttributePrice = "(price " + a.iPrice.ToString() + ")";
+                String sAttributePrice = "(price " + a.fPrice.ToString() + ")";
                 String sAttributeBrand = "(brand " + a.sBrand + ")";
                 String sAttributeColor = "(color " + a.sColor + ")";
                 String sAttributeScreen = "(screen " + a.fScreen.ToString() + ")";
@@ -434,7 +435,7 @@ namespace MobilePhone {
                 String sAttributeWifi = "(wifi " + a.sWifi + ")";
                 String sAttributeFM = "(fm " + a.sFM + ")";
                 String sAttributeZoom = "(zoom " + a.iZoom.ToString() + ")";
-                String sAttributePixel = "(pixel " + a.iPixel.ToString() + ")";
+                String sAttributePixel = "(pixel " + a.fPixel.ToString() + ")";
                 String sAttributeFlash = "(flash " + a.sFlash + ")";
                 String sAttributeVideoHD = "(videoHD " + a.sVideoHD + ")";
                 String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
