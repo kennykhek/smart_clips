@@ -80,6 +80,10 @@
             this.q1_yes = new System.Windows.Forms.RadioButton();
             this.q1_no = new System.Windows.Forms.RadioButton();
             this.panelPhase3 = new System.Windows.Forms.Panel();
+            this.gbRecPhone = new System.Windows.Forms.GroupBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.phoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RecWeightColumn = new MobilePhone.DataGridViewProgressColumn();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.cbWifi = new System.Windows.Forms.ComboBox();
@@ -113,6 +117,7 @@
             this.panelMem = new System.Windows.Forms.Panel();
             this.labelMem = new System.Windows.Forms.Label();
             this.cbMem = new System.Windows.Forms.ComboBox();
+            this.dataGridViewProgressColumn1 = new MobilePhone.DataGridViewProgressColumn();
             this.panelPhase0.SuspendLayout();
             this.panelPhase1.SuspendLayout();
             this.grp_box_q6.SuspendLayout();
@@ -129,6 +134,8 @@
             this.grp_box_q1.SuspendLayout();
             this.rbBoxQns1.SuspendLayout();
             this.panelPhase3.SuspendLayout();
+            this.gbRecPhone.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -144,7 +151,7 @@
             // 
             // buttonNext
             // 
-            this.buttonNext.Location = new System.Drawing.Point(463, 418);
+            this.buttonNext.Location = new System.Drawing.Point(463, 436);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(59, 23);
             this.buttonNext.TabIndex = 1;
@@ -154,7 +161,7 @@
             // 
             // buttonPrev
             // 
-            this.buttonPrev.Location = new System.Drawing.Point(12, 418);
+            this.buttonPrev.Location = new System.Drawing.Point(12, 436);
             this.buttonPrev.Name = "buttonPrev";
             this.buttonPrev.Size = new System.Drawing.Size(59, 23);
             this.buttonPrev.TabIndex = 6;
@@ -164,7 +171,7 @@
             // 
             // buttonRestart
             // 
-            this.buttonRestart.Location = new System.Drawing.Point(91, 418);
+            this.buttonRestart.Location = new System.Drawing.Point(77, 436);
             this.buttonRestart.Name = "buttonRestart";
             this.buttonRestart.Size = new System.Drawing.Size(59, 23);
             this.buttonRestart.TabIndex = 7;
@@ -552,6 +559,7 @@
             // 
             // panelPhase3
             // 
+            this.panelPhase3.Controls.Add(this.gbRecPhone);
             this.panelPhase3.Controls.Add(this.panel7);
             this.panelPhase3.Controls.Add(this.panel6);
             this.panelPhase3.Controls.Add(this.panel5);
@@ -566,14 +574,52 @@
             this.panelPhase3.Controls.Add(this.labelPhase3);
             this.panelPhase3.Location = new System.Drawing.Point(12, 12);
             this.panelPhase3.Name = "panelPhase3";
-            this.panelPhase3.Size = new System.Drawing.Size(510, 397);
+            this.panelPhase3.Size = new System.Drawing.Size(510, 418);
             this.panelPhase3.TabIndex = 3;
+            // 
+            // gbRecPhone
+            // 
+            this.gbRecPhone.Controls.Add(this.dataGridView);
+            this.gbRecPhone.Location = new System.Drawing.Point(13, 210);
+            this.gbRecPhone.Name = "gbRecPhone";
+            this.gbRecPhone.Size = new System.Drawing.Size(486, 207);
+            this.gbRecPhone.TabIndex = 11;
+            this.gbRecPhone.TabStop = false;
+            this.gbRecPhone.Text = "Recommended Phone";
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.phoneColumn,
+            this.RecWeightColumn});
+            this.dataGridView.Location = new System.Drawing.Point(10, 23);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.RowHeadersVisible = false;
+            this.dataGridView.Size = new System.Drawing.Size(461, 172);
+            this.dataGridView.TabIndex = 4;
+            // 
+            // phoneColumn
+            // 
+            this.phoneColumn.DataPropertyName = "sModel";
+            this.phoneColumn.HeaderText = "Phone";
+            this.phoneColumn.Name = "phoneColumn";
+            this.phoneColumn.ReadOnly = true;
+            // 
+            // RecWeightColumn
+            // 
+            this.RecWeightColumn.DataPropertyName = "fWeightage";
+            this.RecWeightColumn.HeaderText = "Recommendation Weight";
+            this.RecWeightColumn.Name = "RecWeightColumn";
+            this.RecWeightColumn.ReadOnly = true;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.label8);
             this.panel7.Controls.Add(this.cbWifi);
-            this.panel7.Location = new System.Drawing.Point(178, 174);
+            this.panel7.Location = new System.Drawing.Point(178, 147);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(159, 40);
             this.panel7.TabIndex = 10;
@@ -581,7 +627,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 13);
+            this.label8.Location = new System.Drawing.Point(3, 10);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 13);
             this.label8.TabIndex = 3;
@@ -592,24 +638,25 @@
             this.cbWifi.BackColor = System.Drawing.SystemColors.Window;
             this.cbWifi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbWifi.FormattingEnabled = true;
-            this.cbWifi.Location = new System.Drawing.Point(71, 10);
+            this.cbWifi.Location = new System.Drawing.Point(62, 5);
             this.cbWifi.Name = "cbWifi";
             this.cbWifi.Size = new System.Drawing.Size(77, 21);
             this.cbWifi.TabIndex = 2;
+            this.cbWifi.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.cbFM);
-            this.panel6.Location = new System.Drawing.Point(13, 80);
+            this.panel6.Location = new System.Drawing.Point(13, 71);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(159, 40);
+            this.panel6.Size = new System.Drawing.Size(159, 32);
             this.panel6.TabIndex = 10;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 13);
+            this.label7.Location = new System.Drawing.Point(10, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(23, 13);
             this.label7.TabIndex = 3;
@@ -620,16 +667,17 @@
             this.cbFM.BackColor = System.Drawing.SystemColors.Window;
             this.cbFM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFM.FormattingEnabled = true;
-            this.cbFM.Location = new System.Drawing.Point(71, 10);
+            this.cbFM.Location = new System.Drawing.Point(71, 5);
             this.cbFM.Name = "cbFM";
             this.cbFM.Size = new System.Drawing.Size(77, 21);
             this.cbFM.TabIndex = 2;
+            this.cbFM.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.cbColor);
-            this.panel5.Location = new System.Drawing.Point(13, 174);
+            this.panel5.Location = new System.Drawing.Point(13, 147);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(159, 40);
             this.panel5.TabIndex = 9;
@@ -637,7 +685,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 13);
+            this.label6.Location = new System.Drawing.Point(11, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 3;
@@ -648,10 +696,11 @@
             this.cbColor.BackColor = System.Drawing.SystemColors.Window;
             this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbColor.FormattingEnabled = true;
-            this.cbColor.Location = new System.Drawing.Point(71, 10);
+            this.cbColor.Location = new System.Drawing.Point(71, 5);
             this.cbColor.Name = "cbColor";
             this.cbColor.Size = new System.Drawing.Size(77, 21);
             this.cbColor.TabIndex = 2;
+            this.cbColor.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panelScreen
             // 
@@ -659,13 +708,13 @@
             this.panelScreen.Controls.Add(this.cbScreen);
             this.panelScreen.Location = new System.Drawing.Point(265, 34);
             this.panelScreen.Name = "panelScreen";
-            this.panelScreen.Size = new System.Drawing.Size(235, 40);
+            this.panelScreen.Size = new System.Drawing.Size(235, 31);
             this.panelScreen.TabIndex = 4;
             // 
             // labelScreen
             // 
             this.labelScreen.AutoSize = true;
-            this.labelScreen.Location = new System.Drawing.Point(1, 13);
+            this.labelScreen.Location = new System.Drawing.Point(1, 8);
             this.labelScreen.Name = "labelScreen";
             this.labelScreen.Size = new System.Drawing.Size(64, 13);
             this.labelScreen.TabIndex = 3;
@@ -676,24 +725,25 @@
             this.cbScreen.BackColor = System.Drawing.SystemColors.Window;
             this.cbScreen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbScreen.FormattingEnabled = true;
-            this.cbScreen.Location = new System.Drawing.Point(71, 10);
+            this.cbScreen.Location = new System.Drawing.Point(71, 5);
             this.cbScreen.Name = "cbScreen";
             this.cbScreen.Size = new System.Drawing.Size(146, 21);
             this.cbScreen.TabIndex = 2;
+            this.cbScreen.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.cbCamFlash);
-            this.panel4.Location = new System.Drawing.Point(343, 80);
+            this.panel4.Location = new System.Drawing.Point(343, 71);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(157, 40);
+            this.panel4.Size = new System.Drawing.Size(157, 32);
             this.panel4.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 13);
+            this.label5.Location = new System.Drawing.Point(3, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 3;
@@ -704,24 +754,25 @@
             this.cbCamFlash.BackColor = System.Drawing.SystemColors.Window;
             this.cbCamFlash.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCamFlash.FormattingEnabled = true;
-            this.cbCamFlash.Location = new System.Drawing.Point(71, 10);
+            this.cbCamFlash.Location = new System.Drawing.Point(62, 6);
             this.cbCamFlash.Name = "cbCamFlash";
             this.cbCamFlash.Size = new System.Drawing.Size(77, 21);
             this.cbCamFlash.TabIndex = 2;
+            this.cbCamFlash.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.cbVideoHD);
-            this.panel3.Location = new System.Drawing.Point(178, 80);
+            this.panel3.Location = new System.Drawing.Point(178, 71);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(159, 40);
+            this.panel3.Size = new System.Drawing.Size(159, 32);
             this.panel3.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 14);
+            this.label4.Location = new System.Drawing.Point(3, 8);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -732,16 +783,17 @@
             this.cbVideoHD.BackColor = System.Drawing.SystemColors.Window;
             this.cbVideoHD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVideoHD.FormattingEnabled = true;
-            this.cbVideoHD.Location = new System.Drawing.Point(71, 10);
+            this.cbVideoHD.Location = new System.Drawing.Point(62, 6);
             this.cbVideoHD.Name = "cbVideoHD";
             this.cbVideoHD.Size = new System.Drawing.Size(77, 21);
             this.cbVideoHD.TabIndex = 2;
+            this.cbVideoHD.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.cbZoom);
-            this.panel2.Location = new System.Drawing.Point(343, 174);
+            this.panel2.Location = new System.Drawing.Point(343, 147);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(157, 40);
             this.panel2.TabIndex = 8;
@@ -749,7 +801,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 13);
+            this.label3.Location = new System.Drawing.Point(-1, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 3;
@@ -760,24 +812,25 @@
             this.cbZoom.BackColor = System.Drawing.SystemColors.Window;
             this.cbZoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbZoom.FormattingEnabled = true;
-            this.cbZoom.Location = new System.Drawing.Point(71, 11);
+            this.cbZoom.Location = new System.Drawing.Point(62, 3);
             this.cbZoom.Name = "cbZoom";
             this.cbZoom.Size = new System.Drawing.Size(77, 21);
             this.cbZoom.TabIndex = 2;
+            this.cbZoom.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cbCamPixel);
-            this.panel1.Location = new System.Drawing.Point(343, 126);
+            this.panel1.Location = new System.Drawing.Point(343, 109);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(157, 40);
+            this.panel1.Size = new System.Drawing.Size(157, 32);
             this.panel1.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 14);
+            this.label2.Location = new System.Drawing.Point(3, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 3;
@@ -788,10 +841,11 @@
             this.cbCamPixel.BackColor = System.Drawing.SystemColors.Window;
             this.cbCamPixel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCamPixel.FormattingEnabled = true;
-            this.cbCamPixel.Location = new System.Drawing.Point(71, 10);
+            this.cbCamPixel.Location = new System.Drawing.Point(62, 6);
             this.cbCamPixel.Name = "cbCamPixel";
             this.cbCamPixel.Size = new System.Drawing.Size(77, 21);
             this.cbCamPixel.TabIndex = 2;
+            this.cbCamPixel.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panelOS
             // 
@@ -799,13 +853,13 @@
             this.panelOS.Controls.Add(this.cbOS);
             this.panelOS.Location = new System.Drawing.Point(13, 34);
             this.panelOS.Name = "panelOS";
-            this.panelOS.Size = new System.Drawing.Size(246, 40);
+            this.panelOS.Size = new System.Drawing.Size(246, 31);
             this.panelOS.TabIndex = 7;
             // 
             // labelOs
             // 
             this.labelOs.AutoSize = true;
-            this.labelOs.Location = new System.Drawing.Point(8, 15);
+            this.labelOs.Location = new System.Drawing.Point(9, 8);
             this.labelOs.Name = "labelOs";
             this.labelOs.Size = new System.Drawing.Size(22, 13);
             this.labelOs.TabIndex = 3;
@@ -816,24 +870,25 @@
             this.cbOS.BackColor = System.Drawing.SystemColors.Window;
             this.cbOS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbOS.FormattingEnabled = true;
-            this.cbOS.Location = new System.Drawing.Point(71, 10);
+            this.cbOS.Location = new System.Drawing.Point(71, 5);
             this.cbOS.Name = "cbOS";
             this.cbOS.Size = new System.Drawing.Size(167, 21);
             this.cbOS.TabIndex = 2;
+            this.cbOS.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panelWeight
             // 
             this.panelWeight.Controls.Add(this.label1);
             this.panelWeight.Controls.Add(this.cbWeight);
-            this.panelWeight.Location = new System.Drawing.Point(178, 126);
+            this.panelWeight.Location = new System.Drawing.Point(178, 109);
             this.panelWeight.Name = "panelWeight";
-            this.panelWeight.Size = new System.Drawing.Size(159, 40);
+            this.panelWeight.Size = new System.Drawing.Size(159, 32);
             this.panelWeight.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 13);
+            this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 3;
@@ -844,24 +899,25 @@
             this.cbWeight.BackColor = System.Drawing.SystemColors.Window;
             this.cbWeight.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbWeight.FormattingEnabled = true;
-            this.cbWeight.Location = new System.Drawing.Point(71, 10);
+            this.cbWeight.Location = new System.Drawing.Point(62, 5);
             this.cbWeight.Name = "cbWeight";
             this.cbWeight.Size = new System.Drawing.Size(77, 21);
             this.cbWeight.TabIndex = 2;
+            this.cbWeight.SelectedIndexChanged += new System.EventHandler(this.OnChange);
             // 
             // panelMem
             // 
             this.panelMem.Controls.Add(this.labelMem);
             this.panelMem.Controls.Add(this.cbMem);
-            this.panelMem.Location = new System.Drawing.Point(13, 126);
+            this.panelMem.Location = new System.Drawing.Point(13, 109);
             this.panelMem.Name = "panelMem";
-            this.panelMem.Size = new System.Drawing.Size(159, 40);
+            this.panelMem.Size = new System.Drawing.Size(159, 32);
             this.panelMem.TabIndex = 6;
             // 
             // labelMem
             // 
             this.labelMem.AutoSize = true;
-            this.labelMem.Location = new System.Drawing.Point(8, 13);
+            this.labelMem.Location = new System.Drawing.Point(10, 8);
             this.labelMem.Name = "labelMem";
             this.labelMem.Size = new System.Drawing.Size(48, 13);
             this.labelMem.TabIndex = 3;
@@ -872,16 +928,26 @@
             this.cbMem.BackColor = System.Drawing.SystemColors.Window;
             this.cbMem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMem.FormattingEnabled = true;
-            this.cbMem.Location = new System.Drawing.Point(71, 10);
+            this.cbMem.Location = new System.Drawing.Point(71, 5);
             this.cbMem.Name = "cbMem";
             this.cbMem.Size = new System.Drawing.Size(77, 21);
             this.cbMem.TabIndex = 2;
+            this.cbMem.SelectedIndexChanged += new System.EventHandler(this.OnChange);
+            // 
+            // dataGridViewProgressColumn1
+            // 
+            this.dataGridViewProgressColumn1.HeaderText = "Recommendation Weight";
+            this.dataGridViewProgressColumn1.Name = "dataGridViewProgressColumn1";
+            this.dataGridViewProgressColumn1.ReadOnly = true;
+            this.dataGridViewProgressColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProgressColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewProgressColumn1.Width = 254;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 449);
+            this.ClientSize = new System.Drawing.Size(555, 466);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.panelPhase3);
             this.Controls.Add(this.buttonPrev);
@@ -925,6 +991,8 @@
             this.rbBoxQns1.PerformLayout();
             this.panelPhase3.ResumeLayout(false);
             this.panelPhase3.PerformLayout();
+            this.gbRecPhone.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -1016,6 +1084,11 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbWifi;
+        private System.Windows.Forms.GroupBox gbRecPhone;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneColumn;
+        private MobilePhone.DataGridViewProgressColumn dataGridViewProgressColumn1;
+        private DataGridViewProgressColumn RecWeightColumn;
 
     }
 }
