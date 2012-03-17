@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.XPath;
+using System.Data;
 
 namespace MobilePhone
 {
@@ -59,8 +60,17 @@ namespace MobilePhone
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
+                
+                /*
+                 * Because in the template in the clips file, type for model is not defined,
+                 * Hence here when we check for model, we need to find what type it is.
+                 */
+                String sModel = "";
+                if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                    sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                    sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
 
-                String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
                 listModel.Add(sModel);
 
                 float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
@@ -125,6 +135,7 @@ namespace MobilePhone
             listWeight.Sort();
 
             listMem = listMem.Distinct().ToList();
+            listMem.Sort();
             
             listOS = listOS.Distinct().ToList();
             
@@ -193,6 +204,228 @@ namespace MobilePhone
            char[] letters = sConvert.ToCharArray();
            letters[0] = char.ToUpper(letters[0]);
            return new String(letters);
+        }
+
+        //Convert the first letter of the string arugment to be of lowercase
+        public String LowerCaseFirstChar(String sConvert)
+        {
+            //Set first letter to caps
+            char[] letters = sConvert.ToCharArray();
+            letters[0] = char.ToLower(letters[0]);
+            return new String(letters);
+        }
+        /*
+         * If any of the dropdown box value changes. @kwanghock 17march2012
+         */
+        public void OnChange(object sender, EventArgs e)
+        {
+            String sSelectedOS = null;
+             String sSelectedScreen = null;
+             String sSelectedFM =null;
+             String sSelectedVideoHD =null ;
+            String sSelectedCamFlash =null;
+            String sSelectedMem =null;
+            String sSelectedWeight =null;
+            String sSelectedPixel = null;
+            String sSelectedWifi = null;
+            String sSelectedColor =null;
+            String sSelectedZoom = null;
+
+            if (cbOS.SelectedItem != null)
+            {
+                sSelectedOS = LowerCaseFirstChar(cbOS.SelectedItem.ToString());
+            }
+            else sSelectedOS = "?os";
+
+            if (cbScreen.SelectedItem != null)
+            {
+                sSelectedScreen = LowerCaseFirstChar(cbScreen.SelectedItem.ToString());
+            }
+            else sSelectedScreen = "?screen";
+
+            if (cbFM.SelectedItem != null)
+            {
+                sSelectedFM = LowerCaseFirstChar(cbFM.SelectedItem.ToString());
+            }
+            else sSelectedFM = "?fm";
+
+            if (cbVideoHD.SelectedItem != null)
+            {
+                sSelectedVideoHD = LowerCaseFirstChar(cbVideoHD.SelectedItem.ToString());
+            }
+            else sSelectedVideoHD = "?videoHD";
+
+            if (cbCamFlash.SelectedItem != null)
+            {
+                sSelectedCamFlash = LowerCaseFirstChar(cbCamFlash.SelectedItem.ToString());
+            }
+            else sSelectedCamFlash = "?flash";
+
+            if (cbMem.SelectedItem != null)
+            {
+                sSelectedMem = cbMem.SelectedItem.ToString().Substring(0, cbMem.SelectedItem.ToString().IndexOf(" "));
+            }
+            else sSelectedMem = "?memory";
+
+            if (cbWeight.SelectedItem != null)
+            {
+                sSelectedWeight = cbWeight.SelectedItem.ToString().Substring(0, cbWeight.SelectedItem.ToString().IndexOf(" "));
+            }
+            else sSelectedWeight = "?weight";
+
+            if (cbCamPixel.SelectedItem != null)
+            {
+                sSelectedPixel = cbCamPixel.SelectedItem.ToString().Substring(0, cbCamPixel.SelectedItem.ToString().IndexOf("px"));
+            }
+            else sSelectedPixel = "?pixel";
+
+            if (cbWifi.SelectedItem != null)
+            {
+                sSelectedWifi = LowerCaseFirstChar(cbWifi.SelectedItem.ToString());
+            }
+            else sSelectedWifi = "?wifi";
+
+            if (cbColor.SelectedItem!= null)
+            {
+                sSelectedColor = LowerCaseFirstChar(cbColor.SelectedItem.ToString());
+            }
+            else sSelectedColor = "?color";
+
+            if (cbZoom.SelectedItem != null)
+            {
+                sSelectedZoom = LowerCaseFirstChar(cbZoom.SelectedItem.ToString());
+            }
+            else sSelectedZoom = "?zoom";
+
+            environment.Run();
+
+            UpdatePhoneGrid(sSelectedOS + " " + sSelectedScreen + " " + sSelectedFM + " " + sSelectedVideoHD + " " + sSelectedCamFlash + " " + sSelectedMem + " " + sSelectedWeight + " " + sSelectedPixel + " " + sSelectedColor + " " + sSelectedWifi + " " + sSelectedZoom);
+        }
+
+        public void UpdatePhoneGrid(String attribute)
+        {
+            //string evalStr = "(update-mobilephone-list " + attribute + ")";
+            string evalStr = "(get-mobilephone-list)";
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
+
+            DataTable testdt = new DataTable();
+
+            for (int i = 0; i < mv.Count; i++)
+            {
+                FactAddressValue fv = (FactAddressValue)mv[i];
+
+                String sModel = "";
+                if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                    sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                    sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+
+                float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
+
+                //Specs
+                String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
+                String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
+                float fScreen = (float)(FloatValue)fv.GetFactSlot("screen");
+                float fWeight = (float)(FloatValue)fv.GetFactSlot("weight");
+                int iMemory = (int)(IntegerValue)fv.GetFactSlot("memory");
+
+                //Features
+                String sOS = (String)(SymbolValue)fv.GetFactSlot("os");
+                String sBluetooth = (String)(SymbolValue)fv.GetFactSlot("bluetooth");
+                String sWifi = (String)(SymbolValue)fv.GetFactSlot("wifi");
+                String sFM = (String)(SymbolValue)fv.GetFactSlot("fm");
+
+                //camera
+                int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("zoom");
+                float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
+                String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
+                String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
+                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+
+                MobilePhoneRecommendation a = new MobilePhoneRecommendation();
+                a.sModel = sModel;
+                a.fPrice = fPrice;
+                a.sBrand = sBrand;
+                a.sColor = sColor;
+                a.fScreen = fScreen;
+                a.fWeight = fWeight;
+                a.iMemory = iMemory;
+                a.sOS = sOS;
+                a.sBluetooth = sBluetooth;
+                a.sWifi = sWifi;
+                a.sFM = sFM;
+                a.iZoom = iCameraZoom;
+                a.fPixel = fCameraPixel;
+                a.sFlash = sFlash;
+                a.sVideoHD = sVideoHD;
+                a.fWeightage = fWeightage;
+
+                String sAttributeModel = "(model " + a.sModel + ")";
+                String sAttributePrice = "(price " + a.fPrice.ToString() + ")";
+                String sAttributeBrand = "(brand " + a.sBrand + ")";
+                String sAttributeColor = "(color " + a.sColor + ")";
+                String sAttributeScreen = "(screen " + a.fScreen.ToString() + ")";
+                String sAttributeWeight = "(weight " + a.fWeightage.ToString() + ")";
+                String sAttributeMemory = "(memory " + a.iMemory.ToString() + ")";
+                String sAttributeOS = "(os " + a.sOS + ")";
+                String sAttributeBluetooth = "(bluetooth " + a.sBluetooth + ")";
+                String sAttributeWifi = "(wifi " + a.sWifi + ")";
+                String sAttributeFM = "(fm " + a.sFM + ")";
+                String sAttributeZoom = "(zoom " + a.iZoom.ToString() + ")";
+                String sAttributePixel = "(pixel " + a.fPixel.ToString() + ")";
+                String sAttributeFlash = "(flash " + a.sFlash + ")";
+                String sAttributeVideoHD = "(videoHD " + a.sVideoHD + ")";
+                String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
+
+                String sFact = "(phone " + sAttributeModel + sAttributePrice + sAttributeBrand + sAttributeColor + sAttributeScreen + sAttributeWeight + sAttributeMemory + sAttributeOS + sAttributeBluetooth + sAttributeWifi + sAttributeFM + sAttributeZoom + sAttributePixel + sAttributeFlash + sAttributeVideoHD + sAttributeWeightage + ")";
+
+                a.sFact = sFact;
+
+                MobileResultDisplay addon = new MobileResultDisplay();
+                addon.fWeightage = a.fWeightage;
+                addon.sModel = a.sModel;
+                phase3Results.Add(addon);
+
+            }
+            
+            testDataGrid();
+            dataGridView.DataSource = phase3Results;
+        }
+
+        public void ResetDropDownDef()
+        {
+            cbOS.SelectedItem = "";
+            cbScreen.SelectedItem = "";
+            cbFM.SelectedItem = "";
+            cbVideoHD.SelectedItem = "";
+            cbCamFlash.SelectedItem = "";
+            cbMem.SelectedItem = "";
+            cbWeight.SelectedItem = "";
+            cbCamPixel.SelectedItem = "";
+            cbColor.SelectedItem = "";
+            cbWifi.SelectedItem = "";
+            cbZoom.SelectedItem = "";
+        }
+
+        public void testDataGrid()
+        {
+            MobilePhoneRecommendation test = new MobilePhoneRecommendation();
+            test.fPixel = 1;
+            test.fPrice = 1;
+            test.fScreen = 1; 
+            test.fWeight = 1;
+            test.fWeightage = 1;
+            test.iMemory = 1;
+            test.iZoom = 1;
+            test.sBluetooth = "test";
+            test.sBrand = "testbrand";
+            test.sFlash = "testflash";
+            test.sFM="testfm";
+            test.sModel = "testModel";
+            test.sOS = "testOS";
+            test.sVideoHD = "testVid";
+            test.sWifi = "testwifi";
+            results.Add(test);
         }
    
     }

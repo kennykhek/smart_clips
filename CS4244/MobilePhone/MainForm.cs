@@ -36,6 +36,14 @@ namespace MobilePhone {
         private List<MobilePhoneRecommendation> results;
         int iResultIterate;
 
+        private List<MobileResultDisplay> phase3Results;
+
+        private class MobileResultDisplay
+        {
+            public String sModel { get; set; }
+            public float fWeightage { get; set; }
+        }
+
         private class MobilePhoneRecommendation
         {
             public String sModel { get; set; }
@@ -95,14 +103,14 @@ namespace MobilePhone {
             results = new List<MobilePhoneRecommendation>();
             iResultIterate = 0;
 
+            phase3Results = new List<MobileResultDisplay>();
+
             /*
              * Watching of facts is done in output window. So make sure when build output window is shown
              * WactchItem is an enum.
              * @kwanghock
              */
             environment.Watch(WatchItem.All);
-            environment.Watch(WatchItem.Rules);
-            environment.Watch(WatchItem.Activations);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -292,6 +300,8 @@ namespace MobilePhone {
                         //Clear the preferences details and clear the phoneList updated at the preferences phase
                         preferencesDetails.Clear();
                         preferencesPhoneList.Clear();
+
+                        ResetDropDownDef();
                     }
                     break;
                /* case Defintions.PhaseResults:
@@ -313,6 +323,7 @@ namespace MobilePhone {
                     }
                     break;*/
             }
+            environment.Run();
         }
 
         private void ProcessPhase(int iPhase)
@@ -352,6 +363,7 @@ namespace MobilePhone {
                     //Update phoneList for this PhaseDetails
                    
                     UpdatePhoneList(phoneSpecsPhoneList);
+                    dataGridView.DataSource = results;
                 }
                 break;
                 /*case Defintions.PhaseResults:
@@ -382,7 +394,12 @@ namespace MobilePhone {
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
 
-                String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                String sModel = "" ;
+                if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                    sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                    sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                    
                 float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
                 
                 //Specs
@@ -510,6 +527,10 @@ namespace MobilePhone {
                 ProcessPhase(Defintions.PhaseResults);
             }*/
         }
+
+
+
+        
 
 
     }

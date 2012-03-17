@@ -103,6 +103,7 @@ namespace MobilePhone
                     }
                 }
             }
+            environment.Run();        
         }
     }
 }
