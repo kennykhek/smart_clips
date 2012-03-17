@@ -43,11 +43,11 @@
 (deffacts init-phone-facts
   ; non plan phone prices are from www.subarumobile.com
   ; nokia
-  (phone (model testtest1)(price 155.00)
+  (phone (model 300)(price 155.00)
          (brand nokia)(color silver)(screen 2.4)(weight 100.0)(memory 32)
          (bluetooth no)(wifi no)(fm yes)
 	     (zoom 0)(pixel 5.0)(flash no)(videoHD no))
-  (phone (model testtest2)(price 300.00)
+  (phone (model 600)(price 300.00)
          (brand nokia)(color black)(screen 3.5)(weight 109.6)(memory 32)
          (os symbian)(fm yes)
 	     (zoom 4)(pixel 5.0)(flash no)(videoHD yes))
@@ -241,8 +241,7 @@
 	(assert (requirement (name screen)(value 3.5)(weightage 50.0)))
 	(assert (requirement (name screen)(value 2.6)(weightage 25.0)))
 	(assert (requirement (name screen)(value 2.4)(weightage 0.0)))
-	(assert (requirement (name memory)(value 32)(weightage 100.0)))
-)
+	(assert (requirement (name memory)(value 32)(weightage 100.0))))
 
 (defrule listen_music
   (question (order listen_music)(selection ?sel))
@@ -295,6 +294,24 @@
 ;;*************
 (deffunction get-mobilephone-list ()
   (bind ?facts (find-all-facts((?p phone)) TRUE))
+)
+
+(deffunction update-mobilephone-list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
+  (bind ?facts (find-all-facts((?p phone)) 
+		(and
+			(eq ?p:os ?os)
+			(eq ?p:screen ?screen)
+			(eq ?p:fm ?fm)
+			(eq ?p:videoHD ?video)
+			(eq ?p:flash ?camflash)
+			(eq ?p:memory ?mem)
+			(eq ?p:weight ?weight)
+			(eq ?p:pixel ?campixel)
+			(eq ?p:color ?color)
+			(eq ?p:wifi ?wifi)
+			(eq ?p:zoom ?camzoom)
+		)
+  ))
 )
  
 (deffunction get-requirement-list ()

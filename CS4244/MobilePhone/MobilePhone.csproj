@@ -71,6 +71,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataGridViewProgressColumn.cs" />
     <Compile Include="Defintions.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
