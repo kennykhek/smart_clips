@@ -40,6 +40,8 @@
 ;;*********
 ;;* FACTS *
 ;;*********
+
+
 (deffacts init-phone-facts
   ; non plan phone prices are from www.subarumobile.com
   ; nokia
@@ -297,22 +299,72 @@
 )
 
 (deffunction update-mobilephone-list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
-  (bind ?facts (find-all-facts((?p phone)) 
-		(and
-			(eq ?p:os ?os)
-			(eq ?p:screen ?screen)
-			(eq ?p:fm ?fm)
-			(eq ?p:videoHD ?video)
-			(eq ?p:flash ?camflash)
-			(eq ?p:memory ?mem)
-			(eq ?p:weight ?weight)
-			(eq ?p:pixel ?campixel)
-			(eq ?p:color ?color)
-			(eq ?p:wifi ?wifi)
-			(eq ?p:zoom ?camzoom)
-		)
+  (bind ?facts (find-all-facts((?p phone))
+	(and
+		(if (eq ?os nil)
+			then
+			(eq ?p:os ?p:os)
+			else
+			(eq ?p:os ?os))
+		(if (eq ?screen nil)
+			then
+			(eq ?p:screen ?p:screen)
+			else
+			(eq ?p:screen ?screen))
+		(if (eq ?fm nil)
+			then
+			(eq ?p:fm ?p:fm)
+			else
+			(eq ?p:fm ?fm))
+		(if (eq ?video nil)
+			then
+			(eq ?p:videoHD ?p:videoHD)
+			else
+			(eq ?p:videoHD ?video))
+		(if (eq ?camflash nil)
+			then
+			(eq ?p:flash ?p:flash)
+			else
+			(eq ?p:flash ?camflash))
+		(if (eq ?mem nil)
+			then
+			(eq ?p:memory ?p:memory)
+			else
+			(eq ?p:memory ?mem))
+		(if (eq ?weight nil)
+			then
+			(eq ?p:weight ?p:weight)
+			else
+			(eq ?p:weight ?weight))
+		(if (eq ?campixel nil)
+			then
+			(eq ?p:pixel ?p:pixel)
+			else
+			(eq ?p:pixel ?campixel))
+		(if (eq ?color nil)
+			then
+			(eq ?p:color ?p:color)
+			else
+			(eq ?p:color ?color))
+		(if (eq ?wifi nil)
+			then
+			(eq ?p:wifi ?p:wifi)
+			else
+			(eq ?p:wifi ?wifi))
+		(if (eq ?camzoom nil)
+			then
+			(eq ?p:zoom ?p:zoom)
+			else
+			(eq ?p:zoom ?camzoom))
+	)
   ))
 )
+
+;(deffunction update-mobilephone-list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
+  ;(bind ?facts 
+	;	(find-all-facts((?p phone)) (exists (phone (os ?os))))
+ ; )
+;)
  
 (deffunction get-requirement-list ()
   (bind ?facts (find-all-facts((?p requirement)) TRUE))
