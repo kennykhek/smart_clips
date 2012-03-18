@@ -501,6 +501,7 @@ namespace MobilePhone {
                 this.buttonNext.Visible = true;
                 this.buttonRestart.Visible = false;
                 panelPhase2.BringToFront();
+
             }
             else if (iPhase == Defintions.PhaseDetails)
             {
