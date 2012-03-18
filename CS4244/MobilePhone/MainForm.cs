@@ -36,16 +36,24 @@ namespace MobilePhone {
         private List<MobilePhoneRecommendation> results;
         int iResultIterate;
 
+        private List<MobileResultDisplay> phase3Results;
+
+        private class MobileResultDisplay
+        {
+            public String sModel { get; set; }
+            public float fWeightage { get; set; }
+        }
+
         private class MobilePhoneRecommendation
         {
             public String sModel { get; set; }
-            public int iPrice { get; set; }
+            public float fPrice { get; set; }
 
             //Specs
             public String sBrand { get; set; }
             public String sColor { get; set; }
             public float fScreen { get; set; }
-            public int iWeight { get; set; }
+            public float fWeight { get; set; }
             public int iMemory { get; set; }
 
             //Features
@@ -56,7 +64,7 @@ namespace MobilePhone {
 
             //Camera
             public int iZoom { get; set; }
-            public int iPixel { get; set; }
+            public float fPixel { get; set; }
             public String sFlash { get; set; }
             public String sVideoHD { get; set; }
             public float fWeightage { get; set; }
@@ -74,12 +82,17 @@ namespace MobilePhone {
             InitializeComponent();
             environment = new Mommosoft.ExpertSystem.Environment();
 
+            //Load the clips file
             environment.Load("mobilephone.clp");
 
+
+
+            //Set initial stage
             UIState = 0;
             SetUIState(Defintions.PhaseStart);
             this.buttonRestart.Visible = false;
 
+            //Initializing lists of information to be stored at each phase
             preferencesDetails      = new List<String>();
             preferencesPhoneList    = new List<MobilePhoneRecommendation>();
             phoneSpecsDetails       = new List<String>();
@@ -90,18 +103,23 @@ namespace MobilePhone {
             results = new List<MobilePhoneRecommendation>();
             iResultIterate = 0;
 
+            phase3Results = new List<MobileResultDisplay>();
+
             /*
              * Watching of facts is done in output window. So make sure when build output window is shown
              * WactchItem is an enum.
              * @kwanghock
              */
-            environment.Watch(WatchItem.Facts);
+            environment.Watch(WatchItem.All);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
             //testInput();
             
             environment.Run();
+
+            //Load the dropdown values for PhaseDetails
+            LoadPhaseDetailsDropdown();
 
             //Test by getting all the facts see whether reflect correctly @kwanghock
             //test();
@@ -282,16 +300,18 @@ namespace MobilePhone {
                         //Clear the preferences details and clear the phoneList updated at the preferences phase
                         preferencesDetails.Clear();
                         preferencesPhoneList.Clear();
+
+                        ResetDropDownDef();
                     }
                     break;
-                case Defintions.PhaseResults:
+               /* case Defintions.PhaseResults:
                     {
                         /*
                          * Retract all the details facts that we asserted here
                          * Since there is no way we can use this to retract details about the phone
                          * do a reset and assert back the facts that were determined at the preferences phase and the personality phase
                          */
-                        environment.Reset();
+                       /* environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
                         for (int i = 0; i < preferencesDetails.Count; i++)
@@ -301,8 +321,9 @@ namespace MobilePhone {
                         phoneSpecsPhoneList.Clear();
                         phoneSpecsDetails.Clear();
                     }
-                    break;
+                    break;*/
             }
+            environment.Run();
         }
 
         private void ProcessPhase(int iPhase)
@@ -318,7 +339,7 @@ namespace MobilePhone {
                 {
                     //personality questions
                     //update personality attributes
-
+                    ProcessPersonality();
 
                     //update phoneList for this phasePersonality
                     UpdatePhoneList(personalityPhoneList);
@@ -326,126 +347,9 @@ namespace MobilePhone {
                 break;
                 case Defintions.PhasePreferences:
                 {
-                    /*
-                      * For each of the question asked in phase 2, the for loop is the same, just note the box name is
-                      * different
-                      * @kwanghock
-                      */
-                    //Assert the weightage of the attributes related to the question here
-                    //Question 1
-                   // foreach (RadioButton control in grp_box_q1.Controls) //Throw error here as grp_box_q1 has label as well @kwanghock 11march2012
-                    foreach (RadioButton control in rbBoxQns1.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you watch movies you downloaded on your phone?
-                            if (control.Name.Equals("q1_yes"))
-                            {
-                                environment.AssertString("(question (order watch_movie) (selection yes))");
-                            }
-                            else if(control.Name.Equals("q1_no"))
-                            {
+                    //Method in PhasePreferences.cs to process
+                    ProcessPhasePreferences();
 
-                            }
-                            /*
-                            String sRequirementName = "(requirement-name memory)";
-                            String sRequirementValue = "(requirement-value " + control.Text + ")";
-                            String sRequirementWeightage = "(requirement-weightage " + control.Text + ")";
-                           
-                            environment.AssertString("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
-                            preferencesDetails.Add("(requirement " + sRequirementName + sRequirementValue + sRequirementWeightage + ")");
-                            */
-                             }
-                    }
-                    //Question 2
-                    //foreach (RadioButton control in grp_box_q2.Controls)
-                    foreach (RadioButton control in rbBoxQns2.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you listen to music on your phone?
-                            if (control.Name.Equals("q2_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q2_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 3
-                   // foreach (RadioButton control in grp_box_q3.Controls)
-                    foreach (RadioButton control in rbBoxQns3.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you watch movies you downloaded on your phone?
-                            if (control.Name.Equals("q3_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q3_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 4
-                   // foreach (RadioButton control in grp_box_q4.Controls)
-                    foreach (RadioButton control in rbBoxQns4.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you watch movies you downloaded on your phone?
-                            if (control.Name.Equals("q4_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q4_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 5
-                    // foreach (RadioButton control in grp_box_q5.Controls)
-                    foreach (RadioButton control in rbBoxQns5.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you use phone as your personal and only camera? 
-                            if (control.Name.Equals("q5_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q5_no"))
-                            {
-
-                            }
-                        }
-                    }
-
-                    //Question 6
-                   // foreach (RadioButton control in grp_box_q6.Controls)
-                    foreach (RadioButton control in rbBoxQns6.Controls)
-                    {
-                        if (control.Checked)
-                        {
-                            //Question: Do you use phone as your personal and only camera? 
-                            if (control.Name.Equals("q6_yes"))
-                            {
-
-                            }
-                            else if (control.Name.Equals("q6_no"))
-                            {
-
-                            }
-                        }
-                    }
                     //Update phonelist for this PhasePreferences
                     UpdatePhoneList(preferencesPhoneList);
                 }
@@ -454,14 +358,15 @@ namespace MobilePhone {
                 {
                     //Ask for specifications of the phones
                     //Update the specfications
-
+                    ProcessPhoneSpecs();
 
                     //Update phoneList for this PhaseDetails
                    
                     UpdatePhoneList(phoneSpecsPhoneList);
+                    dataGridView.DataSource = results;
                 }
                 break;
-                case Defintions.PhaseResults:
+                /*case Defintions.PhaseResults:
                 {
                     UpdatePhoneList(results);
 
@@ -471,7 +376,7 @@ namespace MobilePhone {
                     //Display the results of the phone chosen.
                     UpdateResult(0);
                 }
-                break;
+                break;*/
             }
         }
 
@@ -489,14 +394,19 @@ namespace MobilePhone {
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
 
-                String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
-                int iPrice = (int)(IntegerValue)fv.GetFactSlot("price");
+                String sModel = "" ;
+                if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                    sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                    sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                    
+                float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
                 
                 //Specs
                 String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
                 String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
                 float fScreen=(float)(FloatValue)fv.GetFactSlot("screen");
-                int iWeight = (int)(IntegerValue)fv.GetFactSlot("weight");
+                float fWeight = (float)(FloatValue)fv.GetFactSlot("weight");
                 int iMemory = (int)(IntegerValue)fv.GetFactSlot("memory");
 
                 //Features
@@ -507,31 +417,31 @@ namespace MobilePhone {
 
                 //camera
                 int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("zoom");
-                int iCameraPixel = (int)(IntegerValue)fv.GetFactSlot("pixel");
+                float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
                 String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
                 String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
                 float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
 
                 MobilePhoneRecommendation a = new MobilePhoneRecommendation();
                 a.sModel = sModel;
-                a.iPrice = iPrice;
+                a.fPrice = fPrice;
                 a.sBrand = sBrand;
                 a.sColor = sColor;
                 a.fScreen = fScreen;
-                a.iWeight = iWeight;
+                a.fWeight = fWeight;
                 a.iMemory = iMemory;
                 a.sOS = sOS;
                 a.sBluetooth = sBluetooth;
                 a.sWifi = sWifi;
                 a.sFM = sFM;
                 a.iZoom = iCameraZoom;
-                a.iPixel = iCameraPixel;
+                a.fPixel = fCameraPixel;
                 a.sFlash = sFlash;
                 a.sVideoHD = sVideoHD;
                 a.fWeightage = fWeightage;
 
                 String sAttributeModel = "(model " + a.sModel +")";
-                String sAttributePrice = "(price " + a.iPrice.ToString() + ")";
+                String sAttributePrice = "(price " + a.fPrice.ToString() + ")";
                 String sAttributeBrand = "(brand " + a.sBrand + ")";
                 String sAttributeColor = "(color " + a.sColor + ")";
                 String sAttributeScreen = "(screen " + a.fScreen.ToString() + ")";
@@ -542,7 +452,7 @@ namespace MobilePhone {
                 String sAttributeWifi = "(wifi " + a.sWifi + ")";
                 String sAttributeFM = "(fm " + a.sFM + ")";
                 String sAttributeZoom = "(zoom " + a.iZoom.ToString() + ")";
-                String sAttributePixel = "(pixel " + a.iPixel.ToString() + ")";
+                String sAttributePixel = "(pixel " + a.fPixel.ToString() + ")";
                 String sAttributeFlash = "(flash " + a.sFlash + ")";
                 String sAttributeVideoHD = "(videoHD " + a.sVideoHD + ")";
                 String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
@@ -591,6 +501,7 @@ namespace MobilePhone {
                 this.buttonNext.Visible = true;
                 this.buttonRestart.Visible = false;
                 panelPhase2.BringToFront();
+
             }
             else if (iPhase == Defintions.PhaseDetails)
             {
@@ -616,6 +527,12 @@ namespace MobilePhone {
                // this.buttonPrevPhone.Visible = false;
                 ProcessPhase(Defintions.PhaseResults);
             }*/
-        }   
+        }
+
+
+
+        
+
+
     }
 }
