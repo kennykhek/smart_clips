@@ -39,7 +39,7 @@
 	;(slot phase (type INTEGER))
 	(slot order (type SYMBOL))
 	;(slot text (type STRING))
-	(slot selection (type SYMBOL)(allowed-values yes no))
+	(slot selection (type SYMBOL))
 )
 	
 ;;*********
