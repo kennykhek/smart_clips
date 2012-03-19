@@ -950,10 +950,10 @@
             this.ClientSize = new System.Drawing.Size(555, 466);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.panelPhase3);
-            this.Controls.Add(this.buttonPrev);
-            this.Controls.Add(this.buttonRestart);
             this.Controls.Add(this.panelPhase0);
+            this.Controls.Add(this.buttonPrev);
             this.Controls.Add(this.panelPhase1);
+            this.Controls.Add(this.buttonRestart);
             this.Controls.Add(this.panelPhase2);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

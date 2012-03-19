@@ -179,11 +179,13 @@ namespace MobilePhone
             for (int i = 0; i < listMem.Count; i++)
                 cbMem.Items.Add(listMem.ElementAt(i) + " gb");
 
+            //toString slightly different to retain float precision @kwanghock 18march2012
             for (int i = 0; i < listWeight.Count; i++)
-                cbWeight.Items.Add(listWeight.ElementAt(i) + " g");
+                cbWeight.Items.Add((listWeight.ElementAt(i)).ToString("0.0") + " g");
 
+            //toString slightly different to retain float precision @kwanghock 18march2012
             for (int i = 0; i < listPixel.Count; i++)
-                cbCamPixel.Items.Add(listPixel.ElementAt(i)+" px");
+                cbCamPixel.Items.Add((listPixel.ElementAt(i)).ToString("0.0") + " px");
 
             for (int i = 0; i < listWifi.Count; i++)
                 cbWifi.Items.Add(UpperCaseFirstChar(listWifi.ElementAt(i)));
@@ -194,12 +196,24 @@ namespace MobilePhone
             for (int i = 0; i < listOS.Count; i++)
                 cbOS.Items.Add(UpperCaseFirstChar(listOS.ElementAt(i)));
             
-
+            //add an empty option to all the dropdown boxes
+            cbColor.Items.Insert(0,"");
+            cbScreen.Items.Insert(0, "");
+            cbFM.Items.Insert(0, "");
+            cbCamFlash.Items.Insert(0, "");
+            cbMem.Items.Insert(0, "");
+            cbWeight.Items.Insert(0, "");
+            cbCamPixel.Items.Insert(0, "");
+            cbWifi.Items.Insert(0, "");
+            cbOS.Items.Insert(0, "");
+            cbZoom.Items.Insert(0, "");
         }
        
         //Convert the first letter of the string arugment to be of uppercase
         public String UpperCaseFirstChar(String sConvert)
         {
+            if (sConvert == "")
+                return "";
             //Set first letter to caps
            char[] letters = sConvert.ToCharArray();
            letters[0] = char.ToUpper(letters[0]);
@@ -209,6 +223,8 @@ namespace MobilePhone
         //Convert the first letter of the string arugment to be of lowercase
         public String LowerCaseFirstChar(String sConvert)
         {
+            if (sConvert == "")
+                return "";
             //Set first letter to caps
             char[] letters = sConvert.ToCharArray();
             letters[0] = char.ToLower(letters[0]);
@@ -231,71 +247,72 @@ namespace MobilePhone
             String sSelectedColor =null;
             String sSelectedZoom = null;
 
-            if (cbOS.SelectedItem != null)
+            if (cbOS.SelectedItem != null && cbOS.SelectedItem != "")
             {
                 sSelectedOS = LowerCaseFirstChar(cbOS.SelectedItem.ToString());
             }
-            else sSelectedOS = "?os";
+            else sSelectedOS = "nil";
 
-            if (cbScreen.SelectedItem != null)
+            if (cbScreen.SelectedItem != null && cbScreen.SelectedItem != "")
             {
                 sSelectedScreen = LowerCaseFirstChar(cbScreen.SelectedItem.ToString());
             }
-            else sSelectedScreen = "?screen";
+            else sSelectedScreen = "nil";
 
-            if (cbFM.SelectedItem != null)
+            if (cbFM.SelectedItem != null && cbFM.SelectedItem != "")
             {
                 sSelectedFM = LowerCaseFirstChar(cbFM.SelectedItem.ToString());
             }
-            else sSelectedFM = "?fm";
+            else sSelectedFM = "nil";
 
-            if (cbVideoHD.SelectedItem != null)
+            if (cbVideoHD.SelectedItem != null && cbVideoHD.SelectedItem != "")
             {
                 sSelectedVideoHD = LowerCaseFirstChar(cbVideoHD.SelectedItem.ToString());
             }
-            else sSelectedVideoHD = "?videoHD";
+            else sSelectedVideoHD = "nil";
 
-            if (cbCamFlash.SelectedItem != null)
+            if (cbCamFlash.SelectedItem != null && cbCamFlash.SelectedItem != "")
             {
                 sSelectedCamFlash = LowerCaseFirstChar(cbCamFlash.SelectedItem.ToString());
             }
-            else sSelectedCamFlash = "?flash";
+            else sSelectedCamFlash = "nil";
 
-            if (cbMem.SelectedItem != null)
+            if (cbMem.SelectedItem != null && cbMem.SelectedItem != "")
             {
                 sSelectedMem = cbMem.SelectedItem.ToString().Substring(0, cbMem.SelectedItem.ToString().IndexOf(" "));
             }
-            else sSelectedMem = "?memory";
+            else sSelectedMem = "nil";
 
-            if (cbWeight.SelectedItem != null)
+            if (cbWeight.SelectedItem != null && cbWeight.SelectedItem != "")
             {
                 sSelectedWeight = cbWeight.SelectedItem.ToString().Substring(0, cbWeight.SelectedItem.ToString().IndexOf(" "));
             }
-            else sSelectedWeight = "?weight";
+            else sSelectedWeight = "nil";
 
-            if (cbCamPixel.SelectedItem != null)
+            if (cbCamPixel.SelectedItem != null && cbCamPixel.SelectedItem != "")
             {
                 sSelectedPixel = cbCamPixel.SelectedItem.ToString().Substring(0, cbCamPixel.SelectedItem.ToString().IndexOf("px"));
             }
-            else sSelectedPixel = "?pixel";
+            else sSelectedPixel = "nil";
 
-            if (cbWifi.SelectedItem != null)
+            if (cbWifi.SelectedItem != null && cbWifi.SelectedItem != "")
             {
                 sSelectedWifi = LowerCaseFirstChar(cbWifi.SelectedItem.ToString());
             }
-            else sSelectedWifi = "?wifi";
+            else sSelectedWifi = "nil";
 
-            if (cbColor.SelectedItem!= null)
+            if (cbColor.SelectedItem!= null && cbColor.SelectedItem !="")
             {
                 sSelectedColor = LowerCaseFirstChar(cbColor.SelectedItem.ToString());
             }
-            else sSelectedColor = "?color";
+            else sSelectedColor = "nil";
 
-            if (cbZoom.SelectedItem != null)
+            if (cbZoom.SelectedItem != null && cbZoom.SelectedItem != "")
             {
-                sSelectedZoom = LowerCaseFirstChar(cbZoom.SelectedItem.ToString());
+                //remove the x from the pixel value displayed @kwanghock 18march2012
+                sSelectedZoom = LowerCaseFirstChar(cbZoom.SelectedItem.ToString().Substring(1));
             }
-            else sSelectedZoom = "?zoom";
+            else sSelectedZoom = "nil";
 
             environment.Run();
 
@@ -304,11 +321,16 @@ namespace MobilePhone
 
         public void UpdatePhoneGrid(String attribute)
         {
-            //string evalStr = "(update-mobilephone-list " + attribute + ")";
-            string evalStr = "(get-mobilephone-list)";
+            string evalStr = "(update-mobilephone-list " + attribute + ")";
+            //string evalStr = "(get-mobilephone-list)";
+            //string evalStr = "(update-mobilephone-list windows)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
             DataTable testdt = new DataTable();
+            phase3Results.Clear();
+
+
+            
 
             for (int i = 0; i < mv.Count; i++)
             {
@@ -387,9 +409,11 @@ namespace MobilePhone
                 phase3Results.Add(addon);
 
             }
-            
+            MessageBox.Show(phase3Results.Count.ToString());
             testDataGrid();
+            dataGridView.DataSource = null;
             dataGridView.DataSource = phase3Results;
+            
         }
 
         public void ResetDropDownDef()
