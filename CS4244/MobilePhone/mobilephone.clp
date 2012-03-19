@@ -21,12 +21,17 @@
 	(slot flash     (type SYMBOL)  (allowed-values yes no)(default no))
 	(slot videoHD   (type SYMBOL)  (allowed-values yes no)(default no))
 	;weightage
-	(slot weightage (type FLOAT)(default 100.0))
+	(slot weightage (type FLOAT)(default 0.0))
 )
 
 (deftemplate requirement
 	(slot name (type SYMBOL))
 	(slot value)
+	(slot weightage (type FLOAT))
+)
+
+(deftemplate phone-weightage
+	(slot model)
 	(slot weightage (type FLOAT))
 )
 
@@ -214,7 +219,7 @@
   (question (order use_camera)(selection ?sel))
   =>
   if (eq ?sel yes) then
-	(assert (requirement (name pixel)(value 5)(weightage 100.0)))
+	(assert (requirement (name pixel)(value 5.0)(weightage 100.0)))
 	(assert (requirement (name flash)(value yes)(weightage 100.0)))
 	(assert (requirement (name flash)(value no)(weightage 0.0)))
 	(assert (requirement (name videoHD)(value yes)(weightage 100.0)))
@@ -278,17 +283,22 @@
 
 (defrule calculate-weightage
   ; calculate weight of phone by taking average
-  ?phone <- (phone (model ?moVal)(price ?prVal)
-            (brand ?brVal)(color ?coVal)(weight ?weVal)(memory ?meVal)
-            (os ?osVal)(bluetooth ?blVal)(wifi ?wiVal)(fm ?fmVal)
-	        (zoom ?zoVal)(pixel ?piVal)(flash ?flVal)(videoHD ?viVal)
-		    (weightage ?weightage))
-  (requirement (name zoom) (value ?zoVal)(weightage ?weightage-zo))
-  (requirement (name pixel)(value ?piVal)(weightage ?weightage-pi))
-  (requirement (name color)(value ?coVal)(weightage ?weightage-co))
+  (requirement (name pixel)  (value ?piVal)(weightage ?weightage-pi))
+  (requirement (name flash)  (value ?flVal)(weightage ?weightage-fl))
+  (requirement (name videoHD)(value ?viVal)(weightage ?weightage-vi))
+  (requirement (name screen) (value ?scVal)(weightage ?weightage-sc))
+  (requirement (name memory) (value ?meVal)(weightage ?weightage-me))
+  (requirement (name wifi)   (value ?wiVal)(weightage ?weightage-wi))
+  (requirement (name fm)     (value ?fmVal)(weightage ?weightage-fm))
+  (phone (model ?moVal)(screen ?scVal)(memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(pixel ?piVal)(flash ?flVal)(videoHD ?viVal))
   =>
-  (bind ?new-weightage (/ 3 (+ ?weightage-zo (+ ?weightage-pi ?weightage-co))))
-  (modify ?phone (weightage ?new-weightage))
+  (bind ?new-weightage (/ (+ ?weightage-pi 
+						  (+ ?weightage-fl 
+						  (+ ?weightage-vi 
+						  (+ ?weightage-sc 
+						  (+ ?weightage-wi 
+						     ?weightage-fm))))) 6))
+  (assert (phone-weightage (model ?moVal)(weightage ?new-weightage)))
 )
 
 ;;*************
