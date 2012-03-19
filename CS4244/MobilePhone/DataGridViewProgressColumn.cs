@@ -42,15 +42,13 @@ namespace MobilePhone
 
         protected override void Paint(System.Drawing.Graphics g, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
         {
-           /* if (null == value)
+            if (null == value)
             {
                 value = 0;
-                return;
-            }*/
-            if (null == value)
-                value = 0;
-
-            float progressVal = (float)value;
+            }
+            string valuetemp = value.ToString();
+            int valuetemp2 = int.Parse(valuetemp);
+            float progressVal = (float)valuetemp2;
             float percentage = ((float)progressVal / 100.0f); // Need to convert to float before division; otherwise C# returns int which is 0 for anything but 100%.
             Brush backColorBrush = new SolidBrush(cellStyle.BackColor);
             Brush foreColorBrush = new SolidBrush(cellStyle.ForeColor);
