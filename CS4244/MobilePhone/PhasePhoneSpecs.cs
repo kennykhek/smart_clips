@@ -409,7 +409,8 @@ namespace MobilePhone
                 phase3Results.Add(addon);
 
             }
-            MessageBox.Show(phase3Results.Count.ToString());
+            // Debug purpose
+            // MessageBox.Show(phase3Results.Count.ToString());
             testDataGrid();
             dataGridView.DataSource = null;
             dataGridView.DataSource = phase3Results;

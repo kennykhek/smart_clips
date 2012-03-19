@@ -21,7 +21,7 @@
 	(slot flash     (type SYMBOL)  (allowed-values yes no)(default no))
 	(slot videoHD   (type SYMBOL)  (allowed-values yes no)(default no))
 	;weightage
-	(slot weightage (type FLOAT)(default 100.0))
+	(slot weightage (type FLOAT)(default 0.0))
 )
 
 (deftemplate requirement
@@ -30,11 +30,16 @@
 	(slot weightage (type FLOAT))
 )
 
+(deftemplate phone-weightage
+	(slot model)
+	(slot weightage (type FLOAT))
+)
+
 (deftemplate question
 	;(slot phase (type INTEGER))
 	(slot order (type SYMBOL))
 	;(slot text (type STRING))
-	(slot selection (type SYMBOL)(allowed-values yes no))
+	(slot selection (type SYMBOL))
 )
 	
 ;;*********
@@ -198,23 +203,97 @@
 ;  (requirement (name color) (value red)  (weightage 0.0))
 ;)
 
-;(deffacts user-preference
+(deffacts user-preference
+ (question (order prefer_func) (selection s1))
+ (question (order user_type) (selection s1))
+ (question (order user_attitude) (selection s2))
+ (question (order user_saying) (selection s3))
 	;(question (order watch_movie) (selection yes))
 	;(question (order listen_music) (selection yes))
 	;(question (order view_picture) (selection no))
 	;(question (order game_internet) (selection yes))
 	;(question (order use_camera) (selection no))
 	;(question (order use_camera_night) (selection no)) ; can remove this question? quite redundent
-;)
+)
 
-;;*********
-;;* RULES *
-;;*********
+;;*********************
+;;* PERSONALITY RULES *
+;;*********************
+(defrule func_or_design
+  (question (order prefer_func) (selection ?sel))
+  =>
+  (switch ?sel 
+   (case s1 then ;android more functionality
+    (assert (requirement (name os)(value android)(weightage 100.0))))
+	  (case s2 then ; assuming lg has nicer designs
+    (assert (requirement (name brand)(value lg)(weightage 100.0))))
+	  (case s3 then 
+    (assert (requirement (name brand)(value lg)(weightage 100.0)))
+    (assert (requirement (name os)(value android)(weightage 100.0))))
+  )
+)
+  
+(defrule user_types
+  (question (order user_type) (selection ?sel))
+  =>
+  (switch ?sel 
+   (case s1 then ); uninvolved users, do nothing   
+	  (case s2 then ; basic usage
+    (assert (requirement (name os)(value windows)(weightage 100.0)))
+    (assert (requirement (name brand)(value samsung)(weightage 100.0))))
+	  (case s3 then ; intense usage
+    (assert (requirement (name memory)(value 32)(weightage 100.0)))
+    (assert (requirement (name screen)(value 3.2)(weightage 100.0)))
+    (assert (requirement (name weight)(value 30)(weightage 100.0))))
+   (case s4 then ; fore runners
+    (assert (requirement (name os)(value android)(weightage 100.0)))
+    (assert (requirement (name memory)(value 64)(weightage 100.0)))
+    (assert (requirement (name screen)(value 3.7)(weightage 100.0)))
+    (assert (requirement (name videoHD)(value yes)(weightage 100.0))))
+  )
+)
+
+(defrule user-sayings
+  (question (order user_saying) (selection ?sel))
+  =>
+  (switch ?sel 
+   (case s1 then ; moderation in all things 
+    (assert (requirement (name os)(value windows)(weightage 100.0))))
+	  (case s2 then ; time is money
+    (assert (requirement (name os)(value android)(weightage 100.0))))
+	  (case s3 then ; viva la difference, celebrate diversity
+    (assert (requirement (name os)(value meego)(weightage 100.0))))
+   (case s4 then ; you only live once
+    (assert (requirement (name os)(value symbian)(weightage 100.0))))
+  )
+)
+
+(defrule user-attitudes
+  (question (order user_attitude) (selection ?sel))
+  =>
+  (switch ?sel
+   (case s1 then ; live, laugh, love
+    (assert (requirement (name brand)(value samsung)(weightage 100.0))))
+	  (case s2 then ; enduring and constant 
+    (assert (requirement (name brand)(value nokia)(weightage 100.0))))
+	  (case s3 then ; fashions fade, but style is eternal
+    (assert (requirement (name brand)(value lg)(weightage 100.0))))
+   (case s4 then ; dare to be different
+    (assert (requirement (name brand)(value motorola)(weightage 100.0))))
+   (case 5 then ; better quality, better product
+    (assert (requirement (name brand)(value htc)(weightage 100.0))))
+  )
+)
+
+
+;;********************
+;;* PREFERENCE RULES *
+;;********************
 (defrule use_camera
   (question (order use_camera)(selection ?sel))
   =>
   if (eq ?sel yes) then
-	(assert (requirement (name pixel)(value 5)(weightage 100.0)))
+	(assert (requirement (name pixel)(value 5.0)(weightage 100.0)))
 	(assert (requirement (name flash)(value yes)(weightage 100.0)))
 	(assert (requirement (name flash)(value no)(weightage 0.0)))
 	(assert (requirement (name videoHD)(value yes)(weightage 100.0)))
@@ -278,17 +357,22 @@
 
 (defrule calculate-weightage
   ; calculate weight of phone by taking average
-  ?phone <- (phone (model ?moVal)(price ?prVal)
-            (brand ?brVal)(color ?coVal)(weight ?weVal)(memory ?meVal)
-            (os ?osVal)(bluetooth ?blVal)(wifi ?wiVal)(fm ?fmVal)
-	        (zoom ?zoVal)(pixel ?piVal)(flash ?flVal)(videoHD ?viVal)
-		    (weightage ?weightage))
-  (requirement (name zoom) (value ?zoVal)(weightage ?weightage-zo))
-  (requirement (name pixel)(value ?piVal)(weightage ?weightage-pi))
-  (requirement (name color)(value ?coVal)(weightage ?weightage-co))
+  (requirement (name pixel)  (value ?piVal)(weightage ?weightage-pi))
+  (requirement (name flash)  (value ?flVal)(weightage ?weightage-fl))
+  (requirement (name videoHD)(value ?viVal)(weightage ?weightage-vi))
+  (requirement (name screen) (value ?scVal)(weightage ?weightage-sc))
+  (requirement (name memory) (value ?meVal)(weightage ?weightage-me))
+  (requirement (name wifi)   (value ?wiVal)(weightage ?weightage-wi))
+  (requirement (name fm)     (value ?fmVal)(weightage ?weightage-fm))
+  (phone (model ?moVal)(screen ?scVal)(memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(pixel ?piVal)(flash ?flVal)(videoHD ?viVal))
   =>
-  (bind ?new-weightage (/ 3 (+ ?weightage-zo (+ ?weightage-pi ?weightage-co))))
-  (modify ?phone (weightage ?new-weightage))
+  (bind ?new-weightage (/ (+ ?weightage-pi 
+						  (+ ?weightage-fl 
+						  (+ ?weightage-vi 
+						  (+ ?weightage-sc 
+						  (+ ?weightage-wi 
+						     ?weightage-fm))))) 6))
+  (assert (phone-weightage (model ?moVal)(weightage ?new-weightage)))
 )
 
 ;;*************
@@ -359,12 +443,6 @@
 	)
   ))
 )
-
-;(deffunction update-mobilephone-list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
-  ;(bind ?facts 
-	;	(find-all-facts((?p phone)) (exists (phone (os ?os))))
- ; )
-;)
  
 (deffunction get-requirement-list ()
   (bind ?facts (find-all-facts((?p requirement)) TRUE))
