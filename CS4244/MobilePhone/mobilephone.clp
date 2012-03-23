@@ -1,6 +1,10 @@
 ;;*************
 ;;* TEMPLATES *
 ;;*************
+(deftemplate phase
+	(slot phase (type INTEGER)(default o))
+)
+
 (deftemplate phone
 	(slot model)
 	(slot price     (type FLOAT))
@@ -24,19 +28,35 @@
 	(slot weightage (type FLOAT)(default 0.0))
 )
 
-(deftemplate requirement
+(deftemplate plan
+	; plan details
+)
+
+(deftemplate requirement_phone
 	(slot name (type SYMBOL))
 	(slot value)
-	(slot weightage (type FLOAT))
+	(slot weightage (type FLOAT)(default 0.0))
 )
 
-(deftemplate feature
+(deftemplate requirement_plan
 	(slot name (type SYMBOL))
-	(slot boolean (type SYMBOL)(allowed-values TRUE FALSE))
+	(slot value)
+	(slot weightage (type FLOAT)(default 0.0))
 )
 
-(deftemplate phone-weightage
+(deftemplate weightage-phone
 	(slot model)
+	(slot weightage (type FLOAT)(default 0.0))
+)
+
+(deftemplate weightage-plan
+	(slot plan (type SYMBOL))
+	(slot weightage (type FLOAT)(default 0.0))
+)
+
+(deftemplate weightage-phone-plan
+	(slot model)
+	(slot plan (type SYMBOL))
 	(slot weightage (type FLOAT)(default 0.0))
 )
 
