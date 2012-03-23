@@ -38,13 +38,13 @@
 )
 
 (deftemplate requirement_phone
-	(slot name (type SYMBOL))
+	(slot attribute (type SYMBOL))
 	(slot value)
 	(slot weightage (type FLOAT)(default 0.0))
 )
 
 (deftemplate requirement_plan
-	(slot name (type SYMBOL))
+	(slot attribute (type SYMBOL))
 	(slot value)
 	(slot weightage (type FLOAT)(default 0.0))
 )
@@ -519,13 +519,30 @@
   (question (order prefer_func) (selection ?sel))
   =>
   (switch ?sel 
-   (case s1 then ;android more functionality
-      (assert (requirement_phone (name os)(value android)(weightage 100.0))))
-   (case s2 then ; assuming lg has nicer designs
-      (assert (requirement_phone (name brand)(value lg)(weightage 100.0))))
-   (case s3 then 
-      (assert (requirement_phone (name brand)(value lg)(weightage 100.0)))
-      (assert (requirement_phone (name os)(value android)(weightage 100.0))))
+    (case s1 then ;android more functionality
+      (assert (requirement_phone (attribute os)(value android)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value meego)(weightage 20.0)))
+    )
+    (case s2 then ; assuming lg has nicer designs
+      (assert (requirement_phone (attribute brand)(value LG)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value htc)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value samsung)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value nokia)(weightage 20.0)))
+	)
+    (case s3 then 
+      (assert (requirement_phone (attribute os)(value android)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value meego)(weightage 20.0)))   
+      (assert (requirement_phone (attribute brand)(value lg)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value htc)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value samsung)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value nokia)(weightage 20.0)))
+	)
   )
 )
   
@@ -533,19 +550,34 @@
   (question (order user_type) (selection ?sel))
   =>
   (switch ?sel 
-   (case s1 then ); uninvolved users, do nothing   
-	  (case s2 then ; basic usage
-    (assert (requirement_phone (name os)(value windows)(weightage 100.0)))
-    (assert (requirement_phone (name brand)(value samsung)(weightage 100.0))))
-	  (case s3 then ; intense usage
-    (assert (requirement_phone (name memory)(value 32)(weightage 100.0)))
-    (assert (requirement_phone (name screen)(value 3.2)(weightage 100.0)))
-    (assert (requirement_phone (name weight)(value 30.0)(weightage 100.0))))
-   (case s4 then ; fore runners
-    (assert (requirement_phone (name os)(value android)(weightage 100.0)))
-    (assert (requirement_phone (name memory)(value 64)(weightage 100.0)))
-    (assert (requirement_phone (name screen)(value 3.7)(weightage 100.0)))
-    (assert (requirement_phone (name videoHD)(value yes)(weightage 100.0))))
+    (case s1 then 
+      ; uninvolved users, do nothing
+    )   
+    (case s2 then ; basic usage
+      (assert (requirement_phone (attribute os)(value meego)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value android)(weightage 20.0)))   
+      (assert (requirement_phone (attribute brand)(value motorola)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value nokia)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value lg)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value samsung)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value htc)(weightage 20.0)))
+	)
+    (case s3 then ; intense usage
+      (assert (requirement_phone (attribute memory)(value large)))
+      (assert (requirement_phone (attribute screen)(value large)))
+      (assert (requirement_phone (attribute weight)(value light)))
+	)
+    (case s4 then ; fore runners
+      (assert (requirement_phone (attribute os)(value android)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value meego)(weightage 20.0))) 
+      (assert (requirement_phone (attribute memory)(value large)))
+      (assert (requirement_phone (attribute screen)(value large)))
+      (assert (requirement_phone (attribute videoHD)(value yes)))
+	)
   )
 )
 
@@ -553,14 +585,30 @@
   (question (order user_saying) (selection ?sel))
   =>
   (switch ?sel 
-   (case s1 then ; moderation in all things 
-    (assert (requirement_phone (name os)(value windows)(weightage 100.0))))
-	  (case s2 then ; time is money
-    (assert (requirement_phone (name os)(value android)(weightage 100.0))))
-	  (case s3 then ; viva la difference, celebrate diversity
-    (assert (requirement_phone (name os)(value meego)(weightage 100.0))))
-   (case s4 then ; you only live once
-    (assert (requirement_phone (name os)(value symbian)(weightage 100.0))))
+    (case s1 then ; moderation in all things 
+      (assert (requirement_phone (attribute os)(value windows)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value android)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value meego)(weightage 20.0))) 
+	)
+    (case s2 then ; time is money
+      (assert (requirement_phone (attribute os)(value android)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value meego)(weightage 20.0))) 
+	)
+    (case s3 then ; viva la difference, celebrate diversity
+      (assert (requirement_phone (attribute os)(value symbian)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value android)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value meego)(weightage 20.0))) 
+	)
+    (case s4 then ; you only live once
+      (assert (requirement_phone (attribute os)(value meego)(weightage 100.0)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 70.0)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 40.0)))
+	  (assert (requirement_phone (attribute os)(value android)(weightage 20.0))) 
+	)
   )
 )
 
@@ -568,16 +616,41 @@
   (question (order user_attitude) (selection ?sel))
   =>
   (switch ?sel
-   (case s1 then ; live, laugh, love
-    (assert (requirement_phone (name brand)(value samsung)(weightage 100.0))))
-	  (case s2 then ; enduring and constant 
-    (assert (requirement_phone (name brand)(value nokia)(weightage 100.0))))
-	  (case s3 then ; fashions fade, but style is eternal
-    (assert (requirement_phone (name brand)(value lg)(weightage 100.0))))
-   (case s4 then ; dare to be different
-    (assert (requirement_phone (name brand)(value motorola)(weightage 100.0))))
-   (case 5 then ; better quality, better product
-    (assert (requirement_phone (name brand)(value htc)(weightage 100.0))))
+    (case s1 then ; live, laugh, love
+      (assert (requirement_phone (attribute brand)(value lg)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value htc)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value nokia)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value sumsang)(weightage 20.0)))
+    )
+    (case s2 then ; enduring and constant 
+      (assert (requirement_phone (attribute brand)(value nokia)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value lg)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value samsung)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value htc)(weightage 20.0)))
+	)
+    (case s3 then ; fashions fade, but style is eternal
+      (assert (requirement_phone (attribute brand)(value htc)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value lg)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value samsung)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value nokia)(weightage 20.0)))
+	)
+    (case s4 then ; dare to be different
+      (assert (requirement_phone (attribute brand)(value motorola)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value samsung)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value lg)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value htc)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value nokia)(weightage 20.0)))
+    )
+    (case s5 then ; better quality, better product
+      (assert (requirement_phone (attribute brand)(value samsung)(weightage 100.0)))
+	  (assert (requirement_phone (attribute brand)(value nokia)(weightage 80.0)))
+	  (assert (requirement_phone (attribute brand)(value lg)(weightage 60.0)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0)))
+	  (assert (requirement_phone (attribute brand)(value htc)(weightage 20.0)))
+    )
   )
 )
 
@@ -590,63 +663,51 @@
   
   =>
   (if (eq ?sel yes) then
-	(assert (requirement_phone (name pixel)(value 5.0)(weightage 100.0)))
-	(assert (requirement_phone (name flash)(value yes)(weightage 100.0)))
-	(assert (requirement_phone (name flash)(value no)(weightage 0.0)))
-	(assert (requirement_phone (name videoHD)(value yes)(weightage 100.0)))
-	(assert (requirement_phone (name videoHD)(value no)(weightage 0.0))))
+	(assert (requirement_phone (attribute pixel)(value high)))
+	(assert (requirement_phone (attribute flash)(value yes)))
+	(assert (requirement_phone (attribute videoHD)(value yes)))
+   )
 )
 
 (defrule game_internet
   (question (order game_internet)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-    (assert (requirement_phone (name screen)(value 4.3)(weightage 100.0)))
-	(assert (requirement_phone (name screen)(value 3.7)(weightage 75.0)))
-	(assert (requirement_phone (name screen)(value 3.5)(weightage 50.0)))
-	(assert (requirement_phone (name screen)(value 2.6)(weightage 25.0)))
-	(assert (requirement_phone (name screen)(value 2.4)(weightage 0.0)))
-	(assert (requirement_phone (name wifi)(value yes)(weightage 100.0)))
-	(assert (requirement_phone (name wifi)(value no)(weightage 0.0))))
+    (assert (requirement_phone (attribute screen)(value large)))
+	(assert (requirement_phone (attribute wifi)(value yes)))
+  )
 )
 
 (defrule view_picture
   (question (order view_picture)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-    (assert (requirement_phone (name screen)(value 4.3)(weightage 100.0)))
-	(assert (requirement_phone (name screen)(value 3.7)(weightage 75.0)))
-	(assert (requirement_phone (name screen)(value 3.5)(weightage 50.0)))
-	(assert (requirement_phone (name screen)(value 2.6)(weightage 25.0)))
-	(assert (requirement_phone (name screen)(value 2.4)(weightage 0.0)))
-	(assert (requirement_phone (name memory)(value 32)(weightage 100.0))))
+    (assert (requirement_phone (attribute screen)(value large)))
+  ) 
 )
 
 (defrule listen_music
   (question (order listen_music)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-	(assert (requirement_phone (name memory)(value 32)(weightage 100.0)))
-	(assert (requirement_phone (name fm)(value yes)(weightage 100.0)))
-	(assert (requirement_phone (name fm)(value no)(weightage 0.0))))
+	(assert (requirement_phone (attribute memory)(value large)))
+	(assert (requirement_phone (attribute fm)(value yes)))
+  )
 )
 
 (defrule watch_movie
   (question (order watch_movie)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-    (assert (requirement_phone (name screen)(value 4.3)(weightage 100.0)))
-	(assert (requirement_phone (name screen)(value 3.7)(weightage 75.0)))
-	(assert (requirement_phone (name screen)(value 3.5)(weightage 50.0)))
-	(assert (requirement_phone (name screen)(value 2.6)(weightage 25.0)))
-	(assert (requirement_phone (name screen)(value 2.4)(weightage 0.0)))
-	(assert (requirement_phone (name memory)(value 32) (weightage 100.0))))
+    (assert (requirement_phone (attribute screen)(value large)))
+	(assert (requirement_phone (attribute memory)(value large)))
+  )
 )
 
 (defrule combine_weightage
   ; take average of two weightage if there is two rule with similar attribute and value
-  ?rem1 <- (requirement_phone (name ?attribute)(value ?val)(weightage ?weightage1))
-  ?rem2 <- (requirement_phone (name ?attribute)(value ?val)(weightage ?weightage2))
+  ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage1))
+  ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage2))
   (test (neq ?rem1 ?rem2))
   =>
   (retract ?rem1)
