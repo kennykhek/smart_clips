@@ -704,9 +704,18 @@
   )
 )
 
+(deffacts trial
+  (requirement_phone (attribute pixel)  (value large))
+  (requirement_phone (attribute flash)  (value yes))
+  (requirement_phone (attribute videoHD)(value no))
+  (requirement_phone (attribute screen) (value large))
+  (requirement_phone (attribute weight) (value light))
+  (requirement_phone (attribute memory) (value large))
+  (requirement_phone (attribute wifi)   (value yes))
+  (requirement_phone (attribute fm)     (value yes))
+)
+
 (defrule calculate_weightage_phone
-  (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
-  (requirement_phone (attribute os)     (value ?osVal)(weightage ?weightage-os))
   (requirement_phone (attribute pixel)  (value ?pixel))
   (requirement_phone (attribute flash)  (value ?flash))
   (requirement_phone (attribute videoHD)(value ?videoHD))
@@ -714,7 +723,9 @@
   (requirement_phone (attribute weight) (value ?weight))
   (requirement_phone (attribute memory) (value ?memory))
   (requirement_phone (attribute wifi)   (value ?wifi))
-  (requirement_phone (attribute fm)     (value ?fm))
+  (requirement_phone (attribute fm)     (value ?fm))  
+  (requirement_phone (attribute os)     (value ?osVal)(weightage ?weightage-os))
+  (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
   (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
          (memory ?meVal)(wifi ?wiVal)(fm ?fmVal))
