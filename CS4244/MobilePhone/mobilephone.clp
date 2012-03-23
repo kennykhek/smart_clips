@@ -704,6 +704,95 @@
   )
 )
 
+(defrule calculate_weightage_phone
+  (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
+  (requirement_phone (attribute os)     (value ?osVal)(weightage ?weightage-os))
+  (requirement_phone (attribute pixel)  (value ?pixel))
+  (requirement_phone (attribute flash)  (value ?flash))
+  (requirement_phone (attribute videoHD)(value ?videoHD))
+  (requirement_phone (attribute screen) (value ?screen))
+  (requirement_phone (attribute weight) (value ?weight))
+  (requirement_phone (attribute memory) (value ?memory))
+  (requirement_phone (attribute wifi)   (value ?wifi))
+  (requirement_phone (attribute fm)     (value ?fm))
+  (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
+         (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
+         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal))
+  =>
+  (bind ?weightage-pi 100.0)
+  (if (eq ?pixel large) then
+    (if (< ?piVal 6.0) then 
+	  (bind ?weightage-pi 50.0)
+	)
+	(if (< ?piVal 3.0) then 
+	  (bind ?weightage-pi 20.0)
+	)
+  )
+  (bind ?weightage-fl 100.0)
+  (if (eq ?flash yes) then
+	(if (eq ?flVal no) then 
+	  (bind ?weightage-fl 0.0)
+	)
+  )
+  (bind ?weightage-vi 100.0)
+  (if (eq ?videoHD yes) then
+	(if (eq ?viVal no) then 
+	  (bind ?weightage-fl 0.0)
+	)
+  )
+  (bind ?weightage-sc 100.0)
+  (if (eq ?screen large) then
+    (if (< ?scVal 4.0) then 
+	  (bind ?weightage-sc 50.0)
+	)
+	(if (< ?scVal 3.0) then 
+	  (bind ?weightage-sc 20.0)
+	)
+  )  
+  (bind ?weightage-we 100.0)
+  (if (eq ?weight light) then
+    (if (> ?weVal 150.0) then 
+	  (bind ?weightage-we 50.0)
+	)
+	(if (> ?weVal 200.0) then 
+	  (bind ?weightage-we 20.0)
+	)
+  )
+  (bind ?weightage-me 100.0)
+  (if (eq ?memory large) then
+	(if (< ?meVal 32) then 
+	  (bind ?weightage-me 80.0)
+	)
+	(if (< ?meVal 24) then 
+	  (bind ?weightage-me 60.0)
+	)	
+    (if (< ?meVal 16) then 
+	  (bind ?weightage-me 40.0)
+	)
+	(if (< ?meVal 8) then 
+	  (bind ?weightage-me 20.0)
+	)
+  ) 
+  (bind ?weightage-wi 100.0)
+  (if (eq ?wifi yes) then
+	(if (eq ?wiVal no) then 
+	  (bind ?weightage-wi 0.0)
+	)
+  )
+  (bind ?weightage-fm 100.0)
+  (if (eq ?fm yes) then
+	(if (eq ?fmVal no) then 
+	  (bind ?weightage-fm 0.0)
+	)
+  )  
+  (bind ?new-weightage (/ (+ ?weightage-br (+ ?weightage-os 
+                          (+ ?weightage-pi (+ ?weightage-fl 
+						  (+ ?weightage-vi (+ ?weightage-sc 
+                          (+ ?weightage-we (+ ?weightage-me 
+						  (+ ?weightage-wi ?weightage-fm))))))))) 10))
+  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)))
+)
+
 (defrule combine_weightage
   ; take average of two weightage if there is two rule with similar attribute and value
   ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage1))
