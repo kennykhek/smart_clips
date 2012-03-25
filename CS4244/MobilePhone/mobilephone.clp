@@ -2,7 +2,7 @@
 ;;* TEMPLATES *
 ;;*************
 (deftemplate phase
-	(slot phase (type INTEGER)(default 0))
+	(slot stage (type INTEGER)(default 0))
 )
 
 (deftemplate phone
@@ -716,6 +716,7 @@
 )
 
 (defrule calculate_weightage_phone
+  (phase (stage 3))
   (requirement_phone (attribute pixel)  (value ?pixel))
   (requirement_phone (attribute flash)  (value ?flash))
   (requirement_phone (attribute videoHD)(value ?videoHD))
