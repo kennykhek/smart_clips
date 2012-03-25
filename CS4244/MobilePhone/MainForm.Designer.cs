@@ -47,6 +47,8 @@
             this.labelPhase2 = new System.Windows.Forms.Label();
             this.labelPhase3 = new System.Windows.Forms.Label();
             this.panelPhase0 = new System.Windows.Forms.Panel();
+            this.panelPhase4 = new System.Windows.Forms.Panel();
+            this.labelPhase4 = new System.Windows.Forms.Label();
             this.panelPhase3 = new System.Windows.Forms.Panel();
             this.gbRecPhone = new System.Windows.Forms.GroupBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
@@ -154,6 +156,7 @@
             this.q1_no = new System.Windows.Forms.RadioButton();
             this.dataGridViewProgressColumn1 = new MobilePhone.DataGridViewProgressColumn();
             this.panelPhase0.SuspendLayout();
+            this.panelPhase4.SuspendLayout();
             this.panelPhase3.SuspendLayout();
             this.gbRecPhone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -260,10 +263,27 @@
             // panelPhase0
             // 
             this.panelPhase0.Controls.Add(this.labelPhase0);
-            this.panelPhase0.Location = new System.Drawing.Point(0, 0);
+            this.panelPhase0.Location = new System.Drawing.Point(9, 8);
             this.panelPhase0.Name = "panelPhase0";
-            this.panelPhase0.Size = new System.Drawing.Size(510, 400);
+            this.panelPhase0.Size = new System.Drawing.Size(730, 418);
             this.panelPhase0.TabIndex = 5;
+            // 
+            // panelPhase4
+            // 
+            this.panelPhase4.Controls.Add(this.labelPhase4);
+            this.panelPhase4.Location = new System.Drawing.Point(9, 6);
+            this.panelPhase4.Name = "panelPhase4";
+            this.panelPhase4.Size = new System.Drawing.Size(730, 421);
+            this.panelPhase4.TabIndex = 8;
+            // 
+            // labelPhase4
+            // 
+            this.labelPhase4.AutoSize = true;
+            this.labelPhase4.Location = new System.Drawing.Point(15, 12);
+            this.labelPhase4.Name = "labelPhase4";
+            this.labelPhase4.Size = new System.Drawing.Size(116, 13);
+            this.labelPhase4.TabIndex = 0;
+            this.labelPhase4.Text = "Phase 4 : Mobile Plan";
             // 
             // panelPhase3
             // 
@@ -280,9 +300,9 @@
             this.panelPhase3.Controls.Add(this.panelWeight);
             this.panelPhase3.Controls.Add(this.panelMem);
             this.panelPhase3.Controls.Add(this.labelPhase3);
-            this.panelPhase3.Location = new System.Drawing.Point(9, 12);
+            this.panelPhase3.Location = new System.Drawing.Point(9, 9);
             this.panelPhase3.Name = "panelPhase3";
-            this.panelPhase3.Size = new System.Drawing.Size(510, 418);
+            this.panelPhase3.Size = new System.Drawing.Size(730, 421);
             this.panelPhase3.TabIndex = 3;
             // 
             // gbRecPhone
@@ -646,9 +666,9 @@
             // 
             this.panelPhase1.Controls.Add(this.groupBox1);
             this.panelPhase1.Controls.Add(this.labelPhase1);
-            this.panelPhase1.Location = new System.Drawing.Point(11, 15);
+            this.panelPhase1.Location = new System.Drawing.Point(9, 12);
             this.panelPhase1.Name = "panelPhase1";
-            this.panelPhase1.Size = new System.Drawing.Size(717, 408);
+            this.panelPhase1.Size = new System.Drawing.Size(719, 418);
             this.panelPhase1.TabIndex = 4;
             // 
             // groupBox1
@@ -1299,7 +1319,6 @@
             // 
             // panelPhase2
             // 
-            this.panelPhase2.Controls.Add(this.panelPhase0);
             this.panelPhase2.Controls.Add(this.grp_box_q6);
             this.panelPhase2.Controls.Add(this.labelPhase2);
             this.panelPhase2.Controls.Add(this.grp_box_q1);
@@ -1307,9 +1326,9 @@
             this.panelPhase2.Controls.Add(this.grp_box_q4);
             this.panelPhase2.Controls.Add(this.grp_box_q2);
             this.panelPhase2.Controls.Add(this.grp_box_q3);
-            this.panelPhase2.Location = new System.Drawing.Point(12, 12);
+            this.panelPhase2.Location = new System.Drawing.Point(9, 12);
             this.panelPhase2.Name = "panelPhase2";
-            this.panelPhase2.Size = new System.Drawing.Size(510, 400);
+            this.panelPhase2.Size = new System.Drawing.Size(716, 400);
             this.panelPhase2.TabIndex = 2;
             // 
             // grp_box_q1
@@ -1377,9 +1396,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 481);
-            this.Controls.Add(this.panelPhase1);
+            this.ClientSize = new System.Drawing.Size(767, 480);
+            this.Controls.Add(this.panelPhase4);
+            this.Controls.Add(this.panelPhase0);
             this.Controls.Add(this.panelPhase3);
+            this.Controls.Add(this.panelPhase1);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonPrev);
             this.Controls.Add(this.buttonRestart);
@@ -1390,6 +1411,8 @@
             this.Text = "MobilePhone";
             this.panelPhase0.ResumeLayout(false);
             this.panelPhase0.PerformLayout();
+            this.panelPhase4.ResumeLayout(false);
+            this.panelPhase4.PerformLayout();
             this.panelPhase3.ResumeLayout(false);
             this.panelPhase3.PerformLayout();
             this.gbRecPhone.ResumeLayout(false);
@@ -1567,6 +1590,8 @@
         private System.Windows.Forms.RadioButton radioButton24;
         private System.Windows.Forms.RadioButton radioButton25;
         private System.Windows.Forms.RadioButton radioButton26;
+        private System.Windows.Forms.Panel panelPhase4;
+        private System.Windows.Forms.Label labelPhase4;
 
     }
 }
