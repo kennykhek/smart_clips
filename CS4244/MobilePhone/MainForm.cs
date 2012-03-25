@@ -387,7 +387,7 @@ namespace MobilePhone {
 
         private void UpdatePhoneList(List<MobilePhoneRecommendation> PhoneList)
         {
-            string evalStr = "(get-mobilephone-list)";
+            string evalStr = "(get_mobilephone_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
             for (int i = 0; i < mv.Count; i++)

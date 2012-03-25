@@ -55,7 +55,7 @@ namespace MobilePhone
             listPixel = new List<float>();
 
             //Evaluate each fact and input the corresponding attributes for each phone
-            string evalStr = "(get-mobilephone-list)";
+            string evalStr = "(get_mobilephone_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
             for (int i = 0; i < mv.Count; i++)
             {
@@ -321,7 +321,7 @@ namespace MobilePhone
 
         public void UpdatePhoneGrid(String attribute)
         {
-            string evalStr = "(update-mobilephone-list " + attribute + ")";
+            string evalStr = "(update_mobilephone_list " + attribute + ")";
             //string evalStr = "(get-mobilephone-list)";
             //string evalStr = "(update-mobilephone-list windows)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);

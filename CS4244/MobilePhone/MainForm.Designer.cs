@@ -260,7 +260,6 @@
             // panelPhase0
             // 
             this.panelPhase0.Controls.Add(this.labelPhase0);
-            this.panelPhase0.Controls.Add(this.panelPhase3);
             this.panelPhase0.Location = new System.Drawing.Point(0, 0);
             this.panelPhase0.Name = "panelPhase0";
             this.panelPhase0.Size = new System.Drawing.Size(510, 400);
@@ -281,7 +280,7 @@
             this.panelPhase3.Controls.Add(this.panelWeight);
             this.panelPhase3.Controls.Add(this.panelMem);
             this.panelPhase3.Controls.Add(this.labelPhase3);
-            this.panelPhase3.Location = new System.Drawing.Point(0, 0);
+            this.panelPhase3.Location = new System.Drawing.Point(9, 12);
             this.panelPhase3.Name = "panelPhase3";
             this.panelPhase3.Size = new System.Drawing.Size(510, 418);
             this.panelPhase3.TabIndex = 3;
@@ -647,7 +646,7 @@
             // 
             this.panelPhase1.Controls.Add(this.groupBox1);
             this.panelPhase1.Controls.Add(this.labelPhase1);
-            this.panelPhase1.Location = new System.Drawing.Point(12, 9);
+            this.panelPhase1.Location = new System.Drawing.Point(11, 15);
             this.panelPhase1.Name = "panelPhase1";
             this.panelPhase1.Size = new System.Drawing.Size(717, 408);
             this.panelPhase1.TabIndex = 4;
@@ -1378,8 +1377,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 466);
+            this.ClientSize = new System.Drawing.Size(756, 481);
             this.Controls.Add(this.panelPhase1);
+            this.Controls.Add(this.panelPhase3);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonPrev);
             this.Controls.Add(this.buttonRestart);
