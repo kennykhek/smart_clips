@@ -185,10 +185,10 @@ namespace MobilePhone {
                 {
                     ProcessPhase(Defintions.PhaseDetails);
                 }
-                /*if (panelPhase4.Visible) @kwanghock 10march2012 removed
+                if (panelPhase4.Visible) 
                 {
-                    ProcessPhase(Defintions.PhaseResults);
-                }*/
+                    ProcessPhase(Defintions.PhaseMobilePlan);
+                }
                 SetUIState(++UIState);
             }
             else if (button.Name.CompareTo("buttonPrev") == 0)
@@ -209,10 +209,10 @@ namespace MobilePhone {
                 {
                     ResetPhase(Defintions.PhaseDetails);
                 }
-               /* else if (panelPhase4.Visible) @kwanghock 10march2012 removed
+                else if (panelPhase4.Visible)
                 {
-                    ResetPhase(Defintions.PhaseResults);
-                }*/
+                    ResetPhase(Defintions.PhaseMobilePlan);
+                }
                 //Have to reset to the previous state
                 SetUIState(--UIState);
                
@@ -222,32 +222,7 @@ namespace MobilePhone {
                 SetUIState(Defintions.PhaseStart);
                 UIState = Defintions.PhaseStart;
                 ResetPhase(Defintions.PhaseStart); //@kwanghock 05/03/2012 restart button dont reset properly
-            }/* @kwanghock 10march2012 removed
-            else if (button.Name.CompareTo("buttonNextPhone") == 0)
-            {
-                buttonNextPhone.Visible = true;
-                buttonPrevPhone.Visible = true;
-                if (++iResultIterate < results.Count)
-                {
-                    UpdateResult(iResultIterate);
-                    if (iResultIterate == results.Count - 1)
-                    {
-                        buttonNextPhone.Visible = false;
-                        buttonPrevPhone.Visible = true;
-                    }
-                }
             }
-            else if (button.Name.CompareTo("buttonPrevPhone") == 0)
-            {
-                buttonNextPhone.Visible = true;
-                buttonPrevPhone.Visible = true;
-                if (--iResultIterate >= 0)
-                {
-                    UpdateResult(iResultIterate);
-                    if(iResultIterate==0)
-                        buttonPrevPhone.Visible = false;
-                }
-            }*/
         }
 
         private void UpdateResult(int iResultIterate)
@@ -293,6 +268,7 @@ namespace MobilePhone {
                          * Since there is no way we can use this to retract,
                          * do a reset and assert back the facts that were determined at the personality phase
                          */
+                        /*
                         environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
@@ -300,18 +276,20 @@ namespace MobilePhone {
                         //Clear the preferences details and clear the phoneList updated at the preferences phase
                         preferencesDetails.Clear();
                         preferencesPhoneList.Clear();
+                        */
 
+                       // environment.Eval("reset_requirements_column_one");
                         ResetDropDownDef();
                     }
                     break;
-               /* case Defintions.PhaseResults:
+                case Defintions.PhaseMobilePlan:
                     {
                         /*
                          * Retract all the details facts that we asserted here
                          * Since there is no way we can use this to retract details about the phone
                          * do a reset and assert back the facts that were determined at the preferences phase and the personality phase
                          */
-                       /* environment.Reset();
+                        environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
                         for (int i = 0; i < preferencesDetails.Count; i++)
@@ -321,7 +299,7 @@ namespace MobilePhone {
                         phoneSpecsPhoneList.Clear();
                         phoneSpecsDetails.Clear();
                     }
-                    break;*/
+                    break;
             }
             environment.Run();
         }
@@ -366,17 +344,11 @@ namespace MobilePhone {
                     dataGridView.DataSource = results;
                 }
                 break;
-                /*case Defintions.PhaseResults:
+                case Defintions.PhaseMobilePlan:
                 {
-                    UpdatePhoneList(results);
-
-                    //Sort according to overall weightage
-                    results = results.OrderBy(m=>m.fWeightage).ToList<MobilePhoneRecommendation>();
-
-                    //Display the results of the phone chosen.
-                    UpdateResult(0);
+                    ProcessMobilePlan();
                 }
-                break;*/
+                break;
             }
         }
 
@@ -472,7 +444,7 @@ namespace MobilePhone {
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-              //  panelPhase4.Visible = false;
+              panelPhase4.Visible = false;
                 this.buttonPrev.Visible = false;
                 this.buttonRestart.Visible = false;
                 this.buttonNext.Visible = true;
@@ -484,7 +456,7 @@ namespace MobilePhone {
                 panelPhase1.Visible = true;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-               // panelPhase4.Visible = false;
+               panelPhase4.Visible = false;
                 this.buttonPrev.Visible = true;
                 this.buttonRestart.Visible = false;
                 this.buttonNext.Visible = true;
@@ -497,7 +469,7 @@ namespace MobilePhone {
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = true;
                 panelPhase3.Visible = false;
-                //panelPhase4.Visible = false;
+                panelPhase4.Visible = false;
                 this.buttonNext.Visible = true;
                 this.buttonRestart.Visible = false;
                 panelPhase2.BringToFront();
@@ -510,23 +482,27 @@ namespace MobilePhone {
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = true;
-               // panelPhase4.Visible = false;
-                this.buttonNext.Visible = false;
-                this.buttonRestart.Visible = true;
+                panelPhase4.Visible = false;
+                this.buttonNext.Visible = true;
+                this.buttonRestart.Visible = false;
+                this.buttonPrev.Visible = true;
                 panelPhase3.BringToFront();
+
+                //set datasource to null
+                dataGridView.DataSource = null;
             }
-            /*else if (iPhase == Defintions.PhaseResults)
+            else if (iPhase == Defintions.PhaseMobilePlan)
             {
                 panelPhase0.Visible = false;
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-                //panelPhase4.Visible = true;
+                panelPhase4.Visible = true;
                 this.buttonNext.Visible = false;
                 this.buttonRestart.Visible = true;
-               // this.buttonPrevPhone.Visible = false;
-                ProcessPhase(Defintions.PhaseResults);
-            }*/
+                this.buttonPrev.Visible = true;
+                ProcessPhase(Defintions.PhaseMobilePlan);
+            }
         }
 
 
