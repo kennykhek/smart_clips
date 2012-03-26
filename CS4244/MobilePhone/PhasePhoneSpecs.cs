@@ -322,16 +322,12 @@ namespace MobilePhone
         public void UpdatePhoneGrid(String attribute)
         {
             string evalStr = "(update_mobilephone_list " + attribute + ")";
-            //string evalStr = "(get_weightagephone_list)";
+           // string evalStr = "(get_weightagephone_list)";
        
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
             DataTable testdt = new DataTable();
             phase3Results.Clear();
-
-
-            
-
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
@@ -423,12 +419,19 @@ namespace MobilePhone
             // Debug purpose
             // MessageBox.Show(phase3Results.Count.ToString());
             testDataGrid();
-            dataGridView.DataSource = null;
+            //dataGridView.Refresh();
+
+            
             dataGridView.DataSource = phase3Results;
-            dataGridView.Columns.GetFirstColumn( new DataGridViewElementStates()).Name = "test";
-            dataGridView.Columns.GetLastColumn(new DataGridViewElementStates(),new DataGridViewElementStates()).Name = "test2";
+            //int testcount = dataGridView.Columns.Count;
+           dataGridView.Columns[0].HeaderText = "Mobile phone";
+           dataGridView.Columns[1].HeaderText = "Phone weightage";
+            
+           // dataGridView.Columns.
             
         }
+
+
 
         public void ResetDropDownDef()
         {

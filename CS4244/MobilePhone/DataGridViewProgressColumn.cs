@@ -46,7 +46,8 @@ namespace MobilePhone
             {
                 value = 0;
             }
-            float progressVal = int.Parse(value.ToString());
+            //float progressVal = (float)int.Parse(value.ToString()));
+            float progressVal = float.Parse(value.ToString());
             float percentage = ((float)progressVal / 100.0f); // Need to convert to float before division; otherwise C# returns int which is 0 for anything but 100%.
             Brush backColorBrush = new SolidBrush(cellStyle.BackColor);
             Brush foreColorBrush = new SolidBrush(cellStyle.ForeColor);

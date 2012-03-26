@@ -834,6 +834,37 @@
   (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
 )
 
+(deffunction get_weightage_phone_plan_list ()
+  (bind ?facts (find-all-facts((?p weightage_phone_plan)) TRUE))
+)
+
+
+(deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data)
+	(bind ?facts(find-all-facts((?p phone_plan))
+		(and
+			(if (eq ?p:provider nil)
+				then
+				(eq ?p:provider ?p:provider)
+				else
+				(eq ?p:provider ?provider))
+			(if (eq ?p:outgoing nil)
+				then
+				(eq ?p:outgoing ?p:outgoing)
+				else
+				(eq ?p:outgoing ?outgoing))
+			(if (eq ?p:sms nil)
+				then
+				(eq ?p:sms ?p:sms)
+				else
+				(eq ?p:sms ?sms))
+			(if (eq ?p:data nil)
+				then
+				(eq ?p:data ?p:data)
+				else
+				(eq ?p:data ?data))
+		)
+)))
+
 
 (deffunction update_mobilephone_list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
   (bind ?facts(find-all-facts((?wp weightage_phone)(?p phone))
