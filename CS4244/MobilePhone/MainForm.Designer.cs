@@ -1619,7 +1619,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1203, 685);
+            this.ClientSize = new System.Drawing.Size(762, 478);
             this.Controls.Add(this.panelPhase4);
             this.Controls.Add(this.panelPhase0);
             this.Controls.Add(this.panelPhase3);
