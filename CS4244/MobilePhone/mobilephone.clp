@@ -829,6 +829,10 @@
   (bind ?facts (find-all-facts((?p weightage_phone)) TRUE))
 )
 
+(deffunction get_mobileplan_list ()
+  (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
+)
+
 
 (deffunction update_mobilephone_list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
   (bind ?facts(find-all-facts((?wp weightage_phone)(?p phone))

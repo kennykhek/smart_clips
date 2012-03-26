@@ -48,6 +48,26 @@
             this.labelPhase3 = new System.Windows.Forms.Label();
             this.panelPhase0 = new System.Windows.Forms.Panel();
             this.panelPhase4 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cbBudget = new System.Windows.Forms.ComboBox();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cbData = new System.Windows.Forms.ComboBox();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbSMS = new System.Windows.Forms.ComboBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbOutgoing = new System.Windows.Forms.ComboBox();
+            this.panelProvider = new System.Windows.Forms.Panel();
+            this.labelProvider = new System.Windows.Forms.Label();
+            this.cbProvider = new System.Windows.Forms.ComboBox();
+            this.gbPhonePlan = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewProgressColumn2 = new MobilePhone.DataGridViewProgressColumn();
             this.labelPhase4 = new System.Windows.Forms.Label();
             this.panelPhase3 = new System.Windows.Forms.Panel();
             this.gbRecPhone = new System.Windows.Forms.GroupBox();
@@ -157,6 +177,13 @@
             this.dataGridViewProgressColumn1 = new MobilePhone.DataGridViewProgressColumn();
             this.panelPhase0.SuspendLayout();
             this.panelPhase4.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel16.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panelProvider.SuspendLayout();
+            this.gbPhonePlan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelPhase3.SuspendLayout();
             this.gbRecPhone.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -263,18 +290,214 @@
             // panelPhase0
             // 
             this.panelPhase0.Controls.Add(this.labelPhase0);
-            this.panelPhase0.Location = new System.Drawing.Point(9, 8);
+            this.panelPhase0.Location = new System.Drawing.Point(9, 9);
             this.panelPhase0.Name = "panelPhase0";
             this.panelPhase0.Size = new System.Drawing.Size(730, 418);
             this.panelPhase0.TabIndex = 5;
             // 
             // panelPhase4
             // 
+            this.panelPhase4.Controls.Add(this.panel17);
+            this.panelPhase4.Controls.Add(this.panel16);
+            this.panelPhase4.Controls.Add(this.panel15);
+            this.panelPhase4.Controls.Add(this.panel10);
+            this.panelPhase4.Controls.Add(this.panelProvider);
+            this.panelPhase4.Controls.Add(this.gbPhonePlan);
             this.panelPhase4.Controls.Add(this.labelPhase4);
-            this.panelPhase4.Location = new System.Drawing.Point(9, 6);
+            this.panelPhase4.Location = new System.Drawing.Point(9, 9);
             this.panelPhase4.Name = "panelPhase4";
             this.panelPhase4.Size = new System.Drawing.Size(730, 421);
             this.panelPhase4.TabIndex = 8;
+            // 
+            // panel17
+            // 
+            this.panel17.Controls.Add(this.label18);
+            this.panel17.Controls.Add(this.cbBudget);
+            this.panel17.Location = new System.Drawing.Point(28, 108);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(185, 31);
+            this.panel17.TabIndex = 16;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(9, 8);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(45, 13);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "Budget";
+            // 
+            // cbBudget
+            // 
+            this.cbBudget.BackColor = System.Drawing.SystemColors.Window;
+            this.cbBudget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBudget.FormattingEnabled = true;
+            this.cbBudget.Location = new System.Drawing.Point(71, 5);
+            this.cbBudget.Name = "cbBudget";
+            this.cbBudget.Size = new System.Drawing.Size(102, 21);
+            this.cbBudget.TabIndex = 2;
+            this.cbBudget.SelectedIndexChanged += new System.EventHandler(this.OnChangePlan);
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.label17);
+            this.panel16.Controls.Add(this.cbData);
+            this.panel16.Location = new System.Drawing.Point(219, 72);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(185, 31);
+            this.panel16.TabIndex = 15;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(9, 8);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(31, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Data";
+            // 
+            // cbData
+            // 
+            this.cbData.BackColor = System.Drawing.SystemColors.Window;
+            this.cbData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbData.FormattingEnabled = true;
+            this.cbData.Location = new System.Drawing.Point(83, 5);
+            this.cbData.Name = "cbData";
+            this.cbData.Size = new System.Drawing.Size(88, 21);
+            this.cbData.TabIndex = 2;
+            this.cbData.SelectedIndexChanged += new System.EventHandler(this.OnChangePlan);
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.label16);
+            this.panel15.Controls.Add(this.cbSMS);
+            this.panel15.Location = new System.Drawing.Point(28, 71);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(185, 31);
+            this.panel15.TabIndex = 15;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(9, 8);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 13);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "SMS";
+            // 
+            // cbSMS
+            // 
+            this.cbSMS.BackColor = System.Drawing.SystemColors.Window;
+            this.cbSMS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSMS.FormattingEnabled = true;
+            this.cbSMS.Location = new System.Drawing.Point(71, 5);
+            this.cbSMS.Name = "cbSMS";
+            this.cbSMS.Size = new System.Drawing.Size(102, 21);
+            this.cbSMS.TabIndex = 2;
+            this.cbSMS.SelectedIndexChanged += new System.EventHandler(this.OnChangePlan);
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.label11);
+            this.panel10.Controls.Add(this.cbOutgoing);
+            this.panel10.Location = new System.Drawing.Point(219, 34);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(185, 31);
+            this.panel10.TabIndex = 14;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(9, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 13);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Outgoing";
+            // 
+            // cbOutgoing
+            // 
+            this.cbOutgoing.BackColor = System.Drawing.SystemColors.Window;
+            this.cbOutgoing.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbOutgoing.FormattingEnabled = true;
+            this.cbOutgoing.Location = new System.Drawing.Point(83, 5);
+            this.cbOutgoing.Name = "cbOutgoing";
+            this.cbOutgoing.Size = new System.Drawing.Size(88, 21);
+            this.cbOutgoing.TabIndex = 2;
+            this.cbOutgoing.SelectedIndexChanged += new System.EventHandler(this.OnChangePlan);
+            // 
+            // panelProvider
+            // 
+            this.panelProvider.Controls.Add(this.labelProvider);
+            this.panelProvider.Controls.Add(this.cbProvider);
+            this.panelProvider.Location = new System.Drawing.Point(28, 34);
+            this.panelProvider.Name = "panelProvider";
+            this.panelProvider.Size = new System.Drawing.Size(185, 31);
+            this.panelProvider.TabIndex = 13;
+            // 
+            // labelProvider
+            // 
+            this.labelProvider.AutoSize = true;
+            this.labelProvider.Location = new System.Drawing.Point(9, 8);
+            this.labelProvider.Name = "labelProvider";
+            this.labelProvider.Size = new System.Drawing.Size(49, 13);
+            this.labelProvider.TabIndex = 3;
+            this.labelProvider.Text = "Provider";
+            // 
+            // cbProvider
+            // 
+            this.cbProvider.BackColor = System.Drawing.SystemColors.Window;
+            this.cbProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProvider.FormattingEnabled = true;
+            this.cbProvider.Location = new System.Drawing.Point(71, 5);
+            this.cbProvider.Name = "cbProvider";
+            this.cbProvider.Size = new System.Drawing.Size(102, 21);
+            this.cbProvider.TabIndex = 2;
+            this.cbProvider.SelectedIndexChanged += new System.EventHandler(this.OnChangePlan);
+            // 
+            // gbPhonePlan
+            // 
+            this.gbPhonePlan.Controls.Add(this.dataGridView1);
+            this.gbPhonePlan.Location = new System.Drawing.Point(18, 193);
+            this.gbPhonePlan.Name = "gbPhonePlan";
+            this.gbPhonePlan.Size = new System.Drawing.Size(486, 207);
+            this.gbPhonePlan.TabIndex = 12;
+            this.gbPhonePlan.TabStop = false;
+            this.gbPhonePlan.Text = "Recommended Phone + Plan";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.Plan,
+            this.dataGridViewProgressColumn2});
+            this.dataGridView1.Location = new System.Drawing.Point(10, 23);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(461, 172);
+            this.dataGridView1.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "sModel";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // Plan
+            // 
+            this.Plan.HeaderText = "Mobile Plan";
+            this.Plan.Name = "Plan";
+            this.Plan.ReadOnly = true;
+            // 
+            // dataGridViewProgressColumn2
+            // 
+            this.dataGridViewProgressColumn2.DataPropertyName = "fWeightage";
+            this.dataGridViewProgressColumn2.HeaderText = "Recommendation Weight";
+            this.dataGridViewProgressColumn2.Name = "dataGridViewProgressColumn2";
+            this.dataGridViewProgressColumn2.ReadOnly = true;
             // 
             // labelPhase4
             // 
@@ -1396,7 +1619,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 480);
+            this.ClientSize = new System.Drawing.Size(1203, 685);
             this.Controls.Add(this.panelPhase4);
             this.Controls.Add(this.panelPhase0);
             this.Controls.Add(this.panelPhase3);
@@ -1413,6 +1636,18 @@
             this.panelPhase0.PerformLayout();
             this.panelPhase4.ResumeLayout(false);
             this.panelPhase4.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panelProvider.ResumeLayout(false);
+            this.panelProvider.PerformLayout();
+            this.gbPhonePlan.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelPhase3.ResumeLayout(false);
             this.panelPhase3.PerformLayout();
             this.gbRecPhone.ResumeLayout(false);
@@ -1592,6 +1827,26 @@
         private System.Windows.Forms.RadioButton radioButton26;
         private System.Windows.Forms.Panel panelPhase4;
         private System.Windows.Forms.Label labelPhase4;
+        private System.Windows.Forms.GroupBox gbPhonePlan;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox cbBudget;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cbData;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cbSMS;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbOutgoing;
+        private System.Windows.Forms.Panel panelProvider;
+        private System.Windows.Forms.Label labelProvider;
+        private System.Windows.Forms.ComboBox cbProvider;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Plan;
+        private DataGridViewProgressColumn dataGridViewProgressColumn2;
 
     }
 }
