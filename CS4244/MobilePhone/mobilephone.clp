@@ -215,15 +215,29 @@
 
 ;Phone Plans
 (deffacts init_phone_plans_facts
+;SINGTEL
 	(phone_plan (plan 3G_Flexi_Value) (provider singtel) (planprice 59.90) (outgoing 200) (sms 650) (data 12))
 	(phone_plan (plan 3G_Flexi_Premium) (provider singtel) (planprice 205.00) (outgoing 2000) (sms 2000) (data 30))
 	(phone_plan (plan 3G_Flexi_Plus) (provider singtel) (planprice 99.90) (outgoing 500) (sms 700) (data 12))
 	(phone_plan (plan 3G_Flexi_Lite) (provider singtel) (planprice 39.90) (outgoing 100) (sms 550) (data 12))
-	(phone_plan (plan iTwo_Value) (provider singtel) (planprice 48.15) (outgoing 300) (sms 500) (data 0))
-	(phone_plan (plan iTwo_Plus) (provider singtel) (planprice 82.93) (outgoing 700) (sms 500) (data 0))
-	(phone_plan (plan iThree_Plus) (provider singtel) (planprice 192.60) (outgoing 2000) (sms 2000) (data 0))
-	(phone_plan (plan iOne_Super_Value) (provider singtel) (planprice 15.00) (outgoing 80) (sms 50) (data 0))
-	(phone_plan (plan iOne_Plus) (provider singtel) (planprice 25.68) (outgoing 100) (sms 500) (data 0))
+;STARHUB
+	(phone_plan (plan SmartSurf_100) (provider starhub) (planprice 38.00) (outgoing 100) (sms 500) (data 12))
+	(phone_plan (plan SmartSurf_300) (provider starhub) (planprice 58.00) (outgoing 300) (sms 500) (data 12))
+	(phone_plan (plan SmartSurf_700) (provider starhub) (planprice 98.00) (outgoing 700) (sms 500) (data 12))
+	(phone_plan (plan SmartSurf_unlimited) (provider starhub) (planprice 205.00) (outgoing 2000) (sms 2000) (data 100))
+	(phone_plan (plan i2Surf_100) (provider starhub) (planprice 38.00) (outgoing 100) (sms 500) (data 1))
+	(phone_plan (plan i2Surf_300) (provider starhub) (planprice 58.00) (outgoing 300) (sms 500) (data 2))
+	(phone_plan (plan i2Surf_700) (provider starhub) (planprice 98.00) (outgoing 700) (sms 500) (data 5))
+;M1
+	(phone_plan (plan ValueSurf) (provider m1) (planprice 39.00) (outgoing 100) (sms 500) (data 12))
+	(phone_plan (plan LiteSurf) (provider m1) (planprice 55.00) (outgoing 250) (sms 500) (data 12))
+	(phone_plan (plan ExtremeSurf) (provider m1) (planprice 95.00) (outgoing 600) (sms 500) (data 12))
+	
+	;;(phone_plan (plan iTwo_Value) (provider singtel) (planprice 48.15) (outgoing 300) (sms 500) (data 0))
+	;;(phone_plan (plan iTwo_Plus) (provider singtel) (planprice 82.93) (outgoing 700) (sms 500) (data 0))
+	;;(phone_plan (plan iThree_Plus) (provider singtel) (planprice 192.60) (outgoing 2000) (sms 2000) (data 0))
+	;;(phone_plan (plan iOne_Super_Value) (provider singtel) (planprice 15.00) (outgoing 80) (sms 50) (data 0))
+	;;(phone_plan (plan iOne_Plus) (provider singtel) (planprice 25.68) (outgoing 100) (sms 500) (data 0))
 )
 
 ;Phone Plan Price
@@ -512,6 +526,19 @@
 	(phone_plan_price (model razr) (phoneprice 0.00) (plan iThree_Plus))
 	(phone_plan_price (model razr) (phoneprice 548.00) (plan iOne_Super_Value))
 	(phone_plan_price (model razr) (phoneprice 488.00) (plan iOne_Plus))
+	
+	
+	;;M1
+	;Nokia
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_100))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_300))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_700))
+	
+	(phone_plan_price (model lumia_800) (phoneprice 248.00) (plan ValueSurf_100))
+	(phone_plan_price (model lumia_800) (phoneprice 148.00) (plan ValueSurf_300))
+	(phone_plan_price (model lumia_800) (phoneprice 0.00) (plan ValueSurf_700))
+	
+	
 )
 
 ;;*********************
