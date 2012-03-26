@@ -421,7 +421,11 @@ namespace MobilePhone
             testDataGrid();
             //dataGridView.Refresh();
 
-            
+            for (int i = 0; i < phase3Results.Count; i++)
+            {
+                if (phase3Results.ElementAt(i).fWeightage == 0)
+                    phase3Results.RemoveAt(i);
+            }
             dataGridView.DataSource = phase3Results;
             //int testcount = dataGridView.Columns.Count;
            dataGridView.Columns[0].HeaderText = "Mobile phone";
