@@ -110,7 +110,7 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-            environment.Watch(WatchItem.All);
+           // environment.Watch(WatchItem.All);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -120,6 +120,9 @@ namespace MobilePhone {
 
             //Load the dropdown values for PhaseDetails
             LoadPhaseDetailsDropdown();
+
+            //Load dropdown values for mobile plans
+            LoadPhasePlanDropdown();
 
             //Test by getting all the facts see whether reflect correctly @kwanghock
             //test();
@@ -504,6 +507,7 @@ namespace MobilePhone {
                 ProcessPhase(Defintions.PhaseMobilePlan);
             }
         }
+
 
 
 
