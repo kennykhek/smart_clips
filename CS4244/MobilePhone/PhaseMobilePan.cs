@@ -25,16 +25,63 @@ namespace MobilePhone
 
         public void OnChangePlan(object sender, EventArgs e)
         {
+            String sSelectedProvider = "";
+            String sSelectedOutgoing = "";
+            String sSelectedSMS = "";
+            String sSelectedData = "";
 
+            if (cbProvider.SelectedItem != null && cbProvider.SelectedItem != "")
+            {
+                sSelectedProvider = LowerCaseFirstChar(cbProvider.SelectedItem.ToString());
+            }
+            else sSelectedProvider = "nil";
+
+            if (cbOutgoing.SelectedItem != null && cbOutgoing.SelectedItem != "")
+            {
+                sSelectedOutgoing = cbOutgoing.SelectedItem.ToString().Substring(0,cbOutgoing.SelectedItem.ToString().IndexOf(" "));
+            }
+            else sSelectedOutgoing = "nil";
+
+
+            if (cbSMS.SelectedItem != null && cbSMS.SelectedItem != "")
+            {
+                sSelectedSMS = cbSMS.SelectedItem.ToString();
+            }
+            else sSelectedSMS = "nil";
+
+            if (cbData.SelectedItem != null && cbData.SelectedItem != "")
+            {
+                sSelectedData = cbData.SelectedItem.ToString();
+            }
+            else sSelectedData = "nil";
+
+            environment.Run();
+
+            UpdatePlanGrid(sSelectedProvider + " " + sSelectedOutgoing + " " + sSelectedSMS + " " + sSelectedData);
+        }
+
+        public void UpdatePlanGrid(String attribute)
+        {
+            //string evalStr = "(update_phoneplan_list " + attribute + ")";
+            string evalStr = "(get_mobileplan_list)";
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
+            environment.Run();
+            for (int i = 0; i < mv.Count; i++)
+            {
+                FactAddressValue fv = (FactAddressValue)mv[i];
+
+                String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
+                String sProvider = (String)(SymbolValue)fv.GetFactSlot("provider");
+                float fPlanprice = (float)(FloatValue)fv.GetFactSlot("planprice");
+                int iOutgoing = (int)(IntegerValue)fv.GetFactSlot("outgoing");
+                int iSMS = (int)(IntegerValue)fv.GetFactSlot("sms");
+                int iData = (int)(IntegerValue)fv.GetFactSlot("data");
+
+            }
         }
 
         public void LoadPhasePlanDropdown()
         {
-            String sSelectedProvider = null;
-            String sSelectedSMS = null;
-            String sSelectedData = null;
-            String sSelectedOutgoing = null;
-            String sSelectedBudget = null;
 
             listPlan = new List<String>();
             listProvider = new List<String>();
