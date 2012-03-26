@@ -825,66 +825,109 @@
   (bind ?facts (find-all-facts((?p phone)) TRUE))
 )
 
+
+(deffunction get_weightagephone_list ()
+  (bind ?facts (find-all-facts((?p weightage_phone)) TRUE))
+)
+
+(deffunction get_mobileplan_list ()
+  (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
+)
+
+(deffunction get_weightage_phone_plan_list ()
+  (bind ?facts (find-all-facts((?p weightage_phone_plan)) TRUE))
+)
+
+
+(deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data)
+	(bind ?facts(find-all-facts((?p phone_plan))
+		(and
+			(if (eq ?p:provider nil)
+				then
+				(eq ?p:provider ?p:provider)
+				else
+				(eq ?p:provider ?provider))
+			(if (eq ?p:outgoing nil)
+				then
+				(eq ?p:outgoing ?p:outgoing)
+				else
+				(eq ?p:outgoing ?outgoing))
+			(if (eq ?p:sms nil)
+				then
+				(eq ?p:sms ?p:sms)
+				else
+				(eq ?p:sms ?sms))
+			(if (eq ?p:data nil)
+				then
+				(eq ?p:data ?p:data)
+				else
+				(eq ?p:data ?data))
+		)
+)))
+
+
 (deffunction update_mobilephone_list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
-  (bind ?facts (find-all-facts((?p phone))
-	(and
-		(if (eq ?os nil)
-			then
-			(eq ?p:os ?p:os)
-			else
-			(eq ?p:os ?os))
-		(if (eq ?screen nil)
-			then
-			(eq ?p:screen ?p:screen)
-			else
-			(eq ?p:screen ?screen))
-		(if (eq ?fm nil)
-			then
-			(eq ?p:fm ?p:fm)
-			else
-			(eq ?p:fm ?fm))
-		(if (eq ?video nil)
-			then
-			(eq ?p:videoHD ?p:videoHD)
-			else
-			(eq ?p:videoHD ?video))
-		(if (eq ?camflash nil)
-			then
-			(eq ?p:flash ?p:flash)
-			else
-			(eq ?p:flash ?camflash))
-		(if (eq ?mem nil)
-			then
-			(eq ?p:memory ?p:memory)
-			else
-			(eq ?p:memory ?mem))
-		(if (eq ?weight nil)
-			then
-			(eq ?p:weight ?p:weight)
-			else
-			(eq ?p:weight ?weight))
-		(if (eq ?campixel nil)
-			then
-			(eq ?p:pixel ?p:pixel)
-			else
-			(eq ?p:pixel ?campixel))
-		(if (eq ?color nil)
-			then
-			(eq ?p:color ?p:color)
-			else
-			(eq ?p:color ?color))
-		(if (eq ?wifi nil)
-			then
-			(eq ?p:wifi ?p:wifi)
-			else
-			(eq ?p:wifi ?wifi))
-		(if (eq ?camzoom nil)
-			then
-			(eq ?p:zoom ?p:zoom)
-			else
-			(eq ?p:zoom ?camzoom))
+  (bind ?facts(find-all-facts((?wp weightage_phone)(?p phone))
+		(and
+			(eq ?p:model ?wp:model)
+			(if (eq ?os nil)
+				then
+				(eq ?p:os ?p:os)
+				else
+				(eq ?p:os ?os))
+			(if (eq ?screen nil)
+				then
+				(eq ?p:screen ?p:screen)
+				else
+				(eq ?p:screen ?screen))
+			(if (eq ?fm nil)
+				then
+				(eq ?p:fm ?p:fm)
+				else
+				(eq ?p:fm ?fm))
+			(if (eq ?video nil)
+				then
+				(eq ?p:videoHD ?p:videoHD)
+				else
+				(eq ?p:videoHD ?video))
+			(if (eq ?camflash nil)
+				then
+				(eq ?p:flash ?p:flash)
+				else
+				(eq ?p:flash ?camflash))
+			(if (eq ?mem nil)
+				then
+				(eq ?p:memory ?p:memory)
+				else
+				(eq ?p:memory ?mem))
+			(if (eq ?weight nil)
+				then
+				(eq ?p:weight ?p:weight)
+				else
+				(eq ?p:weight ?weight))
+			(if (eq ?campixel nil)
+				then
+				(eq ?p:pixel ?p:pixel)
+				else
+				(eq ?p:pixel ?campixel))
+			(if (eq ?color nil)
+				then
+				(eq ?p:color ?p:color)
+				else
+				(eq ?p:color ?color))
+			(if (eq ?wifi nil)
+				then
+				(eq ?p:wifi ?p:wifi)
+				else
+				(eq ?p:wifi ?wifi))
+			(if (eq ?camzoom nil)
+				then
+				(eq ?p:zoom ?p:zoom)
+				else
+				(eq ?p:zoom ?camzoom))
+		)
 	)
-  ))
+  )
 )
  
 (deffunction get_requirement_list ()

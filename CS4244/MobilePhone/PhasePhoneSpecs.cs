@@ -322,16 +322,12 @@ namespace MobilePhone
         public void UpdatePhoneGrid(String attribute)
         {
             string evalStr = "(update_mobilephone_list " + attribute + ")";
-            //string evalStr = "(get-mobilephone-list)";
-            //string evalStr = "(update-mobilephone-list windows)";
+           // string evalStr = "(get_weightagephone_list)";
+       
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
             DataTable testdt = new DataTable();
             phase3Results.Clear();
-
-
-            
-
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
@@ -342,7 +338,18 @@ namespace MobilePhone
                 else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                     sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
 
-                float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
+                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+
+                MobilePhoneRecommendation a = new MobilePhoneRecommendation();
+                a.sModel = sModel;
+                a.fWeightage = fWeightage;
+                String sAttributeModel = "(model " + a.sModel + ")";
+                String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
+
+                String sFact = "(weightage_phone " + sAttributeModel + sAttributeWeightage + ")";
+
+
+                /*float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
 
                 //Specs
                 String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
@@ -402,7 +409,7 @@ namespace MobilePhone
                 String sFact = "(phone " + sAttributeModel + sAttributePrice + sAttributeBrand + sAttributeColor + sAttributeScreen + sAttributeWeight + sAttributeMemory + sAttributeOS + sAttributeBluetooth + sAttributeWifi + sAttributeFM + sAttributeZoom + sAttributePixel + sAttributeFlash + sAttributeVideoHD + sAttributeWeightage + ")";
 
                 a.sFact = sFact;
-
+                */
                 MobileResultDisplay addon = new MobileResultDisplay();
                 addon.fWeightage = a.fWeightage;
                 addon.sModel = a.sModel;
@@ -412,10 +419,17 @@ namespace MobilePhone
             // Debug purpose
             // MessageBox.Show(phase3Results.Count.ToString());
             testDataGrid();
-            dataGridView.DataSource = null;
+            //dataGridView.Refresh();
+
+            for (int i = 0; i < phase3Results.Count; i++)
+            {
+                if (phase3Results.ElementAt(i).fWeightage == 0)
+                    phase3Results.RemoveAt(i);
+            }
             dataGridView.DataSource = phase3Results;
-            
         }
+
+
 
         public void ResetDropDownDef()
         {
