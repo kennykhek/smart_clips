@@ -425,6 +425,8 @@ namespace MobilePhone
             testDataGrid();
             dataGridView.DataSource = null;
             dataGridView.DataSource = phase3Results;
+            dataGridView.Columns.GetFirstColumn( new DataGridViewElementStates()).Name = "test";
+            dataGridView.Columns.GetLastColumn(new DataGridViewElementStates(),new DataGridViewElementStates()).Name = "test2";
             
         }
 
