@@ -63,20 +63,22 @@ namespace MobilePhone
         public void UpdatePlanGrid(String attribute)
         {
             //string evalStr = "(update_phoneplan_list " + attribute + ")";
-            string evalStr = "(get_mobileplan_list)";
+            string evalStr = "(get_weightage_phone_plan_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
             environment.Run();
+
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
+                PlanResultDisplay display = new PlanResultDisplay();
 
+                String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                float fphoneprice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
                 String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
-                String sProvider = (String)(SymbolValue)fv.GetFactSlot("provider");
-                float fPlanprice = (float)(FloatValue)fv.GetFactSlot("planprice");
-                int iOutgoing = (int)(IntegerValue)fv.GetFactSlot("outgoing");
-                int iSMS = (int)(IntegerValue)fv.GetFactSlot("sms");
-                int iData = (int)(IntegerValue)fv.GetFactSlot("data");
 
+                display.sModel = sModel;
+                display.fprice = fphoneprice;
+                display.sPlan = sPlan;
             }
         }
 

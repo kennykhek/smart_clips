@@ -45,6 +45,13 @@ namespace MobilePhone {
             public float fWeightage { get; set; }
         }
 
+        private class PlanResultDisplay
+        {
+            public String sModel { set; get; }
+            public String sPlan { set; get; }
+            public float fprice { set; get; }
+        }
+
         private class MobilePhoneRecommendation
         {
             public String sModel { get; set; }
@@ -111,7 +118,7 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-           // environment.Watch(WatchItem.Facts);
+           environment.Watch(WatchItem.Facts);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -191,7 +198,7 @@ namespace MobilePhone {
                 {
                     ProcessPhase(Defintions.PhaseDetails);
 
-                    
+                
                 }
                 if (panelPhase4.Visible) 
                 {
@@ -278,15 +285,14 @@ namespace MobilePhone {
                          * Since there is no way we can use this to retract,
                          * do a reset and assert back the facts that were determined at the personality phase
                          */
-                        /*
+                        
                         environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
-
+                        
                         //Clear the preferences details and clear the phoneList updated at the preferences phase
                         preferencesDetails.Clear();
                         preferencesPhoneList.Clear();
-                        */
 
                        // environment.Eval("reset_requirements_column_one");
                         ResetDropDownDef();
@@ -497,7 +503,7 @@ namespace MobilePhone {
                 this.buttonRestart.Visible = false;
                 this.buttonPrev.Visible = true;
                 panelPhase3.BringToFront();
-
+               // environment.AssertString("(phase(stage 3))");
                 //set datasource to null
                 //dataGridView.DataSource = null;
             }
