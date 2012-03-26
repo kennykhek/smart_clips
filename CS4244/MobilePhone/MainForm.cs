@@ -36,10 +36,11 @@ namespace MobilePhone {
         private List<MobilePhoneRecommendation> results;
         int iResultIterate;
 
-        private List<MobileResultDisplay> phase3Results;
+        private BindingList<MobileResultDisplay> phase3Results;
 
         private class MobileResultDisplay
         {
+
             public String sModel { get; set; }
             public float fWeightage { get; set; }
         }
@@ -103,14 +104,14 @@ namespace MobilePhone {
             results = new List<MobilePhoneRecommendation>();
             iResultIterate = 0;
 
-            phase3Results = new List<MobileResultDisplay>();
+            phase3Results = new BindingList<MobileResultDisplay>();
 
             /*
              * Watching of facts is done in output window. So make sure when build output window is shown
              * WactchItem is an enum.
              * @kwanghock
              */
-           // environment.Watch(WatchItem.All);
+           // environment.Watch(WatchItem.Facts);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -183,16 +184,21 @@ namespace MobilePhone {
                 if (panelPhase2.Visible)
                 {
                     ProcessPhase(Defintions.PhasePreferences);
+                    //Assert the phase template to activate the rule to calculate weightage
+                    environment.AssertString("(phase (stage 3))");
                 }
                 if (panelPhase3.Visible)
                 {
                     ProcessPhase(Defintions.PhaseDetails);
+
+                    
                 }
                 if (panelPhase4.Visible) 
                 {
                     ProcessPhase(Defintions.PhaseMobilePlan);
                 }
                 SetUIState(++UIState);
+
             }
             else if (button.Name.CompareTo("buttonPrev") == 0)
             {
@@ -226,6 +232,7 @@ namespace MobilePhone {
                 UIState = Defintions.PhaseStart;
                 ResetPhase(Defintions.PhaseStart); //@kwanghock 05/03/2012 restart button dont reset properly
             }
+            environment.Run();
         }
 
         private void UpdateResult(int iResultIterate)
@@ -344,7 +351,7 @@ namespace MobilePhone {
                     //Update phoneList for this PhaseDetails
                    
                     UpdatePhoneList(phoneSpecsPhoneList);
-                    dataGridView.DataSource = results;
+                    //dataGridView.DataSource = pha;
                 }
                 break;
                 case Defintions.PhaseMobilePlan:
@@ -492,7 +499,7 @@ namespace MobilePhone {
                 panelPhase3.BringToFront();
 
                 //set datasource to null
-                dataGridView.DataSource = null;
+                //dataGridView.DataSource = null;
             }
             else if (iPhase == Defintions.PhaseMobilePlan)
             {
