@@ -427,12 +427,6 @@ namespace MobilePhone
                     phase3Results.RemoveAt(i);
             }
             dataGridView.DataSource = phase3Results;
-            //int testcount = dataGridView.Columns.Count;
-           dataGridView.Columns[0].HeaderText = "Mobile phone";
-           dataGridView.Columns[1].HeaderText = "Phone weightage";
-            
-           // dataGridView.Columns.
-            
         }
 
 

@@ -118,7 +118,7 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-           environment.Watch(WatchItem.Facts);
+          // environment.Watch(WatchItem.Facts);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -310,6 +310,9 @@ namespace MobilePhone {
                             environment.AssertString(personalityDetails.ElementAt(i));
                         for (int i = 0; i < preferencesDetails.Count; i++)
                             environment.AssertString(preferencesDetails.ElementAt(i));
+
+                        //Assert phase fact again to trigger calculate weightage rule after preferences are chosen.
+                        environment.AssertString("(phase (stage 3))");
 
                         //Clear the specifications details and hte phonelist updated at the specifications phase
                         phoneSpecsPhoneList.Clear();
