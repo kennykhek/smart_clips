@@ -978,6 +978,13 @@
   )
 )
 
+(defrule stage_four_change_stage
+  (declare (salience -10))
+  ?phase <- (phase (stage 4))
+  =>
+  (modify ?phase (stage 5))
+)
+
 ;;*************
 ;;* FUNCTIONS *
 ;;*************
