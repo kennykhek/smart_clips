@@ -31,6 +31,10 @@ namespace MobilePhone
                     {
                         environment.AssertString("(question (order watch_movie) (selection yes))");
                     }
+                    else if (control.Name.Equals("q1_no"))
+                    {
+                        environment.AssertString("(question (order watch_movie) (selection no))");
+                    }
                 }
             }
             //Question 2
@@ -43,6 +47,10 @@ namespace MobilePhone
                     if (control.Name.Equals("q2_yes"))
                     {
                         environment.AssertString("(question (order listen_music) (selection yes))");
+                    }
+                    else if (control.Name.Equals("q2_no"))
+                    {
+                        environment.AssertString("(question (order listen_music) (selection no))");
                     }
 
                 }
@@ -59,6 +67,10 @@ namespace MobilePhone
                     {
                         environment.AssertString("(question (order view_picture) (selection yes))");
                     }
+                    else if (control.Name.Equals("q3_no"))
+                    {
+                        environment.AssertString("(question (order view_picture) (selection no))");
+                    }
                 }
             }
 
@@ -72,6 +84,10 @@ namespace MobilePhone
                     if (control.Name.Equals("q4_yes"))
                     {
                         environment.AssertString("(question (order game_internet) (selection yes))");
+                    }
+                    else if (control.Name.Equals("q4_no"))
+                    {
+                        environment.AssertString("(question (order game_internet) (selection no))");
                     }
                 }
             }
@@ -87,6 +103,10 @@ namespace MobilePhone
                     {
                         environment.AssertString("(question (order use_camera) (selection yes))");
                     }
+                    else if (control.Name.Equals("q5_no"))
+                    {
+                        environment.AssertString("(question (order use_camera) (selection no))");
+                    }
                 }
             }
 
@@ -100,6 +120,10 @@ namespace MobilePhone
                     if (control.Name.Equals("q6_yes"))
                     {
                         environment.AssertString("(question (order use_camera_night) (selection yes))");
+                    }
+                    else if (control.Name.Equals("q6_no"))
+                    {
+                        environment.AssertString("(question (order use_camera_night) (selection no))");
                     }
                 }
             }
