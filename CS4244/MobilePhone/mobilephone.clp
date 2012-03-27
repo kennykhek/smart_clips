@@ -694,6 +694,11 @@
 	(assert (requirement_phone (attribute flash)(value yes)(phase 3)))
 	(assert (requirement_phone (attribute videoHD)(value yes)(phase 3)))
    )
+  (if (eq ?sel no) then
+	(assert (requirement_phone (attribute pixel)(value not_impt)(phase 3)))
+	(assert (requirement_phone (attribute flash)(value not_impt)(phase 3)))
+	(assert (requirement_phone (attribute videoHD)(value not_impt)(phase 3)))
+   )
 )
 
 (defrule game_internet
@@ -703,6 +708,10 @@
     (assert (requirement_phone (attribute screen)(value large)(phase 3)))
 	(assert (requirement_phone (attribute wifi)(value yes)(phase 3)))
   )
+  (if (eq ?sel no) then
+    (assert (requirement_phone (attribute screen)(value not_impt)(phase 3)))
+	(assert (requirement_phone (attribute wifi)(value not_impt)(phase 3)))
+   )  
 )
 
 (defrule view_picture
@@ -711,6 +720,9 @@
   (if (eq ?sel yes) then
     (assert (requirement_phone (attribute screen)(value large)(phase 3)))
   ) 
+  (if (eq ?sel no) then
+    (assert (requirement_phone (attribute screen)(value not_impt)(phase 3)))
+  )   
 )
 
 (defrule listen_music
@@ -720,6 +732,10 @@
 	(assert (requirement_phone (attribute memory)(value large)(phase 3)))
 	(assert (requirement_phone (attribute fm)(value yes)(phase 3)))
   )
+  (if (eq ?sel no) then
+	(assert (requirement_phone (attribute memory)(value not_impt)(phase 3)))
+	(assert (requirement_phone (attribute fm)(value not_impt)(phase 3)))
+  )  
 )
 
 (defrule watch_movie
@@ -730,20 +746,25 @@
 	(assert (requirement_phone (attribute memory)(value large)(phase 3)))
 	(assert (requirement_phone (attribute weight)(value light)(phase 3)))
   )
+  (if (eq ?sel no) then
+    (assert (requirement_phone (attribute screen)(value not_impt)(phase 3)))
+	(assert (requirement_phone (attribute memory)(value not_impt)(phase 3)))
+	(assert (requirement_phone (attribute weight)(value not_impt)(phase 3)))
+  )  
 )
 
 ;;**********************
 ;;* TRIAL RULES STAGES *
 ;;**********************
 ;; TO BE DELETED BEFORE HANDING IN
-;(defrule user_personality
-;  (phase (stage 1))
-;  =>
-; (assert (question (order prefer_func) (selection s1)))
-; (assert (question (order user_type) (selection s1)))
-; (assert (question (order user_attitude) (selection s2)))
-; (assert (question (order user_saying) (selection s3)))
-;)
+(defrule user_personality
+  (phase (stage 1))
+  =>
+ (assert (question (order prefer_func) (selection s1)))
+ (assert (question (order user_type) (selection s1)))
+ (assert (question (order user_attitude) (selection s2)))
+ (assert (question (order user_saying) (selection s3)))
+)
 
 ;(defrules user_personality
 ;  (phase (stage 3))
@@ -758,6 +779,9 @@
 ;  (requirement_phone (attribute fm)     (value yes))
 ;)
 
+;;*********************
+;;* CALCULATION RULES *
+;;*********************
 (defrule calculate_weightage_phone
 	(declare (salience 50))
   (phase (stage 4))
@@ -769,7 +793,7 @@
   (requirement_phone (attribute memory) (value ?memory))
   (requirement_phone (attribute wifi)   (value ?wifi))
   (requirement_phone (attribute fm)     (value ?fm))  
-(requirement_phone (attribute os)     (value ?osVal)(weightage ?weightage-os))
+  (requirement_phone (attribute os)     (value ?osVal)(weightage ?weightage-os))
   (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
   (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
@@ -849,7 +873,7 @@
   (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)))
 )
 
-(defrule combine_weightage
+(defrule combine_weightage_A
   ; take average of two weightage if there is two rule with similar attribute and value
   (declare (salience 100))
   (phase (stage 4))  
@@ -862,6 +886,23 @@
     (modify ?rem2 (weightage (max ?weightage1 ?weightage2)))
   else
     (modify ?rem2 (weightage (/ (+ ?weightage1 ?weightage2) 2)))
+  )
+)
+
+(defrule combine_weightage_B
+  ; take average of two weightage if there is two rule with similar attribute and value
+  (declare (salience 100))
+  (phase (stage 4))  
+  ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val1)(phase 3))
+  ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2)(phase 3))
+  (test (neq ?rem1 ?rem2))
+  =>
+  (retract ?rem1)
+  (if (eq ?val1 not_impt) then
+    (retract ?rem1)
+  )
+  (if (eq ?val2 not_impt) then
+    (retract ?rem2)
   )
 )
 
