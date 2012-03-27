@@ -212,15 +212,6 @@
          (pixel 8.0)(flash yes))
 )
 
-(defrule user_preference
-  (phase (stage 2))
-  =>
- (assert (question (order prefer_func) (selection s1)))
- (assert (question (order user_type) (selection s1)))
- (assert (question (order user_attitude) (selection s2)))
- (assert (question (order user_saying) (selection s3)))
-)
-
 ;Phone Plans
 (deffacts init_phone_plans_facts
 ;SINGTEL
@@ -741,7 +732,22 @@
   )
 )
 
-;(deffacts trial
+;;**********************
+;;* TRIAL RULES STAGES *
+;;**********************
+;; TO BE DELETED BEFORE HANDING IN
+;(defrule user_personality
+;  (phase (stage 1))
+;  =>
+; (assert (question (order prefer_func) (selection s1)))
+; (assert (question (order user_type) (selection s1)))
+; (assert (question (order user_attitude) (selection s2)))
+; (assert (question (order user_saying) (selection s3)))
+;)
+
+;(defrules user_personality
+;  (phase (stage 3))
+;  =>
 ;  (requirement_phone (attribute pixel)  (value large))
 ;  (requirement_phone (attribute flash)  (value yes))
 ;  (requirement_phone (attribute videoHD)(value no))
