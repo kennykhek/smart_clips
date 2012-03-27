@@ -81,6 +81,12 @@
 ;;*********
 ;;* FACTS *
 ;;*********
+
+(deffacts init_phase_facts
+	(phase(stage 0))
+)
+
+
 (deffacts init_phone_facts
   ; non plan phone prices are from www.subarumobile.com
   ; nokia
@@ -753,8 +759,8 @@
 )
 
 (defrule calculate_weightage_phone
-  (declare (salience 50))
-  (phase (stage 4))
+	(declare (salience 50))
+  (phase (stage 3))
   (requirement_phone (attribute pixel)  (value ?pixel))
   (requirement_phone (attribute flash)  (value ?flash))
   (requirement_phone (attribute videoHD)(value ?videoHD))
@@ -763,7 +769,7 @@
   (requirement_phone (attribute memory) (value ?memory))
   (requirement_phone (attribute wifi)   (value ?wifi))
   (requirement_phone (attribute fm)     (value ?fm))  
-  (requirement_phone (attribute os)     (value ?osVal)(weightage ?weightage-os))
+(requirement_phone (attribute os)     (value ?osVal)(weightage ?weightage-os))
   (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
   (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
@@ -949,6 +955,38 @@
 
 (deffunction get_weightage_phone_plan_list ()
   (bind ?facts (find-all-facts((?p weightage_phone_plan)) TRUE))
+)
+
+(deffunction next_phase (?changephase)
+	(find-all-facts((?p phase)) 
+	  (switch ?changephase
+		(case 1 then 
+		  (modify ?p (stage 2))
+		)  
+		(case 3 then 
+		  (modify ?p (stage 4))
+		) 
+		(case 5 then 
+		  (modify ?p (stage 6))
+		)
+	   )
+	)
+)
+
+(deffunction prev_phase (?changephase)
+	(find-all-facts((?p phase)) 
+	  (switch ?changephase
+		(case 6 then 
+		  (modify ?p (stage 5))
+		)  
+		(case 5 then 
+		  (modify ?p (stage 2))
+		) 
+		(case 3 then 
+		  (modify ?p (stage 0))
+		)
+	   )
+	)
 )
 
 
