@@ -118,7 +118,7 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-          environment.Watch(WatchItem.Facts);
+        //  environment.Watch(WatchItem.Facts);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock

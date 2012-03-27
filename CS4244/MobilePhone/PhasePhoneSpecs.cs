@@ -330,15 +330,24 @@ namespace MobilePhone
             phase3Results.Clear();
             for (int i = 0; i < mv.Count; i++)
             {
-                FactAddressValue fv = (FactAddressValue)mv[i];
-
                 String sModel = "";
-                if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
-                    sModel = (String)(SymbolValue)fv.GetFactSlot("model");
-                else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
-                    sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                float fWeightage = 0;
+                FactAddressValue fv = (FactAddressValue)mv[i];
+                try
+                {
+                    String sCehck = (String)(SymbolValue)fv.GetFactSlot("brand");
+                    continue;
+                }
+                catch(Exception exception)
+                {
+                    if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                        sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                    else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                        sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
 
-                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                    fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                }
+               
 
                 MobilePhoneRecommendation a = new MobilePhoneRecommendation();
                 a.sModel = sModel;
@@ -348,68 +357,6 @@ namespace MobilePhone
 
                 String sFact = "(weightage_phone " + sAttributeModel + sAttributeWeightage + ")";
 
-
-                /*float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
-
-                //Specs
-                String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
-                String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
-                float fScreen = (float)(FloatValue)fv.GetFactSlot("screen");
-                float fWeight = (float)(FloatValue)fv.GetFactSlot("weight");
-                int iMemory = (int)(IntegerValue)fv.GetFactSlot("memory");
-
-                //Features
-                String sOS = (String)(SymbolValue)fv.GetFactSlot("os");
-                String sBluetooth = (String)(SymbolValue)fv.GetFactSlot("bluetooth");
-                String sWifi = (String)(SymbolValue)fv.GetFactSlot("wifi");
-                String sFM = (String)(SymbolValue)fv.GetFactSlot("fm");
-
-                //camera
-                int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("zoom");
-                float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
-                String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
-                String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
-                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
-
-                MobilePhoneRecommendation a = new MobilePhoneRecommendation();
-                a.sModel = sModel;
-                a.fPrice = fPrice;
-                a.sBrand = sBrand;
-                a.sColor = sColor;
-                a.fScreen = fScreen;
-                a.fWeight = fWeight;
-                a.iMemory = iMemory;
-                a.sOS = sOS;
-                a.sBluetooth = sBluetooth;
-                a.sWifi = sWifi;
-                a.sFM = sFM;
-                a.iZoom = iCameraZoom;
-                a.fPixel = fCameraPixel;
-                a.sFlash = sFlash;
-                a.sVideoHD = sVideoHD;
-                a.fWeightage = fWeightage;
-
-                String sAttributeModel = "(model " + a.sModel + ")";
-                String sAttributePrice = "(price " + a.fPrice.ToString() + ")";
-                String sAttributeBrand = "(brand " + a.sBrand + ")";
-                String sAttributeColor = "(color " + a.sColor + ")";
-                String sAttributeScreen = "(screen " + a.fScreen.ToString() + ")";
-                String sAttributeWeight = "(weight " + a.fWeightage.ToString() + ")";
-                String sAttributeMemory = "(memory " + a.iMemory.ToString() + ")";
-                String sAttributeOS = "(os " + a.sOS + ")";
-                String sAttributeBluetooth = "(bluetooth " + a.sBluetooth + ")";
-                String sAttributeWifi = "(wifi " + a.sWifi + ")";
-                String sAttributeFM = "(fm " + a.sFM + ")";
-                String sAttributeZoom = "(zoom " + a.iZoom.ToString() + ")";
-                String sAttributePixel = "(pixel " + a.fPixel.ToString() + ")";
-                String sAttributeFlash = "(flash " + a.sFlash + ")";
-                String sAttributeVideoHD = "(videoHD " + a.sVideoHD + ")";
-                String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
-
-                String sFact = "(phone " + sAttributeModel + sAttributePrice + sAttributeBrand + sAttributeColor + sAttributeScreen + sAttributeWeight + sAttributeMemory + sAttributeOS + sAttributeBluetooth + sAttributeWifi + sAttributeFM + sAttributeZoom + sAttributePixel + sAttributeFlash + sAttributeVideoHD + sAttributeWeightage + ")";
-
-                a.sFact = sFact;
-                */
                 MobileResultDisplay addon = new MobileResultDisplay();
                 addon.fWeightage = a.fWeightage;
                 addon.sModel = a.sModel;
@@ -421,11 +368,11 @@ namespace MobilePhone
             testDataGrid();
             //dataGridView.Refresh();
 
-            for (int i = 0; i < phase3Results.Count; i++)
-            {
-                if (phase3Results.ElementAt(i).fWeightage == 0)
-                    phase3Results.RemoveAt(i);
-            }
+           // for (int i = 0; i < phase3Results.Count; i++)
+           // {
+           //     if (phase3Results.ElementAt(i).fWeightage == 0)
+            //        phase3Results.RemoveAt(i);
+           // }
             dataGridView.DataSource = phase3Results;
         }
 
