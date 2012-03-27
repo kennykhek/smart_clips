@@ -29,11 +29,11 @@ namespace MobilePhone
                     //Question: Do you watch movies you downloaded on your phone?
                     if (control.Name.Equals("q1_yes"))
                     {
-                        environment.AssertString("(question (order watch_movie) (selection yes))");
+                        environment.AssertString("(question (order watch_movie) (selection yes)(phase 3))");
                     }
                     else if (control.Name.Equals("q1_no"))
                     {
-                        environment.AssertString("(question (order watch_movie) (selection no))");
+                        environment.AssertString("(question (order watch_movie) (selection no)(phase 3))");
                     }
                 }
             }
@@ -46,11 +46,11 @@ namespace MobilePhone
                     //Question: Do you listen to music on your phone?
                     if (control.Name.Equals("q2_yes"))
                     {
-                        environment.AssertString("(question (order listen_music) (selection yes))");
+                        environment.AssertString("(question (order listen_music) (selection yes)(phase 3))");
                     }
                     else if (control.Name.Equals("q2_no"))
                     {
-                        environment.AssertString("(question (order listen_music) (selection no))");
+                        environment.AssertString("(question (order listen_music) (selection no)(phase 3))");
                     }
 
                 }
@@ -65,11 +65,11 @@ namespace MobilePhone
                     //Question: Do you view pictures you downloaded on your phone?
                     if (control.Name.Equals("q3_yes"))
                     {
-                        environment.AssertString("(question (order view_picture) (selection yes))");
+                        environment.AssertString("(question (order view_picture) (selection yes)(phase 3))");
                     }
                     else if (control.Name.Equals("q3_no"))
                     {
-                        environment.AssertString("(question (order view_picture) (selection no))");
+                        environment.AssertString("(question (order view_picture) (selection no)(phase 3))");
                     }
                 }
             }
@@ -83,11 +83,11 @@ namespace MobilePhone
                     //Question: Do you play online or Internet browsing on your phone?
                     if (control.Name.Equals("q4_yes"))
                     {
-                        environment.AssertString("(question (order game_internet) (selection yes))");
+                        environment.AssertString("(question (order game_internet) (selection yes)(phase 3))");
                     }
                     else if (control.Name.Equals("q4_no"))
                     {
-                        environment.AssertString("(question (order game_internet) (selection no))");
+                        environment.AssertString("(question (order game_internet) (selection no)(phase 3))");
                     }
                 }
             }
@@ -101,11 +101,11 @@ namespace MobilePhone
                     //Question: Do you use phone as your personal and only camera? 
                     if (control.Name.Equals("q5_yes"))
                     {
-                        environment.AssertString("(question (order use_camera) (selection yes))");
+                        environment.AssertString("(question (order use_camera) (selection yes)(phase 3))");
                     }
                     else if (control.Name.Equals("q5_no"))
                     {
-                        environment.AssertString("(question (order use_camera) (selection no))");
+                        environment.AssertString("(question (order use_camera) (selection no)(phase 3))");
                     }
                 }
             }
@@ -119,11 +119,11 @@ namespace MobilePhone
                     //Question: Do you often take night picture/video using your phone
                     if (control.Name.Equals("q6_yes"))
                     {
-                        environment.AssertString("(question (order use_camera_night) (selection yes))");
+                        environment.AssertString("(question (order use_camera_night) (selection yes)(phase 3))");
                     }
                     else if (control.Name.Equals("q6_no"))
                     {
-                        environment.AssertString("(question (order use_camera_night) (selection no))");
+                        environment.AssertString("(question (order use_camera_night) (selection no)(phase 3))");
                     }
                 }
             }
