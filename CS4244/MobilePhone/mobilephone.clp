@@ -212,11 +212,13 @@
          (pixel 8.0)(flash yes))
 )
 
-(deffacts user_preference
- (question (order prefer_func) (selection s1))
- (question (order user_type) (selection s1))
- (question (order user_attitude) (selection s2))
- (question (order user_saying) (selection s3))
+(defrule user_preference
+  (phase (stage 2))
+  =>
+ (assert (question (order prefer_func) (selection s1)))
+ (assert (question (order user_type) (selection s1)))
+ (assert (question (order user_attitude) (selection s2)))
+ (assert (question (order user_saying) (selection s3)))
 )
 
 ;Phone Plans
@@ -551,7 +553,6 @@
 ;;* PERSONALITY RULES *
 ;;*********************
 (defrule functional_or_design
-  (phase (stage 1))
   (question (order prefer_func) (selection ?sel))
   =>
   (switch ?sel 
@@ -583,7 +584,6 @@
 )
   
 (defrule user_types
-  (phase (stage 1))
   (question (order user_type) (selection ?sel))
   =>
   (switch ?sel 
@@ -619,7 +619,6 @@
 )
 
 (defrule user_sayings
-  (phase (stage 1))
   (question (order user_saying) (selection ?sel))
   =>
   (switch ?sel 
@@ -651,7 +650,6 @@
 )
 
 (defrule user_attitudes
-  (phase (stage 1))
   (question (order user_attitude) (selection ?sel))
   =>
   (switch ?sel
@@ -698,7 +696,6 @@
 ;;* PREFERENCE RULES *
 ;;********************
 (defrule use_camera
-  (phase (stage 3))
   (question (order use_camera)(selection ?sel))
   =>
   (if (eq ?sel yes) then
@@ -709,17 +706,15 @@
 )
 
 (defrule game_internet
-  (phase (stage 3))
   (question (order game_internet)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-    (assert (requirement_phone (attribute screen)(value large)(phase 2)))
+    (assert (requirement_phone (attribute screen)(value large)(phase 3)))
 	(assert (requirement_phone (attribute wifi)(value yes)(phase 3)))
   )
 )
 
 (defrule view_picture
-  (phase (stage 3))
   (question (order view_picture)(selection ?sel))
   =>
   (if (eq ?sel yes) then
@@ -728,7 +723,6 @@
 )
 
 (defrule listen_music
-  (phase (stage 3))
   (question (order listen_music)(selection ?sel))
   =>
   (if (eq ?sel yes) then
@@ -738,29 +732,29 @@
 )
 
 (defrule watch_movie
-  (phase (stage 3))
   (question (order watch_movie)(selection ?sel))
   =>
   (if (eq ?sel yes) then
     (assert (requirement_phone (attribute screen)(value large)(phase 3)))
 	(assert (requirement_phone (attribute memory)(value large)(phase 3)))
+	(assert (requirement_phone (attribute weight)(value light)(phase 3)))
   )
 )
 
-(deffacts trial
-  (requirement_phone (attribute pixel)  (value large))
-  (requirement_phone (attribute flash)  (value yes))
-  (requirement_phone (attribute videoHD)(value no))
-  (requirement_phone (attribute screen) (value large))
-  (requirement_phone (attribute weight) (value light))
-  (requirement_phone (attribute memory) (value large))
-  (requirement_phone (attribute wifi)   (value yes))
-  (requirement_phone (attribute fm)     (value yes))
-)
+;(deffacts trial
+;  (requirement_phone (attribute pixel)  (value large))
+;  (requirement_phone (attribute flash)  (value yes))
+;  (requirement_phone (attribute videoHD)(value no))
+;  (requirement_phone (attribute screen) (value large))
+;  (requirement_phone (attribute weight) (value light))
+;  (requirement_phone (attribute memory) (value large))
+;  (requirement_phone (attribute wifi)   (value yes))
+;  (requirement_phone (attribute fm)     (value yes))
+;)
 
 (defrule calculate_weightage_phone
 	(declare (salience 50))
-  (phase (stage 3))
+  (phase (stage 4))
   (requirement_phone (attribute pixel)  (value ?pixel))
   (requirement_phone (attribute flash)  (value ?flash))
   (requirement_phone (attribute videoHD)(value ?videoHD))
