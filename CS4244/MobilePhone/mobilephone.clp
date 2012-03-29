@@ -610,8 +610,8 @@
   )
 )
 
-(defrule user_sayings
-  (question (order user_saying) (selection ?sel))
+(defrule user_attitudes
+  (question (order user_attitude) (selection ?sel))
   =>
   (switch ?sel 
     (case s1 then ; moderation in all things 
@@ -641,8 +641,8 @@
   )
 )
 
-(defrule user_attitudes
-  (question (order user_attitude) (selection ?sel))
+(defrule user_sayings
+  (question (order user_saying) (selection ?sel))
   =>
   (switch ?sel
     (case s1 then ; live, laugh, love
