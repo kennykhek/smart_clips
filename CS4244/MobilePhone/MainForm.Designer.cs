@@ -305,7 +305,7 @@
             // panelPhase0
             // 
             this.panelPhase0.Controls.Add(this.labelPhase0);
-            this.panelPhase0.Location = new System.Drawing.Point(0, 0);
+            this.panelPhase0.Location = new System.Drawing.Point(9, 11);
             this.panelPhase0.Name = "panelPhase0";
             this.panelPhase0.Size = new System.Drawing.Size(730, 418);
             this.panelPhase0.TabIndex = 5;
@@ -525,7 +525,6 @@
             // 
             // panelPhase3
             // 
-            this.panelPhase3.Controls.Add(this.panelPhase0);
             this.panelPhase3.Controls.Add(this.gbRecPhone);
             this.panelPhase3.Controls.Add(this.panel7);
             this.panelPhase3.Controls.Add(this.panel6);
@@ -1764,7 +1763,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 478);
+            this.ClientSize = new System.Drawing.Size(755, 480);
+            this.Controls.Add(this.panelPhase0);
             this.Controls.Add(this.panelPhase3);
             this.Controls.Add(this.panelPhase4);
             this.Controls.Add(this.panelPhase1);

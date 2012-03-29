@@ -118,7 +118,7 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-          // environment.Watch(WatchItem.Facts);
+        //  environment.Watch(WatchItem.Facts);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -186,19 +186,24 @@ namespace MobilePhone {
                 }
                 if (panelPhase1.Visible)
                 {
+                    //Before processing modify the correct stage at clips side
+                    environment.Eval("(next_phase 1)");
+
                     ProcessPhase(Defintions.PhasePersonality);
                 }
                 if (panelPhase2.Visible)
                 {
+                    //Before processing modify the correct stage
+                    environment.Eval("(next_phase 3)");
+
                     ProcessPhase(Defintions.PhasePreferences);
-                    //Assert the phase template to activate the rule to calculate weightage
-                    environment.AssertString("(phase (stage 3))");
                 }
                 if (panelPhase3.Visible)
                 {
-                    ProcessPhase(Defintions.PhaseDetails);
+                    //Before processing modify the correct stage
+                    environment.Eval("(next_phase 5)");
 
-                
+                    ProcessPhase(Defintions.PhaseDetails);
                 }
                 if (panelPhase4.Visible) 
                 {
@@ -220,14 +225,17 @@ namespace MobilePhone {
                 else if (panelPhase2.Visible)
                 {
                     ResetPhase(Defintions.PhasePreferences);
+                    environment.Eval("(prev_phase 0)");
                 }
                 else if (panelPhase3.Visible)
                 {
                     ResetPhase(Defintions.PhaseDetails);
+                    environment.Eval("(prev_phase 5)");
                 }
                 else if (panelPhase4.Visible)
                 {
                     ResetPhase(Defintions.PhaseMobilePlan);
+                    environment.Eval("(prev_phase 5)");
                 }
                 //Have to reset to the previous state
                 SetUIState(--UIState);
@@ -260,13 +268,13 @@ namespace MobilePhone {
                 case Defintions.PhaseStart:
                     {
                         //Nothing to reset to @kwanghock 05/03/2012
-                        environment.Reset();
+                        //environment.Reset();
                     }
                     break;
                 case Defintions.PhasePersonality:
                     {
                         //Nothing to reset to. It will go back to phaseStart @kwanghock
-                        environment.Reset();
+                        //environment.Reset();
                     }
                     break;
                 case Defintions.PhasePreferences:
@@ -275,7 +283,7 @@ namespace MobilePhone {
                          * If we are implementing phasePersonality, we will retract all the personality facts
                          * we asserted here.
                          */
-                        environment.Reset();
+                        //environment.Reset();
                     }
                     break;
                 case Defintions.PhaseDetails:
@@ -286,13 +294,13 @@ namespace MobilePhone {
                          * do a reset and assert back the facts that were determined at the personality phase
                          */
                         
-                        environment.Reset();
+                       /* environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
                         
                         //Clear the preferences details and clear the phoneList updated at the preferences phase
                         preferencesDetails.Clear();
-                        preferencesPhoneList.Clear();
+                        preferencesPhoneList.Clear();*/
 
                        // environment.Eval("reset_requirements_column_one");
                         ResetDropDownDef();
@@ -305,7 +313,7 @@ namespace MobilePhone {
                          * Since there is no way we can use this to retract details about the phone
                          * do a reset and assert back the facts that were determined at the preferences phase and the personality phase
                          */
-                        environment.Reset();
+                       /* environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
                         for (int i = 0; i < preferencesDetails.Count; i++)
@@ -316,7 +324,7 @@ namespace MobilePhone {
 
                         //Clear the specifications details and hte phonelist updated at the specifications phase
                         phoneSpecsPhoneList.Clear();
-                        phoneSpecsDetails.Clear();
+                        phoneSpecsDetails.Clear();*/
                     }
                     break;
             }
@@ -329,7 +337,8 @@ namespace MobilePhone {
             {
                 case Defintions.PhaseStart:
                 {
-                      //Just some basic introduction of the whole thing
+                      //Assert to change the phase slot at CLIPS side so that clips can fire correct rules
+                    //environment.Eval();
                 }
                 break;
                 case Defintions.PhasePersonality:
@@ -339,7 +348,7 @@ namespace MobilePhone {
                     ProcessPersonality();
 
                     //update phoneList for this phasePersonality
-                    UpdatePhoneList(personalityPhoneList);
+                    //UpdatePhoneList(personalityPhoneList);
                 }
                 break;
                 case Defintions.PhasePreferences:
@@ -348,7 +357,7 @@ namespace MobilePhone {
                     ProcessPhasePreferences();
 
                     //Update phonelist for this PhasePreferences
-                    UpdatePhoneList(preferencesPhoneList);
+                    //UpdatePhoneList(preferencesPhoneList);
                 }
                 break;
                 case Defintions.PhaseDetails:
@@ -359,7 +368,7 @@ namespace MobilePhone {
 
                     //Update phoneList for this PhaseDetails
                    
-                    UpdatePhoneList(phoneSpecsPhoneList);
+                    //UpdatePhoneList(phoneSpecsPhoneList);
                     //dataGridView.DataSource = pha;
                 }
                 break;
@@ -506,9 +515,7 @@ namespace MobilePhone {
                 this.buttonRestart.Visible = false;
                 this.buttonPrev.Visible = true;
                 panelPhase3.BringToFront();
-               // environment.AssertString("(phase(stage 3))");
-                //set datasource to null
-                //dataGridView.DataSource = null;
+                phase3Results.Clear();
             }
             else if (iPhase == Defintions.PhaseMobilePlan)
             {
