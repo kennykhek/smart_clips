@@ -198,7 +198,7 @@
          (brand lg)(screen 3.8)(weight 107.0)(memory 32)
          (os android)(bluetooth yes)(wifi yes)(fm yes)
          (pixel 5.0))		
-  (phone (model parada)(price 789.00) ; price from www.sgbest.com
+  (phone (model prada)(price 789.00) ; price from www.sgbest.com
          (brand lg)(color black)(screen 4.3)(weight 138.0)(memory 32)
          (os android)(bluetooth yes)(wifi yes)(fm yes)
          (pixel 8.0)(flash yes))			 
@@ -344,15 +344,15 @@
 	(phone_plan_price (model sensation_xe) (phoneprice 538.00)(plan iOne_Super_Value))
 	(phone_plan_price (model sensation_xe) (phoneprice 438.00)(plan iOne_Plus))
 	
-	(phone_plan_price (model sensation_x1) (phoneprice 298.00) (plan 3G_Flexi_Value))
-	(phone_plan_price (model sensation_x1) (phoneprice 198.00) (plan 3G_Flexi_Premium))
-	(phone_plan_price (model sensation_x1) (phoneprice 198.00) (plan 3G_Flexi_Plus))
-	(phone_plan_price (model sensation_x1) (phoneprice 398.00) (plan 3G_Flexi_Lite))
-	(phone_plan_price (model sensation_x1) (phoneprice 398.00) (plan iTwo_Value))
-	(phone_plan_price (model sensation_x1) (phoneprice 298.00) (plan iTwo_Plus))
-	(phone_plan_price (model sensation_x1) (phoneprice 198.00) (plan iThree_Plus))
-	(phone_plan_price (model sensation_x1) (phoneprice 598.00) (plan iOne_Super_Value))
-	(phone_plan_price (model sensation_x1) (phoneprice 498.00) (plan iOne_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 298.00) (plan 3G_Flexi_Value))
+	(phone_plan_price (model sensation_xl) (phoneprice 198.00) (plan 3G_Flexi_Premium))
+	(phone_plan_price (model sensation_xl) (phoneprice 198.00) (plan 3G_Flexi_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 398.00) (plan 3G_Flexi_Lite))
+	(phone_plan_price (model sensation_xl) (phoneprice 398.00) (plan iTwo_Value))
+	(phone_plan_price (model sensation_xl) (phoneprice 298.00) (plan iTwo_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 198.00) (plan iThree_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 598.00) (plan iOne_Super_Value))
+	(phone_plan_price (model sensation_xl) (phoneprice 498.00) (plan iOne_Plus))
 	
 	(phone_plan_price (model wildfire_s) (phoneprice 0.00)  (plan 3G_Flexi_Value))
 	(phone_plan_price (model wildfire_s) (phoneprice 0.00)  (plan 3G_Flexi_Premium))
@@ -496,15 +496,15 @@
 	(phone_plan_price (model optimus_sol) (phoneprice 238.00)(plan iOne_Super_Value))
 	(phone_plan_price (model optimus_sol) (phoneprice 138.00)(plan iOne_Plus))
 	
-	(phone_plan_price (model parada) (phoneprice 278.00) (plan 3G_Flexi_Value))
-	(phone_plan_price (model parada) (phoneprice 178.00) (plan 3G_Flexi_Premium))
-	(phone_plan_price (model parada) (phoneprice 178.00) (plan 3G_Flexi_Plus))
-	(phone_plan_price (model parada) (phoneprice 378.00) (plan 3G_Flexi_Lite))
-	(phone_plan_price (model parada) (phoneprice 378.00) (plan iTwo_Value))
-	(phone_plan_price (model parada) (phoneprice 278.00) (plan iTwo_Plus))
-	(phone_plan_price (model parada) (phoneprice 178.00) (plan iThree_Plus))
-	(phone_plan_price (model parada) (phoneprice 578.00) (plan iOne_Super_Value))
-	(phone_plan_price (model parada) (phoneprice 478.00) (plan iOne_Plus))
+	(phone_plan_price (model prada) (phoneprice 278.00) (plan 3G_Flexi_Value))
+	(phone_plan_price (model prada) (phoneprice 178.00) (plan 3G_Flexi_Premium))
+	(phone_plan_price (model prada) (phoneprice 178.00) (plan 3G_Flexi_Plus))
+	(phone_plan_price (model prada) (phoneprice 378.00) (plan 3G_Flexi_Lite))
+	(phone_plan_price (model prada) (phoneprice 378.00) (plan iTwo_Value))
+	(phone_plan_price (model prada) (phoneprice 278.00) (plan iTwo_Plus))
+	(phone_plan_price (model prada) (phoneprice 178.00) (plan iThree_Plus))
+	(phone_plan_price (model prada) (phoneprice 578.00) (plan iOne_Super_Value))
+	(phone_plan_price (model prada) (phoneprice 478.00) (plan iOne_Plus))
 			 
   ; Motorola
 	(phone_plan_price (model defy_plus) (phoneprice 0.00)  (plan 3G_Flexi_Value))
@@ -528,17 +528,136 @@
 	(phone_plan_price (model razr) (phoneprice 488.00)(plan iOne_Plus))
 	
 	
-	;;M1
+	;;Starhub
 	;Nokia
-	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_100))
-	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_300))
-	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_700))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan i2Surf_100))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_unlimited))
 	
-	(phone_plan_price (model lumia_800) (phoneprice 248.00)(plan ValueSurf_100))
-	(phone_plan_price (model lumia_800) (phoneprice 148.00)(plan ValueSurf_300))
-	(phone_plan_price (model lumia_800) (phoneprice 0.00)  (plan ValueSurf_700))
+	(phone_plan_price (model lumia_800) (phoneprice 218.00) (plan i2Surf_100))
+	(phone_plan_price (model lumia_800) (phoneprice 68.00) (plan i2Surf_300))
+	(phone_plan_price (model lumia_800) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model lumia_800) (phoneprice 218.00) (plan SmartSurf_100))
+	(phone_plan_price (model lumia_800) (phoneprice 68.00) (plan SmartSurf_300))
+	(phone_plan_price (model lumia_800) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model lumia_800) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan i2Surf_100))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model N9_16) (phoneprice 98.00) (plan i2Surf_100))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model N9_16) (phoneprice 98.00) (plan SmartSurf_100))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model N9_64) (phoneprice 98.00) (plan i2Surf_100))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model N9_64) (phoneprice 98.00) (plan SmartSurf_100))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_unlimited))
+
+	
+	;;HTC
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model sensation_xe) (phoneprice 298.00) (plan SmartSurf_100))
+	(phone_plan_price (model sensation_xe) (phoneprice 198.00) (plan SmartSurf_300))
+	(phone_plan_price (model sensation_xe) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model sensation_xe) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model sensation_xl) (phoneprice 278.00) (plan SmartSurf_100))
+	(phone_plan_price (model sensation_xl) (phoneprice 178.00) (plan SmartSurf_300))
+	(phone_plan_price (model sensation_xl) (phoneprice 78.00) (plan SmartSurf_700))
+	(phone_plan_price (model sensation_xl) (phoneprice 0.00) (plan SmartSurf_unlimited))
 	
 	
+	;Samsung
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_note) (phoneprice 498.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_note) (phoneprice 348.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_note) (phoneprice 198.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_note) (phoneprice 198.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 298.00) (plan i2Surf_100))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 198.00) (plan i2Surf_300))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 98.00) (plan i2Surf_700))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 298.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 198.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 98.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 98.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 448.00) (plan i2Surf_100))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 348.00) (plan i2Surf_300))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 248.00) (plan i2Surf_700))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 448.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 348.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 248.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 248.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_w) (phoneprice 98.00) (plan i2Surf_100))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model galaxy_w) (phoneprice 98.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan SmartSurf_unlimited))
+			 
+  ; LG
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan i2Surf_100))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model optimus_sol) (phoneprice 38.00) (plan i2Surf_100))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model optimus_sol) (phoneprice 38.00) (plan SmartSurf_100))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model prada) (phoneprice 328.00) (plan i2Surf_100))
+	(phone_plan_price (model prada) (phoneprice 228.00) (plan i2Surf_300))
+	(phone_plan_price (model prada) (phoneprice 128.00) (plan i2Surf_700))
+	(phone_plan_price (model prada) (phoneprice 328.00) (plan SmartSurf_100))
+	(phone_plan_price (model prada) (phoneprice 228.00) (plan SmartSurf_300))
+	(phone_plan_price (model prada) (phoneprice 128.00) (plan SmartSurf_700))
+	(phone_plan_price (model prada) (phoneprice 128.00) (plan SmartSurf_unlimited))
+	
+			 
+  ; Motorola
+	(phone_plan_price (model razr) (phoneprice 298.00) (plan i2Surf_100))
+	(phone_plan_price (model razr) (phoneprice 148.00) (plan i2Surf_300))
+	(phone_plan_price (model razr) (phoneprice 48.00) (plan i2Surf_700))
+	(phone_plan_price (model razr) (phoneprice 298.00) (plan SmartSurf_100))
+	(phone_plan_price (model razr) (phoneprice 148.00) (plan SmartSurf_300))
+	(phone_plan_price (model razr) (phoneprice 48.00) (plan SmartSurf_700))
+	(phone_plan_price (model razr) (phoneprice 0.00) (plan SmartSurf_unlimited))
+
 )
 
 ;;*********************
