@@ -994,8 +994,11 @@
   (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
 )
 
+;;Not yet finished
 (deffunction get_weightage_phone_plan_list ()
-  (bind ?facts (find-all-facts((?p weightage_phone_plan)) TRUE))
+  (bind ?facts (find-all-facts((?p weightage_phone_plan)) 
+  TRUE
+  ))
 )
 
 (deffunction next_phase (?changephase)
