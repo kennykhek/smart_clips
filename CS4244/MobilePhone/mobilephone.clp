@@ -198,7 +198,7 @@
          (brand lg)(screen 3.8)(weight 107.0)(memory 32)
          (os android)(bluetooth yes)(wifi yes)(fm yes)
          (pixel 5.0))		
-  (phone (model parada)(price 789.00) ; price from www.sgbest.com
+  (phone (model prada)(price 789.00) ; price from www.sgbest.com
          (brand lg)(color black)(screen 4.3)(weight 138.0)(memory 32)
          (os android)(bluetooth yes)(wifi yes)(fm yes)
          (pixel 8.0)(flash yes))			 
@@ -344,15 +344,15 @@
 	(phone_plan_price (model sensation_xe) (phoneprice 538.00)(plan iOne_Super_Value))
 	(phone_plan_price (model sensation_xe) (phoneprice 438.00)(plan iOne_Plus))
 	
-	(phone_plan_price (model sensation_x1) (phoneprice 298.00) (plan 3G_Flexi_Value))
-	(phone_plan_price (model sensation_x1) (phoneprice 198.00) (plan 3G_Flexi_Premium))
-	(phone_plan_price (model sensation_x1) (phoneprice 198.00) (plan 3G_Flexi_Plus))
-	(phone_plan_price (model sensation_x1) (phoneprice 398.00) (plan 3G_Flexi_Lite))
-	(phone_plan_price (model sensation_x1) (phoneprice 398.00) (plan iTwo_Value))
-	(phone_plan_price (model sensation_x1) (phoneprice 298.00) (plan iTwo_Plus))
-	(phone_plan_price (model sensation_x1) (phoneprice 198.00) (plan iThree_Plus))
-	(phone_plan_price (model sensation_x1) (phoneprice 598.00) (plan iOne_Super_Value))
-	(phone_plan_price (model sensation_x1) (phoneprice 498.00) (plan iOne_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 298.00) (plan 3G_Flexi_Value))
+	(phone_plan_price (model sensation_xl) (phoneprice 198.00) (plan 3G_Flexi_Premium))
+	(phone_plan_price (model sensation_xl) (phoneprice 198.00) (plan 3G_Flexi_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 398.00) (plan 3G_Flexi_Lite))
+	(phone_plan_price (model sensation_xl) (phoneprice 398.00) (plan iTwo_Value))
+	(phone_plan_price (model sensation_xl) (phoneprice 298.00) (plan iTwo_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 198.00) (plan iThree_Plus))
+	(phone_plan_price (model sensation_xl) (phoneprice 598.00) (plan iOne_Super_Value))
+	(phone_plan_price (model sensation_xl) (phoneprice 498.00) (plan iOne_Plus))
 	
 	(phone_plan_price (model wildfire_s) (phoneprice 0.00)  (plan 3G_Flexi_Value))
 	(phone_plan_price (model wildfire_s) (phoneprice 0.00)  (plan 3G_Flexi_Premium))
@@ -496,15 +496,15 @@
 	(phone_plan_price (model optimus_sol) (phoneprice 238.00)(plan iOne_Super_Value))
 	(phone_plan_price (model optimus_sol) (phoneprice 138.00)(plan iOne_Plus))
 	
-	(phone_plan_price (model parada) (phoneprice 278.00) (plan 3G_Flexi_Value))
-	(phone_plan_price (model parada) (phoneprice 178.00) (plan 3G_Flexi_Premium))
-	(phone_plan_price (model parada) (phoneprice 178.00) (plan 3G_Flexi_Plus))
-	(phone_plan_price (model parada) (phoneprice 378.00) (plan 3G_Flexi_Lite))
-	(phone_plan_price (model parada) (phoneprice 378.00) (plan iTwo_Value))
-	(phone_plan_price (model parada) (phoneprice 278.00) (plan iTwo_Plus))
-	(phone_plan_price (model parada) (phoneprice 178.00) (plan iThree_Plus))
-	(phone_plan_price (model parada) (phoneprice 578.00) (plan iOne_Super_Value))
-	(phone_plan_price (model parada) (phoneprice 478.00) (plan iOne_Plus))
+	(phone_plan_price (model prada) (phoneprice 278.00) (plan 3G_Flexi_Value))
+	(phone_plan_price (model prada) (phoneprice 178.00) (plan 3G_Flexi_Premium))
+	(phone_plan_price (model prada) (phoneprice 178.00) (plan 3G_Flexi_Plus))
+	(phone_plan_price (model prada) (phoneprice 378.00) (plan 3G_Flexi_Lite))
+	(phone_plan_price (model prada) (phoneprice 378.00) (plan iTwo_Value))
+	(phone_plan_price (model prada) (phoneprice 278.00) (plan iTwo_Plus))
+	(phone_plan_price (model prada) (phoneprice 178.00) (plan iThree_Plus))
+	(phone_plan_price (model prada) (phoneprice 578.00) (plan iOne_Super_Value))
+	(phone_plan_price (model prada) (phoneprice 478.00) (plan iOne_Plus))
 			 
   ; Motorola
 	(phone_plan_price (model defy_plus) (phoneprice 0.00)  (plan 3G_Flexi_Value))
@@ -528,17 +528,136 @@
 	(phone_plan_price (model razr) (phoneprice 488.00)(plan iOne_Plus))
 	
 	
-	;;M1
+	;;Starhub
 	;Nokia
-	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_100))
-	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_300))
-	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan ValueSurf_700))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan i2Surf_100))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model lumia_710) (phoneprice 0.00) (plan SmartSurf_unlimited))
 	
-	(phone_plan_price (model lumia_800) (phoneprice 248.00)(plan ValueSurf_100))
-	(phone_plan_price (model lumia_800) (phoneprice 148.00)(plan ValueSurf_300))
-	(phone_plan_price (model lumia_800) (phoneprice 0.00)  (plan ValueSurf_700))
+	(phone_plan_price (model lumia_800) (phoneprice 218.00) (plan i2Surf_100))
+	(phone_plan_price (model lumia_800) (phoneprice 68.00) (plan i2Surf_300))
+	(phone_plan_price (model lumia_800) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model lumia_800) (phoneprice 218.00) (plan SmartSurf_100))
+	(phone_plan_price (model lumia_800) (phoneprice 68.00) (plan SmartSurf_300))
+	(phone_plan_price (model lumia_800) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model lumia_800) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan i2Surf_100))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model 300) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model N9_16) (phoneprice 98.00) (plan i2Surf_100))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model N9_16) (phoneprice 98.00) (plan SmartSurf_100))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model N9_16) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model N9_64) (phoneprice 98.00) (plan i2Surf_100))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model N9_64) (phoneprice 98.00) (plan SmartSurf_100))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_unlimited))
+
+	
+	;;HTC
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model sensation_xe) (phoneprice 298.00) (plan SmartSurf_100))
+	(phone_plan_price (model sensation_xe) (phoneprice 198.00) (plan SmartSurf_300))
+	(phone_plan_price (model sensation_xe) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model sensation_xe) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model sensation_xl) (phoneprice 278.00) (plan SmartSurf_100))
+	(phone_plan_price (model sensation_xl) (phoneprice 178.00) (plan SmartSurf_300))
+	(phone_plan_price (model sensation_xl) (phoneprice 78.00) (plan SmartSurf_700))
+	(phone_plan_price (model sensation_xl) (phoneprice 0.00) (plan SmartSurf_unlimited))
 	
 	
+	;Samsung
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_note) (phoneprice 498.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_note) (phoneprice 348.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_note) (phoneprice 198.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_note) (phoneprice 198.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 298.00) (plan i2Surf_100))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 198.00) (plan i2Surf_300))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 98.00) (plan i2Surf_700))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 298.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 198.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 98.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_tab_7.0_plus) (phoneprice 98.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 448.00) (plan i2Surf_100))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 348.00) (plan i2Surf_300))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 248.00) (plan i2Surf_700))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 448.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 348.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 248.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_tab_7.7) (phoneprice 248.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model galaxy_w) (phoneprice 98.00) (plan i2Surf_100))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model galaxy_w) (phoneprice 98.00) (plan SmartSurf_100))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model galaxy_w) (phoneprice 0.00) (plan SmartSurf_unlimited))
+			 
+  ; LG
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan i2Surf_100))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_100))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model optimus_hub) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model optimus_sol) (phoneprice 38.00) (plan i2Surf_100))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan i2Surf_300))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan i2Surf_700))
+	(phone_plan_price (model optimus_sol) (phoneprice 38.00) (plan SmartSurf_100))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan SmartSurf_300))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan SmartSurf_700))
+	(phone_plan_price (model optimus_sol) (phoneprice 0.00) (plan SmartSurf_unlimited))
+	
+	(phone_plan_price (model prada) (phoneprice 328.00) (plan i2Surf_100))
+	(phone_plan_price (model prada) (phoneprice 228.00) (plan i2Surf_300))
+	(phone_plan_price (model prada) (phoneprice 128.00) (plan i2Surf_700))
+	(phone_plan_price (model prada) (phoneprice 328.00) (plan SmartSurf_100))
+	(phone_plan_price (model prada) (phoneprice 228.00) (plan SmartSurf_300))
+	(phone_plan_price (model prada) (phoneprice 128.00) (plan SmartSurf_700))
+	(phone_plan_price (model prada) (phoneprice 128.00) (plan SmartSurf_unlimited))
+	
+			 
+  ; Motorola
+	(phone_plan_price (model razr) (phoneprice 298.00) (plan i2Surf_100))
+	(phone_plan_price (model razr) (phoneprice 148.00) (plan i2Surf_300))
+	(phone_plan_price (model razr) (phoneprice 48.00) (plan i2Surf_700))
+	(phone_plan_price (model razr) (phoneprice 298.00) (plan SmartSurf_100))
+	(phone_plan_price (model razr) (phoneprice 148.00) (plan SmartSurf_300))
+	(phone_plan_price (model razr) (phoneprice 48.00) (plan SmartSurf_700))
+	(phone_plan_price (model razr) (phoneprice 0.00) (plan SmartSurf_unlimited))
+
 )
 
 ;;*********************
@@ -686,12 +805,14 @@
   (question (order is_student) (selection ?sel))
   =>
   (switch ?sel 
-   (case s1 then ; yes
-	(assert (requirement_plan (attribute fee)(value 40.0)(weightage 100.0)(phase 1)))
-    	(assert (requirement_plan (attribute sms)(value 600)(weightage 100.0)(phase 1))))
-   (case s2 then ; no
-    	(assert (requirement_plan (attribute fee)(value 80.0)(weightage 100.0)(phase 1)))
-    	(assert (requirement_plan (attribute sms)(value 300)(weightage 100.0)(phase 1))))
+    (case s1 then ; yes
+	  (assert (requirement_plan (attribute fee)(value low) (phase 1)))
+      (assert (requirement_plan (attribute sms)(value high) (phase 1)))
+	)
+    (case s2 then ; no
+      (assert (requirement_plan (attribute fee)(value not_impt)(phase 1)))
+      (assert (requirement_plan (attribute sms)(value not_impt) (phase 1)))
+	)
   )
 )
 
@@ -699,11 +820,16 @@
   (question (order intro_extro) (selection ?sel))
   =>
   (switch ?sel 
-   (case s1 then ; introvert
-	(assert (requirement_plan (attribute data)(value 12)(weightage 100.0)(phase 1))))
-   (case s2 then ; extrovert
-    	(assert (requirement_plan (attribute outgoing)(value 400)(weightage 100.0)(phase 1)))
-    	(assert (requirement_plan (attribute sms)(value 300)(weightage 100.0)(phase 1))))
+    (case s1 then ; introvert
+	  (assert (requirement_plan (attribute data)    (value more)    (phase 1)))
+      (assert (requirement_plan (attribute outgoing)(value not_impt)(phase 1)))
+      (assert (requirement_plan (attribute sms)     (value not_impt)(phase 1)))
+    )	  
+    (case s2 then ; extrovert
+	  (assert (requirement_plan (attribute data)    (value not_impt)(phase 1)))
+      (assert (requirement_plan (attribute outgoing)(value more)    (phase 1)))
+      (assert (requirement_plan (attribute sms)     (value high)    (phase 1)))
+	)
   )
 )
 
@@ -711,46 +837,99 @@
   (question (order talk_or_sms) (selection ?sel))
   =>
   (switch ?sel 
-   (case s1 then ; prefer talking
-	(assert (requirement_plan (attribute outgoing)(value 700)(weightage 100.0)(phase 1))))
-   (case s2 then ; prefer sms-ing
-    	(assert (requirement_plan (attribute sms)(value 600)(weightage 100.0)(phase 1))))
+    (case s1 then ; prefer talking
+	  (assert (requirement_plan (attribute sms)     (value not_impt)(phase 1)))
+	  (assert (requirement_plan (attribute outgoing)(value more)    (phase 1)))
+	)
+    (case s2 then ; prefer sms-ing
+      (assert (requirement_plan (attribute sms)     (value high)    (phase 1)))
+	  (assert (requirement_plan (attribute outgoing)(value not_impt)(phase 1)))
+	)
   )
 )
 
 (defrule check_age
-(question (order user_age) (selection ?sel))
-=>
-(switch ?sel 
-  (case s1 then ; < 18
-		   (assert (requirement_plan (attribute fee)(value 20.0)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute sms)(value 600)(weightage 100.0)(phase 1))))
-  (case s2 then ; 18-29
-           (assert (requirement_plan (attribute fee)(value 35.0)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute sms)(value 800)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute data)(value 4)(weightage 100.0)(phase 1))))
-
-  (case s3 then ; 30 - 49
-           (assert (requirement_plan (attribute fee)(value 60.0)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute sms)(value 300)(weightage 100.0)(phase 1))))
-  (case s4 then ; > 49
-           (assert (requirement_plan (attribute fee)(value 90.0)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute outgoing)(value 400)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute brand)(value motorola)(weightage 100.0)(phase 1))))
- )
+  (question (order user_age) (selection ?sel))
+  =>
+  (switch ?sel 
+    (case s1 then ; < 18
+      (assert (requirement_plan (attribute fee)     (value low)                      (phase 1)))
+      (assert (requirement_plan (attribute sms)     (value medium)                   (phase 1)))
+	  (assert (requirement_plan (attribute data)    (value more)                     (phase 1)))
+	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value htc)     (weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value samsung) (weightage 80.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 20.0) (phase 1)))	  	  
+	)
+    (case s2 then ; 18-29
+      (assert (requirement_plan (attribute fee)     (value low)                      (phase 1)))
+      (assert (requirement_plan (attribute sms)     (value high)                     (phase 1)))
+      (assert (requirement_plan (attribute data)    (value more)                     (phase 1)))
+	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 80.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 20.0) (phase 1)))	  	  
+	)
+    (case s3 then ; 30 - 49
+      (assert (requirement_plan (attribute fee)     (value medium)                   (phase 1)))
+      (assert (requirement_plan (attribute sms)     (value low)                      (phase 1)))
+	  (assert (requirement_plan (attribute data)    (value not_impt)                 (phase 1)))
+	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 80.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 60.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 20.0) (phase 1)))	  	  
+	)
+    (case s4 then ; > 49
+      (assert (requirement_plan (attribute fee)     (value high)                     (phase 1)))
+	  (assert (requirement_plan (attribute data)    (value not_impt)                 (phase 1)))
+	  (assert (requirement_plan (attribute sms)     (value not_impt)                 (phase 1)))
+      (assert (requirement_plan (attribute outgoing)(value more)                     (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value motorola)(weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 80.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value samsung) (weightage 20.0) (phase 1)))	  
+	)
+  )
 )
 
 (defrule check_gender
- (question (order user_gender) (selection ?sel))
- =>
- (switch ?sel 
-  (case s1 then ; Male
-       (assert (requirement_plan (attribute os )(value android)(weightage 100.0)(phase 1))))
-  (case s2 then ; Female
-           (assert (requirement_plan (attribute brand)(value lg)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute outgoing)(value 300)(weightage 100.0)(phase 1)))
-           (assert (requirement_plan (attribute pixel)(value 5.0)(weightage 100.0)(phase 1))))
- )
+  (question (order user_gender) (selection ?sel))
+  =>
+  (switch ?sel 
+    (case s1 then ; Male
+      (assert (requirement_phone(attribute os)      (value android) (weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute os)      (value windows) (weightage 70.0) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value symbian) (weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value meego)   (weightage 20.0) (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 80.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 20.0) (phase 1)))	  
+	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
+	  (assert (requirement_plan (attribute data)   (value less)                 (phase 1)))
+    )	  
+    (case s2 then ; Female
+	  (assert (requirement_phone(attribute os)      (value symbian) (weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute os)      (value android) (weightage 70.0) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value windows) (weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value meego)   (weightage 20.0) (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value lg)      (weightage 100.0)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 80.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 60.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value sumsang) (weightage 20.0) (phase 1)))
+      (assert (requirement_plan (attribute outgoing)(value more)                     (phase 1)))
+      (assert (requirement_plan (attribute data)   (value more)                     (phase 1)))
+	)
+  )
 )
 
 
@@ -944,9 +1123,9 @@
   (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)))
 )
 
-(defrule combine_weightage_A
+(defrule combine_weightage_phone
   ; take average of two weightage if there is two rule with similar attribute and value
-  (declare (salience 100))
+  (declare (salience 75))
   (phase (stage 4))  
   ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage1))
   ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage2))
@@ -960,15 +1139,176 @@
   )
 )
 
-(defrule combine_weightage_B
-  ; take average of two weightage if there is two rule with similar attribute and value
+(defrule combine_weightage_phone_not_impt
+  ; remove a requirement_phone fact, that has value "not_impt"
+  ; if there an addition requirement_plan, for the same attribute
   (declare (salience 100))
   (phase (stage 4))  
   ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val1)(phase 3))
   ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2)(phase 3))
   (test (neq ?rem1 ?rem2))
   =>
-  ;(retract ?rem1)
+  (if (eq ?val1 not_impt) then
+    (retract ?rem1)
+  )
+  (if (eq ?val2 not_impt) then
+    (retract ?rem2)
+  )
+)
+
+(defrule calculate_weightage_plan
+  (declare (salience 50))
+  (phase (stage 4))
+  (requirement_plan (attribute fee)  (value ?planprice))
+  (requirement_plan (attribute outgoing)(value ?outgoing))
+  (requirement_plan (attribute sms) (value ?sms))
+  (requirement_plan (attribute data) (value ?data))  
+  (phone_plan (plan ?plVal)(provider ?proVal)(planprice ?priVal)
+              (outgoing ?ouVal)(sms ?smVal)(data ?daVal))
+  =>
+  (bind ?weightage-pl 100.0)
+  (if (eq ?planprice medium) then
+    (if (> ?priVal 60.0) then
+	  (bind ?weightage-pl 20.0)	
+	)
+  )
+  (if (eq ?planprice low) then
+    (if (> ?priVal 40.0) then
+	  (bind ?weightage-pl 50.0)	
+	)
+    (if (> ?priVal 60.0) then
+	  (bind ?weightage-pl 20.0)	
+	)	
+  )  
+  (bind ?weightage-ou 100.0)
+  (if (eq ?outgoing more) then
+    (if (< ?ouVal 800) then
+	  (bind ?weightage-ou 80.0)
+	)
+    (if (< ?ouVal 500) then
+	  (bind ?weightage-ou 50.0)
+	)	
+    (if (< ?ouVal 300) then
+	  (bind ?weightage-ou 20.0)
+	)		
+  )
+  (bind ?weightage-sm 100.0)
+  (if (eq ?sms high) then
+    (if (< ?smVal 2000) then
+	  (bind ?weightage-sm 50.0)	
+	)
+	(if (< ?smVal 650) then
+	  (bind ?weightage-sm 20.0)	
+	)
+  )
+  (if (eq ?sms medium) then
+    (if (< ?smVal 650) then
+	  (bind ?weightage-sm 20.0)	
+	)
+  ) 
+  (bind ?weightage-da 100.0)
+  (if (eq ?data more) then
+    (if (< ?daVal 15) then
+	  (bind ?weightage-da 50.0)	
+	)
+	(if (< ?daVal 10) then
+	  (bind ?weightage-da 20.0)	
+	)
+  )
+  (if (eq ?data less) then
+    (if (< ?daVal 3) then
+	  (bind ?weightage-da 20.0)	
+	)
+  )  
+  (bind ?new-weightage (/ (+ ?weightage-pl (+ ?weightage-ou 
+						  (+ ?weightage-sm ?weightage-da))) 4))
+  (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)))
+)
+
+
+(defrule combine_weightage_plan_fee
+  ; take the higher of fee budget
+  ; if the difference is between high and low, take medium
+  (declare (salience 50))
+  (phase (stage 4))  
+  ?rem1 <- (requirement_phone (attribute fee)(value ?val1))
+  ?rem2 <- (requirement_phone (attribute fee)(value ?val2))
+  (test (neq ?rem1 ?rem2))
+  =>
+  (if (eq ?val1 low) then
+    (if (eq ?val2 medium) then
+	  (retract ?rem2)
+    )
+	(if (eq ?val2 high) then
+	  (retract ?rem2)
+      (modify ?rem1 (value medium))
+    )
+  )
+  (if (eq ?val1 medium) then
+    (if (eq ?val2 low) then
+	  (retract ?rem1)
+    )
+	(if (eq ?val2 high) then
+	  (retract ?rem2)
+    )
+  )
+  (if (eq ?val1 high) then
+    (if (eq ?val2 medium) then
+	  (retract ?rem1)
+    )
+	(if (eq ?val2 low) then
+	  (retract ?rem2)
+      (modify ?rem1 (value medium))
+    )
+  )
+)
+
+(defrule combine_weightage_plan_sms
+  ; take the higher of sms required
+  ; if the difference is between high and low, take medium
+  (declare (salience 50))
+  (phase (stage 4))  
+  ?rem1 <- (requirement_phone (attribute sms)(value ?val1))
+  ?rem2 <- (requirement_phone (attribute sms)(value ?val2))
+  (test (neq ?rem1 ?rem2))
+  =>
+  (if (eq ?val1 low) then
+    (if (eq ?val2 medium) then
+	  (retract ?rem1)
+    )
+	(if (eq ?val2 high) then
+	  (retract ?rem1)
+      (modify ?rem2 (value medium))
+    )
+  )
+  (if (eq ?val1 medium) then
+    (if (eq ?val2 low) then
+	  (retract ?rem2)
+    )
+	(if (eq ?val2 high) then
+	  (retract ?rem1)
+    )
+  )
+  (if (eq ?val1 high) then
+    (if (eq ?val2 medium) then
+	  (retract ?rem2)
+    )
+	(if (eq ?val2 low) then
+	  (retract ?rem1)
+      (modify ?rem2 (value medium))
+    )
+  )
+)
+
+(defrule combine_weightage_plan_not_impt
+  ; remove a requirement_plan fact, that has value "not_impt"
+  ; if there an addition requirement_plan, for the same attribute
+  (declare (salience 100))
+  (phase (stage 4))  
+  ?rem1 <- (requirement_plan (attribute ?attribute)(value ?val1))
+  ?rem2 <- (requirement_plan (attribute ?attribute)(value ?val2))
+  (test (neq ?rem1 ?rem2))
+  =>
   (if (eq ?val1 not_impt) then
     (retract ?rem1)
   )
