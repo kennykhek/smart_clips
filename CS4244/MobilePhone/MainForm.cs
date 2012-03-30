@@ -118,7 +118,8 @@ namespace MobilePhone {
              * WactchItem is an enum.
              * @kwanghock
              */
-          environment.Watch(WatchItem.Facts);
+
+            environment.Watch(WatchItem.Facts);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -337,8 +338,7 @@ namespace MobilePhone {
             {
                 case Defintions.PhaseStart:
                 {
-                      //Assert to change the phase slot at CLIPS side so that clips can fire correct rules
-                    //environment.Eval();
+                      //Nothing to be done here @kwanghock
                 }
                 break;
                 case Defintions.PhasePersonality:
@@ -347,6 +347,7 @@ namespace MobilePhone {
                     //update personality attributes
                     ProcessPersonality();
 
+                    //Removed @kwanghock
                     //update phoneList for this phasePersonality
                     //UpdatePhoneList(personalityPhoneList);
                 }
@@ -356,6 +357,7 @@ namespace MobilePhone {
                     //Method in PhasePreferences.cs to process
                     ProcessPhasePreferences();
 
+                    //removed @kwanghock
                     //Update phonelist for this PhasePreferences
                     //UpdatePhoneList(preferencesPhoneList);
                 }
