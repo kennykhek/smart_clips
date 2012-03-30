@@ -333,6 +333,14 @@ namespace MobilePhone
                 String sModel = "";
                 float fWeightage = 0;
                 FactAddressValue fv = (FactAddressValue)mv[i];
+
+                /*
+                 * Because the function returns a list of weightage_phone and phone facts so getting the fact slot brand
+                 * will throw exception for weightage_phone facts, once thrown will catch and actually assign the model and 
+                 * weightage values
+                 * Hence those weightage_phone facts will be shown on the grid instead.
+                 * @kwanghock
+                 */
                 try
                 {
                     String sCehck = (String)(SymbolValue)fv.GetFactSlot("brand");

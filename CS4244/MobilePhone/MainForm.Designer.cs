@@ -39,6 +39,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonPrev = new System.Windows.Forms.Button();
             this.buttonRestart = new System.Windows.Forms.Button();
@@ -47,6 +48,13 @@
             this.labelPhase2 = new System.Windows.Forms.Label();
             this.labelPhase3 = new System.Windows.Forms.Label();
             this.panelPhase0 = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.panelPhase4 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
@@ -271,9 +279,9 @@
             this.labelPhase0.AutoSize = true;
             this.labelPhase0.Location = new System.Drawing.Point(14, 12);
             this.labelPhase0.Name = "labelPhase0";
-            this.labelPhase0.Size = new System.Drawing.Size(60, 13);
+            this.labelPhase0.Size = new System.Drawing.Size(99, 13);
             this.labelPhase0.TabIndex = 0;
-            this.labelPhase0.Text = "Phase 0:Hi";
+            this.labelPhase0.Text = "Phase 0: Welcome";
             // 
             // labelPhase1
             // 
@@ -304,11 +312,86 @@
             // 
             // panelPhase0
             // 
+            this.panelPhase0.Controls.Add(this.label28);
+            this.panelPhase0.Controls.Add(this.label27);
+            this.panelPhase0.Controls.Add(this.label22);
+            this.panelPhase0.Controls.Add(this.label26);
+            this.panelPhase0.Controls.Add(this.label25);
+            this.panelPhase0.Controls.Add(this.label24);
+            this.panelPhase0.Controls.Add(this.label23);
             this.panelPhase0.Controls.Add(this.labelPhase0);
             this.panelPhase0.Location = new System.Drawing.Point(12, 10);
             this.panelPhase0.Name = "panelPhase0";
             this.panelPhase0.Size = new System.Drawing.Size(730, 418);
             this.panelPhase0.TabIndex = 5;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(14, 353);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(148, 13);
+            this.label28.TabIndex = 8;
+            this.label28.Text = "Get started now! Cick next!";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(22, 62);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(268, 13);
+            this.label27.TabIndex = 7;
+            this.label27.Text = "The Phone that beckons. the perfect mobile phone";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(17, 40);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(29, 13);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "Title";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(22, 121);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(170, 52);
+            this.label26.TabIndex = 5;
+            this.label26.Text = "Leslie Huang Zhichao \tU080338J\r\nKenny Khek Ren Yong\tU087061H\r\nKoh Kwang Hock \tU08" +
+                "0214X\r\nRyan Tan Shi JIa \tU087205X\r\n";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(16, 93);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(92, 13);
+            this.label25.TabIndex = 4;
+            this.label25.Text = "Group Members";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(17, 195);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(66, 13);
+            this.label24.TabIndex = 3;
+            this.label24.Text = "How to use";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(22, 225);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(381, 104);
+            this.label23.TabIndex = 2;
+            this.label23.Text = resources.GetString("label23.Text");
             // 
             // panelPhase4
             // 
@@ -909,9 +992,9 @@
             this.panelPhase2.Controls.Add(this.grp_box_q4);
             this.panelPhase2.Controls.Add(this.grp_box_q2);
             this.panelPhase2.Controls.Add(this.grp_box_q3);
-            this.panelPhase2.Location = new System.Drawing.Point(0, 0);
+            this.panelPhase2.Location = new System.Drawing.Point(12, 10);
             this.panelPhase2.Name = "panelPhase2";
-            this.panelPhase2.Size = new System.Drawing.Size(716, 400);
+            this.panelPhase2.Size = new System.Drawing.Size(730, 421);
             this.panelPhase2.TabIndex = 2;
             // 
             // grp_box_q6
@@ -1228,7 +1311,6 @@
             // 
             // panelPhase1
             // 
-            this.panelPhase1.Controls.Add(this.panelPhase2);
             this.panelPhase1.Controls.Add(this.groupBox1);
             this.panelPhase1.Controls.Add(this.labelPhase1);
             this.panelPhase1.Location = new System.Drawing.Point(12, 10);
@@ -1765,6 +1847,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 480);
+            this.Controls.Add(this.panelPhase2);
             this.Controls.Add(this.panelPhase1);
             this.Controls.Add(this.panelPhase0);
             this.Controls.Add(this.panelPhase4);
@@ -2009,7 +2092,13 @@
         private System.Windows.Forms.Panel communication_box;
         private System.Windows.Forms.RadioButton communication_box_real;
         private System.Windows.Forms.RadioButton communication_box_some;
-
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
     }
 }
 
