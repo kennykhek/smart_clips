@@ -682,6 +682,76 @@
     )
   )
 )
+(defrule student_nsf
+  (question (order is_student) (selection ?sel))
+  =>
+  (switch ?sel 
+   (case s1 then ; yes
+	(assert (requirement_plan (attribute fee)(value 40.0)(weightage 100.0)(phase 1)))
+    	(assert (requirement_plan (attribute sms)(value 600)(weightage 100.0)(phase 1))))
+   (case s2 then ; no
+    	(assert (requirement_plan (attribute fee)(value 80.0)(weightage 100.0)(phase 1)))
+    	(assert (requirement_plan (attribute sms)(value 300)(weightage 100.0)(phase 1))))
+  )
+)
+
+(defrule introvert_extrovert
+  (question (order intro_extro) (selection ?sel))
+  =>
+  (switch ?sel 
+   (case s1 then ; introvert
+	(assert (requirement_plan (attribute data)(value 12)(weightage 100.0)(phase 1))))
+   (case s2 then ; extrovert
+    	(assert (requirement_plan (attribute outgoing)(value 400)(weightage 100.0)(phase 1)))
+    	(assert (requirement_plan (attribute sms)(value 300)(weightage 100.0)(phase 1))))
+  )
+)
+
+(defrule talk_sms
+  (question (order talk_or_sms) (selection ?sel))
+  =>
+  (switch ?sel 
+   (case s1 then ; prefer talking
+	(assert (requirement_plan (attribute outgoing)(value 700)(weightage 100.0)(phase 1))))
+   (case s2 then ; prefer sms-ing
+    	(assert (requirement_plan (attribute sms)(value 600)(weightage 100.0)(phase 1))))
+  )
+)
+
+(defrule check_age
+(question (order user_age) (selection ?sel))
+=>
+(switch ?sel 
+  (case s1 then ; < 18
+		   (assert (requirement_plan (attribute fee)(value 20.0)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute sms)(value 600)(weightage 100.0)(phase 1))))
+  (case s2 then ; 18-29
+           (assert (requirement_plan (attribute fee)(value 35.0)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute sms)(value 800)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute data)(value 4)(weightage 100.0)(phase 1))))
+
+  (case s3 then ; 30 - 49
+           (assert (requirement_plan (attribute fee)(value 60.0)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute sms)(value 300)(weightage 100.0)(phase 1))))
+  (case s4 then ; > 49
+           (assert (requirement_plan (attribute fee)(value 90.0)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute outgoing)(value 400)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute brand)(value motorola)(weightage 100.0)(phase 1))))
+ )
+)
+
+(defrule check_gender
+ (question (order user_gender) (selection ?sel))
+ =>
+ (switch ?sel 
+  (case s1 then ; Male
+       (assert (requirement_plan (attribute os )(value android)(weightage 100.0)(phase 1))))
+  (case s2 then ; Female
+           (assert (requirement_plan (attribute brand)(value lg)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute outgoing)(value 300)(weightage 100.0)(phase 1)))
+           (assert (requirement_plan (attribute pixel)(value 5.0)(weightage 100.0)(phase 1))))
+ )
+)
 
 
 ;;********************
@@ -758,14 +828,14 @@
 ;;* TRIAL RULES STAGES *
 ;;**********************
 ;; TO BE DELETED BEFORE HANDING IN
-(defrule user_personality
-  (phase (stage 1))
-  =>
- (assert (question (order prefer_func)  (selection s1)(phase 1)))
- (assert (question (order user_type)    (selection s1)(phase 1)))
- (assert (question (order user_attitude)(selection s2)(phase 1)))
- (assert (question (order user_saying)  (selection s3)(phase 1)))
-)
+;(defrule user_personality
+ ; (phase (stage 1))
+ ; =>
+ ;(assert (question (order prefer_func)  (selection s1)(phase 1)))
+ ;(assert (question (order user_type)    (selection s1)(phase 1)))
+ ;(assert (question (order user_attitude)(selection s2)(phase 1)))
+ ;(assert (question (order user_saying)  (selection s3)(phase 1)))
+;)
 
 ;(defrules user_personality
 ;  (phase (stage 3))
@@ -898,7 +968,7 @@
   ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2)(phase 3))
   (test (neq ?rem1 ?rem2))
   =>
-  (retract ?rem1)
+  ;(retract ?rem1)
   (if (eq ?val1 not_impt) then
     (retract ?rem1)
   )
