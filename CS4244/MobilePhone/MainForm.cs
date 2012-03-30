@@ -36,12 +36,20 @@ namespace MobilePhone {
         private List<MobilePhoneRecommendation> results;
         int iResultIterate;
 
-        private List<MobileResultDisplay> phase3Results;
+        private BindingList<MobileResultDisplay> phase3Results;
 
         private class MobileResultDisplay
         {
+
             public String sModel { get; set; }
             public float fWeightage { get; set; }
+        }
+
+        private class PlanResultDisplay
+        {
+            public String sModel { set; get; }
+            public String sPlan { set; get; }
+            public float fprice { set; get; }
         }
 
         private class MobilePhoneRecommendation
@@ -103,14 +111,15 @@ namespace MobilePhone {
             results = new List<MobilePhoneRecommendation>();
             iResultIterate = 0;
 
-            phase3Results = new List<MobileResultDisplay>();
+            phase3Results = new BindingList<MobileResultDisplay>();
 
             /*
              * Watching of facts is done in output window. So make sure when build output window is shown
              * WactchItem is an enum.
              * @kwanghock
              */
-            environment.Watch(WatchItem.All);
+
+            environment.Watch(WatchItem.Facts);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
@@ -120,6 +129,9 @@ namespace MobilePhone {
 
             //Load the dropdown values for PhaseDetails
             LoadPhaseDetailsDropdown();
+
+            //Load dropdown values for mobile plans
+            LoadPhasePlanDropdown();
 
             //Test by getting all the facts see whether reflect correctly @kwanghock
             //test();
@@ -175,21 +187,31 @@ namespace MobilePhone {
                 }
                 if (panelPhase1.Visible)
                 {
+                    //Before processing modify the correct stage at clips side
+                    environment.Eval("(next_phase 1)");
+
                     ProcessPhase(Defintions.PhasePersonality);
                 }
                 if (panelPhase2.Visible)
                 {
+                    //Before processing modify the correct stage
+                    environment.Eval("(next_phase 3)");
+
                     ProcessPhase(Defintions.PhasePreferences);
                 }
                 if (panelPhase3.Visible)
                 {
+                    //Before processing modify the correct stage
+                    environment.Eval("(next_phase 5)");
+
                     ProcessPhase(Defintions.PhaseDetails);
                 }
-                /*if (panelPhase4.Visible) @kwanghock 10march2012 removed
+                if (panelPhase4.Visible) 
                 {
-                    ProcessPhase(Defintions.PhaseResults);
-                }*/
+                    ProcessPhase(Defintions.PhaseMobilePlan);
+                }
                 SetUIState(++UIState);
+
             }
             else if (button.Name.CompareTo("buttonPrev") == 0)
             {
@@ -204,15 +226,18 @@ namespace MobilePhone {
                 else if (panelPhase2.Visible)
                 {
                     ResetPhase(Defintions.PhasePreferences);
+                    environment.Eval("(prev_phase 3)");
                 }
                 else if (panelPhase3.Visible)
                 {
                     ResetPhase(Defintions.PhaseDetails);
+                    environment.Eval("(prev_phase 5)");
                 }
-               /* else if (panelPhase4.Visible) @kwanghock 10march2012 removed
+                else if (panelPhase4.Visible)
                 {
-                    ResetPhase(Defintions.PhaseResults);
-                }*/
+                    ResetPhase(Defintions.PhaseMobilePlan);
+                    environment.Eval("(prev_phase 7)");
+                }
                 //Have to reset to the previous state
                 SetUIState(--UIState);
                
@@ -222,32 +247,8 @@ namespace MobilePhone {
                 SetUIState(Defintions.PhaseStart);
                 UIState = Defintions.PhaseStart;
                 ResetPhase(Defintions.PhaseStart); //@kwanghock 05/03/2012 restart button dont reset properly
-            }/* @kwanghock 10march2012 removed
-            else if (button.Name.CompareTo("buttonNextPhone") == 0)
-            {
-                buttonNextPhone.Visible = true;
-                buttonPrevPhone.Visible = true;
-                if (++iResultIterate < results.Count)
-                {
-                    UpdateResult(iResultIterate);
-                    if (iResultIterate == results.Count - 1)
-                    {
-                        buttonNextPhone.Visible = false;
-                        buttonPrevPhone.Visible = true;
-                    }
-                }
             }
-            else if (button.Name.CompareTo("buttonPrevPhone") == 0)
-            {
-                buttonNextPhone.Visible = true;
-                buttonPrevPhone.Visible = true;
-                if (--iResultIterate >= 0)
-                {
-                    UpdateResult(iResultIterate);
-                    if(iResultIterate==0)
-                        buttonPrevPhone.Visible = false;
-                }
-            }*/
+            environment.Run();
         }
 
         private void UpdateResult(int iResultIterate)
@@ -268,13 +269,13 @@ namespace MobilePhone {
                 case Defintions.PhaseStart:
                     {
                         //Nothing to reset to @kwanghock 05/03/2012
-                        environment.Reset();
+                        //environment.Reset();
                     }
                     break;
                 case Defintions.PhasePersonality:
                     {
                         //Nothing to reset to. It will go back to phaseStart @kwanghock
-                        environment.Reset();
+                        //environment.Reset();
                     }
                     break;
                 case Defintions.PhasePreferences:
@@ -283,7 +284,7 @@ namespace MobilePhone {
                          * If we are implementing phasePersonality, we will retract all the personality facts
                          * we asserted here.
                          */
-                        environment.Reset();
+                        //environment.Reset();
                     }
                     break;
                 case Defintions.PhaseDetails:
@@ -293,18 +294,20 @@ namespace MobilePhone {
                          * Since there is no way we can use this to retract,
                          * do a reset and assert back the facts that were determined at the personality phase
                          */
-                        environment.Reset();
+                        
+                       /* environment.Reset();
                         for (int i = 0; i < personalityDetails.Count; i++)
                             environment.AssertString(personalityDetails.ElementAt(i));
-
+                        
                         //Clear the preferences details and clear the phoneList updated at the preferences phase
                         preferencesDetails.Clear();
-                        preferencesPhoneList.Clear();
+                        preferencesPhoneList.Clear();*/
 
+                       // environment.Eval("reset_requirements_column_one");
                         ResetDropDownDef();
                     }
                     break;
-               /* case Defintions.PhaseResults:
+                case Defintions.PhaseMobilePlan:
                     {
                         /*
                          * Retract all the details facts that we asserted here
@@ -317,11 +320,14 @@ namespace MobilePhone {
                         for (int i = 0; i < preferencesDetails.Count; i++)
                             environment.AssertString(preferencesDetails.ElementAt(i));
 
+                        //Assert phase fact again to trigger calculate weightage rule after preferences are chosen.
+                        environment.AssertString("(phase (stage 3))");
+
                         //Clear the specifications details and hte phonelist updated at the specifications phase
                         phoneSpecsPhoneList.Clear();
-                        phoneSpecsDetails.Clear();
+                        phoneSpecsDetails.Clear();*/
                     }
-                    break;*/
+                    break;
             }
             environment.Run();
         }
@@ -332,7 +338,7 @@ namespace MobilePhone {
             {
                 case Defintions.PhaseStart:
                 {
-                      //Just some basic introduction of the whole thing
+                      //Nothing to be done here @kwanghock
                 }
                 break;
                 case Defintions.PhasePersonality:
@@ -341,8 +347,9 @@ namespace MobilePhone {
                     //update personality attributes
                     ProcessPersonality();
 
+                    //Removed @kwanghock
                     //update phoneList for this phasePersonality
-                    UpdatePhoneList(personalityPhoneList);
+                    //UpdatePhoneList(personalityPhoneList);
                 }
                 break;
                 case Defintions.PhasePreferences:
@@ -350,8 +357,9 @@ namespace MobilePhone {
                     //Method in PhasePreferences.cs to process
                     ProcessPhasePreferences();
 
+                    //removed @kwanghock
                     //Update phonelist for this PhasePreferences
-                    UpdatePhoneList(preferencesPhoneList);
+                    //UpdatePhoneList(preferencesPhoneList);
                 }
                 break;
                 case Defintions.PhaseDetails:
@@ -362,21 +370,15 @@ namespace MobilePhone {
 
                     //Update phoneList for this PhaseDetails
                    
-                    UpdatePhoneList(phoneSpecsPhoneList);
-                    dataGridView.DataSource = results;
+                    //UpdatePhoneList(phoneSpecsPhoneList);
+                    //dataGridView.DataSource = pha;
                 }
                 break;
-                /*case Defintions.PhaseResults:
+                case Defintions.PhaseMobilePlan:
                 {
-                    UpdatePhoneList(results);
-
-                    //Sort according to overall weightage
-                    results = results.OrderBy(m=>m.fWeightage).ToList<MobilePhoneRecommendation>();
-
-                    //Display the results of the phone chosen.
-                    UpdateResult(0);
+                    ProcessMobilePlan();
                 }
-                break;*/
+                break;
             }
         }
 
@@ -472,7 +474,7 @@ namespace MobilePhone {
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-              //  panelPhase4.Visible = false;
+              panelPhase4.Visible = false;
                 this.buttonPrev.Visible = false;
                 this.buttonRestart.Visible = false;
                 this.buttonNext.Visible = true;
@@ -484,7 +486,7 @@ namespace MobilePhone {
                 panelPhase1.Visible = true;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-               // panelPhase4.Visible = false;
+               panelPhase4.Visible = false;
                 this.buttonPrev.Visible = true;
                 this.buttonRestart.Visible = false;
                 this.buttonNext.Visible = true;
@@ -497,7 +499,7 @@ namespace MobilePhone {
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = true;
                 panelPhase3.Visible = false;
-                //panelPhase4.Visible = false;
+                panelPhase4.Visible = false;
                 this.buttonNext.Visible = true;
                 this.buttonRestart.Visible = false;
                 panelPhase2.BringToFront();
@@ -510,24 +512,30 @@ namespace MobilePhone {
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = true;
-               // panelPhase4.Visible = false;
-                this.buttonNext.Visible = false;
-                this.buttonRestart.Visible = true;
+                panelPhase4.Visible = false;
+                this.buttonNext.Visible = true;
+                this.buttonRestart.Visible = false;
+                this.buttonPrev.Visible = true;
                 panelPhase3.BringToFront();
+                phase3Results.Clear();
+
+                //Populate the datagrid results on load after do a clearing for safety @kwanghock
+                InitDataGrid();
             }
-            /*else if (iPhase == Defintions.PhaseResults)
+            else if (iPhase == Defintions.PhaseMobilePlan)
             {
                 panelPhase0.Visible = false;
                 panelPhase1.Visible = false;
                 panelPhase2.Visible = false;
                 panelPhase3.Visible = false;
-                //panelPhase4.Visible = true;
+                panelPhase4.Visible = true;
                 this.buttonNext.Visible = false;
                 this.buttonRestart.Visible = true;
-               // this.buttonPrevPhone.Visible = false;
-                ProcessPhase(Defintions.PhaseResults);
-            }*/
+                this.buttonPrev.Visible = true;
+                ProcessPhase(Defintions.PhaseMobilePlan);
+            }
         }
+
 
 
 

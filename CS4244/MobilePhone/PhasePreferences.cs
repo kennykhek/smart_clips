@@ -29,7 +29,11 @@ namespace MobilePhone
                     //Question: Do you watch movies you downloaded on your phone?
                     if (control.Name.Equals("q1_yes"))
                     {
-                        environment.AssertString("(question (order watch_movie) (selection yes))");
+                        environment.AssertString("(question (order watch_movie) (selection yes)(phase 3))");
+                    }
+                    else if (control.Name.Equals("q1_no"))
+                    {
+                        environment.AssertString("(question (order watch_movie) (selection no)(phase 3))");
                     }
                 }
             }
@@ -42,7 +46,11 @@ namespace MobilePhone
                     //Question: Do you listen to music on your phone?
                     if (control.Name.Equals("q2_yes"))
                     {
-                        environment.AssertString("(question (order listen_music) (selection yes))");
+                        environment.AssertString("(question (order listen_music) (selection yes)(phase 3))");
+                    }
+                    else if (control.Name.Equals("q2_no"))
+                    {
+                        environment.AssertString("(question (order listen_music) (selection no)(phase 3))");
                     }
 
                 }
@@ -57,7 +65,11 @@ namespace MobilePhone
                     //Question: Do you view pictures you downloaded on your phone?
                     if (control.Name.Equals("q3_yes"))
                     {
-                        environment.AssertString("(question (order view_picture) (selection yes))");
+                        environment.AssertString("(question (order view_picture) (selection yes)(phase 3))");
+                    }
+                    else if (control.Name.Equals("q3_no"))
+                    {
+                        environment.AssertString("(question (order view_picture) (selection no)(phase 3))");
                     }
                 }
             }
@@ -71,7 +83,11 @@ namespace MobilePhone
                     //Question: Do you play online or Internet browsing on your phone?
                     if (control.Name.Equals("q4_yes"))
                     {
-                        environment.AssertString("(question (order game_internet) (selection yes))");
+                        environment.AssertString("(question (order game_internet) (selection yes)(phase 3))");
+                    }
+                    else if (control.Name.Equals("q4_no"))
+                    {
+                        environment.AssertString("(question (order game_internet) (selection no)(phase 3))");
                     }
                 }
             }
@@ -85,7 +101,11 @@ namespace MobilePhone
                     //Question: Do you use phone as your personal and only camera? 
                     if (control.Name.Equals("q5_yes"))
                     {
-                        environment.AssertString("(question (order use_camera) (selection yes))");
+                        environment.AssertString("(question (order use_camera) (selection yes)(phase 3))");
+                    }
+                    else if (control.Name.Equals("q5_no"))
+                    {
+                        environment.AssertString("(question (order use_camera) (selection no)(phase 3))");
                     }
                 }
             }
@@ -99,11 +119,81 @@ namespace MobilePhone
                     //Question: Do you often take night picture/video using your phone
                     if (control.Name.Equals("q6_yes"))
                     {
-                        environment.AssertString("(question (order use_camera_night) (selection yes))");
+                        environment.AssertString("(question (order use_camera_night) (selection yes)(phase 3))");
+                    }
+                    else if (control.Name.Equals("q6_no"))
+                    {
+                        environment.AssertString("(question (order use_camera_night) (selection no)(phase 3))");
                     }
                 }
             }
-            environment.Run();        
+            environment.Run();   
+     
+            
+        }
+
+        public void InitDataGrid()
+        {
+            //string evalStr = "(update_mobilephone_list nil nil nil nil nil nil nil nil nil nil nil)";
+            string evalStr = "(get_weightagephone_list)";
+
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
+
+            DataTable testdt = new DataTable();
+            phase3Results.Clear();
+            for (int i = 0; i < mv.Count; i++)
+            {
+                String sModel = "";
+                float fWeightage = 0;
+                FactAddressValue fv = (FactAddressValue)mv[i];
+
+                /*
+                 * Because the function returns a list of weightage_phone and phone facts so getting the fact slot brand
+                 * will throw exception for weightage_phone facts, once thrown will catch and actually assign the model and 
+                 * weightage values
+                 * Hence those weightage_phone facts will be shown on the grid instead.
+                 * @kwanghock
+                 */
+                try
+                {
+                    String sCehck = (String)(SymbolValue)fv.GetFactSlot("brand");
+                    continue;
+                }
+                catch (Exception exception)
+                {
+                    if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                        sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                    else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                        sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+
+                    fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                }
+
+
+                MobilePhoneRecommendation a = new MobilePhoneRecommendation();
+                a.sModel = sModel;
+                a.fWeightage = fWeightage;
+                String sAttributeModel = "(model " + a.sModel + ")";
+                String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
+
+                String sFact = "(weightage_phone " + sAttributeModel + sAttributeWeightage + ")";
+
+                MobileResultDisplay addon = new MobileResultDisplay();
+                addon.fWeightage = a.fWeightage;
+                addon.sModel = a.sModel;
+                phase3Results.Add(addon);
+
+            }
+            //Convert binding list to list. Sort by weightage in descending order.
+            MessageBox.Show(phase3Results.Count.ToString());
+            List<MobileResultDisplay> listConvert = phase3Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            phase3Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase3Results.Add(listConvert.ElementAt(i));
+            }
+            dataGridView.DataSource = phase3Results;
         }
     }
 }

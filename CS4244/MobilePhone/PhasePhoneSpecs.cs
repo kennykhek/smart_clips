@@ -207,6 +207,7 @@ namespace MobilePhone
             cbWifi.Items.Insert(0, "");
             cbOS.Items.Insert(0, "");
             cbZoom.Items.Insert(0, "");
+            cbVideoHD.Items.Insert(0, "");
         }
        
         //Convert the first letter of the string arugment to be of uppercase
@@ -322,86 +323,48 @@ namespace MobilePhone
         public void UpdatePhoneGrid(String attribute)
         {
             string evalStr = "(update_mobilephone_list " + attribute + ")";
-            //string evalStr = "(get-mobilephone-list)";
-            //string evalStr = "(update-mobilephone-list windows)";
+           // string evalStr = "(get_weightagephone_list)";
+       
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
             DataTable testdt = new DataTable();
             phase3Results.Clear();
-
-
-            
-
             for (int i = 0; i < mv.Count; i++)
             {
+                String sModel = "";
+                float fWeightage = 0;
                 FactAddressValue fv = (FactAddressValue)mv[i];
 
-                String sModel = "";
-                if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
-                    sModel = (String)(SymbolValue)fv.GetFactSlot("model");
-                else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
-                    sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                /*
+                 * Because the function returns a list of weightage_phone and phone facts so getting the fact slot brand
+                 * will throw exception for weightage_phone facts, once thrown will catch and actually assign the model and 
+                 * weightage values
+                 * Hence those weightage_phone facts will be shown on the grid instead.
+                 * @kwanghock
+                 */
+                try
+                {
+                    String sCehck = (String)(SymbolValue)fv.GetFactSlot("brand");
+                    continue;
+                }
+                catch(Exception exception)
+                {
+                    if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                        sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                    else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                        sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
 
-                float fPrice = (float)(FloatValue)fv.GetFactSlot("price");
-
-                //Specs
-                String sBrand = (String)(SymbolValue)fv.GetFactSlot("brand");
-                String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
-                float fScreen = (float)(FloatValue)fv.GetFactSlot("screen");
-                float fWeight = (float)(FloatValue)fv.GetFactSlot("weight");
-                int iMemory = (int)(IntegerValue)fv.GetFactSlot("memory");
-
-                //Features
-                String sOS = (String)(SymbolValue)fv.GetFactSlot("os");
-                String sBluetooth = (String)(SymbolValue)fv.GetFactSlot("bluetooth");
-                String sWifi = (String)(SymbolValue)fv.GetFactSlot("wifi");
-                String sFM = (String)(SymbolValue)fv.GetFactSlot("fm");
-
-                //camera
-                int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("zoom");
-                float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
-                String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
-                String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
-                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                    fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                }
+               
 
                 MobilePhoneRecommendation a = new MobilePhoneRecommendation();
                 a.sModel = sModel;
-                a.fPrice = fPrice;
-                a.sBrand = sBrand;
-                a.sColor = sColor;
-                a.fScreen = fScreen;
-                a.fWeight = fWeight;
-                a.iMemory = iMemory;
-                a.sOS = sOS;
-                a.sBluetooth = sBluetooth;
-                a.sWifi = sWifi;
-                a.sFM = sFM;
-                a.iZoom = iCameraZoom;
-                a.fPixel = fCameraPixel;
-                a.sFlash = sFlash;
-                a.sVideoHD = sVideoHD;
                 a.fWeightage = fWeightage;
-
                 String sAttributeModel = "(model " + a.sModel + ")";
-                String sAttributePrice = "(price " + a.fPrice.ToString() + ")";
-                String sAttributeBrand = "(brand " + a.sBrand + ")";
-                String sAttributeColor = "(color " + a.sColor + ")";
-                String sAttributeScreen = "(screen " + a.fScreen.ToString() + ")";
-                String sAttributeWeight = "(weight " + a.fWeightage.ToString() + ")";
-                String sAttributeMemory = "(memory " + a.iMemory.ToString() + ")";
-                String sAttributeOS = "(os " + a.sOS + ")";
-                String sAttributeBluetooth = "(bluetooth " + a.sBluetooth + ")";
-                String sAttributeWifi = "(wifi " + a.sWifi + ")";
-                String sAttributeFM = "(fm " + a.sFM + ")";
-                String sAttributeZoom = "(zoom " + a.iZoom.ToString() + ")";
-                String sAttributePixel = "(pixel " + a.fPixel.ToString() + ")";
-                String sAttributeFlash = "(flash " + a.sFlash + ")";
-                String sAttributeVideoHD = "(videoHD " + a.sVideoHD + ")";
                 String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
 
-                String sFact = "(phone " + sAttributeModel + sAttributePrice + sAttributeBrand + sAttributeColor + sAttributeScreen + sAttributeWeight + sAttributeMemory + sAttributeOS + sAttributeBluetooth + sAttributeWifi + sAttributeFM + sAttributeZoom + sAttributePixel + sAttributeFlash + sAttributeVideoHD + sAttributeWeightage + ")";
-
-                a.sFact = sFact;
+                String sFact = "(weightage_phone " + sAttributeModel + sAttributeWeightage + ")";
 
                 MobileResultDisplay addon = new MobileResultDisplay();
                 addon.fWeightage = a.fWeightage;
@@ -409,13 +372,18 @@ namespace MobilePhone
                 phase3Results.Add(addon);
 
             }
-            // Debug purpose
-            // MessageBox.Show(phase3Results.Count.ToString());
-            testDataGrid();
-            dataGridView.DataSource = null;
+            //Convert binding list to list. Sort by weightage in descending order.
+            List<MobileResultDisplay> listConvert =  phase3Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            phase3Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase3Results.Add(listConvert.ElementAt(i));
+            }
             dataGridView.DataSource = phase3Results;
-            
         }
+
+
 
         public void ResetDropDownDef()
         {
