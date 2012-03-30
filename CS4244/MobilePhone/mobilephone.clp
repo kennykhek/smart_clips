@@ -1314,7 +1314,8 @@
 )
 
 (defrule calculate_phone_plan_weightage
-  ;(phase (stage 6))
+  (declare (salience 100))
+  (phase (stage 6))
   (weightage_phone (model ?moVal)(weightage ?val1))
   (weightage_plan  (plan ?plVal) (weightage ?val2))
   =>
@@ -1430,6 +1431,13 @@
   ?phase <- (phase (stage 4))
   =>
   (modify ?phase (stage 5))
+)
+
+(defrule stage_six_change_stage
+  (declare (salience -10))
+  ?phase <- (phase (stage 6))
+  =>
+  (modify ?phase (stage 7))
 )
 
 ;;*************
