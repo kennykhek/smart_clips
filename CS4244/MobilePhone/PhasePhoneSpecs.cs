@@ -207,6 +207,7 @@ namespace MobilePhone
             cbWifi.Items.Insert(0, "");
             cbOS.Items.Insert(0, "");
             cbZoom.Items.Insert(0, "");
+            cbVideoHD.Items.Insert(0, "");
         }
        
         //Convert the first letter of the string arugment to be of uppercase
