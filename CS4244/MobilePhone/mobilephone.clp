@@ -1029,7 +1029,8 @@
 ;;* CALCULATION RULES *
 ;;*********************
 (defrule calculate_weightage_phone
-	(declare (salience 50))
+  ; Combining CF within a rule
+  (declare (salience 50))
   (phase (stage 4))
   (requirement_phone (attribute pixel)  (value ?pixel))
   (requirement_phone (attribute flash)  (value ?flash))
@@ -1111,16 +1112,16 @@
 	  (bind ?weightage-fm 0.0)
 	)
   )  
-  (bind ?new-weightage (/ (+ ?weightage-br (+ ?weightage-os 
-                          (+ ?weightage-pi (+ ?weightage-fl 
-						  (+ ?weightage-vi (+ ?weightage-sc 
-                          (+ ?weightage-we (+ ?weightage-me 
-						  (+ ?weightage-wi ?weightage-fm))))))))) 10))
+  (bind ?new-weightage (min ?weightage-br ?weightage-os 
+                            ?weightage-pi ?weightage-fl 
+							?weightage-vi ?weightage-sc 
+							?weightage-we ?weightage-me 
+					        ?weightage-wi ?weightage-fm))
   (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)))
 )
 
 (defrule combine_weightage_phone
-  ; take average of two weightage if there is two rule with similar attribute and value
+  ; combining CF from two different rules given a same result
   (declare (salience 75))
   (phase (stage 4))  
   ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage1))
@@ -1128,11 +1129,16 @@
   (test (neq ?rem1 ?rem2))
   =>
   (retract ?rem1)
-  (if (eq (or ?weightage1 ?weightage2) 0) then
-    (modify ?rem2 (weightage (max ?weightage1 ?weightage2)))
-  else
-    (modify ?rem2 (weightage (/ (+ ?weightage1 ?weightage2) 2)))
+  (if (and (>= 0 ?weightage1) (>= 0 ?weightage2)) then
+    (bind ?new-weightage (- (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
   )
+  (if (and (<= 0 ?weightage1) (<= 0 ?weightage2)) then
+    (bind ?new-weightage (+ (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
+  )
+  (if (or (and (<= 0 ?weightage1) (>= 0 ?weightage2)) (and (>= 0 ?weightage1) (<= 0 ?weightage2))) then
+    (bind ?new-weightage (/ (+ ?weightage1 ?weightage2) (- 1 (min (abs ?weightage1)(abs ?weightage2)))))
+  )
+  (modify ?rem2 (weightage ?new-weightage))
 )
 
 (defrule combine_weightage_phone_not_impt
@@ -1216,8 +1222,7 @@
 	  (bind ?weightage-da 20.0)	
 	)
   )  
-  (bind ?new-weightage (/ (+ ?weightage-pl (+ ?weightage-ou 
-						  (+ ?weightage-sm ?weightage-da))) 4))
+  (bind ?new-weightage (min ?weightage-pl ?weightage-ou ?weightage-sm ?weightage-da))
   (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)))
 )
 
@@ -1314,20 +1319,13 @@
 )
 
 (defrule calculate_phone_plan_weightage
+  ; Combining two CF within a rule
   (declare (salience 100))
   (phase (stage 6))
   (weightage_phone (model ?moVal)(weightage ?val1))
   (weightage_plan  (plan ?plVal) (weightage ?val2))
   =>
-  (if (and (>= 0 ?val1) (>= 0 ?val2)) then
-    (bind ?new-weightage (- (+ ?val1 ?val2) (* ?val1 ?val2)))
-  )
-  (if (and (<= 0 ?val1) (<= 0 ?val2)) then
-    (bind ?new-weightage (+ (+ ?val1 ?val2) (* ?val1 ?val2)))
-  )
-  (if (or (and (<= 0 ?val1) (>= 0 ?val2)) (and (>= 0 ?val1) (<= 0 ?val2))) then
-    (bind ?new-weightage (/ (+ ?val1 ?val2) (- 1 (min (abs ?val1)(abs ?val2)))))
-  )
+  (bind ?new-weightage (min ?val1 ?val2))
   (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)))
 )
 
