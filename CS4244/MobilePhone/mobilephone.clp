@@ -795,7 +795,7 @@
 	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
 	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 20.0) (phase 1)))	  
 	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
-	  (assert (requirement_plan (attribute pixel)   (value not_impt)                 (phase 1)))
+	  (assert (requirement_plan (attribute data)   (value less)                 (phase 1)))
     )	  
     (case s2 then ; Female
 	  (assert (requirement_phone(attribute os)      (value symbian) (weightage 100.0)(phase 1)))
@@ -808,7 +808,7 @@
 	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
 	  (assert (requirement_phone(attribute brand)   (value sumsang) (weightage 20.0) (phase 1)))
       (assert (requirement_plan (attribute outgoing)(value more)                     (phase 1)))
-      (assert (requirement_plan (attribute pixel)   (value high)                     (phase 1)))
+      (assert (requirement_plan (attribute data)   (value more)                     (phase 1)))
 	)
   )
 )
@@ -1040,7 +1040,7 @@
 (defrule calculate_weightage_plan
   (declare (salience 50))
   (phase (stage 4))
-  (requirement_plan (attribute planprice)  (value ?planprice))
+  (requirement_plan (attribute fee)  (value ?planprice))
   (requirement_plan (attribute outgoing)(value ?outgoing))
   (requirement_plan (attribute sms) (value ?sms))
   (requirement_plan (attribute data) (value ?data))  
@@ -1096,6 +1096,11 @@
 	  (bind ?weightage-da 20.0)	
 	)
   )
+  (if (eq ?data less) then
+    (if (< ?daVal 3) then
+	  (bind ?weightage-da 20.0)	
+	)
+  )  
   (bind ?new-weightage (/ (+ ?weightage-pl (+ ?weightage-ou 
 						  (+ ?weightage-sm ?weightage-da))) 4))
   (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)))
