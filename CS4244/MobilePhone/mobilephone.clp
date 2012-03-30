@@ -1313,6 +1313,23 @@
   )
 )
 
+(defrule calculate_phone_plan_weightage
+  ;(phase (stage 6))
+  (weightage_phone (model ?moVal)(weightage ?val1))
+  (weightage_plan  (plan ?plVal) (weightage ?val2))
+  =>
+  (if (and (>= 0 ?val1) (>= 0 ?val2)) then
+    (bind ?new-weightage (- (+ ?val1 ?val2) (* ?val1 ?val2)))
+  )
+  (if (and (<= 0 ?val1) (<= 0 ?val2)) then
+    (bind ?new-weightage (+ (+ ?val1 ?val2) (* ?val1 ?val2)))
+  )
+  (if (or (and (<= 0 ?val1) (>= 0 ?val2)) (and (>= 0 ?val1) (<= 0 ?val2))) then
+    (bind ?new-weightage (/ (+ ?val1 ?val2) (- 1 (min (abs ?val1)(abs ?val2)))))
+  )
+  (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)))
+)
+
 ;;***************
 ;;* RESET RULES *
 ;;***************
