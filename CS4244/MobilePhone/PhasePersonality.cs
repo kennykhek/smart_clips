@@ -22,11 +22,11 @@ namespace MobilePhone
                     //Question: Do you watch movies you downloaded on your phone?
                     if (control.Name.Equals("gender_box_male"))
                     {
-                        //environment.AssertString("((question (order is_student) (selection ?sel)))");
+                        environment.AssertString("(question (order user_gender) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("gender_box_female"))
                     {
-                        //environment.AssertString("(question (order watch_movie) (selection no)(phase 3))");
+                        environment.AssertString("(question (order user_gender) (selection s2)(phase 1))");
                     }
                 }
             }//end gender
@@ -36,21 +36,21 @@ namespace MobilePhone
             {
                 if (control.Checked)
                 {
-                    if (control.Name.Equals("gender_box_7"))
+                    if (control.Name.Equals("age_box_7"))
                     {
-                        //environment.AssertString("(question (order watch_movie) (selection yes)(phase 3))");
+                        environment.AssertString("(question (order user_age) (selection s1)(phase 1))");
                     }
-                    else if (control.Name.Equals("gender_box_18"))
+                    else if (control.Name.Equals("age_box_18"))
                     {
-                        //environment.AssertString("(question (order watch_movie) (selection no)(phase 3))");
+                        environment.AssertString("(question (order user_age) (selection s2)(phase 1))");
                     }
-                    else if (control.Name.Equals("gender_box_30"))
+                    else if (control.Name.Equals("age_box_30"))
                     {
-                        //environment.AssertString("(question (order watch_movie) (selection no)(phase 3))");
+                        environment.AssertString("(question (order user_age) (selection s3)(phase 1))");
                     }
-                    else if (control.Name.Equals("gender_box_49"))
+                    else if (control.Name.Equals("age_box_49"))
                     {
-                        //environment.AssertString("(question (order watch_movie) (selection no)(phase 3))");
+                        environment.AssertString("(question (order user_age) (selection s4)(phase 1))");
                     }
                 }
             }//end age
@@ -62,15 +62,15 @@ namespace MobilePhone
                 {
                     if (control.Name.Equals("function_box_functionality"))
                     {
-                        environment.AssertString("(question (order prefer_func) (selection s1))");
+                        environment.AssertString("(question (order prefer_func) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("function_box_design"))
                     {
-                        environment.AssertString("(question (order prefer_func) (selection s2))");
+                        environment.AssertString("(question (order prefer_func) (selection s2)(phase 1))");
                     }
                     else if (control.Name.Equals("function_box_both"))
                     {
-                        environment.AssertString("(question (order prefer_func) (selection s3))");
+                        environment.AssertString("(question (order prefer_func) (selection s3)(phase 1))");
                     }
                 }
             }//end function
@@ -82,11 +82,11 @@ namespace MobilePhone
                 {
                     if (control.Name.Equals("behaviour_box_introvert"))
                     {
-                        environment.AssertString("(question (order intro_extro) (selection s1))");
+                        environment.AssertString("(question (order intro_extro) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("behaviour_box_extrovert"))
                     {
-                        environment.AssertString("(question (order intro_extro) (selection s2))");
+                        environment.AssertString("(question (order intro_extro) (selection s2)(phase 1))");
                     }
                 }
             }//end behaviour
@@ -98,19 +98,19 @@ namespace MobilePhone
                 {
                     if (control.Name.Equals("attitude_box_motivation"))
                     {
-                        environment.AssertString("(question (order user_attitude) (selection s1))");
+                        environment.AssertString("(question (order user_attitude) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("attitude_box_viva"))
                     {
-                        environment.AssertString("(question (order user_attitude) (selection s3))");
+                        environment.AssertString("(question (order user_attitude) (selection s3)(phase 1))");
                     }
                     else if (control.Name.Equals("attitude_box_time"))
                     {
-                        environment.AssertString("(question (order user_attitude) (selection s2))");
+                        environment.AssertString("(question (order user_attitude) (selection s2)(phase 1))");
                     }
                     else if (control.Name.Equals("attitude_box_once"))
                     {
-                        environment.AssertString("(question (order user_attitude) (selection s4))");
+                        environment.AssertString("(question (order user_attitude) (selection s4)(phase 1))");
                     }
                 }
             }//end attitude
@@ -122,19 +122,19 @@ namespace MobilePhone
                 {
                     if (control.Name.Equals("category_box_uninvolved"))
                     {
-                        environment.AssertString("(question (order user_type) (selection s1))");
+                        environment.AssertString("(question (order user_type) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("category_box_intense"))
                     {
-                        environment.AssertString("(question (order user_type) (selection s3))");
+                        environment.AssertString("(question (order user_type) (selection s3)(phase 1))");
                     }
                     else if (control.Name.Equals("category_box_harmony"))
                     {
-                        environment.AssertString("(question (order user_type) (selection s2))");
+                        environment.AssertString("(question (order user_type) (selection s2)(phase 1))");
                     }
                     else if (control.Name.Equals("category_box_forerunners"))
                     {
-                        environment.AssertString("(question (order user_type) (selection s4))");
+                        environment.AssertString("(question (order user_type) (selection s4)(phase 1))");
                     }
                 }
             }//end category
@@ -146,23 +146,23 @@ namespace MobilePhone
                 {
                     if (control.Name.Equals("saying_box_love"))
                     {
-                        environment.AssertString("(question (order user_saying) (selection s1))");
+                        environment.AssertString("(question (order user_saying) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("saying_box_constant"))
                     {
-                        environment.AssertString("(question (order user_saying) (selection s2))");
+                        environment.AssertString("(question (order user_saying) (selection s2)(phase 1))");
                     }
                     else if (control.Name.Equals("saying_box_fashion"))
                     {
-                        environment.AssertString("(question (order user_saying) (selection s3))");
+                        environment.AssertString("(question (order user_saying) (selection s3)(phase 1))");
                     }
                     else if (control.Name.Equals("saying_box_different"))
                     {
-                        environment.AssertString("(question (order user_saying) (selection s4))");
+                        environment.AssertString("(question (order user_saying) (selection s4)(phase 1))");
                     }
                     else if (control.Name.Equals("saying_box_quality"))
                     {
-                        environment.AssertString("(question (order user_saying) (selection s5))");
+                        environment.AssertString("(question (order user_saying) (selection s5)(phase 1))");
                     }
                 }
             }//end saying
@@ -174,11 +174,11 @@ namespace MobilePhone
                 {
                     if (control.Name.Equals("communication_box_real"))
                     {
-                        //environment.AssertString("(question (order watch_movie) (selection yes)(phase 3))");
+                        environment.AssertString("(question (order talk_or_sms) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("communication_box_some"))
                     {
-                        //environment.AssertString("(question (order watch_movie) (selection no)(phase 3))");
+                        environment.AssertString("(question (order talk_or_sms) (selection s2)(phase 1))");
                     }
                 }
             }//end communication
@@ -190,11 +190,11 @@ namespace MobilePhone
                 {
                     if (control.Name.Equals("status_box_yes"))
                     {
-                        environment.AssertString("(question (order is_student) (selection s1))");
+                        environment.AssertString("(question (order is_student) (selection s1)(phase 1))");
                     }
                     else if (control.Name.Equals("status_box_no"))
                     {
-                        environment.AssertString("(question (order is_student) (selection s2))");
+                        environment.AssertString("(question (order is_student) (selection s2)(phase 1))");
 
                     }
                 }
