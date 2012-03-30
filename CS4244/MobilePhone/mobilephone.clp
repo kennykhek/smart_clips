@@ -1125,7 +1125,7 @@
 		  (modify ?p (stage 5))
 		)  
 		(case 5 then 
-		  (modify ?p (stage 2))
+		  (modify ?p (stage 3))
 		) 
 		(case 3 then 
 		  (modify ?p (stage 0))

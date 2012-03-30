@@ -372,16 +372,14 @@ namespace MobilePhone
                 phase3Results.Add(addon);
 
             }
-            // Debug purpose
-            // MessageBox.Show(phase3Results.Count.ToString());
-            testDataGrid();
-            //dataGridView.Refresh();
-
-           // for (int i = 0; i < phase3Results.Count; i++)
-           // {
-           //     if (phase3Results.ElementAt(i).fWeightage == 0)
-            //        phase3Results.RemoveAt(i);
-           // }
+            //Convert binding list to list. Sort by weightage in descending order.
+            List<MobileResultDisplay> listConvert =  phase3Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            phase3Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase3Results.Add(listConvert.ElementAt(i));
+            }
             dataGridView.DataSource = phase3Results;
         }
 

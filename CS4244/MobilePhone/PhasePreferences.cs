@@ -127,7 +127,72 @@ namespace MobilePhone
                     }
                 }
             }
-            environment.Run();        
+            environment.Run();   
+     
+            
+        }
+
+        public void InitDataGrid()
+        {
+            //string evalStr = "(update_mobilephone_list nil nil nil nil nil nil nil nil nil nil nil)";
+            string evalStr = "(get_weightagephone_list)";
+
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
+
+            DataTable testdt = new DataTable();
+            phase3Results.Clear();
+            for (int i = 0; i < mv.Count; i++)
+            {
+                String sModel = "";
+                float fWeightage = 0;
+                FactAddressValue fv = (FactAddressValue)mv[i];
+
+                /*
+                 * Because the function returns a list of weightage_phone and phone facts so getting the fact slot brand
+                 * will throw exception for weightage_phone facts, once thrown will catch and actually assign the model and 
+                 * weightage values
+                 * Hence those weightage_phone facts will be shown on the grid instead.
+                 * @kwanghock
+                 */
+                try
+                {
+                    String sCehck = (String)(SymbolValue)fv.GetFactSlot("brand");
+                    continue;
+                }
+                catch (Exception exception)
+                {
+                    if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                        sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                    else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                        sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+
+                    fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                }
+
+
+                MobilePhoneRecommendation a = new MobilePhoneRecommendation();
+                a.sModel = sModel;
+                a.fWeightage = fWeightage;
+                String sAttributeModel = "(model " + a.sModel + ")";
+                String sAttributeWeightage = "(weightage " + a.fWeightage.ToString() + ")";
+
+                String sFact = "(weightage_phone " + sAttributeModel + sAttributeWeightage + ")";
+
+                MobileResultDisplay addon = new MobileResultDisplay();
+                addon.fWeightage = a.fWeightage;
+                addon.sModel = a.sModel;
+                phase3Results.Add(addon);
+
+            }
+            //Convert binding list to list. Sort by weightage in descending order.
+            List<MobileResultDisplay> listConvert = phase3Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            phase3Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase3Results.Add(listConvert.ElementAt(i));
+            }
+            dataGridView.DataSource = phase3Results;
         }
     }
 }

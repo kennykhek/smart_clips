@@ -231,7 +231,7 @@ namespace MobilePhone {
                 else if (panelPhase3.Visible)
                 {
                     ResetPhase(Defintions.PhaseDetails);
-                    environment.Eval("(prev_phase 5)");
+                    environment.Eval("(prev_phase 2)");
                 }
                 else if (panelPhase4.Visible)
                 {
@@ -518,6 +518,9 @@ namespace MobilePhone {
                 this.buttonPrev.Visible = true;
                 panelPhase3.BringToFront();
                 phase3Results.Clear();
+
+                //Populate the datagrid results on load after do a clearing for safety @kwanghock
+                InitDataGrid();
             }
             else if (iPhase == Defintions.PhaseMobilePlan)
             {
