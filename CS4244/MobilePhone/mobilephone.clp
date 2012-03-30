@@ -610,8 +610,8 @@
   )
 )
 
-(defrule user_sayings
-  (question (order user_saying) (selection ?sel))
+(defrule user_attitudes
+  (question (order user_attitude) (selection ?sel))
   =>
   (switch ?sel 
     (case s1 then ; moderation in all things 
@@ -641,8 +641,8 @@
   )
 )
 
-(defrule user_attitudes
-  (question (order user_attitude) (selection ?sel))
+(defrule user_sayings
+  (question (order user_saying) (selection ?sel))
   =>
   (switch ?sel
     (case s1 then ; live, laugh, love
@@ -1025,8 +1025,11 @@
   (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
 )
 
+;;Not yet finished
 (deffunction get_weightage_phone_plan_list ()
-  (bind ?facts (find-all-facts((?p weightage_phone_plan)) TRUE))
+  (bind ?facts (find-all-facts((?p weightage_phone_plan)) 
+  TRUE
+  ))
 )
 
 (deffunction next_phase (?changephase)
