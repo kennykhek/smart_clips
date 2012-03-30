@@ -226,17 +226,17 @@ namespace MobilePhone {
                 else if (panelPhase2.Visible)
                 {
                     ResetPhase(Defintions.PhasePreferences);
-                    environment.Eval("(prev_phase 0)");
+                    environment.Eval("(prev_phase 3)");
                 }
                 else if (panelPhase3.Visible)
                 {
                     ResetPhase(Defintions.PhaseDetails);
-                    environment.Eval("(prev_phase 2)");
+                    environment.Eval("(prev_phase 5)");
                 }
                 else if (panelPhase4.Visible)
                 {
                     ResetPhase(Defintions.PhaseMobilePlan);
-                    environment.Eval("(prev_phase 5)");
+                    environment.Eval("(prev_phase 7)");
                 }
                 //Have to reset to the previous state
                 SetUIState(--UIState);
