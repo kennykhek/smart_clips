@@ -188,13 +188,6 @@
             this.gender_box_male = new System.Windows.Forms.RadioButton();
             this.gender_box_female = new System.Windows.Forms.RadioButton();
             this.dataGridViewProgressColumn1 = new MobilePhone.DataGridViewProgressColumn();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.panelPhase0.SuspendLayout();
             this.panelPhase4.SuspendLayout();
             this.panel16.SuspendLayout();
@@ -312,13 +305,6 @@
             // 
             // panelPhase0
             // 
-            this.panelPhase0.Controls.Add(this.label28);
-            this.panelPhase0.Controls.Add(this.label27);
-            this.panelPhase0.Controls.Add(this.label22);
-            this.panelPhase0.Controls.Add(this.label26);
-            this.panelPhase0.Controls.Add(this.label25);
-            this.panelPhase0.Controls.Add(this.label24);
-            this.panelPhase0.Controls.Add(this.label23);
             this.panelPhase0.Controls.Add(this.labelPhase0);
             this.panelPhase0.Location = new System.Drawing.Point(12, 10);
             this.panelPhase0.Name = "panelPhase0";
@@ -1774,74 +1760,6 @@
             this.dataGridViewProgressColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewProgressColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewProgressColumn1.Width = 254;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(22, 225);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(381, 104);
-            this.label23.TabIndex = 2;
-            this.label23.Text = resources.GetString("label23.Text");
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(17, 195);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(66, 13);
-            this.label24.TabIndex = 3;
-            this.label24.Text = "How to use";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(16, 93);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(92, 13);
-            this.label25.TabIndex = 4;
-            this.label25.Text = "Group Members";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(22, 121);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(170, 52);
-            this.label26.TabIndex = 5;
-            this.label26.Text = "Leslie Huang Zhichao \tU080338J\r\nKenny Khek Ren Yong\tU087061H\r\nKoh Kwang Hock \tU08" +
-                "0214X\r\nRyan Tan Shi JIa \tU087205X\r\n";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(17, 40);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(29, 13);
-            this.label22.TabIndex = 6;
-            this.label22.Text = "Title";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(22, 62);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(268, 13);
-            this.label27.TabIndex = 7;
-            this.label27.Text = "The Phone that beckons. the perfect mobile phone";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(14, 353);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(148, 13);
-            this.label28.TabIndex = 8;
-            this.label28.Text = "Get started now! Cick next!";
             // 
             // MainForm
             // 
