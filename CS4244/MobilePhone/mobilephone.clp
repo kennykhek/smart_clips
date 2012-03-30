@@ -1044,7 +1044,7 @@
   (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
   (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
-         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal))
+         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(weightage ?weightageVal)
   =>
   (bind ?weightage-pi 100.0)
   (if (eq ?pixel large) then
@@ -1112,11 +1112,9 @@
 	  (bind ?weightage-fm 0.0)
 	)
   )  
-  (bind ?new-weightage (min ?weightage-br ?weightage-os 
-                            ?weightage-pi ?weightage-fl 
-							?weightage-vi ?weightage-sc 
-							?weightage-we ?weightage-me 
-					        ?weightage-wi ?weightage-fm))
+  (bind ?new-weightage (* ?weightageVal (min ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
+							              ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
+					                      ?weightage-wi ?weightage-fm)))
   (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)))
 )
 
