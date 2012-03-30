@@ -62,6 +62,9 @@ namespace MobilePhone
 
         public void UpdatePlanGrid(String attribute)
         {
+            //Filter phone_plan_price 
+            //       weightage_phone_plan 
+            //       phone_plan
             //string evalStr = "(update_phoneplan_list " + attribute + ")";
             string evalStr = "(get_weightage_phone_plan_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
