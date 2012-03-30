@@ -226,7 +226,7 @@ namespace MobilePhone {
                 else if (panelPhase2.Visible)
                 {
                     ResetPhase(Defintions.PhasePreferences);
-                    environment.Eval("(prev_phase 0)");
+                    environment.Eval("(prev_phase 3)");
                 }
                 else if (panelPhase3.Visible)
                 {
@@ -236,7 +236,7 @@ namespace MobilePhone {
                 else if (panelPhase4.Visible)
                 {
                     ResetPhase(Defintions.PhaseMobilePlan);
-                    environment.Eval("(prev_phase 5)");
+                    environment.Eval("(prev_phase 7)");
                 }
                 //Have to reset to the previous state
                 SetUIState(--UIState);
@@ -518,6 +518,9 @@ namespace MobilePhone {
                 this.buttonPrev.Visible = true;
                 panelPhase3.BringToFront();
                 phase3Results.Clear();
+
+                //Populate the datagrid results on load after do a clearing for safety @kwanghock
+                InitDataGrid();
             }
             else if (iPhase == Defintions.PhaseMobilePlan)
             {
