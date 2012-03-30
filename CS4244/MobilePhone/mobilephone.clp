@@ -1442,9 +1442,9 @@
   ))
 )
 
-(deffunction next_phase (?changephase)
+(deffunction next_phase (?currentphase)
 	(find-all-facts((?p phase)) 
-	  (switch ?changephase
+	  (switch ?currentphase
 		(case 1 then 
 		  (modify ?p (stage 2))
 		)  
@@ -1458,18 +1458,18 @@
 	)
 )
 
-(deffunction prev_phase (?changephase)
+(deffunction prev_phase (?currentphase)
 	(find-all-facts((?p phase)) 
-	  (switch ?changephase
-		(case 6 then 
-		  (modify ?p (stage 5))
-		)  
-		(case 5 then 
-		  (modify ?p (stage 3))
-		) 
-		(case 3 then 
+	  (switch ?currentphase
+	  	(case 3 then 
 		  (modify ?p (stage 0))
 		)
+		(case 5 then 
+		  (modify ?p (stage 2))
+		) 
+		(case 7 then 
+		  (modify ?p (stage 5))
+		)  
 	   )
 	)
 )
