@@ -91,10 +91,6 @@
 (deffacts init_phone_facts
   ; non plan phone prices are from www.subarumobile.com
   ; nokia
-  (phone (model 300)(price 155.00)
-         (brand nokia)(color silver)(screen 2.4)(weight 100.0)(memory 32)
-         (bluetooth no)(wifi no)(fm yes)
-	     (zoom 0)(pixel 5.0)(flash no)(videoHD no))
   (phone (model 603)(price 300.00)
          (brand nokia)(color black)(screen 3.5)(weight 109.6)(memory 32)
          (os symbian)(fm yes)
@@ -1476,8 +1472,10 @@
 
 
 (deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data)
-	(bind ?facts(find-all-facts((?p phone_plan))
+	(bind ?facts(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
 		(and
+			(eq ?wp:model ?pp:model)
+			(eq ?pp:plan ?p:plan)
 			(if (eq ?p:provider nil)
 				then
 				(eq ?p:provider ?p:provider)
