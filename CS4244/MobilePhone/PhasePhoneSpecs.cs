@@ -354,7 +354,7 @@ namespace MobilePhone
                     else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                         sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
 
-                    fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                    fWeightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
                 }
                
 
