@@ -54,6 +54,7 @@
 (deftemplate weightage_phone
 	(slot model)
 	(slot weightage (type FLOAT)(default 0.0))
+	(multislot weightages (type FLOAT))
 )
 
 (deftemplate weightage_plan
@@ -1119,7 +1120,9 @@
   (bind ?new-weightage (* ?weightageVal (min ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
 							              ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
 					                      ?weightage-wi ?weightage-fm)))
-  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)))
+  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)(weightages ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
+							              ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
+					                      ?weightage-wi ?weightage-fm)))
 )
 
 (defrule combine_weightage_phone
