@@ -51,7 +51,7 @@
 	(slot phase     (type INTEGER)(default 0))	
 )
 
-(deftemplate get_weightage_phone_plan_list
+(deftemplate weightage_phone
 	(slot model)
 	(slot weightage (type FLOAT)(default 0.0))
 )
@@ -1044,7 +1044,7 @@
   (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
   (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
-         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(weightage ?weightageVal)
+         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(weightage ?weightageVal))
   =>
   (bind ?weightage-pi 100.0)
   (if (eq ?pixel large) then
