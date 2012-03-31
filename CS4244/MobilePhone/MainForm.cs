@@ -37,6 +37,7 @@ namespace MobilePhone {
         int iResultIterate;
 
         private BindingList<MobileResultDisplay> phase3Results;
+        private BindingList<PlanResultDisplay> phase4Results;
 
         private class MobileResultDisplay
         {
@@ -49,7 +50,7 @@ namespace MobilePhone {
         {
             public String sModel { set; get; }
             public String sPlan { set; get; }
-            public float fprice { set; get; }
+            public float fWeightage { set; get; }
         }
 
         private class MobilePhoneRecommendation
