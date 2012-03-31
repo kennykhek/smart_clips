@@ -1537,7 +1537,7 @@
 )))
 
 
-(deffunction update_mobilephone_list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
+(deffunction update_mobilephone_list (?os ?screenMax ?screenMin ?fm ?video ?camflash ?mem ?weightMax ?weightMin ?campixel ?color ?wifi ?camzoom)
   (bind ?facts(find-all-facts((?wp weightage_phone)(?p phone))
 		(and
 			(eq ?p:model ?wp:model)
@@ -1546,11 +1546,11 @@
 				(eq ?p:os ?p:os)
 				else
 				(eq ?p:os ?os))
-			(if (eq ?screen nil)
+			(if (and (eq ?screenMax nil)(eq ?screenMin nil))
 				then
 				(eq ?p:screen ?p:screen)
 				else
-				(eq ?p:screen ?screen))
+				(and(<= ?p:screen ?screenMax)(>= ?p:screen ?screenMin)))
 			(if (eq ?fm nil)
 				then
 				(eq ?p:fm ?p:fm)
@@ -1571,11 +1571,11 @@
 				(eq ?p:memory ?p:memory)
 				else
 				(eq ?p:memory ?mem))
-			(if (eq ?weight nil)
+			(if (and (eq ?weightMax nil)(eq ?weightMin nil))
 				then
 				(eq ?p:weight ?p:weight)
 				else
-				(eq ?p:weight ?weight))
+				(and(<= ?p:weight ?weightMax)(>= ?p:weight ?weightMin)))
 			(if (eq ?campixel nil)
 				then
 				(eq ?p:pixel ?p:pixel)
