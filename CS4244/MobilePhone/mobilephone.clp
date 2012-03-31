@@ -54,18 +54,20 @@
 (deftemplate weightage_phone
 	(slot model)
 	(slot weightage (type FLOAT)(default 0.0))
-	(multislot weightages (type FLOAT))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))
 )
 
 (deftemplate weightage_plan
 	(slot plan (type SYMBOL))
 	(slot weightage (type FLOAT)(default 0.0))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))	
 )
 
 (deftemplate weightage_phone_plan
 	(slot model)
 	(slot plan (type SYMBOL))
 	(slot weightage (type FLOAT)(default 0.0))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))	
 )
 
 (deftemplate question
@@ -937,7 +939,7 @@
   (question (order use_camera)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-	(assert (requirement_phone (attribute pixel)  (value high)(phase 3)))
+	(assert (requirement_phone (attribute pixel)  (value large)(phase 3)))
 	(assert (requirement_phone (attribute flash)  (value yes) (phase 3)))
 	(assert (requirement_phone (attribute videoHD)(value yes) (phase 3)))
    )
@@ -1063,13 +1065,13 @@
   (bind ?weightage-fl 1.0)
   (if (eq ?flash yes) then
 	(if (eq ?flVal no) then 
-	  (bind ?weightage-fl 0.0)
+	  (bind ?weightage-fl -0.5)
 	)
   )
   (bind ?weightage-vi 1.0)
   (if (eq ?videoHD yes) then
 	(if (eq ?viVal no) then 
-	  (bind ?weightage-fl 0.0)
+	  (bind ?weightage-vi -0.4)
 	)
   )
   (bind ?weightage-sc 0.74)
@@ -1108,21 +1110,20 @@
   (bind ?weightage-wi 0.7)
   (if (eq ?wifi yes) then
 	(if (eq ?wiVal no) then 
-	  (bind ?weightage-wi 0.0)
+	  (bind ?weightage-wi -0.5)
 	)
   )
   (bind ?weightage-fm 0.3)
   (if (eq ?fm yes) then
 	(if (eq ?fmVal no) then 
-	  (bind ?weightage-fm 0.0)
+	  (bind ?weightage-fm 0.1)
 	)
   )  
   (bind ?new-weightage (* ?weightageVal (min ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
-							              ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
-					                      ?weightage-wi ?weightage-fm)))
-  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)(weightages ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
-							              ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
-					                      ?weightage-wi ?weightage-fm)))
+							                 ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
+					                         ?weightage-wi ?weightage-fm)))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))
+  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
 (defrule combine_weightage_phone
@@ -1134,13 +1135,13 @@
   (test (neq ?rem1 ?rem2))
   =>
   (retract ?rem1)
-  (if (and (>= 0 ?weightage1) (>= 0 ?weightage2)) then
+  (if (and (>= ?weightage1 0) (>= ?weightage2 0)) then
     (bind ?new-weightage (- (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
   )
-  (if (and (<= 0 ?weightage1) (<= 0 ?weightage2)) then
+  (if (and (< ?weightage1 0) (< ?weightage2 0)) then
     (bind ?new-weightage (+ (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
   )
-  (if (or (and (<= 0 ?weightage1) (>= 0 ?weightage2)) (and (>= 0 ?weightage1) (<= 0 ?weightage2))) then
+  (if (or (and (< ?weightage1 0) (>= ?weightage2 0)) (and (>= ?weightage1 0) (< ?weightage2 0))) then
     (bind ?new-weightage (/ (+ ?weightage1 ?weightage2) (- 1 (min (abs ?weightage1)(abs ?weightage2)))))
   )
   (modify ?rem2 (weightage ?new-weightage))
@@ -1229,7 +1230,8 @@
 	)
   )  
   (bind ?new-weightage (min ?weightage-pl ?weightage-ou ?weightage-sm ?weightage-da))
-  (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))
+  (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
 
@@ -1332,7 +1334,8 @@
   (weightage_plan  (plan ?plVal) (weightage ?val2))
   =>
   (bind ?new-weightage (min ?val1 ?val2))
-  (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))  
+  (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
 ;;***************
