@@ -362,7 +362,7 @@
             this.label26.Size = new System.Drawing.Size(170, 52);
             this.label26.TabIndex = 5;
             this.label26.Text = "Leslie Huang Zhichao \tU080338J\r\nKenny Khek Ren Yong\tU087061H\r\nKoh Kwang Hock \tU08" +
-    "0214X\r\nRyan Tan Shi JIa \tU087205X\r\n";
+                "0214X\r\nRyan Tan Shi JIa \tU087205X\r\n";
             // 
             // label25
             // 
@@ -557,6 +557,7 @@
             // 
             // Plan
             // 
+            this.Plan.DataPropertyName = "sPlan";
             this.Plan.HeaderText = "Mobile Plan";
             this.Plan.Name = "Plan";
             this.Plan.ReadOnly = true;

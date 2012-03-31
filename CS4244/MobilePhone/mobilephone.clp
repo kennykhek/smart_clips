@@ -1511,13 +1511,13 @@
 (deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data)
 	(bind ?facts(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
 		(and
-			(eq ?wp:model ?pp:model)
-			(eq ?pp:plan ?p:plan)
+			(and (eq ?wp:model ?pp:model)(eq ?pp:plan ?p:plan))
 			(if (eq ?p:provider nil)
 				then
 				(eq ?p:provider ?p:provider)
+				(printout t "provider selected is nil " crlf)
 				else
-				(eq ?p:provider ?provider))
+				(eq ?p:provider ?provider)(printout t "check provider true " (eq ?p:provider ?provider)  crlf))
 			(if (eq ?p:outgoing nil)
 				then
 				(eq ?p:outgoing ?p:outgoing)
