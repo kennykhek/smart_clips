@@ -1452,6 +1452,11 @@
   (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
 )
 
+(deffunction get_requirement_list ()
+  (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
+)
+
+
 ;;Not yet finished
 (deffunction get_weightage_phone_plan_list ()
   (bind ?facts (find-all-facts((?p weightage_phone_plan)) 
@@ -1585,6 +1590,3 @@
   )
 )
  
-(deffunction get_requirement_list ()
-  (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
-)

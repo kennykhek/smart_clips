@@ -120,7 +120,7 @@ namespace MobilePhone {
              * @kwanghock
              */
 
-           // environment.Watch(WatchItem.Facts);
+            environment.Watch(WatchItem.All);
             environment.Reset();
 
             //assert test input to check everything ran correctly. @kwanghock
