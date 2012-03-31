@@ -185,7 +185,6 @@ namespace MobilePhone
 
             }
             //Convert binding list to list. Sort by weightage in descending order.
-            MessageBox.Show(phase3Results.Count.ToString());
             List<MobileResultDisplay> listConvert = phase3Results.ToList();
             listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
             phase3Results.Clear();
