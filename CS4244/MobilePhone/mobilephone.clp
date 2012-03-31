@@ -1046,67 +1046,71 @@
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
          (memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(weightage ?weightageVal)
   =>
-  (bind ?weightage-pi 100.0)
+  (bind ?weightage-pi 1.0)
   (if (eq ?pixel large) then
     (if (< ?piVal 6.0) then 
-	  (bind ?weightage-pi 50.0)
+	  (bind ?weightage-pi 0.7)
+	)
+	(if (< ?piVal 4.0) then 
+	  (bind ?weightage-pi 0.3)
 	)
 	(if (< ?piVal 3.0) then 
-	  (bind ?weightage-pi 20.0)
+	  (bind ?weightage-pi -0.5)
 	)
   )
-  (bind ?weightage-fl 100.0)
+
+  (bind ?weightage-fl 1.0)
   (if (eq ?flash yes) then
 	(if (eq ?flVal no) then 
 	  (bind ?weightage-fl 0.0)
 	)
   )
-  (bind ?weightage-vi 100.0)
+  (bind ?weightage-vi 1.0)
   (if (eq ?videoHD yes) then
 	(if (eq ?viVal no) then 
 	  (bind ?weightage-fl 0.0)
 	)
   )
-  (bind ?weightage-sc 100.0)
+  (bind ?weightage-sc 0.74)
   (if (eq ?screen large) then
     (if (< ?scVal 4.0) then 
-	  (bind ?weightage-sc 50.0)
+	  (bind ?weightage-sc 0.65)
 	)
 	(if (< ?scVal 3.0) then 
-	  (bind ?weightage-sc 20.0)
+	  (bind ?weightage-sc 0.48)
 	)
   )  
-  (bind ?weightage-we 100.0)
+  (bind ?weightage-we 0.9)
   (if (eq ?weight light) then
     (if (> ?weVal 150.0) then 
-	  (bind ?weightage-we 50.0)
+	  (bind ?weightage-we 0.78)
 	)
 	(if (> ?weVal 200.0) then 
-	  (bind ?weightage-we 20.0)
+	  (bind ?weightage-we 0.65)
 	)
   )
-  (bind ?weightage-me 100.0)
+  (bind ?weightage-me 0.85)
   (if (eq ?memory large) then
 	(if (< ?meVal 32) then 
-	  (bind ?weightage-me 80.0)
+	  (bind ?weightage-me 0.9)
 	)
 	(if (< ?meVal 24) then 
-	  (bind ?weightage-me 60.0)
+	  (bind ?weightage-me 0.75)
 	)	
     (if (< ?meVal 16) then 
-	  (bind ?weightage-me 40.0)
+	  (bind ?weightage-me 0.65)
 	)
 	(if (< ?meVal 8) then 
-	  (bind ?weightage-me 20.0)
+	  (bind ?weightage-me 0.40)
 	)
   ) 
-  (bind ?weightage-wi 100.0)
+  (bind ?weightage-wi 0.7)
   (if (eq ?wifi yes) then
 	(if (eq ?wiVal no) then 
 	  (bind ?weightage-wi 0.0)
 	)
   )
-  (bind ?weightage-fm 100.0)
+  (bind ?weightage-fm 0.3)
   (if (eq ?fm yes) then
 	(if (eq ?fmVal no) then 
 	  (bind ?weightage-fm 0.0)
@@ -1166,58 +1170,59 @@
   (phone_plan (plan ?plVal)(provider ?proVal)(planprice ?priVal)
               (outgoing ?ouVal)(sms ?smVal)(data ?daVal))
   =>
-  (bind ?weightage-pl 100.0)
+  (bind ?weightage-pl 0.72)
   (if (eq ?planprice medium) then
     (if (> ?priVal 60.0) then
-	  (bind ?weightage-pl 20.0)	
+	  (bind ?weightage-pl 0.45)	
 	)
   )
   (if (eq ?planprice low) then
     (if (> ?priVal 40.0) then
-	  (bind ?weightage-pl 50.0)	
+	  (bind ?weightage-pl 0.78)	
 	)
     (if (> ?priVal 60.0) then
-	  (bind ?weightage-pl 20.0)	
+	  (bind ?weightage-pl 0.30)	
 	)	
   )  
-  (bind ?weightage-ou 100.0)
+  (bind ?weightage-ou 0.80)
   (if (eq ?outgoing more) then
     (if (< ?ouVal 800) then
-	  (bind ?weightage-ou 80.0)
+	  (bind ?weightage-ou 0.87)
 	)
     (if (< ?ouVal 500) then
-	  (bind ?weightage-ou 50.0)
+	  (bind ?weightage-ou 0.70)
 	)	
     (if (< ?ouVal 300) then
-	  (bind ?weightage-ou 20.0)
+	  (bind ?weightage-ou 0.40)
 	)		
   )
-  (bind ?weightage-sm 100.0)
+
+  (bind ?weightage-sm 0.76)
   (if (eq ?sms high) then
     (if (< ?smVal 2000) then
-	  (bind ?weightage-sm 50.0)	
+	  (bind ?weightage-sm 0.64)	
 	)
 	(if (< ?smVal 650) then
-	  (bind ?weightage-sm 20.0)	
+	  (bind ?weightage-sm 0.27)	
 	)
   )
   (if (eq ?sms medium) then
     (if (< ?smVal 650) then
-	  (bind ?weightage-sm 20.0)	
+	  (bind ?weightage-sm 0.63)	
 	)
   ) 
-  (bind ?weightage-da 100.0)
+  (bind ?weightage-da 0.60)
   (if (eq ?data more) then
     (if (< ?daVal 15) then
-	  (bind ?weightage-da 50.0)	
+	  (bind ?weightage-da 0.76)	
 	)
 	(if (< ?daVal 10) then
-	  (bind ?weightage-da 20.0)	
+	  (bind ?weightage-da 0.7)	
 	)
   )
   (if (eq ?data less) then
     (if (< ?daVal 3) then
-	  (bind ?weightage-da 20.0)	
+	  (bind ?weightage-da 0.70)	
 	)
   )  
   (bind ?new-weightage (min ?weightage-pl ?weightage-ou ?weightage-sm ?weightage-da))
