@@ -54,18 +54,20 @@
 (deftemplate weightage_phone
 	(slot model)
 	(slot weightage (type FLOAT)(default 0.0))
-	(multislot weightages (type FLOAT))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))
 )
 
 (deftemplate weightage_plan
 	(slot plan (type SYMBOL))
 	(slot weightage (type FLOAT)(default 0.0))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))	
 )
 
 (deftemplate weightage_phone_plan
 	(slot model)
 	(slot plan (type SYMBOL))
 	(slot weightage (type FLOAT)(default 0.0))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))	
 )
 
 (deftemplate question
@@ -1118,14 +1120,10 @@
 	)
   )  
   (bind ?new-weightage (* ?weightageVal (min ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
-							              ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
-					                      ?weightage-wi ?weightage-fm)))
-  (bind ?normalized (* (+ 1 ?new-weightage) 50)
-  (assert (weightage_phone (model ?moVal)(weightage ?normalized)(weightages ?weightage-br ?weightage-os
-																			   ?weightage-pi ?weightage-fl 
-							                                                   ?weightage-vi ?weightage-sc 
-																			   ?weightage-we ?weightage-me 
-																			   ?weightage-wi ?weightage-fm)))
+							                 ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
+					                         ?weightage-wi ?weightage-fm)))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))
+  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
 (defrule combine_weightage_phone
@@ -1232,7 +1230,8 @@
 	)
   )  
   (bind ?new-weightage (min ?weightage-pl ?weightage-ou ?weightage-sm ?weightage-da))
-  (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))
+  (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
 
@@ -1335,7 +1334,8 @@
   (weightage_plan  (plan ?plVal) (weightage ?val2))
   =>
   (bind ?new-weightage (min ?val1 ?val2))
-  (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))  
+  (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
 ;;***************
