@@ -937,7 +937,7 @@
   (question (order use_camera)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-	(assert (requirement_phone (attribute pixel)  (value high)(phase 3)))
+	(assert (requirement_phone (attribute pixel)  (value large)(phase 3)))
 	(assert (requirement_phone (attribute flash)  (value yes) (phase 3)))
 	(assert (requirement_phone (attribute videoHD)(value yes) (phase 3)))
    )
@@ -1069,7 +1069,7 @@
   (bind ?weightage-vi 1.0)
   (if (eq ?videoHD yes) then
 	(if (eq ?viVal no) then 
-	  (bind ?weightage-fl 0.0)
+	  (bind ?weightage-vi -0.4)
 	)
   )
   (bind ?weightage-sc 0.74)
@@ -1114,13 +1114,14 @@
   (bind ?weightage-fm 0.3)
   (if (eq ?fm yes) then
 	(if (eq ?fmVal no) then 
-	  (bind ?weightage-fm 0.0)
+	  (bind ?weightage-fm 0.1)
 	)
   )  
   (bind ?new-weightage (* ?weightageVal (min ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
 							              ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
 					                      ?weightage-wi ?weightage-fm)))
-  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)(weightages ?weightage-br ?weightage-os
+  (bind ?normalized (* (+ 1 ?new-weightage) 50)
+  (assert (weightage_phone (model ?moVal)(weightage ?normalized)(weightages ?weightage-br ?weightage-os
 																			   ?weightage-pi ?weightage-fl 
 							                                                   ?weightage-vi ?weightage-sc 
 																			   ?weightage-we ?weightage-me 
