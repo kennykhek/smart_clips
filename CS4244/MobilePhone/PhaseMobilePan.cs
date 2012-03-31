@@ -65,10 +65,10 @@ namespace MobilePhone
             //Filter phone_plan_price 
             //       weightage_phone_plan 
             //       phone_plan
-            //string evalStr = "(update_phoneplan_list " + attribute + ")";
-            string evalStr = "(get_weightage_phone_plan_list)";
+            string evalStr = "(update_phoneplan_list " + attribute + ")";
+           // string evalStr = "(get_weightage_phone_plan_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
-            environment.Run();
+            //environment.Run();
 
             for (int i = 0; i < mv.Count; i++)
             {
