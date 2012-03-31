@@ -51,7 +51,7 @@
 	(slot phase     (type INTEGER)(default 0))	
 )
 
-(deftemplate weightage_phone
+(deftemplate get_weightage_phone_plan_list
 	(slot model)
 	(slot weightage (type FLOAT)(default 0.0))
 )
