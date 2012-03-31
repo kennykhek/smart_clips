@@ -1044,7 +1044,7 @@
   (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
   (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
-         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(weightage ?weightageVal)
+         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(weightage ?weightageVal))
   =>
   (bind ?weightage-pi 1.0)
   (if (eq ?pixel large) then
@@ -1457,6 +1457,11 @@
   (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
 )
 
+(deffunction get_requirement_list ()
+  (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
+)
+
+
 ;;Not yet finished
 (deffunction get_weightage_phone_plan_list ()
   (bind ?facts (find-all-facts((?p weightage_phone_plan)) 
@@ -1590,6 +1595,3 @@
   )
 )
  
-(deffunction get_requirement_list ()
-  (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
-)

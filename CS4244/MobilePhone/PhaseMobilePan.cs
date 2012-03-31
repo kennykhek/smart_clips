@@ -76,13 +76,20 @@ namespace MobilePhone
                 PlanResultDisplay display = new PlanResultDisplay();
 
                 String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
-                float fphoneprice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
+                float fweightage = (float)(FloatValue)fv.GetFactSlot("weightage");
                 String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
 
-                display.sModel = sModel;
-                display.fprice = fphoneprice;
-                display.sPlan = sPlan;
+                phase4Results.Add(display);
+
             }
+            List<PlanResultDisplay> listConvert = phase4Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            phase4Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase4Results.Add(listConvert.ElementAt(i));
+            }
+            dataGridView1.DataSource = phase3Results;
         }
 
         public void LoadPhasePlanDropdown()
