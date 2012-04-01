@@ -1327,13 +1327,21 @@
 )
 
 (defrule calculate_phone_plan_weightage
-  ; Combining two CF within a rule
+  ; combining CF from two different rules given a same result
   (declare (salience 100))
   (phase (stage 6))
-  (weightage_phone (model ?moVal)(weightage ?val1))
-  (weightage_plan  (plan ?plVal) (weightage ?val2))
+  (weightage_phone (model ?moVal)(weightage ?weightage1))
+  (weightage_plan  (plan ?plVal) (weightage ?weightage2))
   =>
-  (bind ?new-weightage (min ?val1 ?val2))
+  (if (and (>= ?weightage1 0) (>= ?weightage2 0)) then
+    (bind ?new-weightage (- (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
+  )
+  (if (and (< ?weightage1 0) (< ?weightage2 0)) then
+    (bind ?new-weightage (+ (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
+  )
+  (if (or (and (< ?weightage1 0) (>= ?weightage2 0)) (and (>= ?weightage1 0) (< ?weightage2 0))) then
+    (bind ?new-weightage (/ (+ ?weightage1 ?weightage2) (- 1 (min (abs ?weightage1)(abs ?weightage2)))))
+  )
   (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))  
   (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
