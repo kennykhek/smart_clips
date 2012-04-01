@@ -211,6 +211,8 @@ namespace MobilePhone {
                 if (panelPhase4.Visible) 
                 {
                     ProcessPhase(Defintions.PhaseMobilePlan);
+                    //Do a run to allow plan data grid to be populated  when onload
+                    environment.Run();
                 }
                 SetUIState(++UIState);
 
@@ -239,6 +241,7 @@ namespace MobilePhone {
                 {
                     ResetPhase(Defintions.PhaseMobilePlan);
                     environment.Eval("(prev_phase 7)");
+
                 }
                 //Have to reset to the previous state
                 SetUIState(--UIState);
@@ -535,6 +538,10 @@ namespace MobilePhone {
                 this.buttonRestart.Visible = true;
                 this.buttonPrev.Visible = true;
                 ProcessPhase(Defintions.PhaseMobilePlan);
+
+                phase4Results.Clear();
+
+                InitPlanDataGrid();
             }
         }
 
