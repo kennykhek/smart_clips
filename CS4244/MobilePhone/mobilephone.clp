@@ -1471,6 +1471,10 @@
   (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
 )
 
+(deffunction get_phoneplanprice_list ()
+  (bind ?facts (find-all-facts((?p phone_plan_price)) TRUE))
+)
+
 (deffunction get_requirement_list ()
   (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
 )
@@ -1478,10 +1482,9 @@
 
 ;;Not yet finished
 (deffunction get_weightage_phone_plan_list ()
-  (bind ?facts (find-all-facts((?p weightage_phone_plan)) 
-  TRUE
-  ))
-)
+(bind ?facts(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
+	(and (eq ?wp:model ?pp:model)(eq ?pp:plan ?wp:plan)(eq ?wp:plan ?p:plan))
+)))
 
 (deffunction next_phase (?currentphase)
 	(find-all-facts((?p phase)) 
@@ -1516,27 +1519,32 @@
 )
 
 
-(deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data)
+(deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data ?budgetMin ?budgetMax)
 	(bind ?facts(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
 		(and
-			(and (eq ?wp:model ?pp:model)(eq ?pp:plan ?p:plan))
-			(if (eq ?p:provider nil)
+			(and (eq ?wp:model ?pp:model)(eq ?pp:plan ?wp:plan)(eq ?wp:plan ?p:plan))
+			(if (and (eq ?budgetMax nil)(eq ?budgetMin nil))
+				then
+				(eq ?pp:phoneprice ?pp:phoneprice)
+				else
+				(and(<= ?pp:phoneprice ?budgetMax)(>= ?pp:phoneprice ?budgetMin)))
+			(if (eq ?provider nil)
 				then
 				(eq ?p:provider ?p:provider)
-				(printout t "provider selected is nil " crlf)
+				;(printout t "provider selected is nil " crlf)
 				else
-				(eq ?p:provider ?provider)(printout t "check provider true " (eq ?p:provider ?provider)  crlf))
-			(if (eq ?p:outgoing nil)
+				(eq ?p:provider ?provider))
+			(if (eq ?outgoing nil)
 				then
 				(eq ?p:outgoing ?p:outgoing)
 				else
 				(eq ?p:outgoing ?outgoing))
-			(if (eq ?p:sms nil)
+			(if (eq ?sms nil)
 				then
 				(eq ?p:sms ?p:sms)
 				else
 				(eq ?p:sms ?sms))
-			(if (eq ?p:data nil)
+			(if (eq ?data nil)
 				then
 				(eq ?p:data ?p:data)
 				else

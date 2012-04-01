@@ -29,6 +29,8 @@ namespace MobilePhone
             String sSelectedOutgoing = "";
             String sSelectedSMS = "";
             String sSelectedData = "";
+            String sSelectedBudgetMax = "";
+            String sSelectedBudgetMin = "";
 
             if (cbProvider.SelectedItem != null && cbProvider.SelectedItem != "")
             {
@@ -51,13 +53,25 @@ namespace MobilePhone
 
             if (cbData.SelectedItem != null && cbData.SelectedItem != "")
             {
-                sSelectedData = cbData.SelectedItem.ToString();
+                sSelectedData = cbData.SelectedItem.ToString().Substring(0,cbData.SelectedItem.ToString().IndexOf(" "));
             }
             else sSelectedData = "nil";
 
+            //budget different. need to cater to range
+            if (cbBudget.SelectedItem != null && cbBudget.SelectedItem != "")
+            {
+                sSelectedBudgetMin = cbBudget.SelectedItem.ToString().Substring(0, cbBudget.SelectedItem.ToString().IndexOf(" "));
+                sSelectedBudgetMax = cbBudget.SelectedItem.ToString().Substring(cbBudget.SelectedItem.ToString().IndexOf("-") + 1);
+            }
+            else
+            {
+                sSelectedBudgetMax = "nil";
+                sSelectedBudgetMin = "nil";
+            }
+
             environment.Run();
 
-            UpdatePlanGrid(sSelectedProvider + " " + sSelectedOutgoing + " " + sSelectedSMS + " " + sSelectedData);
+            UpdatePlanGrid(sSelectedProvider + " " + sSelectedOutgoing + " " + sSelectedSMS + " " + sSelectedData + " " + sSelectedBudgetMin + " " + sSelectedBudgetMax);
         }
 
         public void UpdatePlanGrid(String attribute)
@@ -69,7 +83,7 @@ namespace MobilePhone
            // string evalStr = "(get_weightage_phone_plan_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
             //environment.Run();
-
+            phase4Results.Clear();
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
@@ -78,23 +92,32 @@ namespace MobilePhone
                 try
                 {
                     float fphoneprice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
-                    String sProvider = (String)(SymbolValue)fv.GetFactSlot("provider");
+                    
 
                 }
                 catch (Exception exception)
                 {
-                    if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
-                        sModel = (String)(SymbolValue)fv.GetFactSlot("model");
-                    else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
-                        sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
-                    float fweightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
-                    String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
+                    try
+                    {
+                        String sProvider = (String)(SymbolValue)fv.GetFactSlot("provider");
+                    }
+                    catch (Mommosoft.ExpertSystem.Interop.ExpertSystemException ex)
+                    {
+                        if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                            sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                        else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                            sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                        float fweightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
+                        String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
 
-                    display.fWeightage = fweightage;
-                    display.sModel = sModel;
-                    display.sPlan = sPlan;
+                        display.fWeightage = fweightage;
+                        display.sModel = sModel;
+                        display.sPlan = sPlan;
 
-                    phase4Results.Add(display);
+                        phase4Results.Add(display);
+                    }
+
+                   
                 }
             }
 
@@ -176,6 +199,25 @@ namespace MobilePhone
             cbSMS.Items.Insert(0, "");
             cbData.Items.Insert(0, "");
 
+
+            //load price range seperately
+            string evalStrPrice = "(get_phoneplanprice_list)";
+            MultifieldValue mvPrice = (MultifieldValue)environment.Eval(evalStrPrice);
+            List<float> listPhonePlanPrice = new List<float>();
+
+            for (int i = 0; i < mvPrice.Count; i++)
+            {
+                FactAddressValue fv = (FactAddressValue)mvPrice[i];
+                float fPhonePrice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
+                listPhonePlanPrice.Add(fPhonePrice);
+            }
+            listPhonePlanPrice = listPhonePlanPrice.Distinct().ToList();
+            listPhonePlanPrice.Sort();
+
+            List<String> listBudgetDropdown = SetRange(listPhonePlanPrice);
+
+            for (int i = 0; i < listBudgetDropdown.Count; i++)
+                cbBudget.Items.Add(listBudgetDropdown.ElementAt(i));
         }
     }
 }
