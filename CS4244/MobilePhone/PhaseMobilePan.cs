@@ -219,5 +219,59 @@ namespace MobilePhone
             for (int i = 0; i < listBudgetDropdown.Count; i++)
                 cbBudget.Items.Add(listBudgetDropdown.ElementAt(i));
         }
+
+        public void InitPlanDataGrid()
+        {
+            //string evalStr = "(update_phoneplan_list nil nil nil nil nil nil)";
+             string evalStr = "(get_weightage_phone_plan_list)";
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
+            //environment.Run();
+            phase4Results.Clear();
+            for (int i = 0; i < mv.Count; i++)
+            {
+                FactAddressValue fv = (FactAddressValue)mv[i];
+                PlanResultDisplay display = new PlanResultDisplay();
+                String sModel = "";
+                try
+                {
+                    float fphoneprice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
+
+
+                }
+                catch (Exception exception)
+                {
+                    try
+                    {
+                        String sProvider = (String)(SymbolValue)fv.GetFactSlot("provider");
+                    }
+                    catch (Mommosoft.ExpertSystem.Interop.ExpertSystemException ex)
+                    {
+                        if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                            sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                        else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                            sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                        float fweightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
+                        String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
+
+                        display.fWeightage = fweightage;
+                        display.sModel = sModel;
+                        display.sPlan = sPlan;
+
+                        phase4Results.Add(display);
+                    }
+
+
+                }
+            }
+
+            List<PlanResultDisplay> listConvert = phase4Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            phase4Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase4Results.Add(listConvert.ElementAt(i));
+            }
+            dataGridView1.DataSource = phase4Results;
+        }
     }
 }

@@ -1482,9 +1482,8 @@
 
 ;;Not yet finished
 (deffunction get_weightage_phone_plan_list ()
-(bind ?facts(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
-	(and (eq ?wp:model ?pp:model)(eq ?pp:plan ?wp:plan)(eq ?wp:plan ?p:plan))
-)))
+(bind ?facts(find-all-facts((?wp weightage_phone_plan))TRUE))
+)
 
 (deffunction next_phase (?currentphase)
 	(find-all-facts((?p phase)) 
