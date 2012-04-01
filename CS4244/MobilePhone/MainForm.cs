@@ -113,6 +113,7 @@ namespace MobilePhone {
             iResultIterate = 0;
 
             phase3Results = new BindingList<MobileResultDisplay>();
+            phase4Results = new BindingList<PlanResultDisplay>();
 
             /*
              * Watching of facts is done in output window. So make sure when build output window is shown
@@ -423,7 +424,7 @@ namespace MobilePhone {
                 float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
                 String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
                 String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
-                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                float fWeightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
 
                 MobilePhoneRecommendation a = new MobilePhoneRecommendation();
                 a.sModel = sModel;

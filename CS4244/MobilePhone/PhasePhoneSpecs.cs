@@ -164,8 +164,13 @@ namespace MobilePhone
             for (int i = 0; i < listColor.Count; i++)
                 cbColor.Items.Add(UpperCaseFirstChar(listColor.ElementAt(i)));
 
-            for (int i = 0; i < listScreen.Count; i++)
-                cbScreen.Items.Add(listScreen.ElementAt(i));
+            //for (int i = 0; i < listScreen.Count; i++)
+              //  cbScreen.Items.Add(listScreen.ElementAt(i));
+
+            //Screen different. put a range @kwanghock
+            List<String> screenRange = SetRange(listScreen);
+            for (int i = 0; i < screenRange.Count; i++)
+                cbScreen.Items.Add(screenRange.ElementAt(i));
 
             for (int i = 0; i < listFM.Count; i++)
                 cbFM.Items.Add(UpperCaseFirstChar(listFM.ElementAt(i)));
@@ -180,8 +185,9 @@ namespace MobilePhone
                 cbMem.Items.Add(listMem.ElementAt(i) + " gb");
 
             //toString slightly different to retain float precision @kwanghock 18march2012
-            for (int i = 0; i < listWeight.Count; i++)
-                cbWeight.Items.Add((listWeight.ElementAt(i)).ToString("0.0") + " g");
+            List<String> weightRange = SetRange(listWeight);
+            for (int i = 0; i < weightRange.Count; i++)
+                cbWeight.Items.Add(weightRange.ElementAt(i).ToString() + " (g)");
 
             //toString slightly different to retain float precision @kwanghock 18march2012
             for (int i = 0; i < listPixel.Count; i++)
@@ -208,6 +214,18 @@ namespace MobilePhone
             cbOS.Items.Insert(0, "");
             cbZoom.Items.Insert(0, "");
             cbVideoHD.Items.Insert(0, "");
+        }
+
+        private List<string> SetRange(List<float> list)
+        {
+            List<String> range = new List<string>();
+
+            range.Add(list.ElementAt(0).ToString() + " - " + list.ElementAt(list.Count / 4).ToString());
+            range.Add(list.ElementAt((list.Count / 4) + 1).ToString() + " - " + list.ElementAt(list.Count / 2).ToString());
+            range.Add(list.ElementAt((list.Count / 2) + 1).ToString() + " - " + list.ElementAt(list.Count / 4 * 3).ToString());
+            range.Add(list.ElementAt((list.Count / 4 * 3) + 1).ToString() + " - " + list.ElementAt(list.Count - 1).ToString());
+
+            return range;
         }
        
         //Convert the first letter of the string arugment to be of uppercase
@@ -237,12 +255,14 @@ namespace MobilePhone
         public void OnChange(object sender, EventArgs e)
         {
             String sSelectedOS = null;
-             String sSelectedScreen = null;
+             String sSelectedScreenMax = null;
+             String sSelectedScreenMin = null;
              String sSelectedFM =null;
              String sSelectedVideoHD =null ;
             String sSelectedCamFlash =null;
             String sSelectedMem =null;
-            String sSelectedWeight =null;
+            String sSelectedWeightMax =null;
+            String sSelectedWeightMin = null;
             String sSelectedPixel = null;
             String sSelectedWifi = null;
             String sSelectedColor =null;
@@ -254,11 +274,17 @@ namespace MobilePhone
             }
             else sSelectedOS = "nil";
 
+            //Screen different. need to cater to range
             if (cbScreen.SelectedItem != null && cbScreen.SelectedItem != "")
             {
-                sSelectedScreen = LowerCaseFirstChar(cbScreen.SelectedItem.ToString());
+                sSelectedScreenMin = cbScreen.SelectedItem.ToString().Substring(0, cbScreen.SelectedItem.ToString().IndexOf(" "));
+                sSelectedScreenMax = cbScreen.SelectedItem.ToString().Substring(cbScreen.SelectedItem.ToString().IndexOf("-") +1);
             }
-            else sSelectedScreen = "nil";
+            else
+            {
+                sSelectedScreenMax = "nil";
+                sSelectedScreenMin = "nil";
+            }
 
             if (cbFM.SelectedItem != null && cbFM.SelectedItem != "")
             {
@@ -284,11 +310,18 @@ namespace MobilePhone
             }
             else sSelectedMem = "nil";
 
+            //Weight different. need to cater to range
             if (cbWeight.SelectedItem != null && cbWeight.SelectedItem != "")
             {
-                sSelectedWeight = cbWeight.SelectedItem.ToString().Substring(0, cbWeight.SelectedItem.ToString().IndexOf(" "));
+                sSelectedWeightMin = cbWeight.SelectedItem.ToString().Substring(0, cbWeight.SelectedItem.ToString().IndexOf(" "));
+                sSelectedWeightMax = cbWeight.SelectedItem.ToString().Substring(cbWeight.SelectedItem.ToString().IndexOf(" - ") + 3);
+                sSelectedWeightMax = sSelectedWeightMax.Substring(0, sSelectedWeightMax.IndexOf(" "));
             }
-            else sSelectedWeight = "nil";
+            else
+            {
+                sSelectedWeightMax = "nil";
+                sSelectedWeightMin = "nil";
+            }
 
             if (cbCamPixel.SelectedItem != null && cbCamPixel.SelectedItem != "")
             {
@@ -317,7 +350,7 @@ namespace MobilePhone
 
             environment.Run();
 
-            UpdatePhoneGrid(sSelectedOS + " " + sSelectedScreen + " " + sSelectedFM + " " + sSelectedVideoHD + " " + sSelectedCamFlash + " " + sSelectedMem + " " + sSelectedWeight + " " + sSelectedPixel + " " + sSelectedColor + " " + sSelectedWifi + " " + sSelectedZoom);
+            UpdatePhoneGrid(sSelectedOS + " " + sSelectedScreenMax + " " + sSelectedScreenMin + " " + sSelectedFM + " " + sSelectedVideoHD + " " + sSelectedCamFlash + " " + sSelectedMem + " " + sSelectedWeightMax + " " + sSelectedWeightMin + " " + sSelectedPixel + " " + sSelectedColor + " " + sSelectedWifi + " " + sSelectedZoom);
         }
 
         public void UpdatePhoneGrid(String attribute)
@@ -354,7 +387,7 @@ namespace MobilePhone
                     else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                         sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
 
-                    fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                    fWeightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
                 }
                
 
