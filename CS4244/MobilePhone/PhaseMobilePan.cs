@@ -197,7 +197,7 @@ namespace MobilePhone
             cbOutgoing.Items.Insert(0, "");
             cbSMS.Items.Insert(0, "");
             cbData.Items.Insert(0, "");
-
+            cbBudget.Items.Insert(0, "");
 
             //load price range seperately
             string evalStrPrice = "(get_phoneplanprice_list)";
