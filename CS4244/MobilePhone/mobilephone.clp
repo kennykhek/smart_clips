@@ -229,16 +229,6 @@
 	(phone_plan (plan i2Surf_100)          (provider starhub) (planprice 38.00) (outgoing 100) (sms 500) (data 1))
 	(phone_plan (plan i2Surf_300)          (provider starhub) (planprice 58.00) (outgoing 300) (sms 500) (data 2))
 	(phone_plan (plan i2Surf_700)          (provider starhub) (planprice 98.00) (outgoing 700) (sms 500) (data 5))
-;M1
-	(phone_plan (plan ValueSurf)  (provider m1)(planprice 39.00) (outgoing 100) (sms 500) (data 12))
-	(phone_plan (plan LiteSurf)   (provider m1)(planprice 55.00) (outgoing 250) (sms 500) (data 12))
-	(phone_plan (plan ExtremeSurf)(provider m1)(planprice 95.00) (outgoing 600) (sms 500) (data 12))
-	
-	;;(phone_plan (plan iTwo_Value) (provider singtel) (planprice 48.15) (outgoing 300) (sms 500) (data 0))
-	;;(phone_plan (plan iTwo_Plus) (provider singtel) (planprice 82.93) (outgoing 700) (sms 500) (data 0))
-	;;(phone_plan (plan iThree_Plus) (provider singtel) (planprice 192.60) (outgoing 2000) (sms 2000) (data 0))
-	;;(phone_plan (plan iOne_Super_Value) (provider singtel) (planprice 15.00) (outgoing 80) (sms 50) (data 0))
-	;;(phone_plan (plan iOne_Plus) (provider singtel) (planprice 25.68) (outgoing 100) (sms 500) (data 0))
 )
 
 ;Phone Plan Price
@@ -571,7 +561,6 @@
 	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_700))
 	(phone_plan_price (model N9_64) (phoneprice 0.00) (plan SmartSurf_unlimited))
 
-	
 	;;HTC
 	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_100))
 	(phone_plan_price (model rhyme) (phoneprice 0.00) (plan SmartSurf_300))
@@ -587,7 +576,6 @@
 	(phone_plan_price (model sensation_xl) (phoneprice 178.00) (plan SmartSurf_300))
 	(phone_plan_price (model sensation_xl) (phoneprice 78.00) (plan SmartSurf_700))
 	(phone_plan_price (model sensation_xl) (phoneprice 0.00) (plan SmartSurf_unlimited))
-	
 	
 	;Samsung
 	(phone_plan_price (model galaxy_ace) (phoneprice 0.00) (plan SmartSurf_100))
@@ -649,7 +637,6 @@
 	(phone_plan_price (model prada) (phoneprice 128.00) (plan SmartSurf_700))
 	(phone_plan_price (model prada) (phoneprice 128.00) (plan SmartSurf_unlimited))
 	
-			 
   ; Motorola
 	(phone_plan_price (model razr) (phoneprice 298.00) (plan i2Surf_100))
 	(phone_plan_price (model razr) (phoneprice 148.00) (plan i2Surf_300))
@@ -658,7 +645,6 @@
 	(phone_plan_price (model razr) (phoneprice 148.00) (plan SmartSurf_300))
 	(phone_plan_price (model razr) (phoneprice 48.00) (plan SmartSurf_700))
 	(phone_plan_price (model razr) (phoneprice 0.00) (plan SmartSurf_unlimited))
-
 )
 
 ;;*********************
@@ -1004,32 +990,6 @@
   )  
 )
 
-;;**********************
-;;* TRIAL RULES STAGES *
-;;**********************
-;; TO BE DELETED BEFORE HANDING IN
-;(defrule user_personality
- ; (phase (stage 1))
- ; =>
- ;(assert (question (order prefer_func)  (selection s1)(phase 1)))
- ;(assert (question (order user_type)    (selection s1)(phase 1)))
- ;(assert (question (order user_attitude)(selection s2)(phase 1)))
- ;(assert (question (order user_saying)  (selection s3)(phase 1)))
-;)
-
-;(defrules user_personality
-;  (phase (stage 3))
-;  =>
-;  (requirement_phone (attribute pixel)  (value large)(phase 3))
-;  (requirement_phone (attribute flash)  (value yes)  (phase 3))
-;  (requirement_phone (attribute videoHD)(value no)   (phase 3))
-;  (requirement_phone (attribute screen) (value large)(phase 3))
-;  (requirement_phone (attribute weight) (value light)(phase 3))
-;  (requirement_phone (attribute memory) (value large)(phase 3))
-;  (requirement_phone (attribute wifi)   (value yes)  (phase 3))
-;  (requirement_phone (attribute fm)     (value yes)  (phase 3))
-;)
-
 ;;*********************
 ;;* CALCULATION RULES *
 ;;*********************
@@ -1197,7 +1157,6 @@
 	  (bind ?weightage-ou 0.40)
 	)		
   )
-
   (bind ?weightage-sm 0.76)
   (if (eq ?sms high) then
     (if (< ?smVal 2000) then
@@ -1444,7 +1403,6 @@
   (bind ?facts (find-all-facts((?p phone)) TRUE))
 )
 
-
 (deffunction get_weightagephone_list ()
   (bind ?facts (find-all-facts((?p weightage_phone)) TRUE))
 )
@@ -1461,140 +1419,141 @@
   (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
 )
 
-
-;;Not yet finished
 (deffunction get_weightage_phone_plan_list ()
 (bind ?facts(find-all-facts((?wp weightage_phone_plan))TRUE))
 )
 
 (deffunction next_stage (?current_stage)
-	(find-all-facts((?p phase)) 
-	  (switch ?current_stage
-		(case 1 then 
-		  (modify ?p (stage 2))
-		)  
-		(case 3 then 
-		  (modify ?p (stage 4))
-		) 
-		(case 5 then 
-		  (modify ?p (stage 6))
-		)
-	   )
+  (find-all-facts((?p phase)) 
+    (switch ?current_stage
+      (case 1 then 
+	    (modify ?p (stage 2))
+	  )  
+      (case 3 then 
+	    (modify ?p (stage 4))
+	  ) 
+	  (case 5 then 
+        (modify ?p (stage 6))
+	  )
 	)
+  )
 )
 
 (deffunction prev_stage (?current_stage)
-	(find-all-facts((?p phase)) 
-	  (switch ?current_stage
-	  	(case 3 then 
-		  (modify ?p (stage 0))
-		)
-		(case 5 then 
-		  (modify ?p (stage 2))
-		) 
-		(case 7 then 
-		  (modify ?p (stage 5))
-		)  
-	   )
+  (find-all-facts((?p phase)) 
+    (switch ?current_stage
+	  (case 3 then 
+	    (modify ?p (stage 0))
+	  )
+	  (case 5 then 
+	    (modify ?p (stage 2))
+	  ) 
+	  (case 7 then 
+	    (modify ?p (stage 5))
+	  )  
 	)
+  )
 )
 
 
 (deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data ?budgetMin ?budgetMax)
-	(bind ?facts(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
-		(and
-			(and (eq ?wp:model ?pp:model)(eq ?pp:plan ?wp:plan)(eq ?wp:plan ?p:plan))
-			(if (and (eq ?budgetMax nil)(eq ?budgetMin nil))
-				then
-				(eq ?pp:phoneprice ?pp:phoneprice)
-				else
-				(and(<= ?pp:phoneprice ?budgetMax)(>= ?pp:phoneprice ?budgetMin)))
-			(if (eq ?provider nil)
-				then
-				(eq ?p:provider ?p:provider)
-				;(printout t "provider selected is nil " crlf)
-				else
-				(eq ?p:provider ?provider))
-			(if (eq ?outgoing nil)
-				then
-				(eq ?p:outgoing ?p:outgoing)
-				else
-				(eq ?p:outgoing ?outgoing))
-			(if (eq ?sms nil)
-				then
-				(eq ?p:sms ?p:sms)
-				else
-				(eq ?p:sms ?sms))
-			(if (eq ?data nil)
-				then
-				(eq ?p:data ?p:data)
-				else
-				(eq ?p:data ?data))
+  (bind ?facts
+	(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
+	  (and
+	    (and (eq ?wp:model ?pp:model)(eq ?pp:plan ?wp:plan)(eq ?wp:plan ?p:plan))
+		(if (and (eq ?budgetMax nil)(eq ?budgetMin nil)) then
+		  (eq ?pp:phoneprice ?pp:phoneprice)
+		else
+		  (and(<= ?pp:phoneprice ?budgetMax)(>= ?pp:phoneprice ?budgetMin))
 		)
-)))
+		(if (eq ?provider nil) then
+		  (eq ?p:provider ?p:provider)
+		else
+		  (eq ?p:provider ?provider)
+		)
+	    (if (eq ?outgoing nil) then
+		  (eq ?p:outgoing ?p:outgoing)
+		else
+		  (eq ?p:outgoing ?outgoing)
+		)
+		(if (eq ?sms nil) then
+		  (eq ?p:sms ?p:sms)
+		else
+		  (eq ?p:sms ?sms)
+		)
+		(if (eq ?data nil) then
+		  (eq ?p:data ?p:data)
+		else
+		  (eq ?p:data ?data)
+		)
+	  )
+    )
+  )
+)
 
 
 (deffunction update_mobilephone_list (?os ?screenMax ?screenMin ?fm ?video ?camflash ?mem ?weightMax ?weightMin ?campixel ?color ?wifi ?camzoom)
-  (bind ?facts(find-all-facts((?wp weightage_phone)(?p phone))
-		(and
-			(eq ?p:model ?wp:model)
-			(if (eq ?os nil)
-				then
-				(eq ?p:os ?p:os)
-				else
-				(eq ?p:os ?os))
-			(if (and (eq ?screenMax nil)(eq ?screenMin nil))
-				then
-				(eq ?p:screen ?p:screen)
-				else
-				(and(<= ?p:screen ?screenMax)(>= ?p:screen ?screenMin)))
-			(if (eq ?fm nil)
-				then
-				(eq ?p:fm ?p:fm)
-				else
-				(eq ?p:fm ?fm))
-			(if (eq ?video nil)
-				then
-				(eq ?p:videoHD ?p:videoHD)
-				else
-				(eq ?p:videoHD ?video))
-			(if (eq ?camflash nil)
-				then
-				(eq ?p:flash ?p:flash)
-				else
-				(eq ?p:flash ?camflash))
-			(if (eq ?mem nil)
-				then
-				(eq ?p:memory ?p:memory)
-				else
-				(eq ?p:memory ?mem))
-			(if (and (eq ?weightMax nil)(eq ?weightMin nil))
-				then
-				(eq ?p:weight ?p:weight)
-				else
-				(and(<= ?p:weight ?weightMax)(>= ?p:weight ?weightMin)))
-			(if (eq ?campixel nil)
-				then
-				(eq ?p:pixel ?p:pixel)
-				else
-				(eq ?p:pixel ?campixel))
-			(if (eq ?color nil)
-				then
-				(eq ?p:color ?p:color)
-				else
-				(eq ?p:color ?color))
-			(if (eq ?wifi nil)
-				then
-				(eq ?p:wifi ?p:wifi)
-				else
-				(eq ?p:wifi ?wifi))
-			(if (eq ?camzoom nil)
-				then
-				(eq ?p:zoom ?p:zoom)
-				else
-				(eq ?p:zoom ?camzoom))
-		)
-	)
+  (bind ?facts
+    (find-all-facts((?wp weightage_phone)(?p phone))
+	  (and
+	    (eq ?p:model ?wp:model)
+        (if (eq ?os nil) then
+          (eq ?p:os ?p:os)
+        else
+          (eq ?p:os ?os)
+        )
+        (if (and (eq ?screenMax nil)(eq ?screenMin nil)) then
+          (eq ?p:screen ?p:screen)
+        else
+          (and(<= ?p:screen ?screenMax)(>= ?p:screen ?screenMin))
+        )
+        (if (eq ?fm nil) then
+          (eq ?p:fm ?p:fm)
+        else
+          (eq ?p:fm ?fm)
+        )
+        (if (eq ?video nil) then
+          (eq ?p:videoHD ?p:videoHD)
+        else
+          (eq ?p:videoHD ?video)
+        )
+        (if (eq ?camflash nil) then
+          (eq ?p:flash ?p:flash)
+        else
+          (eq ?p:flash ?camflash)
+        )
+        (if (eq ?mem nil) then
+          (eq ?p:memory ?p:memory)
+        else
+          (eq ?p:memory ?mem)
+        )
+        (if (and (eq ?weightMax nil)(eq ?weightMin nil)) then
+          (eq ?p:weight ?p:weight)
+        else
+          (and(<= ?p:weight ?weightMax)(>= ?p:weight ?weightMin))
+        )
+        (if (eq ?campixel nil) then
+          (eq ?p:pixel ?p:pixel)
+        else
+          (eq ?p:pixel ?campixel)
+        )
+        (if (eq ?color nil) then
+          (eq ?p:color ?p:color)
+        else
+          (eq ?p:color ?color)
+        )
+        (if (eq ?wifi nil) then
+          (eq ?p:wifi ?p:wifi)
+        else
+          (eq ?p:wifi ?wifi)
+        )
+        (if (eq ?camzoom nil) then
+          (eq ?p:zoom ?p:zoom)
+        else
+          (eq ?p:zoom ?camzoom)
+        )
+      )
+    )
   )
 )
  
