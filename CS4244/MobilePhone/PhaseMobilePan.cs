@@ -107,10 +107,12 @@ namespace MobilePhone
                             sModel = (String)(SymbolValue)fv.GetFactSlot("model");
                         else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                             sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
-                        float fweightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
+                        float fWeightagePhone = (float)(FloatValue)fv.GetFactSlot("weightage_phone");
+                        float fWeightagePlan = (float)(FloatValue)fv.GetFactSlot("weightage_plan");
                         String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
 
-                        display.fWeightage = fweightage;
+                        display.fWeightagePhone = fWeightagePhone;
+                        display.fWeightagePhone = fWeightagePlan;
                         display.sModel = sModel;
                         display.sPlan = sPlan;
 
@@ -122,7 +124,7 @@ namespace MobilePhone
             }
 
             List<PlanResultDisplay> listConvert = phase4Results.ToList();
-            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightagePhone).ToList();
             phase4Results.Clear();
             for (int i = 0; i < listConvert.Count; i++)
             {
@@ -250,10 +252,12 @@ namespace MobilePhone
                             sModel = (String)(SymbolValue)fv.GetFactSlot("model");
                         else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                             sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
-                        float fweightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
+                        float fweightagePhone = (float)(FloatValue)fv.GetFactSlot("weightage_phone");
+                        float fweightagePlan = (float)(FloatValue)fv.GetFactSlot("weightage_plan");
                         String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
 
-                        display.fWeightage = fweightage;
+                        display.fWeightagePhone = fweightagePhone;
+                        display.fWeightagePlan = fweightagePlan;
                         display.sModel = sModel;
                         display.sPlan = sPlan;
 
@@ -265,7 +269,7 @@ namespace MobilePhone
             }
 
             List<PlanResultDisplay> listConvert = phase4Results.ToList();
-            listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightagePhone).ToList();
             phase4Results.Clear();
             for (int i = 0; i < listConvert.Count; i++)
             {

@@ -50,7 +50,8 @@ namespace MobilePhone {
         {
             public String sModel { set; get; }
             public String sPlan { set; get; }
-            public float fWeightage { set; get; }
+            public float fWeightagePlan { set; get; }
+            public float fWeightagePhone { set; get; }
         }
 
         private class MobilePhoneRecommendation
@@ -544,12 +545,6 @@ namespace MobilePhone {
                 InitPlanDataGrid();
             }
         }
-
-
-
-
-        
-
 
     }
 }
