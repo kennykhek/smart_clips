@@ -65,9 +65,9 @@
 
 (deftemplate weightage_phone_plan
 	(slot model)
-	(slot weightage_phone (type FLOAT)(default 0.0))
+	(slot normalizedWeightagePhone (type FLOAT)(default 0.0))
 	(slot plan (type SYMBOL))
-	(slot weightage_plan (type FLOAT)(default 0.0))	
+	(slot normalizedWeightagePlan (type FLOAT)(default 0.0))	
 )
 
 (deftemplate question
