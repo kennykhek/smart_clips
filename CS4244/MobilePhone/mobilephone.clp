@@ -1382,6 +1382,15 @@
   )
 )
 
+(defrule remove_weightage_phone_plan_for_recalculate
+  ?weightage <- (weightage_phone_plan)
+  (phase (stage ?stage))
+  =>
+  (if (< ?stage 4) then
+    (retract ?weightage)
+  )
+)
+
 (defrule stage_four_change_stage
   (declare (salience -10))
   ?phase <- (phase (stage 4))
