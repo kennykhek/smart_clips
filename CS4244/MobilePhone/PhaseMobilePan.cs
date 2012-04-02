@@ -107,12 +107,12 @@ namespace MobilePhone
                             sModel = (String)(SymbolValue)fv.GetFactSlot("model");
                         else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                             sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
-                        float fWeightagePhone = (float)(FloatValue)fv.GetFactSlot("weightage_phone");
-                        float fWeightagePlan = (float)(FloatValue)fv.GetFactSlot("weightage_plan");
+                        float fWeightagePhone = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePhone");
+                        float fWeightagePlan = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePlan");
                         String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
 
                         display.fWeightagePhone = fWeightagePhone;
-                        display.fWeightagePhone = fWeightagePlan;
+                        display.fWeightagePlan = fWeightagePlan;
                         display.sModel = sModel;
                         display.sPlan = sPlan;
 
@@ -252,8 +252,8 @@ namespace MobilePhone
                             sModel = (String)(SymbolValue)fv.GetFactSlot("model");
                         else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                             sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
-                        float fweightagePhone = (float)(FloatValue)fv.GetFactSlot("weightage_phone");
-                        float fweightagePlan = (float)(FloatValue)fv.GetFactSlot("weightage_plan");
+                        float fweightagePhone = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePhone");
+                        float fweightagePlan = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePlan");
                         String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
 
                         display.fWeightagePhone = fweightagePhone;
