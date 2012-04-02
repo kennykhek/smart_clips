@@ -191,21 +191,21 @@ namespace MobilePhone {
                 if (panelPhase1.Visible)
                 {
                     //Before processing modify the correct stage at clips side
-                    environment.Eval("(next_phase 1)");
+                    environment.Eval("(next_stage 1)");
 
                     ProcessPhase(Defintions.PhasePersonality);
                 }
                 if (panelPhase2.Visible)
                 {
                     //Before processing modify the correct stage
-                    environment.Eval("(next_phase 3)");
+                    environment.Eval("(next_stage 3)");
 
                     ProcessPhase(Defintions.PhasePreferences);
                 }
                 if (panelPhase3.Visible)
                 {
                     //Before processing modify the correct stage
-                    environment.Eval("(next_phase 5)");
+                    environment.Eval("(next_stage 5)");
 
                     ProcessPhase(Defintions.PhaseDetails);
                 }
@@ -231,17 +231,17 @@ namespace MobilePhone {
                 else if (panelPhase2.Visible)
                 {
                     ResetPhase(Defintions.PhasePreferences);
-                    environment.Eval("(prev_phase 3)");
+                    environment.Eval("(prev_stage 3)");
                 }
                 else if (panelPhase3.Visible)
                 {
                     ResetPhase(Defintions.PhaseDetails);
-                    environment.Eval("(prev_phase 5)");
+                    environment.Eval("(prev_stage 5)");
                 }
                 else if (panelPhase4.Visible)
                 {
                     ResetPhase(Defintions.PhaseMobilePlan);
-                    environment.Eval("(prev_phase 7)");
+                    environment.Eval("(prev_stage 7)");
 
                 }
                 //Have to reset to the previous state
