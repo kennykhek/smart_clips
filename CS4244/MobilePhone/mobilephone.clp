@@ -1154,16 +1154,11 @@
   ; if there an addition requirement_plan, for the same attribute
   (declare (salience 100))
   (phase (stage 4))  
-  ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val1)(phase 3))
-  ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2)(phase 3))
+  ?rem1 <- (requirement_phone (attribute ?attribute)(value not_impt))
+  ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
-  (if (eq ?val1 not_impt) then
-    (retract ?rem1)
-  )
-  (if (eq ?val2 not_impt) then
-    (retract ?rem2)
-  )
+  (retract ?rem1)
 )
 
 (defrule calculate_weightage_plan
@@ -1240,10 +1235,10 @@
 (defrule combine_weightage_plan_fee
   ; take the higher of fee budget
   ; if the difference is between high and low, take medium
-  (declare (salience 50))
+  (declare (salience 75))
   (phase (stage 4))  
-  ?rem1 <- (requirement_phone (attribute fee)(value ?val1))
-  ?rem2 <- (requirement_phone (attribute fee)(value ?val2))
+  ?rem1 <- (requirement_plan (attribute fee)(value ?val1))
+  ?rem2 <- (requirement_plan (attribute fee)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
   (if (eq ?val1 low) then
@@ -1277,10 +1272,10 @@
 (defrule combine_weightage_plan_sms
   ; take the higher of sms required
   ; if the difference is between high and low, take medium
-  (declare (salience 50))
+  (declare (salience 75))
   (phase (stage 4))  
-  ?rem1 <- (requirement_phone (attribute sms)(value ?val1))
-  ?rem2 <- (requirement_phone (attribute sms)(value ?val2))
+  ?rem1 <- (requirement_plan (attribute sms)(value ?val1))
+  ?rem2 <- (requirement_plan (attribute sms)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
   (if (eq ?val1 low) then
@@ -1316,16 +1311,11 @@
   ; if there an addition requirement_plan, for the same attribute
   (declare (salience 100))
   (phase (stage 4))  
-  ?rem1 <- (requirement_plan (attribute ?attribute)(value ?val1))
+  ?rem1 <- (requirement_plan (attribute ?attribute)(value not_impt))
   ?rem2 <- (requirement_plan (attribute ?attribute)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
-  (if (eq ?val1 not_impt) then
-    (retract ?rem1)
-  )
-  (if (eq ?val2 not_impt) then
-    (retract ?rem2)
-  )
+  (retract ?rem1)
 )
 
 (defrule calculate_phone_plan_weightage
