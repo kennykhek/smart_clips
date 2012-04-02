@@ -1231,7 +1231,7 @@
   (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
-(defrule combine_weightage_plan_fee
+(defrule combine_weightage_plan
   ; take the higher of fee budget
   ; if the difference is between high and low, take medium
   (declare (salience 75))
