@@ -1131,7 +1131,7 @@
 (defrule combine_weightage_phone
   ; combining CF from two different rules given a same result
   (declare (salience 75))
-  (phase (stage 4))  
+ (phase (stage ?x&2|4)) 
   ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage1))
   ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage2))
   (test (neq ?rem1 ?rem2))
@@ -1153,7 +1153,7 @@
   ; remove a requirement_phone fact, that has value "not_impt"
   ; if there an addition requirement_plan, for the same attribute
   (declare (salience 100))
-  (phase (stage 4))  
+ (phase (stage ?x&2|4)) 
   ?rem1 <- (requirement_phone (attribute ?attribute)(value not_impt))
   ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2))
   (test (neq ?rem1 ?rem2))
@@ -1231,12 +1231,11 @@
   (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
-
 (defrule combine_weightage_plan_fee
   ; take the higher of fee budget
   ; if the difference is between high and low, take medium
   (declare (salience 75))
-  (phase (stage 4))  
+ (phase (stage ?x&2|4))   
   ?rem1 <- (requirement_plan (attribute fee)(value ?val1))
   ?rem2 <- (requirement_plan (attribute fee)(value ?val2))
   (test (neq ?rem1 ?rem2))
@@ -1273,7 +1272,7 @@
   ; take the higher of sms required
   ; if the difference is between high and low, take medium
   (declare (salience 75))
-  (phase (stage 4))  
+ (phase (stage ?x&2|4))   
   ?rem1 <- (requirement_plan (attribute sms)(value ?val1))
   ?rem2 <- (requirement_plan (attribute sms)(value ?val2))
   (test (neq ?rem1 ?rem2))
@@ -1310,7 +1309,7 @@
   ; remove a requirement_plan fact, that has value "not_impt"
   ; if there an addition requirement_plan, for the same attribute
   (declare (salience 100))
-  (phase (stage 4))  
+  (phase (stage ?x&2|4))  
   ?rem1 <- (requirement_plan (attribute ?attribute)(value not_impt))
   ?rem2 <- (requirement_plan (attribute ?attribute)(value ?val2))
   (test (neq ?rem1 ?rem2))
