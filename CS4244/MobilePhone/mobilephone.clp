@@ -1468,9 +1468,9 @@
 (bind ?facts(find-all-facts((?wp weightage_phone_plan))TRUE))
 )
 
-(deffunction next_phase (?currentphase)
+(deffunction next_stage (?current_stage)
 	(find-all-facts((?p phase)) 
-	  (switch ?currentphase
+	  (switch ?current_stage
 		(case 1 then 
 		  (modify ?p (stage 2))
 		)  
@@ -1484,9 +1484,9 @@
 	)
 )
 
-(deffunction prev_phase (?currentphase)
+(deffunction prev_stage (?current_stage)
 	(find-all-facts((?p phase)) 
-	  (switch ?currentphase
+	  (switch ?current_stage
 	  	(case 3 then 
 		  (modify ?p (stage 0))
 		)
