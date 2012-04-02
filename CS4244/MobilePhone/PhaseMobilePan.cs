@@ -19,9 +19,6 @@ namespace MobilePhone
         List<int> listData;
         List<int> listSMS;
 
-        public void ProcessMobilePlan()
-        {
-        }
 
         public void OnChangePlan(object sender, EventArgs e)
         {
@@ -80,10 +77,9 @@ namespace MobilePhone
             //       weightage_phone_plan 
             //       phone_plan
             string evalStr = "(update_phoneplan_list " + attribute + ")";
-           // string evalStr = "(get_weightage_phone_plan_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
-            //environment.Run();
             phase4Results.Clear();
+
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
@@ -225,11 +221,10 @@ namespace MobilePhone
 
         public void InitPlanDataGrid()
         {
-            //string evalStr = "(update_phoneplan_list nil nil nil nil nil nil)";
-             string evalStr = "(get_weightage_phone_plan_list)";
+            string evalStr = "(get_weightage_phone_plan_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
-            //environment.Run();
             phase4Results.Clear();
+
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
@@ -264,18 +259,18 @@ namespace MobilePhone
 
                         phase4Results.Add(display);
                     }
-
-
                 }
             }
 
             List<PlanResultDisplay> listConvert = phase4Results.ToList();
             listConvert = listConvert.OrderByDescending(x => x.fWeightagePhone).ToList();
             phase4Results.Clear();
+           
             for (int i = 0; i < listConvert.Count; i++)
             {
                 phase4Results.Add(listConvert.ElementAt(i));
             }
+            
             dataGridView1.DataSource = phase4Results;
         }
     }

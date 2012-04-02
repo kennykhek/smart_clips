@@ -31,9 +31,6 @@ namespace MobilePhone
         List<String> listVideoHD;
         List<float> listPixel;
 
-        public void ProcessPhoneSpecs()
-        {
-        }
 
         public void LoadPhaseDetailsDropdown()
         {
@@ -117,7 +114,7 @@ namespace MobilePhone
             }
 
             /*.Distinct().ToList() remove duplicates. sort() sorts the float and int
-            values in descending order @kwanghock 17March2012*/
+            values in descending order 17March2012*/
 
             listModel = listModel.Distinct().ToList();
 
@@ -158,7 +155,7 @@ namespace MobilePhone
             /*
              *  for all the attributes gathered, add them to the dropdown box to be
              *  chosen. those attributes that are of value type string. first letter
-             *  is convert to uppercase. @kwanghock 17march2012
+             *  is convert to uppercase.  17march2012
              */
 
             for (int i = 0; i < listColor.Count; i++)
@@ -167,7 +164,7 @@ namespace MobilePhone
             //for (int i = 0; i < listScreen.Count; i++)
               //  cbScreen.Items.Add(listScreen.ElementAt(i));
 
-            //Screen different. put a range @kwanghock
+            //Screen different. put a range 
             List<String> screenRange = SetRange(listScreen);
             for (int i = 0; i < screenRange.Count; i++)
                 cbScreen.Items.Add(screenRange.ElementAt(i));
@@ -184,12 +181,12 @@ namespace MobilePhone
             for (int i = 0; i < listMem.Count; i++)
                 cbMem.Items.Add(listMem.ElementAt(i) + " gb");
 
-            //toString slightly different to retain float precision @kwanghock 18march2012
+            //toString slightly different to retain float precision 
             List<String> weightRange = SetRange(listWeight);
             for (int i = 0; i < weightRange.Count; i++)
                 cbWeight.Items.Add(weightRange.ElementAt(i).ToString() + " (g)");
 
-            //toString slightly different to retain float precision @kwanghock 18march2012
+            //toString slightly different to retain float precision 
             for (int i = 0; i < listPixel.Count; i++)
                 cbCamPixel.Items.Add((listPixel.ElementAt(i)).ToString("0.0") + " px");
 
@@ -233,7 +230,7 @@ namespace MobilePhone
         {
             if (sConvert == "")
                 return "";
-            //Set first letter to caps
+           //Set first letter to caps
            char[] letters = sConvert.ToCharArray();
            letters[0] = char.ToUpper(letters[0]);
            return new String(letters);
@@ -250,7 +247,7 @@ namespace MobilePhone
             return new String(letters);
         }
         /*
-         * If any of the dropdown box value changes. @kwanghock 17march2012
+         * If any of the dropdown box value changes.
          */
         public void OnChange(object sender, EventArgs e)
         {
@@ -343,7 +340,7 @@ namespace MobilePhone
 
             if (cbZoom.SelectedItem != null && cbZoom.SelectedItem != "")
             {
-                //remove the x from the pixel value displayed @kwanghock 18march2012
+                //remove the x from the pixel value displayed 
                 sSelectedZoom = LowerCaseFirstChar(cbZoom.SelectedItem.ToString().Substring(1));
             }
             else sSelectedZoom = "nil";
@@ -356,7 +353,6 @@ namespace MobilePhone
         public void UpdatePhoneGrid(String attribute)
         {
             string evalStr = "(update_mobilephone_list " + attribute + ")";
-           // string evalStr = "(get_weightagephone_list)";
        
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
 
@@ -373,7 +369,6 @@ namespace MobilePhone
                  * will throw exception for weightage_phone facts, once thrown will catch and actually assign the model and 
                  * weightage values
                  * Hence those weightage_phone facts will be shown on the grid instead.
-                 * @kwanghock
                  */
                 try
                 {
@@ -405,14 +400,17 @@ namespace MobilePhone
                 phase3Results.Add(addon);
 
             }
+
             //Convert binding list to list. Sort by weightage in descending order.
             List<MobileResultDisplay> listConvert =  phase3Results.ToList();
             listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
             phase3Results.Clear();
+            
             for (int i = 0; i < listConvert.Count; i++)
             {
                 phase3Results.Add(listConvert.ElementAt(i));
             }
+            
             dataGridView.DataSource = phase3Results;
         }
 
