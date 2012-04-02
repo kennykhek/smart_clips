@@ -12,23 +12,17 @@ using System.Windows.Forms;
 namespace MobilePhone {
     public partial class MainForm : Form {
 
-        /*
-         * MobilePhoneRecommendation Class
-         * If need to add in more attributes can just add in
-         * @kwanghock
-         */
-
         private int UIState;
 
-        //keep track of all the personality details at phase personality @kwanghock
+        //keep track of all the personality details at phase personality 
         private List<String> personalityDetails;
         private List<MobilePhoneRecommendation> personalityPhoneList;
 
-        //keep track of the preferences at phase preferences @kwanghock
+        //keep track of the preferences at phase preferences 
         private List<String> preferencesDetails;
         private List<MobilePhoneRecommendation> preferencesPhoneList;
 
-        //keep track of all the details at phase details @kwanghock
+        //keep track of all the details at phase details 
         private List<String> phoneSpecsDetails;
         private List<MobilePhoneRecommendation> phoneSpecsPhoneList;
 
@@ -95,8 +89,6 @@ namespace MobilePhone {
             //Load the clips file
             environment.Load("mobilephone.clp");
 
-
-
             //Set initial stage
             UIState = 0;
             SetUIState(Defintions.PhaseStart);
@@ -119,14 +111,10 @@ namespace MobilePhone {
             /*
              * Watching of facts is done in output window. So make sure when build output window is shown
              * WactchItem is an enum.
-             * @kwanghock
              */
 
             environment.Watch(WatchItem.Facts);
             environment.Reset();
-
-            //assert test input to check everything ran correctly. @kwanghock
-            //testInput();
             
             environment.Run();
 
@@ -135,48 +123,6 @@ namespace MobilePhone {
 
             //Load dropdown values for mobile plans
             LoadPhasePlanDropdown();
-
-            //Test by getting all the facts see whether reflect correctly @kwanghock
-            //test();
-        }
-
-        private void testInput()
-        {
-            /* 
-             * Insert Initial Facts here
-             */
-            
-            // environment.AssertString("(FACTS HERE)");
-            // environment.AssertString("(FACTS HERE)");
-        }
-
-        private void test()
-        {
-            /*
-             * evalStr is the function that i called to test to get all facts about phone
-             * (get-mobilephone-list) is the function in the clips file that finds all facts for phone
-             * @kwanghock
-             */
-            string evalStr = "(get-mobilephone-list)";
-            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
-
-            //For now put in a list and see how we can display it to show
-            List<MobilePhoneRecommendation> rList = new List<MobilePhoneRecommendation>();
-
-            /*
-             * FactAddressValue is the fact itself. So to get a specific slot of the fact, just .GetFactSlot.
-             * Make sure cast to correct type can already
-             * @kwanghock
-             */
-            FactAddressValue fv = (FactAddressValue)mv[0];
-
-           /* int iCameraZoom = (int)(IntegerValue)fv.GetFactSlot("camera-zoom");
-            int iCameraPixel = (int)(IntegerValue)fv.GetFactSlot("camera-pixel");
-            String sColor = (String)(SymbolValue)fv.GetFactSlot("color");
-            int iWeight = (int)(IntegerValue)fv.GetFactSlot("weight");
-            int iWeightage = (int)(IntegerValue)fv.GetFactSlot("weightage");*/
-            
-           // rList.Add(new MobilePhoneRecommendation() { iCameraZoom, iCameraPixel, sColor, iWeight, iWeightage });
         }
 
         private void OnClickButton(object sender, EventArgs e)
@@ -250,22 +196,13 @@ namespace MobilePhone {
             }
             else if (button.Name.CompareTo("buttonRestart") == 0)
             {
+                environment.Eval("(restart_stage)");
                 SetUIState(Defintions.PhaseStart);
                 UIState = Defintions.PhaseStart;
-                ResetPhase(Defintions.PhaseStart); //@kwanghock 05/03/2012 restart button dont reset properly
+                ResetPhase(Defintions.PhaseStart);
+              
             }
             environment.Run();
-        }
-
-        private void UpdateResult(int iResultIterate)
-        {
-           /* //Display the results of the phone chosen.
-            labelResultZoom.Text = "Camera Zoom : X" + results.ElementAt(iResultIterate).iCameraZoom; 
-            labelResultPixel.Text = "Camera Pixel : " + results.ElementAt(iResultIterate).iCameraPixel + " pixels";
-            labelResultColor.Text = "Number " + (iResultIterate + 1) + " Phone Color : " + results.ElementAt(iResultIterate).sColor;
-            //testing iamge
-            pictureBoxPhone.ImageLocation = "http://image.made-in-china.com/2f0j00ZMTtpbjWCwqR/Mobile-Phone-Laptop.jpg";
-            pictureBoxPhone.SizeMode = PictureBoxSizeMode.StretchImage;*/
         }
 
         private void ResetPhase(int iPhase)
@@ -274,64 +211,28 @@ namespace MobilePhone {
             {
                 case Defintions.PhaseStart:
                     {
-                        //Nothing to reset to @kwanghock 05/03/2012
-                        //environment.Reset();
+                        //Nothing to be done
                     }
                     break;
                 case Defintions.PhasePersonality:
                     {
-                        //Nothing to reset to. It will go back to phaseStart @kwanghock
-                        //environment.Reset();
+                        //Nothing to be done
                     }
                     break;
                 case Defintions.PhasePreferences:
                     {
-                        /*
-                         * If we are implementing phasePersonality, we will retract all the personality facts
-                         * we asserted here.
-                         */
-                        //environment.Reset();
+                        //Nothing to be done
                     }
                     break;
                 case Defintions.PhaseDetails:
                     {
-                        /*
-                         * Retract all the preference facts that we asserted here
-                         * Since there is no way we can use this to retract,
-                         * do a reset and assert back the facts that were determined at the personality phase
-                         */
-                        
-                       /* environment.Reset();
-                        for (int i = 0; i < personalityDetails.Count; i++)
-                            environment.AssertString(personalityDetails.ElementAt(i));
-                        
-                        //Clear the preferences details and clear the phoneList updated at the preferences phase
-                        preferencesDetails.Clear();
-                        preferencesPhoneList.Clear();*/
-
-                       // environment.Eval("reset_requirements_column_one");
+                        //Reset the dropdown and set all dropdown init values to nil
                         ResetDropDownDef();
                     }
                     break;
                 case Defintions.PhaseMobilePlan:
                     {
-                        /*
-                         * Retract all the details facts that we asserted here
-                         * Since there is no way we can use this to retract details about the phone
-                         * do a reset and assert back the facts that were determined at the preferences phase and the personality phase
-                         */
-                       /* environment.Reset();
-                        for (int i = 0; i < personalityDetails.Count; i++)
-                            environment.AssertString(personalityDetails.ElementAt(i));
-                        for (int i = 0; i < preferencesDetails.Count; i++)
-                            environment.AssertString(preferencesDetails.ElementAt(i));
-
-                        //Assert phase fact again to trigger calculate weightage rule after preferences are chosen.
-                        environment.AssertString("(phase (stage 3))");
-
-                        //Clear the specifications details and hte phonelist updated at the specifications phase
-                        phoneSpecsPhoneList.Clear();
-                        phoneSpecsDetails.Clear();*/
+                        //Nothing to be done
                     }
                     break;
             }
@@ -344,53 +245,32 @@ namespace MobilePhone {
             {
                 case Defintions.PhaseStart:
                 {
-                      //Nothing to be done here @kwanghock
+                      //Nothing to be done here
                 }
                 break;
                 case Defintions.PhasePersonality:
                 {
                     //personality questions
-                    //update personality attributes
                     ProcessPersonality();
-
-                    //Removed @kwanghock
-                    //update phoneList for this phasePersonality
-                    //UpdatePhoneList(personalityPhoneList);
                 }
                 break;
                 case Defintions.PhasePreferences:
                 {
-                    //Method in PhasePreferences.cs to process
+                    //Preferences questions
                     ProcessPhasePreferences();
-
-                    //removed @kwanghock
-                    //Update phonelist for this PhasePreferences
-                    //UpdatePhoneList(preferencesPhoneList);
                 }
                 break;
                 case Defintions.PhaseDetails:
                 {
-                    //Ask for specifications of the phones
-                    //Update the specfications
-                    ProcessPhoneSpecs();
-
-                    //Update phoneList for this PhaseDetails
-                   
-                    //UpdatePhoneList(phoneSpecsPhoneList);
-                    //dataGridView.DataSource = pha;
+                    //Nothing needs to be processed.
                 }
                 break;
                 case Defintions.PhaseMobilePlan:
                 {
-                    ProcessMobilePlan();
+                    //Nothing needs to be processed.
                 }
                 break;
             }
-        }
-
-        private static int WeightageSort(int x, int y)
-        {
-            return 0;
         }
 
         private void UpdatePhoneList(List<MobilePhoneRecommendation> PhoneList)
@@ -525,7 +405,7 @@ namespace MobilePhone {
                 panelPhase3.BringToFront();
                 phase3Results.Clear();
 
-                //Populate the datagrid results on load after do a clearing for safety @kwanghock
+                //Populate the datagrid results on load after do a clearing for safety 
                 InitDataGrid();
             }
             else if (iPhase == Defintions.PhaseMobilePlan)

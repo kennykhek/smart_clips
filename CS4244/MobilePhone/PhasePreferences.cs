@@ -17,11 +17,9 @@ namespace MobilePhone
             /*
               * For each of the question asked in phase 2, the for loop is the same, just note the box name is
               * different
-              * @kwanghock
            */
             //Assert the weightage of the attributes related to the question here
             //Question 1
-            // foreach (RadioButton control in grp_box_q1.Controls) //Throw error here as grp_box_q1 has label as well @kwanghock 11march2012
             foreach (RadioButton control in rbBoxQns1.Controls)
             {
                 if (control.Checked)
@@ -134,7 +132,6 @@ namespace MobilePhone
 
         public void InitDataGrid()
         {
-            //string evalStr = "(update_mobilephone_list nil nil nil nil nil nil nil nil nil nil nil)";
             string evalStr = "(get_weightagephone_list)";
 
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
@@ -152,7 +149,6 @@ namespace MobilePhone
                  * will throw exception for weightage_phone facts, once thrown will catch and actually assign the model and 
                  * weightage values
                  * Hence those weightage_phone facts will be shown on the grid instead.
-                 * @kwanghock
                  */
                 try
                 {
@@ -184,14 +180,17 @@ namespace MobilePhone
                 phase3Results.Add(addon);
 
             }
+
             //Convert binding list to list. Sort by weightage in descending order.
             List<MobileResultDisplay> listConvert = phase3Results.ToList();
             listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
             phase3Results.Clear();
+
             for (int i = 0; i < listConvert.Count; i++)
             {
                 phase3Results.Add(listConvert.ElementAt(i));
             }
+
             dataGridView.DataSource = phase3Results;
         }
     }

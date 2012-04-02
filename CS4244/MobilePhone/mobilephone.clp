@@ -1423,6 +1423,14 @@
 (bind ?facts(find-all-facts((?wp weightage_phone_plan))TRUE))
 )
 
+(deffunction restart_stage ()
+	(find-all-facts((?p phase))
+		(if (eq ?p:stage 7) then
+			(modify ?p (stage 0))
+		)
+	)
+)
+
 (deffunction next_stage (?current_stage)
   (find-all-facts((?p phase)) 
     (switch ?current_stage
