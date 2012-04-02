@@ -66,8 +66,10 @@
 (deftemplate weightage_phone_plan
 	(slot model)
 	(slot weightage_phone (type FLOAT)(default 0.0))
+	(slot normalizedWeightagePhone (type FLOAT)(default 0.0))	
 	(slot plan (type SYMBOL))
 	(slot weightage_plan (type FLOAT)(default 0.0))	
+	(slot normalizedWeightagePlan (type FLOAT)(default 0.0))	
 )
 
 (deftemplate question
@@ -1330,10 +1332,11 @@
   ; combining two rules for display purpose
   (declare (salience 100))
   (phase (stage 6))
-  (weightage_phone (model ?moVal)(weightage ?weightage1))
-  (weightage_plan  (plan ?plVal) (weightage ?weightage2))
+  (weightage_phone (model ?moVal)(weightage ?weightage1)(normalizedWeightage ?weightageN1))
+  (weightage_plan  (plan ?plVal) (weightage ?weightage2)(normalizedWeightage ?weightageN2))
   =>
-  (assert (weightage_phone_plan (model ?moVal)(weightage_phone ?weightage1)(plan ?plVal) (weightage_plan ?weightage2)))
+  (assert (weightage_phone_plan (model ?moVal)(weightage_phone ?weightage1)(normalizedWeightagePhone ?weightageN1)
+                                (plan ?plVal) (weightage_plan ?weightage2)(normalizedWeightagePlan ?weightageN2)))
 )
 
 ;;***************
