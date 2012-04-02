@@ -65,9 +65,9 @@
 
 (deftemplate weightage_phone_plan
 	(slot model)
+	(slot weightage_phone (type FLOAT)(default 0.0))
 	(slot plan (type SYMBOL))
-	(slot weightage (type FLOAT)(default 0.0))
-	(slot normalizedWeightage (type FLOAT)(default 0.0))	
+	(slot weightage_plan (type FLOAT)(default 0.0))	
 )
 
 (deftemplate question
@@ -1327,23 +1327,13 @@
 )
 
 (defrule calculate_phone_plan_weightage
-  ; combining CF from two different rules given a same result
+  ; combining two rules for display purpose
   (declare (salience 100))
   (phase (stage 6))
   (weightage_phone (model ?moVal)(weightage ?weightage1))
   (weightage_plan  (plan ?plVal) (weightage ?weightage2))
   =>
-  (if (and (>= ?weightage1 0) (>= ?weightage2 0)) then
-    (bind ?new-weightage (- (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
-  )
-  (if (and (< ?weightage1 0) (< ?weightage2 0)) then
-    (bind ?new-weightage (+ (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
-  )
-  (if (or (and (< ?weightage1 0) (>= ?weightage2 0)) (and (>= ?weightage1 0) (< ?weightage2 0))) then
-    (bind ?new-weightage (/ (+ ?weightage1 ?weightage2) (- 1 (min (abs ?weightage1)(abs ?weightage2)))))
-  )
-  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))  
-  (assert (weightage_phone_plan (model ?moVal)(plan ?plVal) (weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
+  (assert (weightage_phone_plan (model ?moVal)(weightage_phone ?weightage1)(plan ?plVal) (weightage_plan ?weightage2)))
 )
 
 ;;***************
