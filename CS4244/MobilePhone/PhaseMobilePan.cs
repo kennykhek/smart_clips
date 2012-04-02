@@ -116,7 +116,8 @@ namespace MobilePhone
                         display.sModel = sModel;
                         display.sPlan = sPlan;
 
-                        phase4Results.Add(display);
+                        if((display.fWeightagePhone>=50) && (display.fWeightagePlan>=50))
+                            phase4Results.Add(display);
                     }
 
                    
