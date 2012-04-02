@@ -37,6 +37,7 @@ namespace MobilePhone {
         int iResultIterate;
 
         private BindingList<MobileResultDisplay> phase3Results;
+        private BindingList<PlanResultDisplay> phase4Results;
 
         private class MobileResultDisplay
         {
@@ -49,7 +50,8 @@ namespace MobilePhone {
         {
             public String sModel { set; get; }
             public String sPlan { set; get; }
-            public float fprice { set; get; }
+            public float fWeightagePlan { set; get; }
+            public float fWeightagePhone { set; get; }
         }
 
         private class MobilePhoneRecommendation
@@ -112,6 +114,7 @@ namespace MobilePhone {
             iResultIterate = 0;
 
             phase3Results = new BindingList<MobileResultDisplay>();
+            phase4Results = new BindingList<PlanResultDisplay>();
 
             /*
              * Watching of facts is done in output window. So make sure when build output window is shown
@@ -188,27 +191,29 @@ namespace MobilePhone {
                 if (panelPhase1.Visible)
                 {
                     //Before processing modify the correct stage at clips side
-                    environment.Eval("(next_phase 1)");
+                    environment.Eval("(next_stage 1)");
 
                     ProcessPhase(Defintions.PhasePersonality);
                 }
                 if (panelPhase2.Visible)
                 {
                     //Before processing modify the correct stage
-                    environment.Eval("(next_phase 3)");
+                    environment.Eval("(next_stage 3)");
 
                     ProcessPhase(Defintions.PhasePreferences);
                 }
                 if (panelPhase3.Visible)
                 {
                     //Before processing modify the correct stage
-                    environment.Eval("(next_phase 5)");
+                    environment.Eval("(next_stage 5)");
 
                     ProcessPhase(Defintions.PhaseDetails);
                 }
                 if (panelPhase4.Visible) 
                 {
                     ProcessPhase(Defintions.PhaseMobilePlan);
+                    //Do a run to allow plan data grid to be populated  when onload
+                    environment.Run();
                 }
                 SetUIState(++UIState);
 
@@ -226,17 +231,18 @@ namespace MobilePhone {
                 else if (panelPhase2.Visible)
                 {
                     ResetPhase(Defintions.PhasePreferences);
-                    environment.Eval("(prev_phase 3)");
+                    environment.Eval("(prev_stage 3)");
                 }
                 else if (panelPhase3.Visible)
                 {
                     ResetPhase(Defintions.PhaseDetails);
-                    environment.Eval("(prev_phase 5)");
+                    environment.Eval("(prev_stage 5)");
                 }
                 else if (panelPhase4.Visible)
                 {
                     ResetPhase(Defintions.PhaseMobilePlan);
-                    environment.Eval("(prev_phase 7)");
+                    environment.Eval("(prev_stage 7)");
+
                 }
                 //Have to reset to the previous state
                 SetUIState(--UIState);
@@ -422,7 +428,7 @@ namespace MobilePhone {
                 float fCameraPixel = (float)(FloatValue)fv.GetFactSlot("pixel");
                 String sFlash = (String)(SymbolValue)fv.GetFactSlot("flash");
                 String sVideoHD = (String)(SymbolValue)fv.GetFactSlot("videoHD");
-                float fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                float fWeightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
 
                 MobilePhoneRecommendation a = new MobilePhoneRecommendation();
                 a.sModel = sModel;
@@ -533,14 +539,12 @@ namespace MobilePhone {
                 this.buttonRestart.Visible = true;
                 this.buttonPrev.Visible = true;
                 ProcessPhase(Defintions.PhaseMobilePlan);
+
+                phase4Results.Clear();
+
+                InitPlanDataGrid();
             }
         }
-
-
-
-
-        
-
 
     }
 }

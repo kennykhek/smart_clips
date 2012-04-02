@@ -73,6 +73,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewProgressColumn2 = new MobilePhone.DataGridViewProgressColumn();
+            this.planWeightage = new MobilePhone.DataGridViewProgressColumn();
             this.labelPhase4 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
@@ -540,7 +541,8 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.Plan,
-            this.dataGridViewProgressColumn2});
+            this.dataGridViewProgressColumn2,
+            this.planWeightage});
             this.dataGridView1.Location = new System.Drawing.Point(10, 23);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -557,16 +559,24 @@
             // 
             // Plan
             // 
+            this.Plan.DataPropertyName = "sPlan";
             this.Plan.HeaderText = "Mobile Plan";
             this.Plan.Name = "Plan";
             this.Plan.ReadOnly = true;
             // 
             // dataGridViewProgressColumn2
             // 
-            this.dataGridViewProgressColumn2.DataPropertyName = "fWeightage";
-            this.dataGridViewProgressColumn2.HeaderText = "Recommendation Weight";
+            this.dataGridViewProgressColumn2.DataPropertyName = "fWeightagePhone";
+            this.dataGridViewProgressColumn2.HeaderText = "Phone Weightage";
             this.dataGridViewProgressColumn2.Name = "dataGridViewProgressColumn2";
             this.dataGridViewProgressColumn2.ReadOnly = true;
+            // 
+            // planWeightage
+            // 
+            this.planWeightage.DataPropertyName = "fWeightagePlan";
+            this.planWeightage.HeaderText = "Plan Weightage";
+            this.planWeightage.Name = "planWeightage";
+            this.planWeightage.ReadOnly = true;
             // 
             // labelPhase4
             // 
@@ -992,7 +1002,7 @@
             this.panelPhase2.Controls.Add(this.grp_box_q4);
             this.panelPhase2.Controls.Add(this.grp_box_q2);
             this.panelPhase2.Controls.Add(this.grp_box_q3);
-            this.panelPhase2.Location = new System.Drawing.Point(12, 10);
+            this.panelPhase2.Location = new System.Drawing.Point(12, 13);
             this.panelPhase2.Name = "panelPhase2";
             this.panelPhase2.Size = new System.Drawing.Size(730, 421);
             this.panelPhase2.TabIndex = 2;
@@ -1313,7 +1323,7 @@
             // 
             this.panelPhase1.Controls.Add(this.groupBox1);
             this.panelPhase1.Controls.Add(this.labelPhase1);
-            this.panelPhase1.Location = new System.Drawing.Point(12, 10);
+            this.panelPhase1.Location = new System.Drawing.Point(15, 9);
             this.panelPhase1.Name = "panelPhase1";
             this.panelPhase1.Size = new System.Drawing.Size(719, 418);
             this.panelPhase1.TabIndex = 4;
@@ -1846,7 +1856,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 480);
+            this.ClientSize = new System.Drawing.Size(790, 482);
             this.Controls.Add(this.panelPhase2);
             this.Controls.Add(this.panelPhase1);
             this.Controls.Add(this.panelPhase0);
@@ -2099,6 +2109,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
+        private DataGridViewProgressColumn planWeightage;
     }
 }
 

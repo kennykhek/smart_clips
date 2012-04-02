@@ -166,7 +166,7 @@ namespace MobilePhone
                     else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
                         sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
 
-                    fWeightage = (float)(FloatValue)fv.GetFactSlot("weightage");
+                    fWeightage = (float)(FloatValue)fv.GetFactSlot("normalizedWeightage");
                 }
 
 
@@ -185,7 +185,6 @@ namespace MobilePhone
 
             }
             //Convert binding list to list. Sort by weightage in descending order.
-            MessageBox.Show(phase3Results.Count.ToString());
             List<MobileResultDisplay> listConvert = phase3Results.ToList();
             listConvert = listConvert.OrderByDescending(x => x.fWeightage).ToList();
             phase3Results.Clear();

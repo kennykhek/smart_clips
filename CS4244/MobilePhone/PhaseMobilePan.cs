@@ -29,6 +29,8 @@ namespace MobilePhone
             String sSelectedOutgoing = "";
             String sSelectedSMS = "";
             String sSelectedData = "";
+            String sSelectedBudgetMax = "";
+            String sSelectedBudgetMin = "";
 
             if (cbProvider.SelectedItem != null && cbProvider.SelectedItem != "")
             {
@@ -51,13 +53,25 @@ namespace MobilePhone
 
             if (cbData.SelectedItem != null && cbData.SelectedItem != "")
             {
-                sSelectedData = cbData.SelectedItem.ToString();
+                sSelectedData = cbData.SelectedItem.ToString().Substring(0,cbData.SelectedItem.ToString().IndexOf(" "));
             }
             else sSelectedData = "nil";
 
+            //budget different. need to cater to range
+            if (cbBudget.SelectedItem != null && cbBudget.SelectedItem != "")
+            {
+                sSelectedBudgetMin = cbBudget.SelectedItem.ToString().Substring(0, cbBudget.SelectedItem.ToString().IndexOf(" "));
+                sSelectedBudgetMax = cbBudget.SelectedItem.ToString().Substring(cbBudget.SelectedItem.ToString().IndexOf("-") + 1);
+            }
+            else
+            {
+                sSelectedBudgetMax = "nil";
+                sSelectedBudgetMin = "nil";
+            }
+
             environment.Run();
 
-            UpdatePlanGrid(sSelectedProvider + " " + sSelectedOutgoing + " " + sSelectedSMS + " " + sSelectedData);
+            UpdatePlanGrid(sSelectedProvider + " " + sSelectedOutgoing + " " + sSelectedSMS + " " + sSelectedData + " " + sSelectedBudgetMin + " " + sSelectedBudgetMax);
         }
 
         public void UpdatePlanGrid(String attribute)
@@ -65,24 +79,59 @@ namespace MobilePhone
             //Filter phone_plan_price 
             //       weightage_phone_plan 
             //       phone_plan
-            //string evalStr = "(update_phoneplan_list " + attribute + ")";
-            string evalStr = "(get_weightage_phone_plan_list)";
+            string evalStr = "(update_phoneplan_list " + attribute + ")";
+           // string evalStr = "(get_weightage_phone_plan_list)";
             MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
-            environment.Run();
-
+            //environment.Run();
+            phase4Results.Clear();
             for (int i = 0; i < mv.Count; i++)
             {
                 FactAddressValue fv = (FactAddressValue)mv[i];
                 PlanResultDisplay display = new PlanResultDisplay();
+                String sModel = "";
+                try
+                {
+                    float fphoneprice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
+                    
 
-                String sModel = (String)(SymbolValue)fv.GetFactSlot("model");
-                float fphoneprice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
-                String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
+                }
+                catch (Exception exception)
+                {
+                    try
+                    {
+                        String sProvider = (String)(SymbolValue)fv.GetFactSlot("provider");
+                    }
+                    catch (Mommosoft.ExpertSystem.Interop.ExpertSystemException ex)
+                    {
+                        if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                            sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                        else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                            sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                        float fWeightagePhone = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePhone");
+                        float fWeightagePlan = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePlan");
+                        String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
 
-                display.sModel = sModel;
-                display.fprice = fphoneprice;
-                display.sPlan = sPlan;
+                        display.fWeightagePhone = fWeightagePhone;
+                        display.fWeightagePlan = fWeightagePlan;
+                        display.sModel = sModel;
+                        display.sPlan = sPlan;
+
+                        if((display.fWeightagePhone>=50) && (display.fWeightagePlan>=50))
+                            phase4Results.Add(display);
+                    }
+
+                   
+                }
             }
+
+            List<PlanResultDisplay> listConvert = phase4Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightagePhone).ToList();
+            phase4Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase4Results.Add(listConvert.ElementAt(i));
+            }
+            dataGridView1.DataSource = phase4Results;
         }
 
         public void LoadPhasePlanDropdown()
@@ -153,6 +202,81 @@ namespace MobilePhone
             cbSMS.Items.Insert(0, "");
             cbData.Items.Insert(0, "");
 
+
+            //load price range seperately
+            string evalStrPrice = "(get_phoneplanprice_list)";
+            MultifieldValue mvPrice = (MultifieldValue)environment.Eval(evalStrPrice);
+            List<float> listPhonePlanPrice = new List<float>();
+
+            for (int i = 0; i < mvPrice.Count; i++)
+            {
+                FactAddressValue fv = (FactAddressValue)mvPrice[i];
+                float fPhonePrice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
+                listPhonePlanPrice.Add(fPhonePrice);
+            }
+            listPhonePlanPrice = listPhonePlanPrice.Distinct().ToList();
+            listPhonePlanPrice.Sort();
+
+            List<String> listBudgetDropdown = SetRange(listPhonePlanPrice);
+
+            for (int i = 0; i < listBudgetDropdown.Count; i++)
+                cbBudget.Items.Add(listBudgetDropdown.ElementAt(i));
+        }
+
+        public void InitPlanDataGrid()
+        {
+            //string evalStr = "(update_phoneplan_list nil nil nil nil nil nil)";
+             string evalStr = "(get_weightage_phone_plan_list)";
+            MultifieldValue mv = (MultifieldValue)environment.Eval(evalStr);
+            //environment.Run();
+            phase4Results.Clear();
+            for (int i = 0; i < mv.Count; i++)
+            {
+                FactAddressValue fv = (FactAddressValue)mv[i];
+                PlanResultDisplay display = new PlanResultDisplay();
+                String sModel = "";
+                try
+                {
+                    float fphoneprice = (float)(FloatValue)fv.GetFactSlot("phoneprice");
+
+
+                }
+                catch (Exception exception)
+                {
+                    try
+                    {
+                        String sProvider = (String)(SymbolValue)fv.GetFactSlot("provider");
+                    }
+                    catch (Mommosoft.ExpertSystem.Interop.ExpertSystemException ex)
+                    {
+                        if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.SymbolValue"))
+                            sModel = (String)(SymbolValue)fv.GetFactSlot("model");
+                        else if ((fv.GetFactSlot("model").GetType().ToString()).Equals("Mommosoft.ExpertSystem.IntegerValue"))
+                            sModel = ((int)(IntegerValue)fv.GetFactSlot("model")).ToString();
+                        float fweightagePhone = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePhone");
+                        float fweightagePlan = (float)(FloatValue)fv.GetFactSlot("normalizedWeightagePlan");
+                        String sPlan = (String)(SymbolValue)fv.GetFactSlot("plan");
+
+                        display.fWeightagePhone = fweightagePhone;
+                        display.fWeightagePlan = fweightagePlan;
+                        display.sModel = sModel;
+                        display.sPlan = sPlan;
+
+                        phase4Results.Add(display);
+                    }
+
+
+                }
+            }
+
+            List<PlanResultDisplay> listConvert = phase4Results.ToList();
+            listConvert = listConvert.OrderByDescending(x => x.fWeightagePhone).ToList();
+            phase4Results.Clear();
+            for (int i = 0; i < listConvert.Count; i++)
+            {
+                phase4Results.Add(listConvert.ElementAt(i));
+            }
+            dataGridView1.DataSource = phase4Results;
         }
     }
 }

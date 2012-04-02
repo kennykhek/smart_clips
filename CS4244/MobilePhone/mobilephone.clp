@@ -54,17 +54,22 @@
 (deftemplate weightage_phone
 	(slot model)
 	(slot weightage (type FLOAT)(default 0.0))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))
 )
 
 (deftemplate weightage_plan
 	(slot plan (type SYMBOL))
 	(slot weightage (type FLOAT)(default 0.0))
+	(slot normalizedWeightage (type FLOAT)(default 0.0))	
 )
 
 (deftemplate weightage_phone_plan
 	(slot model)
+	(slot weightage_phone (type FLOAT)(default 0.0))
+	(slot normalizedWeightagePhone (type FLOAT)(default 0.0))	
 	(slot plan (type SYMBOL))
-	(slot weightage (type FLOAT)(default 0.0))
+	(slot weightage_plan (type FLOAT)(default 0.0))	
+	(slot normalizedWeightagePlan (type FLOAT)(default 0.0))	
 )
 
 (deftemplate question
@@ -91,119 +96,119 @@
 (deffacts init_phone_facts
   ; non plan phone prices are from www.subarumobile.com
   ; nokia
-  (phone (model 603)(price 300.00)
+  (phone (model 603)(price 300.00)(weightage 0.68)
          (brand nokia)(color black)(screen 3.5)(weight 109.6)(memory 32)
          (os symbian)(fm yes)
 	     (zoom 4)(pixel 5.0)(flash no)(videoHD yes))
-  (phone (model lumia_710)(price 380.00)
+  (phone (model lumia_710)(price 380.00)(weightage 0.64)
          (brand nokia)(color black)(screen 3.7)(weight 125.5)(memory 8)
          (os windows)(fm yes)
   	     (zoom 4)(pixel 5.0)(flash yes)(videoHD no))
-  (phone (model lumia_800)(price 0.00)
+  (phone (model lumia_800)(price 0.00)(weightage 0.6)
          (brand nokia)(color black)(screen 3.7)(weight 142.0)
          (os windows)(fm no)
   	     (zoom 0)(pixel 8.0)(flash yes)(videoHD yes))
-  (phone (model N9_16)(price 620.00)
+  (phone (model N9_16)(price 620.00)(weightage 0.44)
          (brand nokia)(color black)(screen 3.9)(weight 135.0)(memory 16)
          (os meego)(fm no)
   	     (zoom 0)(pixel 8.0)(flash yes)(videoHD yes))
-  (phone (model N9_64)(price 680.00)
+  (phone (model N9_64)(price 680.00)(weightage 0.52)
          (brand nokia)(color black)(screen 3.9)(weight 135.0)(memory 64)
          (os meego)(fm no)
   		 (zoom 0)(pixel 8.0)(flash yes)(videoHD yes))	
   ; HTC
-  (phone (model Chacha)(price 280.00)
+  (phone (model Chacha)(price 280.00)(weightage 0.58)
          (brand htc)(color black)(screen 2.6)(weight 120.0)(memory 32)
          (os android)(bluetooth yes)(fm yes)
 	     (zoom 0)(pixel 5.0)(flash yes)(videoHD yes))
-  (phone (model radar)(price 510.00)
+  (phone (model radar)(price 510.00)(weightage 0.58)
          (brand htc)(color black)(screen 3.8)(weight 137.0)(memory 8)
          (os windows)
          (pixel 5.0))
-  (phone (model rhyme)(price 550.00)
+  (phone (model rhyme)(price 550.00)(weightage 0.64)
          (brand htc)(color black)(screen 3.7)(weight 130.0)(memory 32)
          (os android)
          (pixel 5.0)(flash yes)(videoHD yes))  
-  (phone (model sensation_xe)(price 655.00)
+  (phone (model sensation_xe)(price 655.00)(weightage 0.74)
          (brand htc)(color black)(screen 4.3)(weight 151.0)(memory 32)
          (os android)(fm yes)
   	     (pixel 8.0)(flash yes)(videoHD yes))
-  (phone (model sensation_xl)(price 680.00)
+  (phone (model sensation_xl)(price 680.00)(weightage 0.64)
          (brand htc)(screen 4.7)(weight 162.5)(memory 16)
          (os android)(fm yes)
   	     (pixel 8.0)(flash yes)(videoHD yes))
-  (phone (model wildfire_s)(price 285.00)
+  (phone (model wildfire_s)(price 285.00)(weightage 0.58)
          (brand htc)(screen 3.2)(weight 105.0)(memory 32)
          (os android)(fm yes)
   	     (pixel 5.0)(flash yes)(videoHD yes))  
   ; Samsung
-  (phone (model galaxy_ace)(price 310.00)
+  (phone (model galaxy_ace)(price 310.00)(weightage 0.66)
          (brand samsung)(color silver)(screen 3.5)(weight 113.0)(memory 32)
          (os android)(fm yes)
 	     (pixel 5.0)(flash yes)(videoHD yes))
-  (phone (model galaxy_nexus)(price 805.00)
+  (phone (model galaxy_nexus)(price 805.00)(weightage 0.6)
          (brand samsung)(color black)(screen 4.65)(weight 137.9)(memory 16)
          (os android)(fm yes)
          (pixel 5.0))		
-  (phone (model galaxy_note)(price 860.00)
+  (phone (model galaxy_note)(price 860.00)(weightage 0.54)
          (brand samsung)(screen 5.3)(weight 178.0)(memory 16)
          (os android)(fm yes)
          (zoom 4)(pixel 8.0)(flash yes))	
-  (phone (model galaxy_s_ii)(price 710.00)
+  (phone (model galaxy_s_ii)(price 710.00)(weightage 0.68)
          (brand samsung)(color black)(screen 4.27)(weight 116.0)(memory 32)
          (os android)(fm yes)
          (zoom 4)(pixel 8.0)(videoHD yes))
-  (phone (model galaxy_s_ii)(price 720.00)
+  (phone (model galaxy_s_ii)(price 720.00)(weightage 0.69)
          (brand samsung)(color white)(screen 4.27)(weight 116.0)(memory 32)
          (os android)(fm yes)
          (zoom 4)(pixel 8.0)(videoHD yes))
-  (phone (model galaxy_s_ii)(price 730.00)
+  (phone (model galaxy_s_ii)(price 730.00)(weightage 0.67)
          (brand samsung)(color pink)(screen 4.27)(weight 116.0)(memory 32)
          (os android)(fm yes)
          (zoom 4)(pixel 8.0)(videoHD yes))
-  (phone (model galaxy_tab_7.0_plus)(price 650.00)
+  (phone (model galaxy_tab_7.0_plus)(price 650.00)(weightage 0.52)
          (brand samsung)(color black)(screen 7.0)(weight 345.0)(memory 32)
          (os android)(fm no)
          (zoom 0)(pixel 3.2)(flash yes))	
-  (phone (model galaxy_tab_7.7)(price 750.00)
+  (phone (model galaxy_tab_7.7)(price 750.00)(weightage 0.52)
          (brand samsung)(color black)(screen 7.7)(weight 340.0)(memory 32)
          (os android)(fm no)
          (pixel 3.2)(flash yes))	
-  (phone (model galaxy_w)(price 395.00)
+  (phone (model galaxy_w)(price 395.00)(weightage 0.68)
          (brand samsung)(color black)(screen 3.7)(weight 114.7)(memory 32)
          (os android)(fm yes)
          (pixel 5.0)(flash yes))	
-  (phone (model omnia_w)(price 465.00)
+  (phone (model omnia_w)(price 465.00)(weightage 0.62)
          (brand samsung)(screen 3.7)(weight 115.0)(memory 8)
          (os windows)(fm yes)
          (pixel 5.0)(flash yes))			 
   ; LG
-  (phone (model optimus_3d)(price 650.00)
+  (phone (model optimus_3d)(price 650.00)(weightage 0.7)
          (brand lg)(color black)(screen 4.3)(weight 168.0)(memory 32)
          (os android)(fm yes)
          (pixel 5.0)(flash yes))
-  (phone (model optimus_chic)(price 400.00)
+  (phone (model optimus_chic)(price 400.00)(weightage 0.6)
          (brand lg)(color black)(screen 3.2)(weight 127.0)(memory 32)
          (os android)(fm yes)
          (pixel 5.0))
-  (phone (model optimus_hub)(price 405.00) ; price from http://www.sgphonedeals.com
+  (phone (model optimus_hub)(price 405.00)(weightage 0.66) ; price from http://www.sgphonedeals.com
          (brand lg)(color black)(screen 3.5)(weight 120.0)(memory 32)
          (os android)(fm yes)
          (pixel 5.0))
-  (phone (model optimus_sol)(price 299.00) ; price from www.sgbest.com
+  (phone (model optimus_sol)(price 299.00)(weightage 0.68) ; price from www.sgbest.com
          (brand lg)(screen 3.8)(weight 107.0)(memory 32)
          (os android)(bluetooth yes)(wifi yes)(fm yes)
          (pixel 5.0))		
-  (phone (model prada)(price 789.00) ; price from www.sgbest.com
+  (phone (model prada)(price 789.00)(weightage 0.54) ; price from www.sgbest.com
          (brand lg)(color black)(screen 4.3)(weight 138.0)(memory 32)
          (os android)(bluetooth yes)(wifi yes)(fm yes)
          (pixel 8.0)(flash yes))			 
   ; Motorola
-  (phone (model defy_plus)(price 380.00) ; price from www.sgbest.com
+  (phone (model defy_plus)(price 380.00)(weightage 0.66) ; price from www.sgbest.com
          (brand motorola)(screen 3.7)(weight 118.0)(memory 32)
          (os android)(bluetooth yes)(wifi yes)(fm yes)
   	     (pixel 5.0)(flash yes))  
-  (phone (model razr)(price 650.00)
+  (phone (model razr)(price 650.00)(weightage 0.66)
          (brand motorola)(screen 4.3)(weight 127.0)(memory 32)
          (os android)(fm no)
          (pixel 8.0)(flash yes))
@@ -664,28 +669,28 @@
   =>
   (switch ?sel 
     (case s1 then ;android more functionality
-      (assert (requirement_phone (attribute os)(value android)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)(value windows)(weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value meego)  (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute os)(value android)(weightage 0.85)(phase 1)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 0.72) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 0.30) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value meego)  (weightage 0.06) (phase 1)))
     )
     (case s2 then ; assuming lg has nicer designs
-      (assert (requirement_phone (attribute brand)(value LG)      (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute brand)(value LG)      (weightage 0.88)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.80) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.66) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.23) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.67) (phase 1)))
 	)
     (case s3 then 
-      (assert (requirement_phone (attribute os)   (value android) (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)   (value windows) (weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)   (value symbian) (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)   (value meego)   (weightage 20.0) (phase 1)))   
-      (assert (requirement_phone (attribute brand)(value lg)      (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute os)   (value android) (weightage 0.90)(phase 1)))
+	  (assert (requirement_phone (attribute os)   (value windows) (weightage 0.75) (phase 1)))
+	  (assert (requirement_phone (attribute os)   (value symbian) (weightage 0.33) (phase 1)))
+	  (assert (requirement_phone (attribute os)   (value meego)   (weightage 0.08) (phase 1)))   
+      (assert (requirement_phone (attribute brand)(value lg)      (weightage 0.86)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.70) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.20) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.30) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.72) (phase 1)))
 	)
   )
 )
@@ -698,15 +703,15 @@
       ; uninvolved users, do nothing
     )   
     (case s2 then ; basic usage
-      (assert (requirement_phone (attribute os)   (value meego)   (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)   (value symbian) (weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)   (value windows) (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)   (value android) (weightage 20.0) (phase 1)))   
-      (assert (requirement_phone (attribute brand)(value motorola)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute os)   (value meego)   (weightage 0.80)(phase 1)))
+	  (assert (requirement_phone (attribute os)   (value symbian) (weightage 0.87) (phase 1)))
+	  (assert (requirement_phone (attribute os)   (value windows) (weightage 0.53) (phase 1)))
+	  (assert (requirement_phone (attribute os)   (value android) (weightage 0.50) (phase 1)))   
+      (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.70)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.80) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 0.53) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.58) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.32) (phase 1)))
 	)
     (case s3 then ; intense usage
       (assert (requirement_phone (attribute memory)(value large)(phase 1)))
@@ -714,10 +719,10 @@
       (assert (requirement_phone (attribute weight)(value light)(phase 1)))
 	)
     (case s4 then ; fore runners
-      (assert (requirement_phone (attribute os)     (value android)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)     (value windows)(weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)     (value symbian)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)     (value meego)  (weightage 20.0) (phase 1))) 
+      (assert (requirement_phone (attribute os)     (value android)(weightage 0.94)(phase 1)))
+	  (assert (requirement_phone (attribute os)     (value windows)(weightage 0.88) (phase 1)))
+	  (assert (requirement_phone (attribute os)     (value symbian)(weightage 0.53) (phase 1)))
+	  (assert (requirement_phone (attribute os)     (value meego)  (weightage 0.20) (phase 1))) 
       (assert (requirement_phone (attribute memory) (value large)                   (phase 1)))
       (assert (requirement_phone (attribute screen) (value large)                   (phase 1)))
       (assert (requirement_phone (attribute videoHD)(value yes)                     (phase 1)))
@@ -730,28 +735,28 @@
   =>
   (switch ?sel 
     (case s1 then ; moderation in all things 
-      (assert (requirement_phone (attribute os)(value windows)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)(value android)(weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value meego)  (weightage 20.0) (phase 1))) 
+      (assert (requirement_phone (attribute os)(value windows)(weightage 0.78)(phase 1)))
+	  (assert (requirement_phone (attribute os)(value android)(weightage 0.72) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 0.60) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value meego)  (weightage 0.43) (phase 1))) 
 	)
     (case s2 then ; time is money
-      (assert (requirement_phone (attribute os)(value android)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)(value windows)(weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value symbian)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value meego)  (weightage 20.0) (phase 1))) 
+      (assert (requirement_phone (attribute os)(value android)(weightage 0.87)(phase 1)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 0.75) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 0.30) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value meego)  (weightage 0.13) (phase 1))) 
 	)
     (case s3 then ; viva la difference, celebrate diversity
-      (assert (requirement_phone (attribute os)(value symbian)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)(value android)(weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value windows)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value meego)  (weightage 20.0) (phase 1))) 
+      (assert (requirement_phone (attribute os)(value symbian)(weightage 0.86)(phase 1)))
+	  (assert (requirement_phone (attribute os)(value android)(weightage 0.79) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 0.51) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value meego)  (weightage 0.34) (phase 1))) 
 	)
     (case s4 then ; you only live once
-      (assert (requirement_phone (attribute os)(value meego)  (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute os)(value symbian)(weightage 70.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value windows)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute os)(value android)(weightage 20.0) (phase 1))) 
+      (assert (requirement_phone (attribute os)(value meego)  (weightage 0.76)(phase 1)))
+	  (assert (requirement_phone (attribute os)(value symbian)(weightage 0.69) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value windows)(weightage 0.47) (phase 1)))
+	  (assert (requirement_phone (attribute os)(value android)(weightage 0.30) (phase 1))) 
 	)
   )
 )
@@ -761,39 +766,39 @@
   =>
   (switch ?sel
     (case s1 then ; live, laugh, love
-      (assert (requirement_phone (attribute brand)(value lg)      (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value sumsang) (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute brand)(value lg)      (weightage 0.92)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.89) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.75) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.56) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.20) (phase 1)))
     )
     (case s2 then ; enduring and constant 
-      (assert (requirement_phone (attribute brand)(value nokia)   (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.95)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.86) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 0.77) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.59) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.48) (phase 1)))
 	)
     (case s3 then ; fashions fade, but style is eternal
-      (assert (requirement_phone (attribute brand)(value htc)     (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.93)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.88) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 0.73) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.57) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.24) (phase 1)))
 	)
     (case s4 then ; dare to be different
-      (assert (requirement_phone (attribute brand)(value motorola)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.89)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.74) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 0.65) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.50) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.33) (phase 1)))
     )
     (case s5 then ; better quality, better product
-      (assert (requirement_phone (attribute brand)(value samsung) (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 20.0) (phase 1)))
+      (assert (requirement_phone (attribute brand)(value samsung) (weightage 0.97)(phase 1)))
+	  (assert (requirement_phone (attribute brand)(value nokia)   (weightage 0.80) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value lg)      (weightage 0.76) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value motorola)(weightage 0.55) (phase 1)))
+	  (assert (requirement_phone (attribute brand)(value htc)     (weightage 0.31) (phase 1)))
     )
   )
 )
@@ -853,44 +858,44 @@
       (assert (requirement_plan (attribute sms)     (value medium)                   (phase 1)))
 	  (assert (requirement_plan (attribute data)    (value more)                     (phase 1)))
 	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
-      (assert (requirement_phone(attribute brand)   (value htc)     (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value samsung) (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 20.0) (phase 1)))	  	  
+      (assert (requirement_phone(attribute brand)   (value htc)     (weightage 0.87)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value samsung) (weightage 0.77) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 0.66) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 0.42) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 0.29) (phase 1)))	  	  
 	)
     (case s2 then ; 18-29
       (assert (requirement_plan (attribute fee)     (value low)                      (phase 1)))
       (assert (requirement_plan (attribute sms)     (value high)                     (phase 1)))
       (assert (requirement_plan (attribute data)    (value more)                     (phase 1)))
 	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
-      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 20.0) (phase 1)))	  	  
+      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 0.91)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 0.86) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 0.75) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 0.49) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 0.12) (phase 1)))	  	  
 	)
     (case s3 then ; 30 - 49
       (assert (requirement_plan (attribute fee)     (value medium)                   (phase 1)))
       (assert (requirement_plan (attribute sms)     (value low)                      (phase 1)))
 	  (assert (requirement_plan (attribute data)    (value not_impt)                 (phase 1)))
 	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
-      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 20.0) (phase 1)))	  	  
+      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 0.90)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 0.72) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 0.86) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 0.68) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 0.39) (phase 1)))	  	  
 	)
     (case s4 then ; > 49
       (assert (requirement_plan (attribute fee)     (value high)                     (phase 1)))
 	  (assert (requirement_plan (attribute data)    (value not_impt)                 (phase 1)))
 	  (assert (requirement_plan (attribute sms)     (value not_impt)                 (phase 1)))
       (assert (requirement_plan (attribute outgoing)(value more)                     (phase 1)))
-      (assert (requirement_phone(attribute brand)   (value motorola)(weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value samsung) (weightage 20.0) (phase 1)))	  
+      (assert (requirement_phone(attribute brand)   (value motorola)(weightage 0.80)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 0.74) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 0.66) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 0.51) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value samsung) (weightage 0.44) (phase 1)))	  
 	)
   )
 )
@@ -900,28 +905,28 @@
   =>
   (switch ?sel 
     (case s1 then ; Male
-      (assert (requirement_phone(attribute os)      (value android) (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute os)      (value windows) (weightage 70.0) (phase 1)))
-	  (assert (requirement_phone(attribute os)      (value symbian) (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute os)      (value meego)   (weightage 20.0) (phase 1)))
-      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 20.0) (phase 1)))	  
+      (assert (requirement_phone(attribute os)      (value android) (weightage 0.84)(phase 1)))
+	  (assert (requirement_phone(attribute os)      (value windows) (weightage 0.79) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value symbian) (weightage 0.67) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value meego)   (weightage 0.53) (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value samsung) (weightage 0.83)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 0.72) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value lg)      (weightage 0.69) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 0.44) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 0.60) (phase 1)))	  
 	  (assert (requirement_plan (attribute outgoing)(value not_impt)                 (phase 1)))
 	  (assert (requirement_plan (attribute data)   (value less)                 (phase 1)))
     )	  
     (case s2 then ; Female
-	  (assert (requirement_phone(attribute os)      (value symbian) (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute os)      (value android) (weightage 70.0) (phase 1)))
-	  (assert (requirement_phone(attribute os)      (value windows) (weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute os)      (value meego)   (weightage 20.0) (phase 1)))
-      (assert (requirement_phone(attribute brand)   (value lg)      (weightage 100.0)(phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 80.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 60.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 40.0) (phase 1)))
-	  (assert (requirement_phone(attribute brand)   (value sumsang) (weightage 20.0) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value symbian) (weightage 0.86)(phase 1)))
+	  (assert (requirement_phone(attribute os)      (value android) (weightage 0.73) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value windows) (weightage 0.56) (phase 1)))
+	  (assert (requirement_phone(attribute os)      (value meego)   (weightage 0.26) (phase 1)))
+      (assert (requirement_phone(attribute brand)   (value lg)      (weightage 0.73)(phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value htc)     (weightage 0.84) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value nokia)   (weightage 0.65) (phase 1)))
+	  (assert (requirement_phone(attribute brand)   (value motorola)(weightage 0.55) (phase 1)))
+	 (assert (requirement_phone(attribute brand)   (value samsung) (weightage 0.49) (phase 1)))
       (assert (requirement_plan (attribute outgoing)(value more)                     (phase 1)))
       (assert (requirement_plan (attribute data)   (value more)                     (phase 1)))
 	)
@@ -936,7 +941,7 @@
   (question (order use_camera)(selection ?sel))
   =>
   (if (eq ?sel yes) then
-	(assert (requirement_phone (attribute pixel)  (value high)(phase 3)))
+	(assert (requirement_phone (attribute pixel)  (value large)(phase 3)))
 	(assert (requirement_phone (attribute flash)  (value yes) (phase 3)))
 	(assert (requirement_phone (attribute videoHD)(value yes) (phase 3)))
    )
@@ -1029,7 +1034,8 @@
 ;;* CALCULATION RULES *
 ;;*********************
 (defrule calculate_weightage_phone
-	(declare (salience 50))
+  ; Combining CF within a rule
+  (declare (salience 50))
   (phase (stage 4))
   (requirement_phone (attribute pixel)  (value ?pixel))
   (requirement_phone (attribute flash)  (value ?flash))
@@ -1043,113 +1049,116 @@
   (requirement_phone (attribute brand)  (value ?brVal)(weightage ?weightage-br))
   (phone (model ?moVal)(brand ?brVal)(os ?osVal)(pixel ?piVal)
          (flash ?flVal)(videoHD ?viVal)(screen ?scVal)(weight ?weVal)
-         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal))
+         (memory ?meVal)(wifi ?wiVal)(fm ?fmVal)(weightage ?weightageVal))
   =>
-  (bind ?weightage-pi 100.0)
+  (bind ?weightage-pi 1.0)
   (if (eq ?pixel large) then
     (if (< ?piVal 6.0) then 
-	  (bind ?weightage-pi 50.0)
+	  (bind ?weightage-pi 0.7)
+	)
+	(if (< ?piVal 4.0) then 
+	  (bind ?weightage-pi 0.3)
 	)
 	(if (< ?piVal 3.0) then 
-	  (bind ?weightage-pi 20.0)
+	  (bind ?weightage-pi -0.5)
 	)
   )
-  (bind ?weightage-fl 100.0)
+
+  (bind ?weightage-fl 1.0)
   (if (eq ?flash yes) then
 	(if (eq ?flVal no) then 
-	  (bind ?weightage-fl 0.0)
+	  (bind ?weightage-fl -0.5)
 	)
   )
-  (bind ?weightage-vi 100.0)
+  (bind ?weightage-vi 1.0)
   (if (eq ?videoHD yes) then
 	(if (eq ?viVal no) then 
-	  (bind ?weightage-fl 0.0)
+	  (bind ?weightage-vi -0.4)
 	)
   )
-  (bind ?weightage-sc 100.0)
+  (bind ?weightage-sc 0.74)
   (if (eq ?screen large) then
     (if (< ?scVal 4.0) then 
-	  (bind ?weightage-sc 50.0)
+	  (bind ?weightage-sc 0.65)
 	)
 	(if (< ?scVal 3.0) then 
-	  (bind ?weightage-sc 20.0)
+	  (bind ?weightage-sc 0.48)
 	)
   )  
-  (bind ?weightage-we 100.0)
+  (bind ?weightage-we 0.9)
   (if (eq ?weight light) then
     (if (> ?weVal 150.0) then 
-	  (bind ?weightage-we 50.0)
+	  (bind ?weightage-we 0.78)
 	)
 	(if (> ?weVal 200.0) then 
-	  (bind ?weightage-we 20.0)
+	  (bind ?weightage-we 0.65)
 	)
   )
-  (bind ?weightage-me 100.0)
+  (bind ?weightage-me 0.85)
   (if (eq ?memory large) then
 	(if (< ?meVal 32) then 
-	  (bind ?weightage-me 80.0)
+	  (bind ?weightage-me 0.9)
 	)
 	(if (< ?meVal 24) then 
-	  (bind ?weightage-me 60.0)
+	  (bind ?weightage-me 0.75)
 	)	
     (if (< ?meVal 16) then 
-	  (bind ?weightage-me 40.0)
+	  (bind ?weightage-me 0.65)
 	)
 	(if (< ?meVal 8) then 
-	  (bind ?weightage-me 20.0)
+	  (bind ?weightage-me 0.40)
 	)
   ) 
-  (bind ?weightage-wi 100.0)
+  (bind ?weightage-wi 0.7)
   (if (eq ?wifi yes) then
 	(if (eq ?wiVal no) then 
-	  (bind ?weightage-wi 0.0)
+	  (bind ?weightage-wi -0.5)
 	)
   )
-  (bind ?weightage-fm 100.0)
+  (bind ?weightage-fm 0.3)
   (if (eq ?fm yes) then
 	(if (eq ?fmVal no) then 
-	  (bind ?weightage-fm 0.0)
+	  (bind ?weightage-fm 0.1)
 	)
   )  
-  (bind ?new-weightage (/ (+ ?weightage-br (+ ?weightage-os 
-                          (+ ?weightage-pi (+ ?weightage-fl 
-						  (+ ?weightage-vi (+ ?weightage-sc 
-                          (+ ?weightage-we (+ ?weightage-me 
-						  (+ ?weightage-wi ?weightage-fm))))))))) 10))
-  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)))
+  (bind ?new-weightage (* ?weightageVal (min ?weightage-br ?weightage-os ?weightage-pi ?weightage-fl 
+							                 ?weightage-vi ?weightage-sc ?weightage-we ?weightage-me 
+					                         ?weightage-wi ?weightage-fm)))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))
+  (assert (weightage_phone (model ?moVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
 
 (defrule combine_weightage_phone
-  ; take average of two weightage if there is two rule with similar attribute and value
+  ; combining CF from two different rules given a same result
   (declare (salience 75))
-  (phase (stage 4))  
+ (phase (stage ?x&2|4)) 
   ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage1))
   ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val)(weightage ?weightage2))
   (test (neq ?rem1 ?rem2))
   =>
   (retract ?rem1)
-  (if (eq (or ?weightage1 ?weightage2) 0) then
-    (modify ?rem2 (weightage (max ?weightage1 ?weightage2)))
-  else
-    (modify ?rem2 (weightage (/ (+ ?weightage1 ?weightage2) 2)))
+  (if (and (>= ?weightage1 0) (>= ?weightage2 0)) then
+    (bind ?new-weightage (- (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
   )
+  (if (and (< ?weightage1 0) (< ?weightage2 0)) then
+    (bind ?new-weightage (+ (+ ?weightage1 ?weightage2) (* ?weightage1 ?weightage2)))
+  )
+  (if (or (and (< ?weightage1 0) (>= ?weightage2 0)) (and (>= ?weightage1 0) (< ?weightage2 0))) then
+    (bind ?new-weightage (/ (+ ?weightage1 ?weightage2) (- 1 (min (abs ?weightage1)(abs ?weightage2)))))
+  )
+  (modify ?rem2 (weightage ?new-weightage))
 )
 
 (defrule combine_weightage_phone_not_impt
   ; remove a requirement_phone fact, that has value "not_impt"
   ; if there an addition requirement_plan, for the same attribute
   (declare (salience 100))
-  (phase (stage 4))  
-  ?rem1 <- (requirement_phone (attribute ?attribute)(value ?val1)(phase 3))
-  ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2)(phase 3))
+ (phase (stage ?x&2|4)) 
+  ?rem1 <- (requirement_phone (attribute ?attribute)(value not_impt))
+  ?rem2 <- (requirement_phone (attribute ?attribute)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
-  (if (eq ?val1 not_impt) then
-    (retract ?rem1)
-  )
-  (if (eq ?val2 not_impt) then
-    (retract ?rem2)
-  )
+  (retract ?rem1)
 )
 
 (defrule calculate_weightage_plan
@@ -1162,73 +1171,73 @@
   (phone_plan (plan ?plVal)(provider ?proVal)(planprice ?priVal)
               (outgoing ?ouVal)(sms ?smVal)(data ?daVal))
   =>
-  (bind ?weightage-pl 100.0)
+  (bind ?weightage-pl 0.72)
   (if (eq ?planprice medium) then
     (if (> ?priVal 60.0) then
-	  (bind ?weightage-pl 20.0)	
+	  (bind ?weightage-pl 0.45)	
 	)
   )
   (if (eq ?planprice low) then
     (if (> ?priVal 40.0) then
-	  (bind ?weightage-pl 50.0)	
+	  (bind ?weightage-pl 0.78)	
 	)
     (if (> ?priVal 60.0) then
-	  (bind ?weightage-pl 20.0)	
+	  (bind ?weightage-pl 0.30)	
 	)	
   )  
-  (bind ?weightage-ou 100.0)
+  (bind ?weightage-ou 0.80)
   (if (eq ?outgoing more) then
     (if (< ?ouVal 800) then
-	  (bind ?weightage-ou 80.0)
+	  (bind ?weightage-ou 0.87)
 	)
     (if (< ?ouVal 500) then
-	  (bind ?weightage-ou 50.0)
+	  (bind ?weightage-ou 0.70)
 	)	
     (if (< ?ouVal 300) then
-	  (bind ?weightage-ou 20.0)
+	  (bind ?weightage-ou 0.40)
 	)		
   )
-  (bind ?weightage-sm 100.0)
+
+  (bind ?weightage-sm 0.76)
   (if (eq ?sms high) then
     (if (< ?smVal 2000) then
-	  (bind ?weightage-sm 50.0)	
+	  (bind ?weightage-sm 0.64)	
 	)
 	(if (< ?smVal 650) then
-	  (bind ?weightage-sm 20.0)	
+	  (bind ?weightage-sm 0.27)	
 	)
   )
   (if (eq ?sms medium) then
     (if (< ?smVal 650) then
-	  (bind ?weightage-sm 20.0)	
+	  (bind ?weightage-sm 0.63)	
 	)
   ) 
-  (bind ?weightage-da 100.0)
+  (bind ?weightage-da 0.60)
   (if (eq ?data more) then
     (if (< ?daVal 15) then
-	  (bind ?weightage-da 50.0)	
+	  (bind ?weightage-da 0.76)	
 	)
 	(if (< ?daVal 10) then
-	  (bind ?weightage-da 20.0)	
+	  (bind ?weightage-da 0.7)	
 	)
   )
   (if (eq ?data less) then
     (if (< ?daVal 3) then
-	  (bind ?weightage-da 20.0)	
+	  (bind ?weightage-da 0.70)	
 	)
   )  
-  (bind ?new-weightage (/ (+ ?weightage-pl (+ ?weightage-ou 
-						  (+ ?weightage-sm ?weightage-da))) 4))
-  (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)))
+  (bind ?new-weightage (min ?weightage-pl ?weightage-ou ?weightage-sm ?weightage-da))
+  (bind ?normalized-weightage (* (+ 1 ?new-weightage) 50))
+  (assert (weightage_plan (plan ?plVal)(weightage ?new-weightage)(normalizedWeightage ?normalized-weightage)))
 )
-
 
 (defrule combine_weightage_plan_fee
   ; take the higher of fee budget
   ; if the difference is between high and low, take medium
-  (declare (salience 50))
-  (phase (stage 4))  
-  ?rem1 <- (requirement_phone (attribute fee)(value ?val1))
-  ?rem2 <- (requirement_phone (attribute fee)(value ?val2))
+  (declare (salience 75))
+ (phase (stage ?x&2|4))   
+  ?rem1 <- (requirement_plan (attribute fee)(value ?val1))
+  ?rem2 <- (requirement_plan (attribute fee)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
   (if (eq ?val1 low) then
@@ -1262,10 +1271,10 @@
 (defrule combine_weightage_plan_sms
   ; take the higher of sms required
   ; if the difference is between high and low, take medium
-  (declare (salience 50))
-  (phase (stage 4))  
-  ?rem1 <- (requirement_phone (attribute sms)(value ?val1))
-  ?rem2 <- (requirement_phone (attribute sms)(value ?val2))
+  (declare (salience 75))
+ (phase (stage ?x&2|4))   
+  ?rem1 <- (requirement_plan (attribute sms)(value ?val1))
+  ?rem2 <- (requirement_plan (attribute sms)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
   (if (eq ?val1 low) then
@@ -1300,17 +1309,23 @@
   ; remove a requirement_plan fact, that has value "not_impt"
   ; if there an addition requirement_plan, for the same attribute
   (declare (salience 100))
-  (phase (stage 4))  
-  ?rem1 <- (requirement_plan (attribute ?attribute)(value ?val1))
+  (phase (stage ?x&2|4))  
+  ?rem1 <- (requirement_plan (attribute ?attribute)(value not_impt))
   ?rem2 <- (requirement_plan (attribute ?attribute)(value ?val2))
   (test (neq ?rem1 ?rem2))
   =>
-  (if (eq ?val1 not_impt) then
-    (retract ?rem1)
-  )
-  (if (eq ?val2 not_impt) then
-    (retract ?rem2)
-  )
+  (retract ?rem1)
+)
+
+(defrule calculate_phone_plan_weightage
+  ; combining two rules for display purpose
+  (declare (salience 100))
+  (phase (stage 6))
+  (weightage_phone (model ?moVal)(weightage ?weightage1)(normalizedWeightage ?weightageN1))
+  (weightage_plan  (plan ?plVal) (weightage ?weightage2)(normalizedWeightage ?weightageN2))
+  =>
+  (assert (weightage_phone_plan (model ?moVal)(weightage_phone ?weightage1)(normalizedWeightagePhone ?weightageN1)
+                                (plan ?plVal) (weightage_plan ?weightage2)(normalizedWeightagePlan ?weightageN2)))
 )
 
 ;;***************
@@ -1415,6 +1430,13 @@
   (modify ?phase (stage 5))
 )
 
+(defrule stage_six_change_stage
+  (declare (salience -10))
+  ?phase <- (phase (stage 6))
+  =>
+  (modify ?phase (stage 7))
+)
+
 ;;*************
 ;;* FUNCTIONS *
 ;;*************
@@ -1431,16 +1453,23 @@
   (bind ?facts (find-all-facts((?p phone_plan)) TRUE))
 )
 
-;;Not yet finished
-(deffunction get_weightage_phone_plan_list ()
-  (bind ?facts (find-all-facts((?p weightage_phone_plan)) 
-  TRUE
-  ))
+(deffunction get_phoneplanprice_list ()
+  (bind ?facts (find-all-facts((?p phone_plan_price)) TRUE))
 )
 
-(deffunction next_phase (?currentphase)
+(deffunction get_requirement_list ()
+  (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
+)
+
+
+;;Not yet finished
+(deffunction get_weightage_phone_plan_list ()
+(bind ?facts(find-all-facts((?wp weightage_phone_plan))TRUE))
+)
+
+(deffunction next_stage (?current_stage)
 	(find-all-facts((?p phase)) 
-	  (switch ?currentphase
+	  (switch ?current_stage
 		(case 1 then 
 		  (modify ?p (stage 2))
 		)  
@@ -1454,9 +1483,9 @@
 	)
 )
 
-(deffunction prev_phase (?currentphase)
+(deffunction prev_stage (?current_stage)
 	(find-all-facts((?p phase)) 
-	  (switch ?currentphase
+	  (switch ?current_stage
 	  	(case 3 then 
 		  (modify ?p (stage 0))
 		)
@@ -1471,27 +1500,32 @@
 )
 
 
-(deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data)
+(deffunction update_phoneplan_list (?provider ?outgoing ?sms ?data ?budgetMin ?budgetMax)
 	(bind ?facts(find-all-facts((?p phone_plan)(?wp weightage_phone_plan)(?pp phone_plan_price))
 		(and
-			(eq ?wp:model ?pp:model)
-			(eq ?pp:plan ?p:plan)
-			(if (eq ?p:provider nil)
+			(and (eq ?wp:model ?pp:model)(eq ?pp:plan ?wp:plan)(eq ?wp:plan ?p:plan))
+			(if (and (eq ?budgetMax nil)(eq ?budgetMin nil))
+				then
+				(eq ?pp:phoneprice ?pp:phoneprice)
+				else
+				(and(<= ?pp:phoneprice ?budgetMax)(>= ?pp:phoneprice ?budgetMin)))
+			(if (eq ?provider nil)
 				then
 				(eq ?p:provider ?p:provider)
+				;(printout t "provider selected is nil " crlf)
 				else
 				(eq ?p:provider ?provider))
-			(if (eq ?p:outgoing nil)
+			(if (eq ?outgoing nil)
 				then
 				(eq ?p:outgoing ?p:outgoing)
 				else
 				(eq ?p:outgoing ?outgoing))
-			(if (eq ?p:sms nil)
+			(if (eq ?sms nil)
 				then
 				(eq ?p:sms ?p:sms)
 				else
 				(eq ?p:sms ?sms))
-			(if (eq ?p:data nil)
+			(if (eq ?data nil)
 				then
 				(eq ?p:data ?p:data)
 				else
@@ -1500,7 +1534,7 @@
 )))
 
 
-(deffunction update_mobilephone_list (?os ?screen ?fm ?video ?camflash ?mem ?weight ?campixel ?color ?wifi ?camzoom)
+(deffunction update_mobilephone_list (?os ?screenMax ?screenMin ?fm ?video ?camflash ?mem ?weightMax ?weightMin ?campixel ?color ?wifi ?camzoom)
   (bind ?facts(find-all-facts((?wp weightage_phone)(?p phone))
 		(and
 			(eq ?p:model ?wp:model)
@@ -1509,11 +1543,11 @@
 				(eq ?p:os ?p:os)
 				else
 				(eq ?p:os ?os))
-			(if (eq ?screen nil)
+			(if (and (eq ?screenMax nil)(eq ?screenMin nil))
 				then
 				(eq ?p:screen ?p:screen)
 				else
-				(eq ?p:screen ?screen))
+				(and(<= ?p:screen ?screenMax)(>= ?p:screen ?screenMin)))
 			(if (eq ?fm nil)
 				then
 				(eq ?p:fm ?p:fm)
@@ -1534,11 +1568,11 @@
 				(eq ?p:memory ?p:memory)
 				else
 				(eq ?p:memory ?mem))
-			(if (eq ?weight nil)
+			(if (and (eq ?weightMax nil)(eq ?weightMin nil))
 				then
 				(eq ?p:weight ?p:weight)
 				else
-				(eq ?p:weight ?weight))
+				(and(<= ?p:weight ?weightMax)(>= ?p:weight ?weightMin)))
 			(if (eq ?campixel nil)
 				then
 				(eq ?p:pixel ?p:pixel)
@@ -1564,6 +1598,3 @@
   )
 )
  
-(deffunction get_requirement_list ()
-  (bind ?facts (find-all-facts((?p requirement_phone)) TRUE))
-)
